@@ -3,12 +3,23 @@ namespace AcquiaCloudApi\Response;
 
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Class CloudApiResponse
+ * @package AcquiaCloudApi\Response
+ */
 class CloudApiResponse
 {
 
+    /**
+     * @var \Psr\Http\Message\StreamInterface
+     */
     public $response;
 
-    function __construct(ResponseInterface $response)
+    /**
+     * CloudApiResponse constructor.
+     * @param ResponseInterface $response
+     */
+    public function __construct(ResponseInterface $response)
     {
         $body = $response->getBody();
 
@@ -16,7 +27,6 @@ class CloudApiResponse
         if (json_last_error() === JSON_ERROR_NONE) {
             // JSON is valid
             if (property_exists($object, '_embedded') && property_exists($object->_embedded, 'items')) {
-
                 $this->response = $object->_embedded->items;
             } else {
                 $this->response = $object;

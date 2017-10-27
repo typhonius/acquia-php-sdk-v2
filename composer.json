@@ -1,0 +1,21 @@
+{
+    "name": "typhonius/acquia-php-sdk-v2",
+    "description": "A PHP SDK for Acquia CloudAPI v2",
+    "authors": [
+        {
+            "name": "Adam Malone",
+            "email": "adam@adammalone.net"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "acquia/http-hmac-php": "^3.1",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload":{
+        "psr-4":{
+            "AcquiaCloudApi\\CloudApi\\":"src/CloudApi",
+            "AcquiaCloudApi\\Response\\":"src/Response"
+        }
+    }
+}

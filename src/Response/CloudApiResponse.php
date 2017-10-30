@@ -28,6 +28,8 @@ class CloudApiResponse
             // JSON is valid
             if (property_exists($object, '_embedded') && property_exists($object->_embedded, 'items')) {
                 $this->response = $object->_embedded->items;
+            } elseif (property_exists($object, 'error')) {
+                $this->response = $object->message;
             } else {
                 $this->response = $object;
             }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6666a9aa20ccd20d8657fdf4e44060cf",
+    "content-hash": "b9b2543a80ca048cfb5dbdca70866792",
     "packages": [
         {
             "name": "acquia/http-hmac-php",
@@ -351,6 +351,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^7.0"
+    },
     "platform-dev": []
 }

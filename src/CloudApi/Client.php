@@ -24,7 +24,7 @@ class Client extends GuzzleClient
      * @param array $config
      * @return static
      */
-    public static function factory($config = array())
+    public static function factory(Array $config = array())
     {
 
         $key = new Key($config['key'], $config['secret']);
@@ -40,12 +40,12 @@ class Client extends GuzzleClient
     }
 
     /**
-     * @param $verb
-     * @param $path
+     * @param string $verb
+     * @param string $path
      * @param array $options
      * @return CloudApiResponse
      */
-    private function makeRequest($verb, $path, Array $options = array())
+    private function makeRequest(String $verb, String $path, Array $options = array())
     {
         try {
             $response = $this->$verb(self::BASE_URI . $path, $options);
@@ -202,9 +202,7 @@ class Client extends GuzzleClient
      */
     public function tasks($uuid)
     {
-        $response = $this->get(self::BASE_URI . "/applications/${uuid}/tasks");
-
-        return new CloudApiResponse($response);
+        return $this->makeRequest('get', "/applications/${uuid}/tasks");
     }
 
     /**

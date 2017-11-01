@@ -16,7 +16,7 @@ use AcquiaCloudApi\Response\CloudApiResponse;
 class Client extends GuzzleClient
 {
     /**
-     *
+     * @var string BASE_URI
      */
     const BASE_URI = 'https://cloud.acquia.com/api';
 
@@ -31,6 +31,8 @@ class Client extends GuzzleClient
         $middleware = new HmacAuthMiddleware($key);
         $stack = HandlerStack::create();
         $stack->push($middleware);
+
+        // @TODO set query string options here for sort, filter, limit, offset
 
         $client = new static([
             'handler' => $stack,
@@ -47,6 +49,19 @@ class Client extends GuzzleClient
      */
     private function makeRequest(String $verb, String $path, Array $options = array())
     {
+
+        // @TODO sort, filter, limit, offset
+        // Sortable by: 'name', 'label', 'weight'.
+        // Filterable by: 'name', 'label', 'weight'.
+
+        // $options['query'] = [
+        //    'sort' => 'name,-weight',
+        //    'filter' => 'name=test',
+        //    'limit' => 1,
+        //    'offset' => 1,
+        //];
+
+
         try {
             $response = $this->$verb(self::BASE_URI . $path, $options);
         } catch (ClientException $e) {
@@ -69,6 +84,50 @@ class Client extends GuzzleClient
      * @param string $uuid
      * @return CloudApiResponse
      */
+    public function application($uuid)
+    {
+        return $this->makeRequest('get', "/applications/${uuid}");
+    }
+
+    /**
+     * @param string $uuid
+     * @param string $name
+     * @return CloudApiResponse
+     */
+    public function applicationRename($uuid, $name)
+    {
+
+        $options = [
+            'form_params' => [
+                'name' => $name,
+            ],
+        ];
+
+        return $this->makeRequest('put', "/applications/${uuid}", $options);
+    }
+
+    /**
+     * @param string $uuid
+     * @return CloudApiResponse
+     */
+    public function code($uuid)
+    {
+        return $this->makeRequest('get', "/applications/${uuid}/code");
+    }
+
+    /**
+     * @param string $uuid
+     * @return CloudApiResponse
+     */
+    public function features($uuid)
+    {
+        return $this->makeRequest('get', "/applications/${uuid}/features");
+    }
+
+    /**
+     * @param string $uuid
+     * @return CloudApiResponse
+     */
     public function databases($uuid)
     {
         return $this->makeRequest('get', "/applications/${uuid}/databases");
@@ -79,7 +138,7 @@ class Client extends GuzzleClient
      * @param string $source
      * @return CloudApiResponse
      */
-    public function copyDatabases($uuid, $source)
+    public function databaseCopy($uuid, $source)
     {
         $options = [
             'form_params' => [
@@ -91,11 +150,46 @@ class Client extends GuzzleClient
     }
 
     /**
+     * @param string $uuid
+     * @param string $name
+     * @return CloudApiResponse
+     */
+    public function databaseCreate($uuid, $name)
+    {
+        $options = [
+            'form_params' => [
+                'name' => $name,
+            ],
+        ];
+
+        return $this->makeRequest('post', "/applications/${uuid}/databases", $options);
+    }
+
+    /**
+     * @param string $uuid
+     * @param string $name
+     * @return CloudApiResponse
+     */
+    public function databaseDelete($uuid, $name)
+    {
+        return $this->makeRequest('post', "/applications/${uuid}/databases/${name}");
+    }
+
+    /**
+     * @param string $uuid
+     * @return CloudApiResponse
+     */
+    public function insight($uuid)
+    {
+        return $this->makeRequest('get', "/applications/${uuid}/insight");
+    }
+
+    /**
      * @param string $id
      * @param string $dbName
      * @return CloudApiResponse
      */
-    public function createDatabaseBackup($id, $dbName)
+    public function databaseBackup($id, $dbName)
     {
         return $this->makeRequest('post', "/environments/${id}/databases/${dbName}/backups");
     }
@@ -221,6 +315,23 @@ class Client extends GuzzleClient
     public function environment($id)
     {
         return $this->makeRequest('get', "/environments/${id}");
+    }
+
+    /**
+     * @param string $id
+     * @param string $label
+     * @return CloudApiResponse
+     */
+    public function environmentLabel($id, $label)
+    {
+
+        $options = [
+            'form_params' => [
+                'label' => $label,
+            ],
+        ];
+
+        return $this->makeRequest('post', "/environments/${id}/actions/change-label", $options);
     }
 
     /**

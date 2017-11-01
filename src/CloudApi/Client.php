@@ -8,6 +8,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\HandlerStack;
 use AcquiaCloudApi\Response\CloudApiResponse;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Class Client
@@ -19,6 +20,8 @@ class Client extends GuzzleClient
      * @var string BASE_URI
      */
     const BASE_URI = 'https://cloud.acquia.com/api';
+
+    protected $query = [];
 
     /**
      * @param array $config
@@ -45,7 +48,7 @@ class Client extends GuzzleClient
      * @param string $verb
      * @param string $path
      * @param array $options
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     private function makeRequest(String $verb, String $path, Array $options = array())
     {
@@ -54,13 +57,7 @@ class Client extends GuzzleClient
         // Sortable by: 'name', 'label', 'weight'.
         // Filterable by: 'name', 'label', 'weight'.
 
-        // $options['query'] = [
-        //    'sort' => 'name,-weight',
-        //    'filter' => 'name=test',
-        //    'limit' => 1,
-        //    'offset' => 1,
-        //];
-
+        $options['query'] = $this->query;
 
         try {
             $response = $this->$verb(self::BASE_URI . $path, $options);
@@ -69,7 +66,19 @@ class Client extends GuzzleClient
             $response = $e->getResponse();
         }
 
-        return new CloudApiResponse($response);
+        $cloudApiResponse = new CloudApiResponse($response);
+
+        return $cloudApiResponse->response;
+    }
+
+    public function clearQuery()
+    {
+        $this->query = [];
+    }
+
+    public function addFilter($type, $operation, $value)
+    {
+        $this->query = array_merge($this->query, ['filter' => $type . $operation . $value]);
     }
 
     /**
@@ -77,12 +86,12 @@ class Client extends GuzzleClient
      */
     public function applications()
     {
-        return $this->makeRequest('get', '/applications');
+        $response = $this->makeRequest('get', '/applications');
     }
 
     /**
      * @param string $uuid
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function application($uuid)
     {
@@ -92,7 +101,7 @@ class Client extends GuzzleClient
     /**
      * @param string $uuid
      * @param string $name
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function applicationRename($uuid, $name)
     {
@@ -108,7 +117,7 @@ class Client extends GuzzleClient
 
     /**
      * @param string $uuid
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function code($uuid)
     {
@@ -117,7 +126,7 @@ class Client extends GuzzleClient
 
     /**
      * @param string $uuid
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function features($uuid)
     {
@@ -126,7 +135,7 @@ class Client extends GuzzleClient
 
     /**
      * @param string $uuid
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function databases($uuid)
     {
@@ -134,9 +143,18 @@ class Client extends GuzzleClient
     }
 
     /**
+     * @param string $id
+     * @return StreamInterface
+     */
+    public function environmentDatabases($id)
+    {
+        return $this->makeRequest('get', "/environments/${id}/databases");
+    }
+
+    /**
      * @param string $uuid
      * @param string $source
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function databaseCopy($uuid, $source)
     {
@@ -152,7 +170,7 @@ class Client extends GuzzleClient
     /**
      * @param string $uuid
      * @param string $name
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function databaseCreate($uuid, $name)
     {
@@ -168,7 +186,7 @@ class Client extends GuzzleClient
     /**
      * @param string $uuid
      * @param string $name
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function databaseDelete($uuid, $name)
     {
@@ -177,7 +195,7 @@ class Client extends GuzzleClient
 
     /**
      * @param string $uuid
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function insight($uuid)
     {
@@ -187,7 +205,7 @@ class Client extends GuzzleClient
     /**
      * @param string $id
      * @param string $dbName
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function databaseBackup($id, $dbName)
     {
@@ -196,7 +214,7 @@ class Client extends GuzzleClient
 
     /**
      * @param string $id
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function copyFiles($id)
     {
@@ -206,7 +224,7 @@ class Client extends GuzzleClient
     /**
      * @param string $id
      * @param string $branch
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function switchCode($id, $branch)
     {
@@ -222,7 +240,7 @@ class Client extends GuzzleClient
 
     /**
      * @param string $id
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function domains($id)
     {
@@ -232,7 +250,7 @@ class Client extends GuzzleClient
     /**
      * @param string $id
      * @param string $hostname
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function addDomain($id, $hostname)
     {
@@ -249,7 +267,7 @@ class Client extends GuzzleClient
     /**
      * @param string $id
      * @param string $domain
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function deleteDomain($id, $domain)
     {
@@ -259,7 +277,7 @@ class Client extends GuzzleClient
     /**
      * @param string $id
      * @param string $domains
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function purgeVarnishCache($id, $domains)
     {
@@ -292,7 +310,7 @@ class Client extends GuzzleClient
 
     /**
      * @param string $uuid
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function tasks($uuid)
     {
@@ -301,7 +319,7 @@ class Client extends GuzzleClient
 
     /**
      * @param string $uuid
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function environments($uuid)
     {
@@ -310,7 +328,7 @@ class Client extends GuzzleClient
 
     /**
      * @param string $id
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function environment($id)
     {
@@ -320,7 +338,7 @@ class Client extends GuzzleClient
     /**
      * @param string $id
      * @param string $label
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function environmentLabel($id, $label)
     {
@@ -336,7 +354,7 @@ class Client extends GuzzleClient
 
     /**
      * @param string $id
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function servers($id)
     {
@@ -345,7 +363,7 @@ class Client extends GuzzleClient
 
     /**
      * @param string $id
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function enableLiveDev($id)
     {
@@ -354,7 +372,7 @@ class Client extends GuzzleClient
 
     /**
      * @param string $id
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function disableLiveDev($id)
     {
@@ -363,7 +381,7 @@ class Client extends GuzzleClient
 
     /**
      * @param string $id
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function enableProductionMode($id)
     {
@@ -372,7 +390,7 @@ class Client extends GuzzleClient
 
     /**
      * @param string $id
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function disableProductionMode($id)
     {
@@ -381,7 +399,7 @@ class Client extends GuzzleClient
 
     /**
      * @param string $id
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function crons($id)
     {
@@ -393,7 +411,7 @@ class Client extends GuzzleClient
      * @param string $command
      * @param string $frequency
      * @param string $label
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function addCron($id, $command, $frequency, $label)
     {
@@ -412,7 +430,7 @@ class Client extends GuzzleClient
     /**
      * @param string $id
      * @param string $cronId
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function deleteCron($id, $cronId)
     {
@@ -420,7 +438,7 @@ class Client extends GuzzleClient
     }
 
     /**
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function drushAliases()
     {

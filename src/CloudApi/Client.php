@@ -383,7 +383,7 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return $this->makeRequest('post', "/environments/${id}/livedev/actions/disable");
+        return $this->makeRequest('post', "/environments/${id}/livedev/actions/disable", $options);
     }
 
     /**

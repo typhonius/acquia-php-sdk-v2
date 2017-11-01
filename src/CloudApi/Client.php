@@ -82,11 +82,11 @@ class Client extends GuzzleClient
     }
 
     /**
-     * @return CloudApiResponse
+     * @return StreamInterface
      */
     public function applications()
     {
-        $response = $this->makeRequest('get', '/applications');
+        return $this->makeRequest('get', '/applications');
     }
 
     /**

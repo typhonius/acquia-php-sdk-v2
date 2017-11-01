@@ -376,6 +376,13 @@ class Client extends GuzzleClient
      */
     public function disableLiveDev($id)
     {
+
+        $options = [
+            'form_params' => [
+                'discard' => 1,
+            ],
+        ];
+
         return $this->makeRequest('post', "/environments/${id}/livedev/actions/disable");
     }
 

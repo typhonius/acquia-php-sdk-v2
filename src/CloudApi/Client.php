@@ -59,6 +59,11 @@ class Client extends GuzzleClient
 
         $options['query'] = $this->query;
 
+        if (!empty($options['query']['filter']) && is_array($options['query']['filter'])) {
+            // Default to an AND filter.
+            $options['query']['filter'] = implode(',', $options['query']['filter']);
+        }
+
         try {
             $response = $this->$verb(self::BASE_URI . $path, $options);
         } catch (ClientException $e) {
@@ -76,9 +81,9 @@ class Client extends GuzzleClient
         $this->query = [];
     }
 
-    public function addFilter($type, $operation, $value)
+    public function addQuery($name, $value)
     {
-        $this->query = array_merge($this->query, ['filter' => $type . $operation . $value]);
+        $this->query = array_merge_recursive($this->query, [$name => $value]);
     }
 
     /**

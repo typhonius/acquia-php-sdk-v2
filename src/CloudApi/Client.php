@@ -170,6 +170,7 @@ class Client extends GuzzleClient
     {
         $options = [
             'form_params' => [
+                'name' => $name,
                 'source' => $source,
             ],
         ];

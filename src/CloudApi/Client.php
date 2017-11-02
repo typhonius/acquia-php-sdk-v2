@@ -313,7 +313,7 @@ class Client extends GuzzleClient
 
     /**
      * @param string $id
-     * @param string $domains
+     * @param array $domains
      * @return StreamInterface
      */
     public function purgeVarnishCache($id, $domains)

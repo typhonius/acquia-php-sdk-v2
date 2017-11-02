@@ -35,8 +35,6 @@ class Client extends GuzzleClient
         $stack = HandlerStack::create();
         $stack->push($middleware);
 
-        // @TODO set query string options here for sort, filter, limit, offset
-
         $client = new static([
             'handler' => $stack,
         ]);
@@ -76,11 +74,18 @@ class Client extends GuzzleClient
         return $cloudApiResponse->response;
     }
 
+    /**
+     *
+     */
     public function clearQuery()
     {
         $this->query = [];
     }
 
+    /**
+     * @param string $name
+     * @param string $value
+     */
     public function addQuery($name, $value)
     {
         $this->query = array_merge_recursive($this->query, [$name => $value]);
@@ -218,12 +223,19 @@ class Client extends GuzzleClient
     }
 
     /**
-     * @param string $id
+     * @param string $idFrom
+     * @param string $idTo
      * @return StreamInterface
      */
-    public function copyFiles($id)
+    public function copyFiles($idFrom, $idTo)
     {
-        return $this->makeRequest('post', "/environments/${id}/files");
+        $options = [
+           'form_params' => [
+               'source' => $idFrom,
+           ],
+        ];
+
+        return $this->makeRequest('post', "/environments/${idTo}/files", $options);
     }
 
     /**

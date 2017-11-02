@@ -38,3 +38,7 @@ $cloudapi = Client::factory(array(
 
 $applications = $cloudapi->applications();
 ```
+
+## I just want to use this not develop against it
+
+A Robo application has been created that uses this SDK and creates a command line tool for interacting with the API. [The application may be found here](https://github.com/typhonius/acquia_cli) using the acquia-api-v2 branch.

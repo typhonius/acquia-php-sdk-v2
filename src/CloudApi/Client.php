@@ -222,6 +222,26 @@ class Client extends GuzzleClient
         return $this->makeRequest('post', "/environments/${id}/databases/${dbName}/backups");
     }
 
+     /**
+      * @param $id
+      * @param $dbName
+      * @return StreamInterface
+      */
+     public function databaseBackups($id, $dbName)
+     {
+         return $this->makeRequest('get', "/environments/${id}/databases/${dbName}/backups");
+     }
+
+     /**
+      * @param $id
+      * @param $backupId
+      * @return StreamInterface
+      */
+     public function databaseBackupInfo($id, $backupId)
+     {
+         return $this->makeRequest('get', "/environments/${id}/database-backups/${backupId}");
+     }
+
     /**
      * @param string $idFrom
      * @param string $idTo
@@ -307,15 +327,6 @@ class Client extends GuzzleClient
 
         return $this->makeRequest('post', "/environments/${id}/domains/actions/clear-varnish", $options);
     }
-
-    /**
-     *
-     */
-    public function databaseBackups()
-    {
-
-    }
-
 
     /**
      *

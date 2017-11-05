@@ -1,4 +1,5 @@
 <?php
+
 namespace AcquiaCloudApi\Response;
 
 use Psr\Http\Message\ResponseInterface;
@@ -21,6 +22,8 @@ class CloudApiResponse
      */
     public function __construct(ResponseInterface $response)
     {
+
+      // @TODO detect status code here and exit early.
         $body = $response->getBody();
 
         $object = json_decode($body);

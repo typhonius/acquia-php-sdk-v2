@@ -4,6 +4,16 @@ namespace AcquiaCloudApi\CloudApi;
 
 use Acquia\Hmac\Guzzle\HmacAuthMiddleware;
 use Acquia\Hmac\Key;
+use AcquiaCloudApi\Response\ApplicationResponse;
+use AcquiaCloudApi\Response\ApplicationsResponse;
+use AcquiaCloudApi\Response\BackupResponse;
+use AcquiaCloudApi\Response\BackupsResponse;
+use AcquiaCloudApi\Response\DatabasesResponse;
+use AcquiaCloudApi\Response\DomainsResponse;
+use AcquiaCloudApi\Response\EnvironmentResponse;
+use AcquiaCloudApi\Response\EnvironmentsResponse;
+use AcquiaCloudApi\Response\OperationResponse;
+use AcquiaCloudApi\Response\ServersResponse;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\HandlerStack;
@@ -46,7 +56,7 @@ class Client extends GuzzleClient
      * @param string $verb
      * @param string $path
      * @param array $options
-     * @return StreamInterface
+     * @return array|object
      */
     private function makeRequest(String $verb, String $path, Array $options = array())
     {
@@ -92,20 +102,20 @@ class Client extends GuzzleClient
     }
 
     /**
-     * @return StreamInterface
+     * @return ApplicationsResponse
      */
     public function applications()
     {
-        return $this->makeRequest('get', '/applications');
+        return new ApplicationsResponse($this->makeRequest('get', '/applications'));
     }
 
     /**
      * @param string $uuid
-     * @return StreamInterface
+     * @return ApplicationResponse
      */
     public function application($uuid)
     {
-        return $this->makeRequest('get', "/applications/${uuid}");
+        return new ApplicationResponse($this->makeRequest('get', "/applications/${uuid}"));
     }
 
     /**
@@ -145,37 +155,38 @@ class Client extends GuzzleClient
 
     /**
      * @param string $uuid
-     * @return StreamInterface
+     * @return DatabasesResponse
      */
     public function databases($uuid)
     {
-        return $this->makeRequest('get', "/applications/${uuid}/databases");
+        return new DatabasesResponse($this->makeRequest('get', "/applications/${uuid}/databases"));
     }
 
     /**
      * @param string $id
-     * @return StreamInterface
+     * @return DatabasesResponse
      */
     public function environmentDatabases($id)
     {
-        return $this->makeRequest('get', "/environments/${id}/databases");
+      return new DatabasesResponse($this->makeRequest('get', "/environments/${id}/databases"));
     }
 
     /**
-     * @param string $uuid
-     * @param string $source
+     * @param string $environmentFromId
+     * @param string $dbName
+     * @param string $environmentToId
      * @return StreamInterface
      */
-    public function databaseCopy($uuid, $source)
+    public function databaseCopy($environmentFromId, $dbName, $environmentToId)
     {
         $options = [
             'form_params' => [
-                'name' => $name,
-                'source' => $source,
+                'name' => $dbName,
+                'source' => $environmentFromId,
             ],
         ];
 
-        return $this->makeRequest('post', "/applications/${uuid}/databases", $options);
+        return $this->makeRequest('post', "/applications/${environmentToId}/databases", $options);
     }
 
     /**
@@ -216,37 +227,37 @@ class Client extends GuzzleClient
     /**
      * @param string $id
      * @param string $dbName
-     * @return StreamInterface
+     * @return OperationResponse
      */
     public function databaseBackup($id, $dbName)
     {
-        return $this->makeRequest('post', "/environments/${id}/databases/${dbName}/backups");
+        return new OperationResponse($this->makeRequest('post', "/environments/${id}/databases/${dbName}/backups"));
     }
 
      /**
       * @param $id
       * @param $dbName
-      * @return StreamInterface
+      * @return BackupsResponse
       */
      public function databaseBackups($id, $dbName)
      {
-         return $this->makeRequest('get', "/environments/${id}/databases/${dbName}/backups");
+         return new BackupsResponse($this->makeRequest('get', "/environments/${id}/databases/${dbName}/backups"));
      }
 
-     /**
-      * @param $id
-      * @param $backupId
-      * @return StreamInterface
-      */
-     public function databaseBackupInfo($id, $backupId)
-     {
-         return $this->makeRequest('get', "/environments/${id}/database-backups/${backupId}");
-     }
+    /**
+     * @param $id
+     * @param $backupId
+     * @return BackupResponse
+     */
+    public function databaseBackupInfo($id, $backupId)
+    {
+         return new BackupResponse($this->makeRequest('get', "/environments/${id}/database-backups/${backupId}"));
+    }
 
     /**
      * @param string $idFrom
      * @param string $idTo
-     * @return StreamInterface
+     * @return OperationResponse
      */
     public function copyFiles($idFrom, $idTo)
     {
@@ -256,13 +267,13 @@ class Client extends GuzzleClient
            ],
         ];
 
-        return $this->makeRequest('post', "/environments/${idTo}/files", $options);
+        return new OperationResponse($this->makeRequest('post', "/environments/${idTo}/files", $options));
     }
 
     /**
      * @param string $id
      * @param string $branch
-     * @return StreamInterface
+     * @return OperationResponse
      */
     public function switchCode($id, $branch)
     {
@@ -273,22 +284,22 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return $this->makeRequest('post', "/environments/${id}/code/actions/switch", $options);
+        return new OperationResponse($this->makeRequest('post', "/environments/${id}/code/actions/switch", $options));
     }
 
     /**
      * @param string $id
-     * @return StreamInterface
+     * @return DomainsResponse
      */
     public function domains($id)
     {
-        return $this->makeRequest('get', "/environments/${id}/domains");
+        return new DomainsResponse($this->makeRequest('get', "/environments/${id}/domains"));
     }
 
     /**
      * @param string $id
      * @param string $hostname
-     * @return StreamInterface
+     * @return OperationResponse
      */
     public function addDomain($id, $hostname)
     {
@@ -299,23 +310,23 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return $this->makeRequest('post', "/environments/${id}/domains", $options);
+        return new OperationResponse($this->makeRequest('post', "/environments/${id}/domains", $options));
     }
 
     /**
      * @param string $id
      * @param string $domain
-     * @return StreamInterface
+     * @return OperationResponse
      */
     public function deleteDomain($id, $domain)
     {
-        return $this->makeRequest('delete', "/environments/${id}/domains/${domain}");
+        return new OperationResponse($this->makeRequest('delete', "/environments/${id}/domains/${domain}"));
     }
 
     /**
      * @param string $id
-     * @param array $domains
-     * @return StreamInterface
+     * @param array  $domains
+     * @return OperationResponse
      */
     public function purgeVarnishCache($id, $domains)
     {
@@ -326,7 +337,7 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return $this->makeRequest('post', "/environments/${id}/domains/actions/clear-varnish", $options);
+        return new OperationResponse($this->makeRequest('post', "/environments/${id}/domains/actions/clear-varnish", $options));
     }
 
     /**
@@ -348,26 +359,26 @@ class Client extends GuzzleClient
 
     /**
      * @param string $uuid
-     * @return StreamInterface
+     * @return EnvironmentsResponse
      */
     public function environments($uuid)
     {
-        return $this->makeRequest('get', "/applications/${uuid}/environments");
+        return new EnvironmentsResponse($this->makeRequest('get', "/applications/${uuid}/environments"));
     }
 
     /**
      * @param string $id
-     * @return StreamInterface
+     * @return EnvironmentResponse
      */
     public function environment($id)
     {
-        return $this->makeRequest('get', "/environments/${id}");
+        return new EnvironmentResponse($this->makeRequest('get', "/environments/${id}"));
     }
 
     /**
      * @param string $id
      * @param string $label
-     * @return StreamInterface
+     * @return OperationResponse
      */
     public function environmentLabel($id, $label)
     {
@@ -378,30 +389,30 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return $this->makeRequest('post', "/environments/${id}/actions/change-label", $options);
+        return new OperationResponse($this->makeRequest('post', "/environments/${id}/actions/change-label", $options));
     }
 
     /**
      * @param string $id
-     * @return StreamInterface
+     * @return ServersResponse
      */
     public function servers($id)
     {
-        return $this->makeRequest('get', "/environments/${id}/servers");
+        return new ServersResponse($this->makeRequest('get', "/environments/${id}/servers"));
     }
 
     /**
      * @param string $id
-     * @return StreamInterface
+     * @return OperationResponse
      */
     public function enableLiveDev($id)
     {
-        return $this->makeRequest('post', "/environments/${id}/livedev/actions/enable");
+        return new OperationResponse($this->makeRequest('post', "/environments/${id}/livedev/actions/enable"));
     }
 
     /**
      * @param string $id
-     * @return StreamInterface
+     * @return OperationResponse
      */
     public function disableLiveDev($id)
     {
@@ -412,25 +423,25 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return $this->makeRequest('post', "/environments/${id}/livedev/actions/disable", $options);
+        return new OperationResponse($this->makeRequest('post', "/environments/${id}/livedev/actions/disable", $options));
     }
 
     /**
      * @param string $id
-     * @return StreamInterface
+     * @return OperationResponse
      */
     public function enableProductionMode($id)
     {
-        return $this->makeRequest('post', "/environments/${id}/production-mode/actions/enable");
+        return new OperationResponse($this->makeRequest('post', "/environments/${id}/production-mode/actions/enable"));
     }
 
     /**
      * @param string $id
-     * @return StreamInterface
+     * @return OperationResponse
      */
     public function disableProductionMode($id)
     {
-        return $this->makeRequest('post', "/environments/${id}/production-mode/actions/disable");
+        return new OperationResponse($this->makeRequest('post', "/environments/${id}/production-mode/actions/disable"));
     }
 
     /**

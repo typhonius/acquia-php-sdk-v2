@@ -491,12 +491,32 @@ class Client extends GuzzleClient
 
     /**
      * @param string $id
-     * @param string $cronId
+     * @param int    $cronId
      * @return OperationResponse
      */
     public function deleteCron($id, $cronId)
     {
         return new OperationResponse($this->makeRequest('delete', "/environments/${id}/crons/${cronId}"));
+    }
+
+    /**
+     * @param string $id
+     * @param int    $cronId
+     * @return OperationResponse
+     */
+    public function disableCron($id, $cronId)
+    {
+        return new OperationResponse($this->makeRequest('post', "/environments/${id}/crons/${cronId}/actions/disable"));
+    }
+
+    /**
+     * @param string $id
+     * @param int    $cronId
+     * @return OperationResponse
+     */
+    public function enableCron($id, $cronId)
+    {
+        return new OperationResponse($this->makeRequest('post', "/environments/${id}/crons/${cronId}/actions/enable"));
     }
 
     /**

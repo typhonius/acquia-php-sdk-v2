@@ -33,9 +33,9 @@ class CronResponse
         $this->command = $cron->command;
         $this->minute = $cron->minute;
         $this->hour = $cron->hour;
-        $this->dayMonth = $cron->dayMonth;
+        $this->dayMonth = $cron->day_month;
         $this->month = $cron->month;
-        $this->dayWeek = $cron->dayWeek;
+        $this->dayWeek = $cron->day_week;
         $this->label = $cron->label;
         $this->flags = $cron->flags;
         $this->environment = $cron->environment;

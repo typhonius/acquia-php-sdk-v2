@@ -14,6 +14,7 @@ use AcquiaCloudApi\Response\DatabasesResponse;
 use AcquiaCloudApi\Response\DomainsResponse;
 use AcquiaCloudApi\Response\EnvironmentResponse;
 use AcquiaCloudApi\Response\EnvironmentsResponse;
+use AcquiaCloudApi\Response\InsightsResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\ServersResponse;
 use AcquiaCloudApi\Response\TasksResponse;
@@ -219,15 +220,6 @@ class Client extends GuzzleClient
     }
 
     /**
-     * @param string $uuid
-     * @return StreamInterface
-     */
-    public function insight($uuid)
-    {
-        return $this->makeRequest('get', "/applications/${uuid}/insight");
-    }
-
-    /**
      * @param string $id
      * @param string $dbName
      * @return OperationResponse
@@ -237,24 +229,34 @@ class Client extends GuzzleClient
         return new OperationResponse($this->makeRequest('post', "/environments/${id}/databases/${dbName}/backups"));
     }
 
-     /**
-      * @param $id
-      * @param $dbName
-      * @return BackupsResponse
-      */
-     public function databaseBackups($id, $dbName)
-     {
-         return new BackupsResponse($this->makeRequest('get', "/environments/${id}/databases/${dbName}/backups"));
-     }
+    /**
+     * @param string $id
+     * @param string $dbName
+     * @return BackupsResponse
+     */
+    public function databaseBackups($id, $dbName)
+    {
+        return new BackupsResponse($this->makeRequest('get', "/environments/${id}/databases/${dbName}/backups"));
+    }
 
     /**
-     * @param $id
-     * @param $backupId
+     * @param string $id
+     * @param string $backupId
      * @return BackupResponse
      */
     public function databaseBackupInfo($id, $backupId)
     {
          return new BackupResponse($this->makeRequest('get', "/environments/${id}/database-backups/${backupId}"));
+    }
+
+   /**
+    * @param string $id
+    * @param string $backupId
+    * @return OperationResponse
+    */
+    public function databaseBackupRestore($id, $backupId)
+    {
+        return new OperationResponse($this->makeRequest('post', "/environments/${id}/database-backups/${backupId}/actions/restore"));
     }
 
     /**
@@ -503,6 +505,24 @@ class Client extends GuzzleClient
     public function drushAliases()
     {
         return $this->makeRequest('get', '/account/drush-aliases/download');
+    }
+
+    /**
+     * @param string $uuid
+     * @return InsightsResponse
+     */
+    public function applicationInsights($uuid)
+    {
+        return new InsightsResponse($this->makeRequest('get', "/applications/${uuid}/insight"));
+    }
+
+    /**
+     * @param string $id
+     * @return InsightsResponse
+     */
+    public function environmentInsights($id)
+    {
+        return new InsightsResponse($this->makeRequest('get', "/environments/${id}/insight"));
     }
 
 }

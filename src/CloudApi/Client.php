@@ -21,7 +21,7 @@ use AcquiaCloudApi\Response\TasksResponse;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\HandlerStack;
-use AcquiaCloudApi\Response\CloudApiResponse;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -83,9 +83,35 @@ class Client extends GuzzleClient
             $response = $e->getResponse();
         }
 
-        $cloudApiResponse = new CloudApiResponse($response);
+        return $this->processResponse($response);
+    }
 
-        return $cloudApiResponse->response;
+    /**
+     * @param ResponseInterface $response
+     * @return mixed|StreamInterface
+     */
+    private function processResponse(ResponseInterface $response)
+    {
+
+        // @TODO detect status code here and exit early.
+        $body = $response->getBody();
+
+        $object = json_decode($body);
+        if (json_last_error() === JSON_ERROR_NONE) {
+            // JSON is valid
+            if (property_exists($object, '_embedded') && property_exists($object->_embedded, 'items')) {
+                $return = $object->_embedded->items;
+            } elseif (property_exists($object, 'error')) {
+                $this->error = true;
+                $return = $object->message;
+            } else {
+                $return = $object;
+            }
+        } else {
+            $return = $body;
+        }
+
+        return $return;
     }
 
     /**
@@ -125,7 +151,7 @@ class Client extends GuzzleClient
     /**
      * @param string $uuid
      * @param string $name
-     * @return StreamInterface
+     * @return OperationResponse
      */
     public function applicationRename($uuid, $name)
     {
@@ -136,7 +162,7 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return $this->makeRequest('put', "/applications/${uuid}", $options);
+        return new OperationResponse($this->makeRequest('put', "/applications/${uuid}", $options));
     }
 
     /**
@@ -179,7 +205,7 @@ class Client extends GuzzleClient
      * @param string $environmentFromId
      * @param string $dbName
      * @param string $environmentToId
-     * @return StreamInterface
+     * @return OperationResponse
      */
     public function databaseCopy($environmentFromId, $dbName, $environmentToId)
     {
@@ -190,13 +216,13 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return $this->makeRequest('post', "/applications/${environmentToId}/databases", $options);
+        return new OperationResponse($this->makeRequest('post', "/applications/${environmentToId}/databases", $options));
     }
 
     /**
      * @param string $uuid
      * @param string $name
-     * @return StreamInterface
+     * @return OperationResponse
      */
     public function databaseCreate($uuid, $name)
     {
@@ -206,17 +232,17 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return $this->makeRequest('post', "/applications/${uuid}/databases", $options);
+        return new OperationResponse($this->makeRequest('post', "/applications/${uuid}/databases", $options));
     }
 
     /**
      * @param string $uuid
      * @param string $name
-     * @return StreamInterface
+     * @return OperationResponse
      */
     public function databaseDelete($uuid, $name)
     {
-        return $this->makeRequest('post', "/applications/${uuid}/databases/${name}");
+        return new OperationResponse($this->makeRequest('post', "/applications/${uuid}/databases/${name}"));
     }
 
     /**

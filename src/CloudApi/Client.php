@@ -8,6 +8,8 @@ use AcquiaCloudApi\Response\ApplicationResponse;
 use AcquiaCloudApi\Response\ApplicationsResponse;
 use AcquiaCloudApi\Response\BackupResponse;
 use AcquiaCloudApi\Response\BackupsResponse;
+use AcquiaCloudApi\Response\CronResponse;
+use AcquiaCloudApi\Response\CronsResponse;
 use AcquiaCloudApi\Response\DatabasesResponse;
 use AcquiaCloudApi\Response\DomainsResponse;
 use AcquiaCloudApi\Response\EnvironmentResponse;
@@ -446,12 +448,22 @@ class Client extends GuzzleClient
     }
 
     /**
-     * @param string $id
-     * @return StreamInterface
+     * @param string $id The environment ID
+     * @return CronsResponse
      */
     public function crons($id)
     {
-        return $this->makeRequest('get', "/environments/${id}/crons");
+        return new CronsResponse($this->makeRequest('get', "/environments/${id}/crons"));
+    }
+
+    /**
+     * @param string $id     The environment ID
+     * @param int    $cronId
+     * @return CronResponse
+     */
+    public function cron($id, $cronId)
+    {
+        return new CronResponse($this->makeRequest('get', "/environments/${id}/crons/${cronId}"));
     }
 
     /**
@@ -459,7 +471,7 @@ class Client extends GuzzleClient
      * @param string $command
      * @param string $frequency
      * @param string $label
-     * @return StreamInterface
+     * @return OperationResponse
      */
     public function addCron($id, $command, $frequency, $label)
     {
@@ -472,17 +484,17 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return $this->makeRequest('post', "/environments/${id}/crons", $options);
+        return new OperationResponse($this->makeRequest('post', "/environments/${id}/crons", $options));
     }
 
     /**
      * @param string $id
      * @param string $cronId
-     * @return StreamInterface
+     * @return OperationResponse
      */
     public function deleteCron($id, $cronId)
     {
-        return $this->makeRequest('delete', "/environments/${id}/crons/${cronId}");
+        return new OperationResponse($this->makeRequest('delete', "/environments/${id}/crons/${cronId}"));
     }
 
     /**

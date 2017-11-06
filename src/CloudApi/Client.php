@@ -14,6 +14,7 @@ use AcquiaCloudApi\Response\EnvironmentResponse;
 use AcquiaCloudApi\Response\EnvironmentsResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\ServersResponse;
+use AcquiaCloudApi\Response\TasksResponse;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\HandlerStack;
@@ -350,11 +351,11 @@ class Client extends GuzzleClient
 
     /**
      * @param string $uuid
-     * @return StreamInterface
+     * @return TasksResponse
      */
     public function tasks($uuid)
     {
-        return $this->makeRequest('get', "/applications/${uuid}/tasks");
+        return new TasksResponse($this->makeRequest('get', "/applications/${uuid}/tasks"));
     }
 
     /**

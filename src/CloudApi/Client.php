@@ -15,9 +15,14 @@ use AcquiaCloudApi\Response\DomainsResponse;
 use AcquiaCloudApi\Response\EnvironmentResponse;
 use AcquiaCloudApi\Response\EnvironmentsResponse;
 use AcquiaCloudApi\Response\InsightsResponse;
+use AcquiaCloudApi\Response\MembersResponse;
 use AcquiaCloudApi\Response\OperationResponse;
+use AcquiaCloudApi\Response\OrganizationsResponse;
+use AcquiaCloudApi\Response\PermissionsResponse;
+use AcquiaCloudApi\Response\RolesResponse;
 use AcquiaCloudApi\Response\ServersResponse;
 use AcquiaCloudApi\Response\TasksResponse;
+use AcquiaCloudApi\Response\TeamsResponse;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\HandlerStack;
@@ -132,6 +137,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Shows all applications.
+     *
      * @return ApplicationsResponse
      */
     public function applications()
@@ -140,6 +147,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Shows information about an application.
+     *
      * @param string $uuid
      * @return ApplicationResponse
      */
@@ -149,6 +158,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Renames an application.
+     *
      * @param string $uuid
      * @param string $name
      * @return OperationResponse
@@ -166,6 +177,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Shows all code branches and tags in an application.
+     *
      * @param string $uuid
      * @return StreamInterface
      */
@@ -184,6 +197,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Shows all databases in an application.
+     *
      * @param string $uuid
      * @return DatabasesResponse
      */
@@ -193,15 +208,19 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Shows all databases in an environment.
+     *
      * @param string $id
      * @return DatabasesResponse
      */
     public function environmentDatabases($id)
     {
-      return new DatabasesResponse($this->makeRequest('get', "/environments/${id}/databases"));
+        return new DatabasesResponse($this->makeRequest('get', "/environments/${id}/databases"));
     }
 
     /**
+     * Copies a database from an environment to an environment.
+     *
      * @param string $environmentFromId
      * @param string $dbName
      * @param string $environmentToId
@@ -220,6 +239,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Create a new database.
+     *
      * @param string $uuid
      * @param string $name
      * @return OperationResponse
@@ -236,6 +257,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Delete a database.
+     *
      * @param string $uuid
      * @param string $name
      * @return OperationResponse
@@ -246,6 +269,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Backup a database.
+     *
      * @param string $id
      * @param string $dbName
      * @return OperationResponse
@@ -256,6 +281,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Shows all database backups in an environment.
+     *
      * @param string $id
      * @param string $dbName
      * @return BackupsResponse
@@ -266,6 +293,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Gets information about a database backup.
+     *
      * @param string $id
      * @param string $backupId
      * @return BackupResponse
@@ -276,6 +305,8 @@ class Client extends GuzzleClient
     }
 
    /**
+    * Restores a database backup to a database in an environment.
+    *
     * @param string $id
     * @param string $backupId
     * @return OperationResponse
@@ -286,6 +317,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Copies files from an environment to another environment.
+     *
      * @param string $idFrom
      * @param string $idTo
      * @return OperationResponse
@@ -302,6 +335,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Deploys a code branch/tag to an environment.
+     *
      * @param string $id
      * @param string $branch
      * @return OperationResponse
@@ -319,6 +354,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Shows all domains on an environment.
+     *
      * @param string $id
      * @return DomainsResponse
      */
@@ -328,6 +365,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Adds a domain to an environment.
+     *
      * @param string $id
      * @param string $hostname
      * @return OperationResponse
@@ -345,6 +384,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Deletes a domain from an environment.
+     *
      * @param string $id
      * @param string $domain
      * @return OperationResponse
@@ -355,6 +396,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Purges varnish for selected domains in an environment.
+     *
      * @param string $id
      * @param array  $domains
      * @return OperationResponse
@@ -380,6 +423,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Shows all tasks in an application.
+     *
      * @param string $uuid
      * @return TasksResponse
      */
@@ -389,6 +434,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Shows all environments in an application.
+     *
      * @param string $uuid
      * @return EnvironmentsResponse
      */
@@ -398,6 +445,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Gets information about an environment.
+     *
      * @param string $id
      * @return EnvironmentResponse
      */
@@ -407,11 +456,13 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Renames an environment.
+     *
      * @param string $id
      * @param string $label
      * @return OperationResponse
      */
-    public function environmentLabel($id, $label)
+    public function renameEnvironment($id, $label)
     {
 
         $options = [
@@ -424,6 +475,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Show all servers associated with an environment.
+     *
      * @param string $id
      * @return ServersResponse
      */
@@ -433,6 +486,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Enable livedev mode for an environment.
+     *
      * @param string $id
      * @return OperationResponse
      */
@@ -442,6 +497,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Disable livedev mode for an environment.
+     *
      * @param string $id
      * @return OperationResponse
      */
@@ -458,6 +515,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Enable production mode for an environment.
+     *
      * @param string $id
      * @return OperationResponse
      */
@@ -467,6 +526,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Disable production mode for an environment.
+     *
      * @param string $id
      * @return OperationResponse
      */
@@ -476,6 +537,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Show all cron tasks for an environment.
+     *
      * @param string $id The environment ID
      * @return CronsResponse
      */
@@ -485,6 +548,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Get information about a cron task.
+     *
      * @param string $id     The environment ID
      * @param int    $cronId
      * @return CronResponse
@@ -495,6 +560,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Add a cron task.
+     *
      * @param string $id
      * @param string $command
      * @param string $frequency
@@ -516,6 +583,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Delete a cron task.
+     *
      * @param string $id
      * @param int    $cronId
      * @return OperationResponse
@@ -526,6 +595,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Disable a cron task.
+     *
      * @param string $id
      * @param int    $cronId
      * @return OperationResponse
@@ -536,6 +607,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Enable a cron task.
+     *
      * @param string $id
      * @param int    $cronId
      * @return OperationResponse
@@ -554,6 +627,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Show insights data from an application.
+     *
      * @param string $uuid
      * @return InsightsResponse
      */
@@ -563,6 +638,8 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Show insights data from a specific environment.
+     *
      * @param string $id
      * @return InsightsResponse
      */
@@ -571,4 +648,155 @@ class Client extends GuzzleClient
         return new InsightsResponse($this->makeRequest('get', "/environments/${id}/insight"));
     }
 
+    /**
+     * Show all organizations.
+     *
+     * @return OrganizationsResponse
+     */
+    public function organizations()
+    {
+        return new OrganizationsResponse($this->makeRequest('get', '/organizations'));
+    }
+
+    /**
+     * @param $name
+     * @return OperationResponse
+     */
+//    public function organizationCreate($name)
+//    {
+//        $options = [
+//            'form_params' => [
+//                'name' => $name,
+//            ],
+//        ];
+//
+//        return new OperationResponse($this->makeRequest('post', '/organizations', $options));
+//    }
+
+    /**
+     * Show all roles in an organization.
+     *
+     * @param string $uuid
+     * @return RolesResponse
+     */
+    public function organizationRoles($uuid)
+    {
+        return new RolesResponse($this->makeRequest('get', "/organizations/${uuid}/roles"));
+    }
+
+    public function organizationRoleCreate($uuid, $name, $permissions, $description = null)
+    {
+      $options = [
+        'form_params' => [
+          'name' => $name,
+          'permissions' => $permissions,
+          'description' => $description,
+        ],
+      ];
+
+      return new OperationResponse($this->makeRequest('post', "/organizations/${uuid}/roles", $options));
+    }
+
+    /**
+     * Show all teams in an organization.
+     *
+     * @param string $uuid
+     * @return TeamsResponse
+     */
+    public function organizationTeams($uuid)
+    {
+        return new TeamsResponse($this->makeRequest('get', "/organizations/${uuid}/teams"));
+    }
+
+    /**
+     * Show all teams.
+     *
+     * @return TeamsResponse
+     */
+    public function teams()
+    {
+        return new TeamsResponse($this->makeRequest('get', '/teams'));
+    }
+
+    /**
+     * Create a new team.
+     *
+     * @param string $uuid
+     * @param string $name
+     * @return OperationResponse
+     */
+    public function teamCreate($uuid, $name)
+    {
+        $options = [
+            'form_params' => [
+                'name' => $name,
+            ],
+        ];
+
+        return new OperationResponse($this->makeRequest('post', "/organizations/${uuid}/teams", $options));
+    }
+
+    /**
+     * Invites a user to join a team.
+     *
+     * @param string $uuid
+     * @param string $email
+     * @param array  $roles
+     * @return OperationResponse
+     */
+    public function teamInvite($uuid, $email, $roles)
+    {
+        $options = [
+            'form_params' => [
+                'email' => $email,
+                'roles' => $roles
+            ],
+        ];
+
+        return new OperationResponse($this->makeRequest('post', "/teams/${uuid}/invites", $options));
+    }
+
+    /**
+     * Show all applications associated with a team.
+     *
+     * @param string $uuid
+     * @return ApplicationResponse
+     */
+    public function teamApplications($uuid)
+    {
+        return new ApplicationResponse($this->makeRequest('get', "/teams/${uuid}/applications"));
+    }
+
+    /**
+     * Show all members of an organisation.
+     *
+     * @param string $uuid
+     * @return MembersResponse
+     */
+    public function members($uuid)
+    {
+        return new MembersResponse($this->makeRequest('get', "/organizations/${uuid}/members"));
+    }
+
+    /**
+     * Delete a member from an organisation.
+     *
+     * @param string $uuidSite
+     * @param string $uuidMember
+     * @return OperationResponse
+     */
+    public function deleteMember($uuidSite, $uuidMember)
+    {
+        return new OperationResponse($this->makeRequest('delete', "/organizations/${uuidSite}/members/${uuidMember}"));
+    }
+
+    /**
+     * Show all available permissions.
+     *
+     * @return PermissionsResponse
+     */
+    public function permissions()
+    {
+        return new PermissionsResponse($this->makeRequest('get', '/permissions'));
+    }
 }

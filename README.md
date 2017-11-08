@@ -36,7 +36,15 @@ $cloudapi = Client::factory(array(
     'secret' => $secret,
 ));
 
+// Get all applications.
 $applications = $cloudapi->applications();
+
+// Get all environments of an application.
+$environments = $cloudapi->environments($application->uuid);
+
+// Get all servers in an environment.
+$servers = $cloudapi->servers($environment->uuid);
+
 ```
 
 ## I just want to use this not develop against it

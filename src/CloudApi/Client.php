@@ -696,28 +696,51 @@ class Client extends GuzzleClient
         return new RolesResponse($this->makeRequest('get', "/organizations/${uuid}/roles"));
     }
 
-    public function organizationRoleCreate($uuid, $name, $permissions, $description = null)
+    /**
+     * @param string $roleUuid
+     * @param array  $permissions
+     * @return OperationResponse
+     */
+    public function roleUpdatePermissions($roleUuid, Array $permissions)
     {
-      $options = [
-        'form_params' => [
-          'name' => $name,
-          'permissions' => $permissions,
-          'description' => $description,
-        ],
-      ];
+        $options = [
+            'form_params' => [
+                'permissions' => $permissions,
+            ],
+        ];
 
-      return new OperationResponse($this->makeRequest('post', "/organizations/${uuid}/roles", $options));
+        return new OperationResponse($this->makeRequest('put', "/roles/${roleUuid}", $options));
+    }
+
+    /**
+     * @param string      $uuid
+     * @param string      $name
+     * @param array       $permissions
+     * @param null|string $description
+     * @return OperationResponse
+     */
+    public function organizationRoleCreate($uuid, $name, Array $permissions, $description = null)
+    {
+        $options = [
+            'form_params' => [
+                'name' => $name,
+                'permissions' => $permissions,
+                'description' => $description,
+            ],
+        ];
+
+        return new OperationResponse($this->makeRequest('post', "/organizations/${uuid}/roles", $options));
     }
 
     /**
      * Show all teams in an organization.
      *
-     * @param string $uuid
+     * @param string $organizationUuid
      * @return TeamsResponse
      */
-    public function organizationTeams($uuid)
+    public function organizationTeams($organizationUuid)
     {
-        return new TeamsResponse($this->makeRequest('get', "/organizations/${uuid}/teams"));
+        return new TeamsResponse($this->makeRequest('get', "/organizations/${organizationUuid}/teams"));
     }
 
     /**
@@ -746,6 +769,22 @@ class Client extends GuzzleClient
         ];
 
         return new OperationResponse($this->makeRequest('post', "/organizations/${uuid}/teams", $options));
+    }
+
+    /**
+     * @param string $teamUuid
+     * @param string $applicationUuid
+     * @return OperationResponse
+     */
+    public function teamAddApplication($teamUuid, $applicationUuid)
+    {
+        $options = [
+            'form_params' => [
+                'uuid' => $applicationUuid,
+            ],
+        ];
+
+        return new OperationResponse($this->makeRequest('post', "/teams/${teamUuid}/applications", $options));
     }
 
     /**

@@ -659,6 +659,18 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Show all applications in an organisation.
+     *
+     * @param string $uuid
+     *
+     * @return ApplicationsResponse
+     */
+    public function organizationApplications($uuid)
+    {
+        return new ApplicationsResponse($this->makeRequest('get', "/organizations/${uuid}/applications"));
+    }
+
+    /**
      * @param $name
      * @return OperationResponse
      */

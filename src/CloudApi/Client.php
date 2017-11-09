@@ -221,21 +221,21 @@ class Client extends GuzzleClient
     /**
      * Copies a database from an environment to an environment.
      *
-     * @param string $environmentFromId
+     * @param string $environmentFromUuid
      * @param string $dbName
-     * @param string $environmentToId
+     * @param string $environmentToUuid
      * @return OperationResponse
      */
-    public function databaseCopy($environmentFromId, $dbName, $environmentToId)
+    public function databaseCopy($environmentFromUuid, $dbName, $environmentToUuid)
     {
         $options = [
             'form_params' => [
                 'name' => $dbName,
-                'source' => $environmentFromId,
+                'source' => $environmentFromUuid,
             ],
         ];
 
-        return new OperationResponse($this->makeRequest('post', "/applications/${environmentToId}/databases", $options));
+        return new OperationResponse($this->makeRequest('post', "/environments/${environmentToUuid}/databases", $options));
     }
 
     /**
@@ -733,6 +733,15 @@ class Client extends GuzzleClient
     }
 
     /**
+     * @param string $roleUuid
+     * @return OperationResponse
+     */
+    public function roleRemove($roleUuid)
+    {
+        return new OperationResponse($this->makeRequest('delete', "/roles/${roleUuid}"));
+    }
+
+    /**
      * Show all teams in an organization.
      *
      * @param string $organizationUuid
@@ -769,6 +778,15 @@ class Client extends GuzzleClient
         ];
 
         return new OperationResponse($this->makeRequest('post', "/organizations/${uuid}/teams", $options));
+    }
+
+    /**
+     * @param string $teamUuid
+     * @return OperationResponse
+     */
+    public function teamRemove($teamUuid)
+    {
+        return new OperationResponse($this->makeRequest('delete', "/teams/${teamUuid}"));
     }
 
     /**

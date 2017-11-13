@@ -15,6 +15,7 @@ use AcquiaCloudApi\Response\DomainsResponse;
 use AcquiaCloudApi\Response\EnvironmentResponse;
 use AcquiaCloudApi\Response\EnvironmentsResponse;
 use AcquiaCloudApi\Response\InsightsResponse;
+use AcquiaCloudApi\Response\InvitationsResponse;
 use AcquiaCloudApi\Response\MembersResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\OrganizationsResponse;
@@ -845,6 +846,17 @@ class Client extends GuzzleClient
     public function members($uuid)
     {
         return new MembersResponse($this->makeRequest('get', "/organizations/${uuid}/members"));
+    }
+
+    /**
+     * Show all members invited to an organisation.
+     *
+     * @param string $uuid
+     * @return StreamInterface
+     */
+    public function invitees($uuid)
+    {
+        return new InvitationsResponse($this->makeRequest('get', "/organizations/${uuid}/team-invites"));
     }
 
     /**

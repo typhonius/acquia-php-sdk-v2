@@ -1,59 +1,88 @@
 {
-    "0": {
-        "flags": {
-            "remote_admin": false,
-            "service_management": false
-        },
-        "hosting": {
-            "id": "devcloud:example",
-            "type": "acp"
-        },
-        "id": 406771,
-        "links": {
-            "self": {
-                "href": "https://cloud.acquia.com/api/applications/8ff6c046-ec64-4ce4-bea6-27845ec18600"
-            }
-        },
-        "name": "Professional Example",
-        "organization": {
-            "name": "Professional Example Subscription Group",
-            "uuid": "b591b2f6-9a72-47ea-9317-968d80c4b155"
-        },
-        "status": "normal",
-        "subscription": {
-            "name": "Professional Subscription",
-            "uuid": "21f7651d-76db-4256-8767-569c62403214"
-        },
-        "type": "drupal",
-        "uuid": "8ff6c046-ec64-4ce4-bea6-27845ec18600"
+    "total": 2,
+    "pagination": {
+        "total": 2,
+        "limit": 10,
+        "offset": 0
     },
-    "1": {
-        "flags": {
-            "remote_admin": true,
-            "service_management": false
+    "_links": {
+        "self": {
+            "href": "{baseUri}/applications?limit=10"
         },
-        "hosting": {
-            "id": "prod:example",
-            "type": "ace"
+        "sort": {
+            "href": "{baseUri}/applications{?sort}",
+            "templated": true
         },
-        "id": 536227,
-        "links": {
-            "self": {
-                "href": "https://cloud.acquia.com/api/applications/5d4d5f44-9520-4ab0-ac0a-a68254c576c6"
+        "filter": {
+            "href": "{baseUri}/applications{?filter}",
+            "templated": true
+        },
+        "limit": {
+            "href": "{baseUri}/applications{?limit}",
+            "templated": true
+        },
+        "parent": {
+            "href": "{baseUri}"
+        }
+    },
+    "_embedded": {
+        "items": [
+            {
+                "id": 241643,
+                "uuid": "a47ac10b-58cc-4372-a567-0e02b2c3d470",
+                "name": "Sample application 1",
+                "hosting" : {
+                    "type": "acp",
+                    "id": "devcloud:devcloud2"
+                },
+                "subscription": {
+                    "uuid": "s47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "Sample subscription"
+                },
+                "organization": {
+                    "uuid": "g47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "Sample organization"
+                },
+                "flags": {
+                    "remote_admin": true,
+                    "service_management": true
+                },
+                "type": "drupal",
+                "status": "normal",
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470"
+                    }
+                }
+            },
+            {
+                "id": 954291,
+                "uuid": "a47ac10b-58cc-4372-a567-0e02b2c3d471",
+                "name": "Sample application 2",
+                "hosting" : {
+                    "type": "free",
+                    "id": "devcloud:devcloud2"
+                },
+                "subscription": {
+                    "uuid": "s47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "Sample subscription"
+                },
+                "organization": {
+                    "uuid": "g47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "Sample organization"
+                },
+                "type": "node",
+                "flags": {
+                    "remote_admin": false,
+                    "service_management": false
+                },
+                "status": "provisioning",
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/applications/a47ac10b-58cc-4372-a567-0e02b2c3d471"
+                    }
+                }
             }
-        },
-        "name": "Enterprise Example",
-        "organization": {
-            "name": "Enterprise Example Subscription Group",
-            "uuid": "3c78e5d9-56f1-4db4-a334-5ff143f41cdc"
-        },
-        "status": "normal",
-        "subscription": {
-            "name": "Enterprise Subscription",
-            "uuid": "7f8f39ea-7fac-488b-a3ff-14b6cbb688f0"
-        },
-        "type": "drupal",
-        "uuid": "5d4d5f44-9520-4ab0-ac0a-a68254c576c6"
+        ]
     }
 }
-

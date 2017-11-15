@@ -34,6 +34,7 @@ abstract class CloudApiTestCase extends PHPUnit_Framework_TestCase
         $stream = $this->getPsr7StreamForFixture($fixture);
         $this->assertNotNull(json_decode($stream));
         $this->assertEquals(JSON_ERROR_NONE, json_last_error());
+
         return new Psr7\Response($statusCode, ['Content-Type' => 'application/json'], $stream);
     }
 
@@ -41,7 +42,7 @@ abstract class CloudApiTestCase extends PHPUnit_Framework_TestCase
     {
         $response = $this->getPsr7JsonResponseForFixture($fixture);
 
-        $client = \AcquiaCloudApi\CloudApi\Client::factory([]);
+        $client = \AcquiaCloudApi\CloudApi\Client::factory(['key' => 'key', 'secret' => 'secret']);
         $reflection = new \ReflectionClass(get_class($client));
         $method = $reflection->getMethod('processResponse');
         $method->setAccessible(true);

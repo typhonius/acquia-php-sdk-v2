@@ -72,4 +72,26 @@ class ApplicationsTest extends CloudApiTestCase
             $this->assertObjectHasAttribute($property, $result);
         }
     }
+
+    public function testRenameApplication()
+    {
+        $response = $this->generateCloudApiResponse('Endpoints/renameApplication.json');
+
+        $message = new \AcquiaCloudApi\Response\OperationResponse($response);
+
+        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
+        ->disableOriginalConstructor()
+        ->setMethods(['applicationRename'])
+        ->getMock();
+
+        $client->expects($this->once())
+        ->method('applicationRename')
+        ->with('8ff6c046-ec64-4ce4-bea6-27845ec18600', "My application's new name")
+        ->will($this->returnValue($message));
+
+        /** @var AcquiaCloudApi\CloudApi\Client $client */
+        $result = $client->applicationRename('8ff6c046-ec64-4ce4-bea6-27845ec18600', "My application's new name");
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $this->assertEquals('Application renamed.', $result->message);
+    }
 }

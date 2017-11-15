@@ -8,6 +8,7 @@ use AcquiaCloudApi\Response\ApplicationResponse;
 use AcquiaCloudApi\Response\ApplicationsResponse;
 use AcquiaCloudApi\Response\BackupResponse;
 use AcquiaCloudApi\Response\BackupsResponse;
+use AcquiaCloudApi\Response\BranchesResponse;
 use AcquiaCloudApi\Response\CronResponse;
 use AcquiaCloudApi\Response\CronsResponse;
 use AcquiaCloudApi\Response\DatabasesResponse;
@@ -181,11 +182,11 @@ class Client extends GuzzleClient
      * Shows all code branches and tags in an application.
      *
      * @param string $uuid
-     * @return StreamInterface
+     * @return BranchesResponse
      */
     public function code($uuid)
     {
-        return $this->makeRequest('get', "/applications/${uuid}/code");
+        return new BranchesResponse($this->makeRequest('get', "/applications/${uuid}/code"));
     }
 
     /**
@@ -852,7 +853,7 @@ class Client extends GuzzleClient
      * Show all members invited to an organisation.
      *
      * @param string $uuid
-     * @return StreamInterface
+     * @return InvitationsResponse
      */
     public function invitees($uuid)
     {

@@ -15,7 +15,7 @@ class TasksResponse extends \ArrayObject
      */
     public function __construct($tasks)
     {
-        parent::__construct(array_map(function($task){
+        parent::__construct(array_map(function ($task) {
             return new TaskResponse($task);
         }, $tasks), self::ARRAY_AS_PROPS);
     }

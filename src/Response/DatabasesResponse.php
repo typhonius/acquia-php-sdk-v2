@@ -15,7 +15,7 @@ class DatabasesResponse extends \ArrayObject
      */
     public function __construct($databases)
     {
-        parent::__construct(array_map(function($database){
+        parent::__construct(array_map(function ($database) {
             return new DatabaseResponse($database);
         }, $databases), self::ARRAY_AS_PROPS);
     }

@@ -15,9 +15,8 @@ class DomainsResponse extends \ArrayObject
      */
     public function __construct($domains)
     {
-        parent::__construct(array_map(function($domain){
+        parent::__construct(array_map(function ($domain) {
             return new DomainResponse($domain);
         }, $domains), self::ARRAY_AS_PROPS);
     }
-
 }

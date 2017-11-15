@@ -19,5 +19,4 @@ class DatabaseResponse
     {
         $this->name = $database->name;
     }
-
 }

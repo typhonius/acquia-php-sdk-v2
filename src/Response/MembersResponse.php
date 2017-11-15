@@ -15,7 +15,7 @@ class MembersResponse extends \ArrayObject
     */
     public function __construct($members)
     {
-        parent::__construct(array_map(function($member){
+        parent::__construct(array_map(function ($member) {
             return new MemberResponse($member);
         }, $members), self::ARRAY_AS_PROPS);
     }

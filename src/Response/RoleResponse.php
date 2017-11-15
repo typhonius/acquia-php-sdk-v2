@@ -25,6 +25,5 @@ class RoleResponse
         $this->description = $role->description;
         $this->last_edited = $role->last_edited;
         $this->permissions = new PermissionsResponse($role->permissions);
-
     }
 }

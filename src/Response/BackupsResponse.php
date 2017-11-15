@@ -15,7 +15,7 @@ class BackupsResponse extends \ArrayObject
      */
     public function __construct($backups)
     {
-        parent::__construct(array_map(function($backup){
+        parent::__construct(array_map(function ($backup) {
             return new BackupResponse($backup);
         }, $backups), self::ARRAY_AS_PROPS);
     }

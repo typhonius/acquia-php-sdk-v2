@@ -15,7 +15,7 @@ class InvitationsResponse extends \ArrayObject
     */
     public function __construct($invitations)
     {
-        parent::__construct(array_map(function($invitation){
+        parent::__construct(array_map(function ($invitation) {
             return new InvitationResponse($invitation);
         }, $invitations), self::ARRAY_AS_PROPS);
     }

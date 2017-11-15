@@ -48,7 +48,7 @@ class Client extends GuzzleClient
      * @param array $config
      * @return static
      */
-    public static function factory(Array $config = array())
+    public static function factory(array $config = array())
     {
 
         $key = new Key($config['key'], $config['secret']);
@@ -69,7 +69,7 @@ class Client extends GuzzleClient
      * @param array $options
      * @return array|object
      */
-    private function makeRequest(String $verb, String $path, Array $options = array())
+    private function makeRequest(string $verb, string $path, array $options = array())
     {
 
         // @TODO sort, filter, limit, offset
@@ -97,7 +97,7 @@ class Client extends GuzzleClient
      * @param ResponseInterface $response
      * @return mixed|StreamInterface
      */
-    private function processResponse(ResponseInterface $response)
+    protected function processResponse(ResponseInterface $response)
     {
 
         // @TODO detect status code here and exit early.
@@ -237,7 +237,9 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return new OperationResponse($this->makeRequest('post', "/environments/${environmentToUuid}/databases", $options));
+        return new OperationResponse(
+            $this->makeRequest('post', "/environments/${environmentToUuid}/databases", $options)
+        );
     }
 
     /**
@@ -315,7 +317,9 @@ class Client extends GuzzleClient
     */
     public function databaseBackupRestore($id, $backupId)
     {
-        return new OperationResponse($this->makeRequest('post', "/environments/${id}/database-backups/${backupId}/actions/restore"));
+        return new OperationResponse(
+            $this->makeRequest('post', "/environments/${id}/database-backups/${backupId}/actions/restore")
+        );
     }
 
     /**
@@ -413,15 +417,9 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return new OperationResponse($this->makeRequest('post', "/environments/${id}/domains/actions/clear-varnish", $options));
-    }
-
-    /**
-     *
-     */
-    public function moveDomain()
-    {
-
+        return new OperationResponse(
+            $this->makeRequest('post', "/environments/${id}/domains/actions/clear-varnish", $options)
+        );
     }
 
     /**
@@ -513,7 +511,9 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return new OperationResponse($this->makeRequest('post', "/environments/${id}/livedev/actions/disable", $options));
+        return new OperationResponse(
+            $this->makeRequest('post', "/environments/${id}/livedev/actions/disable", $options)
+        );
     }
 
     /**
@@ -703,7 +703,7 @@ class Client extends GuzzleClient
      * @param array  $permissions
      * @return OperationResponse
      */
-    public function roleUpdatePermissions($roleUuid, Array $permissions)
+    public function roleUpdatePermissions($roleUuid, array $permissions)
     {
         $options = [
             'form_params' => [
@@ -721,7 +721,7 @@ class Client extends GuzzleClient
      * @param null|string $description
      * @return OperationResponse
      */
-    public function organizationRoleCreate($uuid, $name, Array $permissions, $description = null)
+    public function organizationRoleCreate($uuid, $name, array $permissions, $description = null)
     {
         $options = [
             'form_params' => [

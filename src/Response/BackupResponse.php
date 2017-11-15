@@ -34,6 +34,5 @@ class BackupResponse
         $this->deleted = $backup->deleted;
         $this->environment = $backup->environment;
         $this->links = $backup->_links;
-
     }
 }

@@ -15,9 +15,8 @@ class InsightsResponse extends \ArrayObject
      */
     public function __construct($insights)
     {
-        parent::__construct(array_map(function($insight){
+        parent::__construct(array_map(function ($insight) {
             return new InsightResponse($insight);
         }, $insights), self::ARRAY_AS_PROPS);
     }
-
 }

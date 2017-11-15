@@ -12,6 +12,12 @@ class ApplicationResponse
     public $uuid;
     public $name;
     public $hosting;
+    public $subscription;
+    public $organization;
+    public $type;
+    public $flags;
+    public $status;
+    public $links;
 
     /**
      * ApplicationResponse constructor.
@@ -19,8 +25,15 @@ class ApplicationResponse
      */
     public function __construct($application)
     {
+        $this->id = $application->id;
         $this->uuid = $application->uuid;
         $this->name = $application->name;
         $this->hosting = $application->hosting;
+        $this->subscription = $application->subscription;
+        $this->organization = $application->organization;
+        $this->type = $application->type;
+        $this->flags = $application->flags;
+        $this->status = $application->status;
+        $this->links = $application->_links;
     }
 }

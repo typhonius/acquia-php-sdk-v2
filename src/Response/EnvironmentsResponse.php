@@ -15,7 +15,7 @@ class EnvironmentsResponse extends \ArrayObject
     */
     public function __construct($environments)
     {
-        parent::__construct(array_map(function($environment){
+        parent::__construct(array_map(function ($environment) {
             return new EnvironmentResponse($environment);
         }, $environments), self::ARRAY_AS_PROPS);
     }

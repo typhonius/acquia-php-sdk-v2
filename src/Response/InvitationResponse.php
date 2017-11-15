@@ -38,6 +38,5 @@ class InvitationResponse
         $this->token = $invitation->token;
         $this->flags = $invitation->flags;
         $this->links = $invitation->_links;
-
     }
 }

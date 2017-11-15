@@ -15,7 +15,7 @@ class ServersResponse extends \ArrayObject
      */
     public function __construct($servers)
     {
-        parent::__construct(array_map(function($server){
+        parent::__construct(array_map(function ($server) {
             return new ServerResponse($server);
         }, $servers), self::ARRAY_AS_PROPS);
     }

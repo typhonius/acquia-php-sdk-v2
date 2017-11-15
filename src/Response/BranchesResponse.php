@@ -15,7 +15,7 @@ class BranchesResponse extends \ArrayObject
      */
     public function __construct($branches)
     {
-        parent::__construct(array_map(function($branch){
+        parent::__construct(array_map(function ($branch) {
             return new BranchResponse($branch);
         }, $branches), self::ARRAY_AS_PROPS);
     }

@@ -27,6 +27,5 @@ class TeamResponse
         $this->updated_at = $team->updated_at;
         $this->organization = $team->organization;
         $this->links = $team->_links;
-
     }
 }

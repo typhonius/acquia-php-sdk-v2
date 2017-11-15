@@ -15,7 +15,7 @@ class TeamsResponse extends \ArrayObject
     */
     public function __construct($teams)
     {
-        parent::__construct(array_map(function($team){
+        parent::__construct(array_map(function ($team) {
             return new TeamResponse($team);
         }, $teams), self::ARRAY_AS_PROPS);
     }

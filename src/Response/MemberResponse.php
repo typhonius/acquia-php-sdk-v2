@@ -34,6 +34,5 @@ class MemberResponse
         if (property_exists($member, 'teams')) {
             $this->teams = new TeamsResponse($member->teams);
         }
-
     }
 }

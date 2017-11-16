@@ -1,0 +1,39 @@
+{
+    "total": 4,
+    "_links": {
+        "self": {
+            "href": "{baseUri}/permissions"
+        },
+        "parent": {
+            "href": "{baseUri}"
+        }
+    },
+    "_embedded": {
+        "items": [
+            {
+                "name": "administer alerts",
+                "label": "Manage Insight alerts",
+                "description": "Grants the ability to ignore alerts and change settings on a Drupal website using the \"Fix it Now\" feature.",
+                "group_label": "Insight"
+            },
+            {
+                "name": "deploy to non-prod",
+                "label": "Pull and deploy code, files, or databases to non-production environments",
+                "description": "Grants the ability to enable or disable live development and non-production work.",
+                "group_label": "Workflow"
+            },
+            {
+                "name": "deploy to prod",
+                "label": "Deploy code, files, or databases to the production environment",
+                "description": null,
+                "group_label": "Workflow"
+            },
+            {
+                "name": "pull from prod",
+                "label": "Pull files or databases from the production environment",
+                "description": null,
+                "group_label": "Workflow"
+            }
+        ]
+    }
+}

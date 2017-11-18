@@ -1,0 +1,71 @@
+{
+    "total": 2,
+    "_links": {
+        "self": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/crons"
+        },
+        "parent": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470"
+        }
+    },
+    "_embedded": {
+        "items": [
+            {
+                "id": "24",
+                "server": {
+                    "id": 6,
+                    "name": "web-18"
+                },
+                "command": "/usr/local/bin/drush cc all",
+                "minute": "25",
+                "hour": "7",
+                "day_month": "*",
+                "month": "*",
+                "day_week": "*",
+                "label": null,
+                "flags": {
+                    "enabled": true,
+                    "system": false,
+                    "on_any_web": false
+                },
+                "environment": {
+                    "id": "24-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "dev"
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/crons/24"
+                    }
+                }
+            },
+            {
+                "id": "25",
+                "server": {
+                    "id": 6,
+                    "name": "web-18"
+                },
+                "command": "/usr/local/bin/drush -r /var/www/html/qa3/docroot ah-db-backup dbname",
+                "minute": "12",
+                "hour": "9",
+                "day_month": "*",
+                "month": "*",
+                "day_week": "*",
+                "label": null,
+                "flags": {
+                    "enabled": false,
+                    "system": true,
+                    "on_any_web": false
+                },
+                "environment": {
+                    "id": "24-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "dev"
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/crons/25"
+                    }
+                }
+            }
+        ]
+    }
+}

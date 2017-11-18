@@ -42,11 +42,16 @@ abstract class CloudApiTestCase extends PHPUnit_Framework_TestCase
     {
         $response = $this->getPsr7JsonResponseForFixture($fixture);
 
-        $client = \AcquiaCloudApi\CloudApi\Client::factory(['key' => 'key', 'secret' => 'secret']);
+        $client = $this->getMockCloudApiClient();
         $reflection = new \ReflectionClass(get_class($client));
         $method = $reflection->getMethod('processResponse');
         $method->setAccessible(true);
 
         return $method->invokeArgs($client, [$response]);
+    }
+
+    protected function getMockCloudApiClient()
+    {
+        return \AcquiaCloudApi\CloudApi\Client::factory(['key' => 'key', 'secret' => 'secret']);
     }
 }

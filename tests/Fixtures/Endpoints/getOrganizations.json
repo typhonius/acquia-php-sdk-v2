@@ -1,0 +1,96 @@
+{
+    "total": 3,
+    "_links": {
+        "self": {
+            "href": "{baseUri}/organizations"
+        },
+        "sort": {
+            "href": "{baseUri}/organizations{?sort}",
+            "templated": true
+        },
+        "filter": {
+            "href": "{baseUri}/organizations{?filter}",
+            "templated": true
+        },
+        "limit": {
+            "href": "{baseUri}/organizations{?limit}",
+            "templated": true
+        },
+        "parent": {
+            "href": "{baseUri}"
+        }
+    },
+    "_embedded": {
+        "items": [
+            {
+                "id": "6",
+                "uuid": "g47ac10b-58cc-4372-a567-0e02b2c3d470",
+                "name": "Sample organization",
+                "subscriptions_total": "115",
+                "admins_total": "2",
+                "users_total": "82",
+                "teams_total": "13",
+                "roles_total": "4",
+                "owner": {
+                    "uuid": "u47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "first_name": "First",
+                    "last_name": "Last",
+                    "picture_url": "https://accounts.acquia.com/path/to/image.png",
+                    "username": "user.name",
+                    "mail": "user.name@domain.com"
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/organizations/g47ac10b-58cc-4372-a567-0e02b2c3d470"
+                    }
+                }
+            },
+            {
+                "id": "4841",
+                "uuid": "g47ac10b-58cc-4372-a567-0e02b2c3d471",
+                "name": "Sample organization 2",
+                "subscriptions_total": "4",
+                "admins_total": 0,
+                "users_total": 0,
+                "teams_total": 0,
+                "roles_total": 0,
+                "owner": {
+                    "uuid": "u47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "first_name": "First",
+                    "last_name": "Last",
+                    "picture_url": "https://accounts.acquia.com/path/to/image.png",
+                    "username": "user.name",
+                    "mail": "user.name@domain.com"
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/organizations/g47ac10b-58cc-4372-a567-0e02b2c3d471"
+                    }
+                }
+            },
+            {
+                "id": "4841",
+                "uuid": "g47ac10b-58cc-4372-a567-0e02b2c3d472",
+                "name": "Sample organization 3",
+                "subscriptions_total": "4",
+                "admins_total": 0,
+                "users_total": 0,
+                "teams_total": 0,
+                "roles_total": 0,
+                "owner": {
+                    "uuid": "u47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "first_name": "First",
+                    "last_name": "Last",
+                    "picture_url": "https://accounts.acquia.com/path/to/image.png",
+                    "username": "user.name",
+                    "mail": "user.name@domain.com"
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/organizations/g47ac10b-58cc-4372-a567-0e02b2c3d471"
+                    }
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,112 @@
+{
+    "total": 3,
+    "_links": {
+        "self": {
+            "href": "{baseUri}/organizations/3c9ea553-3216-11e3-9170-12313920a23a/members"
+        },
+        "sort": {
+            "href": "{baseUri}/organizations/3c9ea553-3216-11e3-9170-12313920a23a/members{?sort}",
+            "templated": true
+        },
+        "filter": {
+            "href": "{baseUri}/organizations/3c9ea553-3216-11e3-9170-12313920a23a/members{?filter}",
+            "templated": true
+        },
+        "limit": {
+            "href": "{baseUri}/organizations/3c9ea553-3216-11e3-9170-12313920a23a/members{?limit}",
+            "templated": true
+        },
+        "parent": {
+            "href": "{baseUri}/organizations/3c9ea553-3216-11e3-9170-12313920a23a"
+        }
+    },
+    "_embedded": {
+        "items": [
+            {
+                "uuid": "5aa902c5-f1c1-6c94-edfa-86bc58d0dce3",
+                "first_name": "James",
+                "last_name": "Kirk",
+                "mail": "james.kirk@example.com",
+                "picture_url": "https://accounts.acquia.com/sites/default/files/network/style/avatar/mail/43b9fb25c5c71f2e4c5ff99d0cbe6c39d?mail=james.kirk%40acquia.com",
+                "username": "james.kirk",
+                "teams": [
+                    {
+                        "name": "Team Name 1",
+                        "uuid": "abcd1234-82b5-11e3-9170-12313920a02c",
+                        "roles": [
+                            {
+                                "uuid": "5f7da0a9-9ff0-4db8-802e-9d2b9969efc2",
+                                "name": "Senior Developer"
+                            }
+                        ]
+                    }
+                ],
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/organizations/2375e327-3fff-11e3-9170-12313920a02c/members/5aa902c5-f1c1-6c94-edfa-86bc58d0dce3"
+                    }
+                }
+            },
+            {
+                "uuid": "30dacb5e-4122-11e1-9eb5-12313928d3c2",
+                "first_name": "Christopher",
+                "last_name": "Pike",
+                "mail": "chris.pike@example.com",
+                "picture_url": "https://accounts.acquia.com/sites/default/files/network/style/avatar/mail/3a6129e016770047acc7eab1e3613304?mail=chris.pike%40acquia.com",
+                "username": "chris.pike",
+                "teams": [
+                    {
+                        "name": "Team Name 2",
+                        "uuid": "1234abcd-82b5-11e3-9170-12313920a02c",
+                        "roles": [
+                            {
+                                "uuid": "d33cd9ff-281d-4bcf-9f89-b10b249caa35",
+                                "name": "Developer"
+                            }
+                        ]
+                    }
+                ],
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/organizations/2375e327-3fff-11e3-9170-12313920a02c/members/30dacb5e-4122-11e1-9eb5-12313928d3c2"
+                    }
+                }
+            },
+            {
+                "uuid": "3bcddc3a-52ba-4cce-aaa3-9adf721c1b52",
+                "first_name": "Jonathan",
+                "last_name": "Archer",
+                "mail": "jonathan.archer@example.com",
+                "picture_url": "https://accounts.acquia.com/sites/default/files/network/style/avatar/mail/299dd59fa15673e9b797a96d7cd414d9?mail=jonathan.archer%40acquia.com",
+                "username": "jonathan.archer",
+                "teams": [
+                    {
+                        "name": "Team Name 1",
+                        "uuid": "abcd1234-82b5-11e3-9170-12313920a02c",
+                        "roles": [
+                            {
+                                "uuid": "312c0121-906b-4498-8402-7b479172768c",
+                                "name": "Team Lead"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Team Name 2",
+                        "uuid": "1234abcd-82b5-11e3-9170-12313920a02c",
+                        "roles": [
+                            {
+                                "uuid": "d33cd9ff-281d-4bcf-9f89-b10b249caa35",
+                                "name": "Developer"
+                            }
+                        ]
+                    }
+                ],
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/organizations/2375e327-3fff-11e3-9170-12313920a02c/members/3bcddc3a-52ba-4cce-aaa3-9adf721c1b52"
+                    }
+                }
+            }
+        ]
+    }
+}

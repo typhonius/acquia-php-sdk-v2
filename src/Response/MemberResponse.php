@@ -29,10 +29,12 @@ class MemberResponse
         $this->mail = $member->mail;
         $this->picture_url = $member->picture_url;
         $this->username = $member->username;
-        $this->links = $member->_links;
 
         if (property_exists($member, 'teams')) {
             $this->teams = new TeamsResponse($member->teams);
+        }
+        if (property_exists($member, '_links')) {
+            $this->links = $member->_links;
         }
     }
 }

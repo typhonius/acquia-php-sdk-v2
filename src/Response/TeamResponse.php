@@ -23,9 +23,17 @@ class TeamResponse
     {
         $this->uuid = $team->uuid;
         $this->name = $team->name;
-        $this->created_at = $team->created_at;
-        $this->updated_at = $team->updated_at;
-        $this->organization = $team->organization;
-        $this->links = $team->_links;
+        if (property_exists($team, 'created_at')) {
+            $this->created_at = $team->created_at;
+        }
+        if (property_exists($team, 'updated_at')) {
+            $this->updated_at = $team->updated_at;
+        }
+        if (property_exists($team, 'organization')) {
+            $this->organization = $team->organization;
+        }
+        if (property_exists($team, '_links')) {
+            $this->links = $team->_links;
+        }
     }
 }

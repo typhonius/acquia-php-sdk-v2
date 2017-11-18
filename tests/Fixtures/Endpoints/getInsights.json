@@ -1,0 +1,121 @@
+{
+    "total": 2,
+    "_links": {
+        "self": {
+            "href": "{baseUri}/applications/12345678-abcd-9012-efgh-345678901223/insight"
+        },
+        "parent": {
+            "href": "{baseUri}/applications/12345678-abcd-9012-efgh-345678901223"
+        }
+    },
+    "_embedded": {
+        "items": [
+            {
+                "uuid": "09876543-dcba-210e-fghi-123456789012",
+                "label": "Example local development",
+                "hostname": "local.example.com:8443",
+                "status": "ok",
+                "scores": {
+                    "insight": "62",
+                    "seo": "15"
+                },
+                "counts": {
+                    "best_practices": {
+                        "pass": 5,
+                        "fail": 1,
+                        "ignored": 0,
+                        "total": 6,
+                        "percent": 83
+                    },
+                    "performance": {
+                        "pass": 9,
+                        "fail": 10,
+                        "ignored": 0,
+                        "total": 19,
+                        "percent": 47
+                    },
+                    "security": {
+                        "pass": 10,
+                        "fail": 10,
+                        "ignored": 0,
+                        "total": 20,
+                        "percent": 50
+                    }
+                },
+                "flags": {
+                    "acquia_hosted": false
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/insight/09876543-dcba-210e-fghi-123456789012"
+                    },
+                    "alerts": {
+                        "href": "{baseUri}/insight/09876543-dcba-210e-fghi-123456789012/alerts"
+                    },
+                    "connection-history": {
+                        "href": "{baseUri}/insight/09876543-dcba-210e-fghi-123456789012/connection-history"
+                    },
+                    "modules": {
+                        "href": "{baseUri}/insight/09876543-dcba-210e-fghi-123456789012/modules"
+                    },
+                    "score-history": {
+                        "href": "{baseUri}/insight/09876543-dcba-210e-fghi-123456789012/score-history"
+                    }
+                }
+            },
+            {
+                "uuid": "19876543-dcba-210e-fghi-12345678903",
+                "label": "Test Site: prod",
+                "hostname": "test.example.com",
+                "status": "ok",
+                "scores": {
+                    "insight": "62",
+                    "seo": "15"
+                },
+                "counts": {
+                    "best_practices": {
+                        "pass": 5,
+                        "fail": 1,
+                        "ignored": 0,
+                        "total": 6,
+                        "percent": 83
+                    },
+                    "performance": {
+                        "pass": 10,
+                        "fail": 9,
+                        "ignored": 0,
+                        "total": 19,
+                        "percent": 53
+                    },
+                    "security": {
+                        "pass": 11,
+                        "fail": 9,
+                        "ignored": 0,
+                        "total": 20,
+                        "percent": 55
+                    }
+                },
+                "flags": {
+                    "acquia_hosted": true
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/insight/19876543-dcba-210e-fghi-12345678903"
+                    },
+                    "alerts": {
+                        "href": "{baseUri}/insight/19876543-dcba-210e-fghi-12345678903/alerts"
+                    },
+                    "connection-history": {
+                        "href": "{baseUri}/insight/19876543-dcba-210e-fghi-12345678903/connection-history"
+                    },
+                    "modules": {
+                        "href": "{baseUri}/insight/19876543-dcba-210e-fghi-12345678903/modules"
+                    },
+                    "score-history": {
+                        "href": "{baseUri}/insight/19876543-dcba-210e-fghi-12345678903/score-history"
+                    }
+                }
+            }
+        ]
+    }
+}

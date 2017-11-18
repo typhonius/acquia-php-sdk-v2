@@ -15,7 +15,6 @@ class BackupResponse
     public $startedAt;
     public $completedAt;
     public $flags;
-    public $deleted;
     public $environment;
     public $links;
 
@@ -31,7 +30,6 @@ class BackupResponse
         $this->startedAt = $backup->started_at;
         $this->completedAt = $backup->completed_at;
         $this->flags = $backup->flags;
-        $this->deleted = $backup->deleted;
         $this->environment = $backup->environment;
         $this->links = $backup->_links;
     }

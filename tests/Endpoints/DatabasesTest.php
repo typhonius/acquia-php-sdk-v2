@@ -14,7 +14,6 @@ class DatabasesTest extends CloudApiTestCase
       'startedAt',
       'completedAt',
       'flags',
-      'deleted',
       'environment',
       'links',
     ];

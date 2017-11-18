@@ -2,6 +2,9 @@
 Acquia PHP SDK for CloudAPI v2
 =
 
+[![Build Status](https://travis-ci.org/typhonius/acquia-php-sdk-v2.svg?branch=master)](https://travis-ci.org/typhonius/acquia-php-sdk-v2)
+[![Coverage Status](https://coveralls.io/repos/typhonius/acquia-php-sdk-v2/badge.svg?branch=master&service=github)](https://coveralls.io/github/typhonius/acquia-php-sdk-v2?branch=master)
+
 With the [original Acquia Cloud SDK](https://github.com/acquia/acquia-sdk-php) being deprecated and a [new version of Cloud API](https://cloud.acquia.com/api-docs/) being made available, this SDK aims to fill the gap and use more modern PHP packages to allow developers to continue to build tools that interact with the Acquia Cloud API.
 
 ## Installation

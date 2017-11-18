@@ -38,4 +38,26 @@ class CodeTest extends CloudApiTestCase
             }
         }
     }
+
+    public function testCodeSwitch()
+    {
+        $response = $this->generateCloudApiResponse('Endpoints/switchCode.json');
+
+        $message = new \AcquiaCloudApi\Response\OperationResponse($response);
+
+        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
+        ->disableOriginalConstructor()
+        ->setMethods(['switchCode'])
+        ->getMock();
+
+        $client->expects($this->once())
+        ->method('switchCode')
+        ->with('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'my-feature-branch')
+        ->will($this->returnValue($message));
+
+        /** @var AcquiaCloudApi\CloudApi\Client $client */
+        $result = $client->switchCode('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'my-feature-branch');
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $this->assertEquals('The code is being switched.', $result->message);
+    }
 }

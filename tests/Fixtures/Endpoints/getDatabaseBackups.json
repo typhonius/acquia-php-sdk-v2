@@ -1,0 +1,127 @@
+{
+    "total": 2,
+    "_links": {
+        "self": {
+            "href": "{baseUri}/environments/1-a47ac10b-58cc-4372-a567-0e02b2c3d470/databases/db_name/backups"
+        },
+        "sort": {
+            "href": "{baseUri}/environments/1-a47ac10b-58cc-4372-a567-0e02b2c3d470/databases/db_name/backups{?sort}",
+            "templated": true
+        },
+        "filter": {
+            "href": "{baseUri}/environments/1-a47ac10b-58cc-4372-a567-0e02b2c3d470/databases/db_name/backups{?filter}",
+            "templated": true
+        },
+        "limit": {
+            "href": "{baseUri}/environments/1-a47ac10b-58cc-4372-a567-0e02b2c3d470/databases/db_name/backups{?limit}",
+            "templated": true
+        },
+        "parent": {
+            "href": "{baseUri}/environments/1-a47ac10b-58cc-4372-a567-0e02b2c3d470/databases/db_name"
+        }
+    },
+    "_embedded": {
+        "items": [
+            {
+                "id": 1,
+                "database": {
+                    "id": 14,
+                    "name": "db_name"
+                },
+                "type": "daily",
+                "started_at": "2012-05-15T12:00:00Z",
+                "completed_at": "2012-05-15T12:00:00Z",
+                "flags": {
+                    "deleted": false
+                },
+                "environment": {
+                    "id": "1-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "Production"
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/environments/1-a47ac10b-58cc-4372-a567-0e02b2c3d470/database-backups/1"
+                    },
+                    "download": {
+                        "href": "{baseUri}/environments/1-a47ac10b-58cc-4372-a567-0e02b2c3d470/database-backups/1/actions/download"
+                    }
+                }
+            },
+            {
+                "id": 2,
+                "database": {
+                    "id": 14,
+                    "name": "db_name"
+                },
+                "type": "daily",
+                "started_at": "2012-03-28T12:00:00Z",
+                "completed_at": "2012-03-28T12:00:01Z",
+                "flags": {
+                    "deleted": false
+                },
+                "environment": {
+                    "id": "1-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "Production"
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/environments/1-a47ac10b-58cc-4372-a567-0e02b2c3d470/database-backups/2"
+                    },
+                    "download": {
+                        "href": "{baseUri}/environments/1-a47ac10b-58cc-4372-a567-0e02b2c3d470/database-backups/2/actions/download"
+                    }
+                }
+            },
+            {
+                "id": 3,
+                "database": {
+                    "id": 14,
+                    "name": "db_name"
+                },
+                "type": "daily",
+                "started_at": "2017-01-08T04:00:00Z",
+                "completed_at": "2017-01-08T04:00:01Z",
+                "flags": {
+                    "deleted": false
+                },
+                "environment": {
+                    "id": "1-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "Production"
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/environments/1-a47ac10b-58cc-4372-a567-0e02b2c3d470/database-backups/2"
+                    },
+                    "download": {
+                        "href": "{baseUri}/environments/1-a47ac10b-58cc-4372-a567-0e02b2c3d470/database-backups/2/actions/download"
+                    }
+                }
+            },
+            {
+                "id": 4,
+                "database": {
+                    "id": 14,
+                    "name": "db_name"
+                },
+                "type": "daily",
+                "started_at": "2017-01-08T05:00:02Z",
+                "completed_at": "2017-01-08T05:00:03Z",
+                "flags": {
+                    "deleted": false
+                },
+                "environment": {
+                    "id": "1-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "Production"
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/environments/1-a47ac10b-58cc-4372-a567-0e02b2c3d470/database-backups/2"
+                    },
+                    "download": {
+                        "href": "{baseUri}/environments/1-a47ac10b-58cc-4372-a567-0e02b2c3d470/database-backups/2/actions/download"
+                    }
+                }
+            }
+        ]
+    }
+}

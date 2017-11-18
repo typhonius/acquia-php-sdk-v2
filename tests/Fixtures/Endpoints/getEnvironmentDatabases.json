@@ -1,0 +1,69 @@
+{
+    "total": 2,
+    "_links": {
+        "self": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/databases"
+        },
+        "sort": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/databases{?sort}",
+            "templated": true
+        },
+        "filter": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/databases{?filter}",
+            "templated": true
+        },
+        "limit": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/databases{?limit}",
+            "templated": true
+        },
+        "parent": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470"
+        }
+    },
+    "_embedded": {
+        "items": [
+            {
+                "id": 14,
+                "name": "my_db",
+                "user_name": "my_db_user",
+                "password": "supersecretdbpassword1!",
+                "url": "mysql://my_db_user:supersecretdbpassword1!@dbhost.com/my_db",
+                "db_host": "dbhost.com",
+                "ssh_host": "sshhost.com",
+                "flags": {
+                    "default": true
+                },
+                "environment": {
+                    "id": "24-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "dev"
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/databases/14"
+                    }
+                }
+            },
+            {
+                "id": 15,
+                "name": "my_db_stage",
+                "user_name": "my_db_user",
+                "password": "supersecretdbpassword1!",
+                "url": "mysql://my_db_user:supersecretdbpassword1!@dbhost.com/my_db_stage",
+                "db_host": "dbhost.com",
+                "ssh_host": "sshhost.com",
+                "flags": {
+                    "default": false
+                },
+                "environment": {
+                    "id": "25-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "dev"
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/environments/25-a47ac10b-58cc-4372-a567-0e02b2c3d470/databases/15"
+                    }
+                }
+            }
+        ]
+    }
+}

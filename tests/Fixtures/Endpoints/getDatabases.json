@@ -1,0 +1,33 @@
+{
+    "total": 2,
+    "_links": {
+        "self": {
+            "href": "{baseUri}/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/databases"
+        },
+        "sort": {
+            "href": "{baseUri}/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/databases{?sort}",
+            "templated": true
+        },
+        "filter": {
+            "href": "{baseUri}/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/databases{?filter}",
+            "templated": true
+        },
+        "limit": {
+            "href": "{baseUri}/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/databases{?limit}",
+            "templated": true
+        },
+        "parent": {
+            "href": "{baseUri}/applications/185f07c7-9c4f-407b-8968-67892ebcb38a"
+        }
+    },
+    "_embedded": {
+        "items": [
+            {
+                "name": "database1"
+            },
+            {
+                "name": "database2"
+            }
+        ]
+    }
+}

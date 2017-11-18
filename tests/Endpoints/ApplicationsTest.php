@@ -18,8 +18,7 @@ class ApplicationsTest extends CloudApiTestCase
     public function testGetApplications()
     {
 
-        // @TODO make this an array in the response?
-        $response = (array) $this->generateCloudApiResponse('Endpoints/getApplications.json');
+        $response = $this->generateCloudApiResponse('Endpoints/getApplications.json');
         $applications = new \AcquiaCloudApi\Response\ApplicationsResponse($response);
 
 

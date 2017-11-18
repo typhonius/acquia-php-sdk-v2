@@ -17,7 +17,6 @@ class ServerResponse
     public $region;
     public $roles;
     public $amiType;
-    public $os;
     public $configuration;
     public $flags;
 
@@ -35,7 +34,6 @@ class ServerResponse
          $this->region = $server->region;
          $this->roles = $server->roles;
          $this->amiType = $server->ami_type;
-         $this->os = $server->operating_system;
          $this->configuration = $server->configuration;
          $this->flags = $server->flags;
     }

@@ -1,0 +1,94 @@
+{
+    "total": 2,
+    "_links": {
+        "self": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/servers"
+        },
+        "parent": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470"
+        }
+    },
+    "_embedded": {
+        "items": [
+            {
+                "id": "6",
+                "name": "ded-6",
+                "hostname": "ded-6.servers.acquia.com",
+                "ssh_user": "user.dev",
+                "ip": "10.0.0.1",
+                "status": "normal",
+                "region": "us-west-1",
+                "roles": [
+                    "web",
+                    "db"
+                ],
+                "ami_type": "c1.medium",
+                "configuration": {
+                    "memcache": 64,
+                    "ecu": 5,
+                    "memory": 1.7
+                },
+                "flags": {
+                    "elastic_ip": false,
+                    "active_web": true,
+                    "active_bal": false,
+                    "primary_db": true,
+                    "web": true,
+                    "database": true,
+                    "balancer": false,
+                    "memcache": true,
+                    "dedicated": false,
+                    "self_service": false
+                },
+                "environment": {
+                    "id": "24-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "dev"
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/servers/6"
+                    }
+                }
+            },
+            {
+                "id": "4",
+                "name": "bal-4",
+                "hostname": "bal-4.servers.acquia.com",
+                "ssh_user": null,
+                "ip": "10.0.0.2",
+                "status": "normal",
+                "region": "us-west-1",
+                "roles": [
+                    "bal"
+                ],
+                "ami_type": "m1.small",
+                "configuration": {
+                    "memcache": null,
+                    "ecu": 1,
+                    "memory": 1.7
+                },
+                "flags": {
+                    "elastic_ip": false,
+                    "active_web": false,
+                    "active_bal": false,
+                    "primary_db": true,
+                    "web": false,
+                    "database": false,
+                    "balancer": true,
+                    "memcache": false,
+                    "dedicated": true,
+                    "self_service": false
+                },
+                "environment": {
+                    "id": "24-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "dev"
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/servers/4"
+                    }
+                }
+            }
+        ]
+    }
+}

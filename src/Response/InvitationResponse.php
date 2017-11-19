@@ -26,7 +26,6 @@ class InvitationResponse
      */
     public function __construct($invitation)
     {
-
         $this->uuid = $invitation->uuid;
         $this->email = $invitation->email;
         $this->author = new MemberResponse($invitation->author);

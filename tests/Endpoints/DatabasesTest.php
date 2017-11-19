@@ -4,24 +4,23 @@ class DatabasesTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'name',
+        'name',
     ];
 
     public $backupProperties = [
-      'id',
-      'database',
-      'type',
-      'startedAt',
-      'completedAt',
-      'flags',
-      'environment',
-      'links',
+        'id',
+        'database',
+        'type',
+        'startedAt',
+        'completedAt',
+        'flags',
+        'environment',
+        'links',
     ];
 
     public function testGetDatabases()
     {
 
-        // @TODO make this an array in the response?
         $response = (array) $this->generateCloudApiResponse('Endpoints/getDatabases.json');
         $databases = new \AcquiaCloudApi\Response\DatabasesResponse($response);
 
@@ -174,6 +173,37 @@ class DatabasesTest extends CloudApiTestCase
     }
 
     public function testGetDatabaseBackups()
+    {
+        $response = $this->generateCloudApiResponse('Endpoints/getDatabaseBackups.json');
+
+        $backups = new \AcquiaCloudApi\Response\BackupsResponse($response);
+
+        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
+        ->disableOriginalConstructor()
+        ->setMethods(['databaseBackups'])
+        ->getMock();
+
+        $client->expects($this->once())
+        ->method('databaseBackups')
+        ->with('185f07c7-9c4f-407b-8968-67892ebcb38a', 'db_name')
+        ->will($this->returnValue($backups));
+
+        /** @var AcquiaCloudApi\CloudApi\Client $client */
+        $result = $client->databaseBackups('185f07c7-9c4f-407b-8968-67892ebcb38a', 'db_name');
+
+        $this->assertInstanceOf('\ArrayObject', $result);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\BackupsResponse', $result);
+
+        foreach ($result as $record) {
+            $this->assertInstanceOf('\AcquiaCloudApi\Response\BackupResponse', $record);
+
+            foreach ($this->backupProperties as $property) {
+                $this->assertObjectHasAttribute($property, $record);
+            }
+        }
+    }
+
+    public function testGetDatabaseBackup()
     {
         $response = $this->generateCloudApiResponse('Endpoints/getDatabaseBackup.json');
 

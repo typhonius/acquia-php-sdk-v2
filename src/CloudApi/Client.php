@@ -856,7 +856,9 @@ class Client extends GuzzleClient
             ],
         ];
 
-      return new OperationResponse($this->makeRequest('post', "/organizations/${organizationUuid}/admin-invites", $options));
+        return new OperationResponse(
+            $this->makeRequest('post', "/organizations/${organizationUuid}/admin-invites", $options)
+        );
     }
 
     /**
@@ -901,7 +903,9 @@ class Client extends GuzzleClient
      */
     public function deleteMember($organizationUuid, $memberUuid)
     {
-        return new OperationResponse($this->makeRequest('delete', "/organizations/${organizationUuid}/members/${memberUuid}"));
+        return new OperationResponse(
+            $this->makeRequest('delete', "/organizations/${organizationUuid}/members/${memberUuid}")
+        );
     }
 
     /**

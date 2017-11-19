@@ -43,5 +43,4 @@ class InsightsTest extends CloudApiTestCase
             }
         }
     }
-
 }

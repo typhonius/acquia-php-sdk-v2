@@ -122,6 +122,16 @@ class Client extends GuzzleClient
     }
 
     /**
+     * Get query from Client.
+     *
+     * @return array
+     */
+    public function getQuery()
+    {
+        return $this->query;
+    }
+
+    /**
      *
      */
     public function clearQuery()

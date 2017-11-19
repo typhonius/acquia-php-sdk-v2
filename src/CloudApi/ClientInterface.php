@@ -81,7 +81,7 @@ interface ClientInterface
      * @param string $name
      * @return OperationResponse
      */
-    public function applicationRename($uuid, $name);
+    public function renameApplication($uuid, $name);
 
     /**
      * Shows all code branches and tags in an application.

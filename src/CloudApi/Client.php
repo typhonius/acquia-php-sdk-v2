@@ -166,7 +166,7 @@ class Client extends GuzzleClient
      * @param string $name
      * @return OperationResponse
      */
-    public function applicationRename($uuid, $name)
+    public function renameApplication($uuid, $name)
     {
 
         $options = [
@@ -792,6 +792,22 @@ class Client extends GuzzleClient
     }
 
     /**
+     * @param $teamUuid
+     * @param $name
+     * @return OperationResponse
+     */
+    public function renameTeam($teamUuid, $name)
+    {
+        $options = [
+            'form_params' => [
+                'name' => $name,
+            ],
+        ];
+
+        return new OperationResponse($this->makeRequest('put', "/teams/${teamUuid}", $options));
+    }
+
+    /**
      * @param string $teamUuid
      * @param string $applicationUuid
      * @return OperationResponse
@@ -810,12 +826,12 @@ class Client extends GuzzleClient
     /**
      * Invites a user to join a team.
      *
-     * @param string $uuid
+     * @param string $teamUuid
      * @param string $email
      * @param array  $roles
      * @return OperationResponse
      */
-    public function createTeamInvite($uuid, $email, $roles)
+    public function createTeamInvite($teamUuid, $email, $roles)
     {
         $options = [
             'form_params' => [
@@ -824,52 +840,68 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return new OperationResponse($this->makeRequest('post', "/teams/${uuid}/invites", $options));
+        return new OperationResponse($this->makeRequest('post', "/teams/${teamUuid}/invites", $options));
+    }
+
+    /**
+     * @param $organizationUuid
+     * @param $email
+     * @return OperationResponse
+     */
+    public function createOrganizationAdminInvite($organizationUuid, $email)
+    {
+        $options = [
+            'form_params' => [
+                'email' => $email,
+            ],
+        ];
+
+      return new OperationResponse($this->makeRequest('post', "/organizations/${organizationUuid}/admin-invites", $options));
     }
 
     /**
      * Show all applications associated with a team.
      *
-     * @param string $uuid
+     * @param string $teamUuid
      * @return ApplicationResponse
      */
-    public function teamApplications($uuid)
+    public function teamApplications($teamUuid)
     {
-        return new ApplicationResponse($this->makeRequest('get', "/teams/${uuid}/applications"));
+        return new ApplicationResponse($this->makeRequest('get', "/teams/${teamUuid}/applications"));
     }
 
     /**
      * Show all members of an organisation.
      *
-     * @param string $uuid
+     * @param string $organizationUuid
      * @return MembersResponse
      */
-    public function members($uuid)
+    public function members($organizationUuid)
     {
-        return new MembersResponse($this->makeRequest('get', "/organizations/${uuid}/members"));
+        return new MembersResponse($this->makeRequest('get', "/organizations/${organizationUuid}/members"));
     }
 
     /**
      * Show all members invited to an organisation.
      *
-     * @param string $uuid
+     * @param string $organizationUuid
      * @return InvitationsResponse
      */
-    public function invitees($uuid)
+    public function invitees($organizationUuid)
     {
-        return new InvitationsResponse($this->makeRequest('get', "/organizations/${uuid}/team-invites"));
+        return new InvitationsResponse($this->makeRequest('get', "/organizations/${organizationUuid}/team-invites"));
     }
 
     /**
      * Delete a member from an organisation.
      *
-     * @param string $uuidSite
-     * @param string $uuidMember
+     * @param string $organizationUuid
+     * @param string $memberUuid
      * @return OperationResponse
      */
-    public function deleteMember($uuidSite, $uuidMember)
+    public function deleteMember($organizationUuid, $memberUuid)
     {
-        return new OperationResponse($this->makeRequest('delete', "/organizations/${uuidSite}/members/${uuidMember}"));
+        return new OperationResponse($this->makeRequest('delete', "/organizations/${organizationUuid}/members/${memberUuid}"));
     }
 
     /**

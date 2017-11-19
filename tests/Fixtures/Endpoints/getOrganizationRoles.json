@@ -1,0 +1,135 @@
+{
+    "total": 3,
+    "_links": {
+        "self": {
+            "href": "{baseUri}/organizations/065f4d9e-efbf-4b0e-8cf6-42fa432baede/roles"
+        },
+        "parent": {
+            "href": "{baseUri}/organizations/065f4d9e-efbf-4b0e-8cf6-42fa432baede"
+        }
+    },
+    "_embedded": {
+        "items": [
+            {
+                "uuid": "312c0121-906b-4498-8402-7b479172768c",
+                "name": "Team Lead",
+                "description": "Some details about team lead.",
+                "permissions": [
+                    {
+                        "name": "administer team",
+                        "label": "Add or remove a user of a team",
+                        "description": "Granting this permission will give any user with this role full permissions on this team.",
+                        "group_label": "Administration"
+                    }
+                ],
+                "organization": {
+                    "uuid": "065f4d9e-efbf-4b0e-8cf6-42fa432baede",
+                    "name": "Example Organization"
+                },
+                "last_edited": {
+                    "edited_at": "2011-03-28T13:09:41-04:00",
+                    "user": {
+                        "uuid": "aaaa1234-11e2-c374-6954-6931d150b259",
+                        "first_name": "Jane",
+                        "last_name": "Doe",
+                        "mail": "jane.doe@example.com",
+                        "picture_url": "https://accounts.acquia.com/sites/default/files/avatars/123abc?mail=jane.doe@example.com",
+                        "username": "jane.doe"
+                    }
+                },
+                "flags": {
+                    "default": true
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/organizations/065f4d9e-efbf-4b0e-8cf6-42fa432baede/roles/312c0121-906b-4498-8402-7b479172768c"
+                    }
+                }
+            },
+            {
+                "uuid": "5f7da0a9-9ff0-4db8-802e-9d2b9969efc2",
+                "name": "Senior Developer",
+                "description": "Some details about senior developer.",
+                "permissions": [
+                    {
+                        "name": "access cloud api",
+                        "label": "Access the Cloud API",
+                        "description": "Grants the ability to use the API and bypass all other permissions via command line tools.",
+                        "group_label": "Administration"
+                    },
+                    {
+                        "name": "administer team",
+                        "label": "Add or remove a user of a team",
+                        "description": "Granting this permission will give any user with this role full permissions on this team.",
+                        "group_label": "Administration"
+                    },
+                    {
+                        "name": "activate add on",
+                        "label": "Activate an Acquia Subscription add-on",
+                        "description": null,
+                        "group_label": "Administration"
+                    }
+                ],
+                "organization": {
+                    "uuid": "065f4d9e-efbf-4b0e-8cf6-42fa432baede",
+                    "name": "Example Organization"
+                },
+                "last_edited": {
+                    "edited_at": "2011-03-28T13:09:41-04:00",
+                    "user": {
+                        "uuid": null,
+                        "first_name": "Acquia",
+                        "last_name": "Support",
+                        "mail": "support@acquia.com",
+                        "picture_url": null,
+                        "username": null
+                    }
+                },
+                "flags": {
+                    "default": false
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/organizations/065f4d9e-efbf-4b0e-8cf6-42fa432baede/roles/5f7da0a9-9ff0-4db8-802e-9d2b9969efc2"
+                    }
+                }
+            },
+            {
+                "uuid": "d33cd9ff-281d-4bcf-9f89-b10b249caa35",
+                "name": "Developer",
+                "description": "Some details about developer.",
+                "permissions": [
+                    {
+                        "name": "access cloud api",
+                        "label": "Access the Cloud API",
+                        "description": "Grants the ability to use the API and bypass all other permissions via command line tools.",
+                        "group_label": "Administration"
+                    }
+                ],
+                "organization": {
+                    "uuid": "065f4d9e-efbf-4b0e-8cf6-42fa432baede",
+                    "name": "Example Organization"
+                },
+                "last_edited": {
+                    "edited_at": "2011-03-28T13:09:41-04:00",
+                    "user": {
+                        "uuid": "bbbb1234-11e2-c374-6954-6931d150b259",
+                        "first_name": "John",
+                        "last_name": "Doe",
+                        "mail": "john.doe@example.com",
+                        "picture_url": "https://accounts.acquia.com/sites/default/files/avatars/123abc?mail=john.doe@example.com",
+                        "username": "john.doe"
+                    }
+                },
+                "flags": {
+                    "default": false
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/organizations/065f4d9e-efbf-4b0e-8cf6-42fa432baede/roles/5f7da0a9-9ff0-4db8-802e-9d2b9969efc2"
+                    }
+                }
+            }
+        ]
+    }
+}

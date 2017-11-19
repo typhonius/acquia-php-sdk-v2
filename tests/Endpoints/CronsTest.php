@@ -19,7 +19,7 @@ class CronsTest extends CloudApiTestCase
     ];
 
     // delete cron
-  // delete domain
+    // delete domain
 
     public function testGetCrons()
     {
@@ -65,13 +65,18 @@ class CronsTest extends CloudApiTestCase
 
         $client->expects($this->once())
         ->method('addCron')
-        ->with('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', "/usr/local/bin/drush cc all", '*/30 * * * *', 'My New Cron')
+        ->with('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', '/usr/local/bin/drush cc all', '*/30 * * * *', 'My New Cron')
         ->will($this->returnValue($message));
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
-        $result = $client->addCron('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', '/usr/local/bin/drush cc all', '*/30 * * * *', 'My New Cron');
+        $result = $client->addCron(
+            '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
+            '/usr/local/bin/drush cc all',
+            '*/30 * * * *',
+            'My New Cron'
+        );
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-        $this->assertEquals("Creating a new cron.", $result->message);
+        $this->assertEquals('Creating a new cron.', $result->message);
     }
 
     public function testCronDelete()

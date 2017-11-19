@@ -51,17 +51,17 @@ class TasksTest extends CloudApiTestCase
 
     public function testGetFilteredTasks()
     {
-//      $this->cloudapi->addQuery('from', $start->format(\DateTime::ATOM));
-//      $this->cloudapi->addQuery('filter', "name=@*${match}*");
-//      $tasks = $this->cloudapi->tasks($uuid);
-//      $this->cloudapi->clearQuery();
-//
-//      $mock->expects($this->exactly(2))
-//        ->method('set')
-//        ->withConsecutive(
-//          [$this->equalTo('foo'), $this->greaterThan(0)],
-//          [$this->equalTo('bar'), $this->greaterThan(0)]
-//        );
+        //      $this->cloudapi->addQuery('from', $start->format(\DateTime::ATOM));
+        //      $this->cloudapi->addQuery('filter', "name=@*${match}*");
+        //      $tasks = $this->cloudapi->tasks($uuid);
+        //      $this->cloudapi->clearQuery();
+        //
+        //      $mock->expects($this->exactly(2))
+        //        ->method('set')
+        //        ->withConsecutive(
+        //          [$this->equalTo('foo'), $this->greaterThan(0)],
+        //          [$this->equalTo('bar'), $this->greaterThan(0)]
+        //        );
 
 
         $response = $this->generateCloudApiResponse('Endpoints/getFilteredTasks.json');
@@ -82,7 +82,7 @@ class TasksTest extends CloudApiTestCase
         $client->expects($this->once())
         ->method('clearQuery');
 
-      /** @var AcquiaCloudApi\CloudApi\Client $client */
+        /** @var AcquiaCloudApi\CloudApi\Client $client */
         $client->addQuery('filter', 'name=@DatabaseBackupCreated');
         $result = $client->tasks('8ff6c046-ec64-4ce4-bea6-27845ec18600');
         $client->clearQuery();

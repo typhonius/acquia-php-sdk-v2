@@ -98,7 +98,11 @@ class DatabasesTest extends CloudApiTestCase
         ->will($this->returnValue($message));
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
-        $result = $client->databaseCopy('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'db_name', '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
+        $result = $client->databaseCopy(
+            '24-a47ac10b-58cc-4372-a567-0e02b2c3d470',
+            'db_name',
+            '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851'
+        );
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('The database is queued for copying.', $result->message);
     }

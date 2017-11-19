@@ -16,7 +16,7 @@ script:
     - cd ${TRAVIS_BUILD_DIR}
     - php -l src/
     - ./vendor/bin/phpcs -s --standard=PSR2 ./src/
-    - ./vendor/bin/phpunit --coverage-clover ./tests/logs/clover.xml
+    - phpdbg -qrr ./vendor/bin/phpunit --coverage-text --coverage-clover ./tests/logs/clover.xml
 
 after_script:
     - cd ${TRAVIS_BUILD_DIR} && php vendor/bin/coveralls -v

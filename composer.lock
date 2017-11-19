@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "acquia/http-hmac-php",
-            "version": "3.2.0",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acquia/http-hmac-php.git",
-                "reference": "cf4ad39fe4efadb978d49c4fe8671cadf8805920"
+                "reference": "6edd829a2a53001de091a7982af84a124a3fd3c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acquia/http-hmac-php/zipball/cf4ad39fe4efadb978d49c4fe8671cadf8805920",
-                "reference": "cf4ad39fe4efadb978d49c4fe8671cadf8805920",
+                "url": "https://api.github.com/repos/acquia/http-hmac-php/zipball/6edd829a2a53001de091a7982af84a124a3fd3c8",
+                "reference": "6edd829a2a53001de091a7982af84a124a3fd3c8",
                 "shasum": ""
             },
             "require": {

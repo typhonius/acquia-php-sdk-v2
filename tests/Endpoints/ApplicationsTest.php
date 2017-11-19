@@ -94,5 +94,7 @@ class ApplicationsTest extends CloudApiTestCase
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
         $this->assertEquals('Application renamed.', $result->message);
+
+
     }
 }

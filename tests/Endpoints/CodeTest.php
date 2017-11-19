@@ -11,14 +11,14 @@ class CodeTest extends CloudApiTestCase
     public function testGetBranches()
     {
 
-        $response = (array) $this->generateCloudApiResponse('Endpoints/getCode.json');
+        $response = $this->generateCloudApiResponse('Endpoints/getCode.json');
         $branches = new \AcquiaCloudApi\Response\BranchesResponse($response);
-
 
         $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
         ->disableOriginalConstructor()
         ->setMethods(['code'])
         ->getMock();
+
         $client->expects($this->once())
         ->method('code')
         ->with('8ff6c046-ec64-4ce4-bea6-27845ec18600')

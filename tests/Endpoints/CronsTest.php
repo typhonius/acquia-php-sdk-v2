@@ -60,16 +60,16 @@ class CronsTest extends CloudApiTestCase
 
         $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
         ->disableOriginalConstructor()
-        ->setMethods(['addCron'])
+        ->setMethods(['createCron'])
         ->getMock();
 
         $client->expects($this->once())
-        ->method('addCron')
+        ->method('createCron')
         ->with('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', '/usr/local/bin/drush cc all', '*/30 * * * *', 'My New Cron')
         ->will($this->returnValue($message));
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
-        $result = $client->addCron(
+        $result = $client->createCron(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
             '/usr/local/bin/drush cc all',
             '*/30 * * * *',

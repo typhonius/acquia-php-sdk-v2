@@ -279,7 +279,7 @@ class Client extends GuzzleClient
      * @param string $dbName
      * @return OperationResponse
      */
-    public function databaseBackup($id, $dbName)
+    public function createDatabaseBackup($id, $dbName)
     {
         return new OperationResponse($this->makeRequest('post', "/environments/${id}/databases/${dbName}/backups"));
     }
@@ -303,7 +303,7 @@ class Client extends GuzzleClient
      * @param string $backupId
      * @return BackupResponse
      */
-    public function databaseBackupInfo($id, $backupId)
+    public function databaseBackup($id, $backupId)
     {
          return new BackupResponse($this->makeRequest('get', "/environments/${id}/database-backups/${backupId}"));
     }
@@ -315,7 +315,7 @@ class Client extends GuzzleClient
     * @param string $backupId
     * @return OperationResponse
     */
-    public function databaseBackupRestore($id, $backupId)
+    public function restoreDatabaseBackup($id, $backupId)
     {
         return new OperationResponse(
             $this->makeRequest('post', "/environments/${id}/database-backups/${backupId}/actions/restore")
@@ -377,7 +377,7 @@ class Client extends GuzzleClient
      * @param string $hostname
      * @return OperationResponse
      */
-    public function addDomain($id, $hostname)
+    public function createDomain($id, $hostname)
     {
 
         $options = [
@@ -570,7 +570,7 @@ class Client extends GuzzleClient
      * @param string $label
      * @return OperationResponse
      */
-    public function addCron($id, $command, $frequency, $label)
+    public function createCron($id, $command, $frequency, $label)
     {
 
         $options = [
@@ -703,7 +703,7 @@ class Client extends GuzzleClient
      * @param array  $permissions
      * @return OperationResponse
      */
-    public function roleUpdatePermissions($roleUuid, array $permissions)
+    public function updateRole($roleUuid, array $permissions)
     {
         $options = [
             'form_params' => [
@@ -721,7 +721,7 @@ class Client extends GuzzleClient
      * @param null|string $description
      * @return OperationResponse
      */
-    public function organizationRoleCreate($uuid, $name, array $permissions, $description = null)
+    public function createRole($uuid, $name, array $permissions, $description = null)
     {
         $options = [
             'form_params' => [
@@ -738,7 +738,7 @@ class Client extends GuzzleClient
      * @param string $roleUuid
      * @return OperationResponse
      */
-    public function roleRemove($roleUuid)
+    public function deleteRole($roleUuid)
     {
         return new OperationResponse($this->makeRequest('delete', "/roles/${roleUuid}"));
     }
@@ -771,7 +771,7 @@ class Client extends GuzzleClient
      * @param string $name
      * @return OperationResponse
      */
-    public function teamCreate($uuid, $name)
+    public function createTeam($uuid, $name)
     {
         $options = [
             'form_params' => [
@@ -786,7 +786,7 @@ class Client extends GuzzleClient
      * @param string $teamUuid
      * @return OperationResponse
      */
-    public function teamRemove($teamUuid)
+    public function deleteTeam($teamUuid)
     {
         return new OperationResponse($this->makeRequest('delete', "/teams/${teamUuid}"));
     }
@@ -796,7 +796,7 @@ class Client extends GuzzleClient
      * @param string $applicationUuid
      * @return OperationResponse
      */
-    public function teamAddApplication($teamUuid, $applicationUuid)
+    public function addApplicationToTeam($teamUuid, $applicationUuid)
     {
         $options = [
             'form_params' => [
@@ -815,7 +815,7 @@ class Client extends GuzzleClient
      * @param array  $roles
      * @return OperationResponse
      */
-    public function teamInvite($uuid, $email, $roles)
+    public function createTeamInvite($uuid, $email, $roles)
     {
         $options = [
             'form_params' => [

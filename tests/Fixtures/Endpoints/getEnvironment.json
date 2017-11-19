@@ -1,0 +1,146 @@
+{
+    "id": "24-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+    "label": "Dev",
+    "name": "dev",
+    "application": {
+        "name": "Sample application",
+        "uuid": "a47ac10b-58cc-4372-a567-0e02b2c3d470"
+    },
+    "domains": [
+        "sitedev.hosted.acquia-sites.com", "example.com"
+    ],
+    "active_domain": "example.com",
+    "default_domain": "sitedev.hosted.acquia-sites.com",
+    "image_url": null,
+    "ips": [
+        "10.0.1.5"
+    ],
+    "region": "us-east-1",
+    "status": "normal",
+    "type": "drupal",
+    "size": null,
+    "ssh_url": "site.dev@server-123.hosted.hosting.acquia.com",
+    "weight": 0,
+    "vcs": {
+        "type": "git",
+        "path": "master",
+        "url": "site@svn-3.hosted.acquia-sites.com:site.git"
+    },
+    "insight": {
+        "status": "ok",
+        "scores": {
+            "insight": 87,
+            "seo": 56
+        },
+        "counts": {
+            "best_practices": {
+                "pass": 7,
+                "fail": 0,
+                "ignored": 0,
+                "total": 7,
+                "percent": 100
+            },
+            "performance": {
+                "pass": 22,
+                "fail": 0,
+                "ignored": 0,
+                "total": 22,
+                "percent": 100
+            },
+            "security": {
+                "pass": 23,
+                "fail": 0,
+                "ignored": 0,
+                "total": 23,
+                "percent": 100
+            }
+        }
+    },
+    "flags": {
+        "cde": false,
+        "hsd": false,
+        "livedev": false,
+        "multi_region": false,
+        "production": false,
+        "production_mode": false,
+        "remote_admin": false,
+        "varnish": true,
+        "varnish_over_ssl": false,
+        "service_management": true
+    },
+    "configuration": {
+        "operating_system": "precise",
+        "php": {
+            "version": "5.6",
+            "memory_limit": 128,
+            "apc": 96,
+            "max_execution_time": 300,
+            "max_post_size": 256,
+            "max_input_vars": 1000,
+            "sendmail_path": null
+        }
+    },
+    "gardener": {
+        "site-update": "my-domain-prod.com/admin/gardens/site-update",
+        "multi-site": "my-domain-prod.com/admin/gardens/staging"
+    },
+    "artifact": null,
+    "_links": {
+        "self": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470"
+        },
+        "alerts": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/alerts"
+        },
+        "connection-history": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/connection-history"
+        },
+        "crons": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/crons"
+        },
+        "databases": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/databases"
+        },
+        "domains": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/domains"
+        },
+        "insight": {
+            "href": "{baseUri}/environments/8-185f07c7-9c4f-407b-8968-67892ebcb38a/insight"
+        },
+        "logs": {
+            "href": "{baseUri}/environments/8-185f07c7-9c4f-407b-8968-67892ebcb38a/logs"
+        },
+        "metrics": {
+            "href": "{baseUri}/environments/8-185f07c7-9c4f-407b-8968-67892ebcb38a/metrics"
+        },
+        "modules": {
+            "href": "{baseUri}/environments/8-185f07c7-9c4f-407b-8968-67892ebcb38a/modules"
+        },
+        "score-history": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/score-history"
+        },
+        "servers": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/servers"
+        },
+        "ssl": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/ssl"
+        },
+        "variables": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/variables"
+        },
+        "parent": {
+            "href": "{baseUri}/environments"
+        }
+    },
+    "_embedded": {
+        "application": {
+            "name": "Sample application",
+            "uuid": "a47ac10b-58cc-4372-a567-0e02b2c3d470",
+            "_links": {
+                "self": {
+                    "href": "{baseUri}/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470"
+                }
+            }
+        }
+    }
+}

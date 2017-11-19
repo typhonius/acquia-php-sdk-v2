@@ -33,7 +33,9 @@ class EnvironmentResponse
         $this->label = $environment->label;
         $this->name = $environment->name;
         $this->domains = $environment->domains;
-        $this->sshUrl = $environment->ssh_url;
+        if (property_exists($environment, 'ssh_url')) {
+            $this->sshUrl = $environment->ssh_url;
+        }
         $this->ips = $environment->ips;
         $this->region = $environment->region;
         $this->status = $environment->status;

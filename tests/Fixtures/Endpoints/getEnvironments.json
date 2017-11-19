@@ -1,0 +1,223 @@
+{
+    "total": 3,
+    "_links": {
+        "self": {
+            "href": "{baseUri}/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470/environments"
+        },
+        "sort": {
+            "href": "{baseUri}/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470/environments{?sort}",
+            "templated": true
+        },
+        "filter": {
+            "href": "{baseUri}/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470/environments{?filter}",
+            "templated": true
+        },
+        "limit": {
+            "href": "{baseUri}/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470/environments{?limit}",
+            "templated": true
+        },
+        "parent": {
+            "href": "{baseUri}/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470"
+        }
+    },
+    "_embedded": {
+        "items": [
+            {
+                "id": "24-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+                "label": "Dev",
+                "name": "dev",
+                "application": {
+                    "name": "Sample Drupal application",
+                    "uuid": "a47ac10b-58cc-4372-a567-0e02b2c3d470"
+                },
+                "domains": [
+                    "sitedev.hosted.acquia-sites.com", "example.com"
+                ],
+                "active_domain": "example.com",
+                "default_domain": "sitedev.hosted.acquia-sites.com",
+                "image_url": null,
+                "ips": [
+                    "10.0.1.5"
+                ],
+                "region": "us-east-1",
+                "status": "normal",
+                "type": "drupal",
+                "size": null,
+                "weight": 0,
+                "vcs": {
+                    "type": "git",
+                    "path": "master",
+                    "url": "site@svn-3.hosted.acquia-sites.com:site.git"
+                },
+                "insight": {
+                    "status": "ok",
+                    "scores": {
+                        "insight": 87,
+                        "seo": 56
+                    },
+                    "counts": {
+                        "best_practices": {
+                            "pass": 7,
+                            "fail": 0,
+                            "ignored": 0,
+                            "total": 7,
+                            "percent": 100
+                        },
+                        "performance": {
+                            "pass": 22,
+                            "fail": 0,
+                            "ignored": 0,
+                            "total": 22,
+                            "percent": 100
+                        },
+                        "security": {
+                            "pass": 23,
+                            "fail": 0,
+                            "ignored": 0,
+                            "total": 23,
+                            "percent": 100
+                        }
+                    }
+                },
+                "flags": {
+                    "cde": false,
+                    "hsd": false,
+                    "livedev": false,
+                    "multi_region": false,
+                    "production": false,
+                    "production_mode": false,
+                    "remote_admin": false,
+                    "varnish": true,
+                    "varnish_over_ssl": false,
+                    "service_management": true
+                },
+                "configuration": {
+                    "operating_system": "precise",
+                    "php": {
+                        "version": "5.6",
+                        "memory_limit": 128,
+                        "apc": 96,
+                        "max_execution_time": 300,
+                        "max_post_size": 256,
+                        "max_input_vars": 1000,
+                        "sendmail_path": null
+                    }
+                },
+                "artifact": null,
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470"
+                    }
+                }
+            },
+            {
+                "id": "15-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+                "label": "Production",
+                "name": "prod",
+                "application": {
+                    "name": "Sample SiteFactory application",
+                    "uuid": "a47ac10b-58cc-4372-a567-0e02b2c3d470"
+                },
+                "domains": [
+                    "siteprod.hosted.acquia-sites.com", "my-domain-prod.com"
+                ],
+                "gardener": {
+                    "site-update": "my-domain-prod.com/admin/gardens/site-update",
+                    "multi-site": "my-domain-prod.com/admin/gardens/staging"
+                },
+                "active_domain": "my-domain-prod.com",
+                "image_url": null,
+                "ips": [
+                    "10.0.1.1", "10.0.1.2"
+                ],
+                "region": "us-east-1",
+                "status": "normal",
+                "type": "drupal",
+                "size": null,
+                "weight": 0,
+                "vcs": {
+                    "type": "git",
+                    "path": "tags/01-01-2015",
+                    "url": "site@svn-3.hosted.acquia-sites.com:site.git"
+                },
+                "insight": null,
+                "flags": {
+                    "cde": false,
+                    "hsd": false,
+                    "livedev": false,
+                    "multi_region": false,
+                    "production": true,
+                    "production_mode": true,
+                    "remote_admin": false,
+                    "varnish": true,
+                    "varnish_over_ssl": false,
+                    "service_management": false
+                },
+                "configuration": null,
+                "artifact": null,
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/environments/15-a47ac10b-58cc-4372-a567-0e02b2c3d470"
+                    }
+                }
+            },
+            {
+                "id": "32-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+                "label": "Stage",
+                "name": "test",
+                "application": {
+                    "name": "Sample Node application",
+                    "uuid": "a47ac10b-58cc-4372-a567-0e02b2c3d470"
+                },
+                "domains": [
+                    "sitetest.hosted.acquia-sites.com", "my-domain-test.com"
+                ],
+                "active_domain": "my-domain-test.com",
+                "image_url": null,
+                "ips": [],
+                "region": "us-east-1",
+                "status": "normal",
+                "type": "node",
+                "size": "medium",
+                "weight": 20,
+                "vcs": {
+                    "type": "git",
+                    "path": null,
+                    "url": "qa10@svn-3.networkdev.ahserversdev.com:qa10.git"
+                },
+                "insight": {
+                    "status": "not-found",
+                    "scores": null,
+                    "counts": null
+                },
+                "flags": {
+                    "cde": false,
+                    "hsd": false,
+                    "livedev": false,
+                    "multi_region": false,
+                    "production": false,
+                    "production_mode": false,
+                    "remote_admin": false,
+                    "varnish": true,
+                    "varnish_over_ssl": false,
+                    "service_management": false
+                },
+                "configuration": {
+                    "operating_system": "precise",
+                    "node": {
+                        "version": "6.11.1"
+                    }
+                },
+                "artifact": {
+                    "id": 1,
+                    "name": "Example artifact"
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/environments/32-a47ac10b-58cc-4372-a567-0e02b2c3d470"
+                    }
+                }
+            }
+        ]
+    }
+}

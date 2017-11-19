@@ -1,0 +1,8 @@
+services:
+
+  connector:
+    class: AcquiaCloudApi\CloudApi\Connector
+    arguments: ['@guzzle']
+
+  guzzle:
+    class: \GuzzleHttp\Client

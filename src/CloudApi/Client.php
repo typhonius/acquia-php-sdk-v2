@@ -621,7 +621,7 @@ class Client extends GuzzleClient
     }
 
     /**
-     * @return StreamInterface
+     * @return object
      */
     public function drushAliases()
     {

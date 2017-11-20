@@ -2,8 +2,6 @@
 
 namespace AcquiaCloudApi\CloudApi;
 
-use Acquia\Hmac\Guzzle\HmacAuthMiddleware;
-use Acquia\Hmac\Key;
 use AcquiaCloudApi\Response\ApplicationResponse;
 use AcquiaCloudApi\Response\ApplicationsResponse;
 use AcquiaCloudApi\Response\BackupResponse;
@@ -25,8 +23,8 @@ use AcquiaCloudApi\Response\RolesResponse;
 use AcquiaCloudApi\Response\ServersResponse;
 use AcquiaCloudApi\Response\TasksResponse;
 use AcquiaCloudApi\Response\TeamsResponse;
-use GuzzleHttp\HandlerStack;
 use Psr\Http\Message\StreamInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class Client
@@ -40,29 +38,28 @@ class Client
 
     /**
      * Client constructor.
+     * @param array $config
      *
      * @param Connector $connector
      */
-    public function __construct(Connector $connector)
+    public function __construct(array $config, Connector $connector)
     {
         $this->connector = $connector;
+        $this->connector->setConfig($config);
     }
 
     /**
      * @param array $config
+     * @param ContainerInterface $container
+     *
      * @return static
      */
-    public static function factory(array $config = array())
+    public static function factory(array $config, Connector $connector)
     {
-
-        $key = new Key($config['key'], $config['secret']);
-        $middleware = new HmacAuthMiddleware($key);
-        $stack = HandlerStack::create();
-        $stack->push($middleware);
-
-        $client = new static([
-            'handler' => $stack,
-        ]);
+        $client = new static(
+            $config,
+            $connector
+        );
 
         return $client;
     }
@@ -101,7 +98,10 @@ class Client
      */
     public function applications()
     {
-        return new ApplicationsResponse($this->connector->makeRequest('get', '/applications', $this->query));
+        return new ApplicationsResponse(
+            $this->connector->processResponse(
+                $this->connector->makeRequest('get', '/applications')
+            ), $this->query);
     }
 
     /**

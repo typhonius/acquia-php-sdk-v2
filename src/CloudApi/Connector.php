@@ -2,17 +2,45 @@
 
 namespace AcquiaCloudApi\CloudApi;
 
+use Acquia\Hmac\Guzzle\HmacAuthMiddleware;
+use Acquia\Hmac\Key;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use GuzzleHttp\HandlerStack;
 
-class Connector extends GuzzleClient
+class Connector
 {
     /**
      * @var string BASE_URI
      */
     const BASE_URI = 'https://cloud.acquia.com/api';
+
+    protected $client;
+
+    protected $config;
+
+    /**
+     * Connector constructor.
+     *
+     * @param GuzzleClient $client
+     */
+    public function __construct(GuzzleClient $client)
+    {
+        $key = new Key($this->config['key'], $this->config['secret']);
+        $middleware = new HmacAuthMiddleware($key);
+        $stack = HandlerStack::create();
+        $stack->push($middleware);
+
+        $this->client = new GuzzleClient([
+            'handler' => $stack,
+        ]);
+    }
+
+    public function setConfig($config = []) {
+        $this->config = $config;
+    }
 
     /**
      * @param string $verb
@@ -36,13 +64,13 @@ class Connector extends GuzzleClient
         }
 
         try {
-            $response = $this->$verb(self::BASE_URI . $path, $options);
+            $response = $this->client->$verb(self::BASE_URI . $path, $options);
         } catch (ClientException $e) {
             print $e->getMessage();
             $response = $e->getResponse();
         }
 
-        return $this->processResponse($response);
+        return $response;
     }
 
     /**

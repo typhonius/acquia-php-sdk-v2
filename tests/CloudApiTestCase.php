@@ -1,5 +1,6 @@
 <?php
 
+use AcquiaCloudApi\CloudApi\Client;
 use GuzzleHttp\Psr7;
 use PHPUnit\Framework\TestCase;
 
@@ -50,8 +51,16 @@ abstract class CloudApiTestCase extends TestCase
         return $method->invokeArgs($client, [$response]);
     }
 
+    /**
     protected function getMockCloudApiClient()
     {
-        return \AcquiaCloudApi\CloudApi\Client::factory(['key' => 'key', 'secret' => 'secret']);
+        $client = Client::factory(
+            [
+                'key' => 'd0697bfc-7f56-4942-9205-b5686bf5b3f5',
+                'secret' => 'D5UfO/4FfNBWn4+0cUwpLOoFzfP7Qqib4AoY+wYGsKE=',
+            ],
+            $connector);
+        return $client;
     }
+     **/
 }

@@ -47,6 +47,21 @@ class Connector
      * @param string $path
      * @param array $query
      * @param array $options
+     *
+     * @return mixed|StreamInterface
+     */
+    public function request(string $verb, string $path, Array $query = [], array $options = array())
+    {
+        $response = $this->makeRequest($verb, $path, $query, $options);
+
+        return $this->processResponse($response);
+    }
+
+    /**
+     * @param string $verb
+     * @param string $path
+     * @param array $query
+     * @param array $options
      * @return array|object
      */
     public function makeRequest(string $verb, string $path, Array $query = [], array $options = array())

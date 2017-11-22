@@ -39,6 +39,35 @@ abstract class CloudApiTestCase extends TestCase
         return new Psr7\Response($statusCode, ['Content-Type' => 'application/json'], $stream);
     }
 
+    /**
+     * Mock client class.
+     *
+     * @param $response
+     * @return static
+     */
+    protected function getMockClient($response)
+    {
+        $connector = $this
+            ->getMockBuilder('AcquiaCloudApi\CloudApi\Connector')
+            ->disableOriginalConstructor()
+            ->setMethods(['makeRequest'])
+            ->getMock();
+        $connector
+            ->expects($this->atLeastOnce())
+            ->method('makeRequest')
+            ->willReturn($response);
+        $client = Client::factory(
+            [
+                'key' => 'd0697bfc-7f56-4942-9205-b5686bf5b3f5',
+                'secret' => 'D5UfO/4FfNBWn4+0cUwpLOoFzfP7Qqib4AoY+wYGsKE=',
+            ],
+            $connector);
+
+        return $client;
+    }
+
+    // To be removed.
+    /**
     protected function generateCloudApiResponse($fixture)
     {
         $response = $this->getPsr7JsonResponseForFixture($fixture);
@@ -50,6 +79,7 @@ abstract class CloudApiTestCase extends TestCase
 
         return $method->invokeArgs($client, [$response]);
     }
+     **/
 
     /**
     protected function getMockCloudApiClient()

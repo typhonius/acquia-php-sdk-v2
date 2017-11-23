@@ -21,18 +21,8 @@ class TasksTest extends CloudApiTestCase
     public function testGetTasks()
     {
 
-        $response = $this->generateCloudApiResponse('Endpoints/getTasks.json');
-        $tasks = new \AcquiaCloudApi\Response\TasksResponse($response);
-
-
-        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
-        ->disableOriginalConstructor()
-        ->setMethods(['tasks'])
-        ->getMock();
-        $client->expects($this->once())
-        ->method('tasks')
-        ->with('8ff6c046-ec64-4ce4-bea6-27845ec18600')
-        ->will($this->returnValue($tasks));
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getTasks.json');
+        $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
         $result = $client->tasks('8ff6c046-ec64-4ce4-bea6-27845ec18600');
@@ -51,36 +41,9 @@ class TasksTest extends CloudApiTestCase
 
     public function testGetFilteredTasks()
     {
-        //      $this->cloudapi->addQuery('from', $start->format(\DateTime::ATOM));
-        //      $this->cloudapi->addQuery('filter', "name=@*${match}*");
-        //      $tasks = $this->cloudapi->tasks($uuid);
-        //      $this->cloudapi->clearQuery();
-        //
-        //      $mock->expects($this->exactly(2))
-        //        ->method('set')
-        //        ->withConsecutive(
-        //          [$this->equalTo('foo'), $this->greaterThan(0)],
-        //          [$this->equalTo('bar'), $this->greaterThan(0)]
-        //        );
 
-
-        $response = $this->generateCloudApiResponse('Endpoints/getFilteredTasks.json');
-        $insights = new \AcquiaCloudApi\Response\TasksResponse($response);
-
-
-        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
-        ->disableOriginalConstructor()
-        ->setMethods(['tasks', 'addQuery', 'clearQuery'])
-        ->getMock();
-        $client->expects($this->once())
-        ->method('addQuery')
-        ->with('filter', 'name=@DatabaseBackupCreated');
-        $client->expects($this->once())
-        ->method('tasks')
-        ->with('8ff6c046-ec64-4ce4-bea6-27845ec18600')
-        ->will($this->returnValue($insights));
-        $client->expects($this->once())
-        ->method('clearQuery');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getFilteredTasks.json');
+        $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
         $client->addQuery('filter', 'name=@DatabaseBackupCreated');

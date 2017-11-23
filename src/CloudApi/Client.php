@@ -2,8 +2,6 @@
 
 namespace AcquiaCloudApi\CloudApi;
 
-use Acquia\Hmac\Guzzle\HmacAuthMiddleware;
-use Acquia\Hmac\Key;
 use AcquiaCloudApi\Response\ApplicationResponse;
 use AcquiaCloudApi\Response\ApplicationsResponse;
 use AcquiaCloudApi\Response\BackupResponse;
@@ -25,104 +23,59 @@ use AcquiaCloudApi\Response\RolesResponse;
 use AcquiaCloudApi\Response\ServersResponse;
 use AcquiaCloudApi\Response\TasksResponse;
 use AcquiaCloudApi\Response\TeamsResponse;
-use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\HandlerStack;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class Client
  * @package AcquiaCloudApi\CloudApi
  */
-class Client extends GuzzleClient
+class Client
 {
-    /**
-     * @var string BASE_URI
-     */
-    const BASE_URI = 'https://cloud.acquia.com/api';
+    protected $connector;
 
     protected $query = [];
 
     /**
+     * Client constructor.
      * @param array $config
+     *
+     * @param Connector $connector
+     */
+    public function __construct(array $config, Connector $connector)
+    {
+        $this->connector = $connector;
+        $this->connector->setConfig($config);
+    }
+
+    /**
+     * @param array $config
+     * @param ContainerInterface $container
+     *
      * @return static
      */
-    public static function factory(array $config = array())
+    public static function factory(array $config, Connector $connector)
     {
-
-        $key = new Key($config['key'], $config['secret']);
-        $middleware = new HmacAuthMiddleware($key);
-        $stack = HandlerStack::create();
-        $stack->push($middleware);
-
-        $client = new static([
-            'handler' => $stack,
-        ]);
+        $client = new static(
+            $config,
+            $connector
+        );
 
         return $client;
     }
 
     /**
-     * @param string $verb
-     * @param string $path
-     * @param array $options
-     * @return array|object
-     */
-    private function makeRequest(string $verb, string $path, array $options = array())
-    {
-
-        // @TODO sort, filter, limit, offset
-        // Sortable by: 'name', 'label', 'weight'.
-        // Filterable by: 'name', 'label', 'weight'.
-
-        $options['query'] = $this->query;
-
-        if (!empty($options['query']['filter']) && is_array($options['query']['filter'])) {
-            // Default to an AND filter.
-            $options['query']['filter'] = implode(',', $options['query']['filter']);
-        }
-
-        try {
-            $response = $this->$verb(self::BASE_URI . $path, $options);
-        } catch (ClientException $e) {
-            print $e->getMessage();
-            $response = $e->getResponse();
-        }
-
-        return $this->processResponse($response);
-    }
-
-    /**
-     * @param ResponseInterface $response
-     * @return mixed|StreamInterface
-     */
-    protected function processResponse(ResponseInterface $response)
-    {
-
-        // @TODO detect status code here and exit early.
-        $body = $response->getBody();
-
-        $object = json_decode($body);
-        if (json_last_error() === JSON_ERROR_NONE) {
-            // JSON is valid
-            if (property_exists($object, '_embedded') && property_exists($object->_embedded, 'items')) {
-                $return = $object->_embedded->items;
-            } elseif (property_exists($object, 'error')) {
-                $this->error = true;
-                $return = $object->message;
-            } else {
-                $return = $object;
-            }
-        } else {
-            $return = $body;
-        }
-
-        return $return;
-    }
-
-    /**
+     * Get query from Client.
      *
+     * @return array
+     */
+    public function getQuery()
+    {
+        return $this->query;
+    }
+
+    /**
+     * Clear query.
      */
     public function clearQuery()
     {
@@ -145,7 +98,7 @@ class Client extends GuzzleClient
      */
     public function applications()
     {
-        return new ApplicationsResponse($this->makeRequest('get', '/applications'));
+        return new ApplicationsResponse($this->connector->request('get', '/applications', $this->query));
     }
 
     /**
@@ -156,7 +109,7 @@ class Client extends GuzzleClient
      */
     public function application($uuid)
     {
-        return new ApplicationResponse($this->makeRequest('get', "/applications/${uuid}"));
+        return new ApplicationResponse($this->connector->request('get', "/applications/${uuid}", $this->query));
     }
 
     /**
@@ -166,7 +119,7 @@ class Client extends GuzzleClient
      * @param string $name
      * @return OperationResponse
      */
-    public function renameApplication($uuid, $name)
+    public function applicationRename($uuid, $name)
     {
 
         $options = [
@@ -175,7 +128,7 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return new OperationResponse($this->makeRequest('put', "/applications/${uuid}", $options));
+        return new OperationResponse($this->connector->request('put', "/applications/${uuid}", $options, $this->query));
     }
 
     /**
@@ -186,7 +139,7 @@ class Client extends GuzzleClient
      */
     public function code($uuid)
     {
-        return new BranchesResponse($this->makeRequest('get', "/applications/${uuid}/code"));
+        return new BranchesResponse($this->connector->request('get', "/applications/${uuid}/code", $this->query));
     }
 
     /**
@@ -195,7 +148,7 @@ class Client extends GuzzleClient
      */
     public function features($uuid)
     {
-        return $this->makeRequest('get', "/applications/${uuid}/features");
+        return $this->connector->request('get', "/applications/${uuid}/features", $this->query);
     }
 
     /**
@@ -206,7 +159,7 @@ class Client extends GuzzleClient
      */
     public function databases($uuid)
     {
-        return new DatabasesResponse($this->makeRequest('get', "/applications/${uuid}/databases"));
+        return new DatabasesResponse($this->connector->request('get', "/applications/${uuid}/databases", $this->query));
     }
 
     /**
@@ -217,7 +170,7 @@ class Client extends GuzzleClient
      */
     public function environmentDatabases($id)
     {
-        return new DatabasesResponse($this->makeRequest('get', "/environments/${id}/databases"));
+        return new DatabasesResponse($this->connector->request('get', "/environments/${id}/databases", $this->query));
     }
 
     /**
@@ -238,7 +191,7 @@ class Client extends GuzzleClient
         ];
 
         return new OperationResponse(
-            $this->makeRequest('post', "/environments/${environmentToUuid}/databases", $options)
+            $this->connector->request('post', "/environments/${environmentToUuid}/databases", $this->query, $options)
         );
     }
 
@@ -257,7 +210,7 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return new OperationResponse($this->makeRequest('post', "/applications/${uuid}/databases", $options));
+        return new OperationResponse($this->connector->request('post', "/applications/${uuid}/databases", $this->query, $options));
     }
 
     /**
@@ -269,7 +222,7 @@ class Client extends GuzzleClient
      */
     public function databaseDelete($uuid, $name)
     {
-        return new OperationResponse($this->makeRequest('post', "/applications/${uuid}/databases/${name}"));
+        return new OperationResponse($this->connector->request('post', "/applications/${uuid}/databases/${name}", $this->query));
     }
 
     /**
@@ -279,9 +232,9 @@ class Client extends GuzzleClient
      * @param string $dbName
      * @return OperationResponse
      */
-    public function createDatabaseBackup($id, $dbName)
+    public function databaseBackup($id, $dbName)
     {
-        return new OperationResponse($this->makeRequest('post', "/environments/${id}/databases/${dbName}/backups"));
+        return new OperationResponse($this->connector->request('post', "/environments/${id}/databases/${dbName}/backups", $this->query));
     }
 
     /**
@@ -293,7 +246,7 @@ class Client extends GuzzleClient
      */
     public function databaseBackups($id, $dbName)
     {
-        return new BackupsResponse($this->makeRequest('get', "/environments/${id}/databases/${dbName}/backups"));
+        return new BackupsResponse($this->connector->request('get', "/environments/${id}/databases/${dbName}/backups", $this->query));
     }
 
     /**
@@ -303,9 +256,9 @@ class Client extends GuzzleClient
      * @param string $backupId
      * @return BackupResponse
      */
-    public function databaseBackup($id, $backupId)
+    public function databaseBackupInfo($id, $backupId)
     {
-         return new BackupResponse($this->makeRequest('get', "/environments/${id}/database-backups/${backupId}"));
+         return new BackupResponse($this->connector->request('get', "/environments/${id}/database-backups/${backupId}", $this->query));
     }
 
    /**
@@ -315,10 +268,10 @@ class Client extends GuzzleClient
     * @param string $backupId
     * @return OperationResponse
     */
-    public function restoreDatabaseBackup($id, $backupId)
+    public function databaseBackupRestore($id, $backupId)
     {
         return new OperationResponse(
-            $this->makeRequest('post', "/environments/${id}/database-backups/${backupId}/actions/restore")
+            $this->connector->request('post', "/environments/${id}/database-backups/${backupId}/actions/restore", $this->query)
         );
     }
 
@@ -337,7 +290,7 @@ class Client extends GuzzleClient
            ],
         ];
 
-        return new OperationResponse($this->makeRequest('post', "/environments/${idTo}/files", $options));
+        return new OperationResponse($this->connector->request('post', "/environments/${idTo}/files", $this->query, $options));
     }
 
     /**
@@ -356,7 +309,7 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return new OperationResponse($this->makeRequest('post', "/environments/${id}/code/actions/switch", $options));
+        return new OperationResponse($this->connector->request('post', "/environments/${id}/code/actions/switch", $this->query, $options));
     }
 
     /**
@@ -367,7 +320,7 @@ class Client extends GuzzleClient
      */
     public function domains($id)
     {
-        return new DomainsResponse($this->makeRequest('get', "/environments/${id}/domains"));
+        return new DomainsResponse($this->connector->request('get', "/environments/${id}/domains", $this->query));
     }
 
     /**
@@ -377,7 +330,7 @@ class Client extends GuzzleClient
      * @param string $hostname
      * @return OperationResponse
      */
-    public function createDomain($id, $hostname)
+    public function addDomain($id, $hostname)
     {
 
         $options = [
@@ -386,7 +339,7 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return new OperationResponse($this->makeRequest('post', "/environments/${id}/domains", $options));
+        return new OperationResponse($this->connector->request('post', "/environments/${id}/domains", $this->query, $options));
     }
 
     /**
@@ -398,7 +351,7 @@ class Client extends GuzzleClient
      */
     public function deleteDomain($id, $domain)
     {
-        return new OperationResponse($this->makeRequest('delete', "/environments/${id}/domains/${domain}"));
+        return new OperationResponse($this->connector->request('delete', "/environments/${id}/domains/${domain}", $this->query));
     }
 
     /**
@@ -418,7 +371,7 @@ class Client extends GuzzleClient
         ];
 
         return new OperationResponse(
-            $this->makeRequest('post', "/environments/${id}/domains/actions/clear-varnish", $options)
+            $this->connector->request('post', "/environments/${id}/domains/actions/clear-varnish", $this->query, $options)
         );
     }
 
@@ -430,7 +383,7 @@ class Client extends GuzzleClient
      */
     public function tasks($uuid)
     {
-        return new TasksResponse($this->makeRequest('get', "/applications/${uuid}/tasks"));
+        return new TasksResponse($this->connector->request('get', "/applications/${uuid}/tasks", $this->query));
     }
 
     /**
@@ -441,7 +394,7 @@ class Client extends GuzzleClient
      */
     public function environments($uuid)
     {
-        return new EnvironmentsResponse($this->makeRequest('get', "/applications/${uuid}/environments"));
+        return new EnvironmentsResponse($this->connector->request('get', "/applications/${uuid}/environments", $this->query));
     }
 
     /**
@@ -452,7 +405,7 @@ class Client extends GuzzleClient
      */
     public function environment($id)
     {
-        return new EnvironmentResponse($this->makeRequest('get', "/environments/${id}"));
+        return new EnvironmentResponse($this->connector->request('get', "/environments/${id}", $this->query));
     }
 
     /**
@@ -471,7 +424,7 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return new OperationResponse($this->makeRequest('post', "/environments/${id}/actions/change-label", $options));
+        return new OperationResponse($this->connector->request('post', "/environments/${id}/actions/change-label", $this->query, $options));
     }
 
     /**
@@ -482,7 +435,7 @@ class Client extends GuzzleClient
      */
     public function servers($id)
     {
-        return new ServersResponse($this->makeRequest('get', "/environments/${id}/servers"));
+        return new ServersResponse($this->connector->request('get', "/environments/${id}/servers", $this->query));
     }
 
     /**
@@ -493,7 +446,7 @@ class Client extends GuzzleClient
      */
     public function enableLiveDev($id)
     {
-        return new OperationResponse($this->makeRequest('post', "/environments/${id}/livedev/actions/enable"));
+        return new OperationResponse($this->connector->request('post', "/environments/${id}/livedev/actions/enable", $this->query));
     }
 
     /**
@@ -512,7 +465,7 @@ class Client extends GuzzleClient
         ];
 
         return new OperationResponse(
-            $this->makeRequest('post', "/environments/${id}/livedev/actions/disable", $options)
+            $this->connector->request('post', "/environments/${id}/livedev/actions/disable", $this->query, $options)
         );
     }
 
@@ -524,7 +477,7 @@ class Client extends GuzzleClient
      */
     public function enableProductionMode($id)
     {
-        return new OperationResponse($this->makeRequest('post', "/environments/${id}/production-mode/actions/enable"));
+        return new OperationResponse($this->connector->request('post', "/environments/${id}/production-mode/actions/enable", $this->query));
     }
 
     /**
@@ -535,7 +488,7 @@ class Client extends GuzzleClient
      */
     public function disableProductionMode($id)
     {
-        return new OperationResponse($this->makeRequest('post', "/environments/${id}/production-mode/actions/disable"));
+        return new OperationResponse($this->connector->request('post', "/environments/${id}/production-mode/actions/disable", $this->query));
     }
 
     /**
@@ -546,7 +499,7 @@ class Client extends GuzzleClient
      */
     public function crons($id)
     {
-        return new CronsResponse($this->makeRequest('get', "/environments/${id}/crons"));
+        return new CronsResponse($this->connector->request('get', "/environments/${id}/crons", $this->query));
     }
 
     /**
@@ -558,7 +511,7 @@ class Client extends GuzzleClient
      */
     public function cron($id, $cronId)
     {
-        return new CronResponse($this->makeRequest('get', "/environments/${id}/crons/${cronId}"));
+        return new CronResponse($this->connector->request('get', "/environments/${id}/crons/${cronId}", $this->query));
     }
 
     /**
@@ -570,7 +523,7 @@ class Client extends GuzzleClient
      * @param string $label
      * @return OperationResponse
      */
-    public function createCron($id, $command, $frequency, $label)
+    public function addCron($id, $command, $frequency, $label)
     {
 
         $options = [
@@ -581,7 +534,7 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return new OperationResponse($this->makeRequest('post', "/environments/${id}/crons", $options));
+        return new OperationResponse($this->connector->request('post', "/environments/${id}/crons", $this->query, $options));
     }
 
     /**
@@ -593,7 +546,7 @@ class Client extends GuzzleClient
      */
     public function deleteCron($id, $cronId)
     {
-        return new OperationResponse($this->makeRequest('delete', "/environments/${id}/crons/${cronId}"));
+        return new OperationResponse($this->connector->request('delete', "/environments/${id}/crons/${cronId}", $this->query));
     }
 
     /**
@@ -605,7 +558,7 @@ class Client extends GuzzleClient
      */
     public function disableCron($id, $cronId)
     {
-        return new OperationResponse($this->makeRequest('post', "/environments/${id}/crons/${cronId}/actions/disable"));
+        return new OperationResponse($this->connector->request('post', "/environments/${id}/crons/${cronId}/actions/disable", $this->query));
     }
 
     /**
@@ -617,15 +570,15 @@ class Client extends GuzzleClient
      */
     public function enableCron($id, $cronId)
     {
-        return new OperationResponse($this->makeRequest('post', "/environments/${id}/crons/${cronId}/actions/enable"));
+        return new OperationResponse($this->connector->request('post', "/environments/${id}/crons/${cronId}/actions/enable", $this->query));
     }
 
     /**
-     * @return object
+     * @return StreamInterface
      */
     public function drushAliases()
     {
-        return $this->makeRequest('get', '/account/drush-aliases/download');
+        return $this->connector->request('get', '/account/drush-aliases/download', $this->query);
     }
 
     /**
@@ -636,7 +589,7 @@ class Client extends GuzzleClient
      */
     public function applicationInsights($uuid)
     {
-        return new InsightsResponse($this->makeRequest('get', "/applications/${uuid}/insight"));
+        return new InsightsResponse($this->connector->request('get', "/applications/${uuid}/insight", $this->query));
     }
 
     /**
@@ -647,7 +600,7 @@ class Client extends GuzzleClient
      */
     public function environmentInsights($id)
     {
-        return new InsightsResponse($this->makeRequest('get', "/environments/${id}/insight"));
+        return new InsightsResponse($this->connector->request('get', "/environments/${id}/insight", $this->query));
     }
 
     /**
@@ -657,7 +610,7 @@ class Client extends GuzzleClient
      */
     public function organizations()
     {
-        return new OrganizationsResponse($this->makeRequest('get', '/organizations'));
+        return new OrganizationsResponse($this->connector->request('get', '/organizations', $this->query));
     }
 
     /**
@@ -669,7 +622,7 @@ class Client extends GuzzleClient
      */
     public function organizationApplications($uuid)
     {
-        return new ApplicationsResponse($this->makeRequest('get', "/organizations/${uuid}/applications"));
+        return new ApplicationsResponse($this->connector->request('get', "/organizations/${uuid}/applications", $this->query));
     }
 
     /**
@@ -684,7 +637,7 @@ class Client extends GuzzleClient
 //            ],
 //        ];
 //
-//        return new OperationResponse($this->makeRequest('post', '/organizations', $options));
+//        return new OperationResponse($this->request('post', '/organizations', $options));
 //    }
 
     /**
@@ -695,7 +648,7 @@ class Client extends GuzzleClient
      */
     public function organizationRoles($uuid)
     {
-        return new RolesResponse($this->makeRequest('get', "/organizations/${uuid}/roles"));
+        return new RolesResponse($this->connector->request('get', "/organizations/${uuid}/roles", $this->query));
     }
 
     /**
@@ -703,7 +656,7 @@ class Client extends GuzzleClient
      * @param array  $permissions
      * @return OperationResponse
      */
-    public function updateRole($roleUuid, array $permissions)
+    public function roleUpdatePermissions($roleUuid, array $permissions)
     {
         $options = [
             'form_params' => [
@@ -711,7 +664,7 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return new OperationResponse($this->makeRequest('put', "/roles/${roleUuid}", $options));
+        return new OperationResponse($this->connector->request('put', "/roles/${roleUuid}", $this->query, $options));
     }
 
     /**
@@ -721,7 +674,7 @@ class Client extends GuzzleClient
      * @param null|string $description
      * @return OperationResponse
      */
-    public function createRole($uuid, $name, array $permissions, $description = null)
+    public function organizationRoleCreate($uuid, $name, array $permissions, $description = null)
     {
         $options = [
             'form_params' => [
@@ -731,16 +684,16 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return new OperationResponse($this->makeRequest('post', "/organizations/${uuid}/roles", $options));
+        return new OperationResponse($this->connector->request('post', "/organizations/${uuid}/roles", $this->query, $options));
     }
 
     /**
      * @param string $roleUuid
      * @return OperationResponse
      */
-    public function deleteRole($roleUuid)
+    public function roleRemove($roleUuid)
     {
-        return new OperationResponse($this->makeRequest('delete', "/roles/${roleUuid}"));
+        return new OperationResponse($this->connector->request('delete', "/roles/${roleUuid}", $this->query));
     }
 
     /**
@@ -751,7 +704,7 @@ class Client extends GuzzleClient
      */
     public function organizationTeams($organizationUuid)
     {
-        return new TeamsResponse($this->makeRequest('get', "/organizations/${organizationUuid}/teams"));
+        return new TeamsResponse($this->connector->request('get', "/organizations/${organizationUuid}/teams", $this->query));
     }
 
     /**
@@ -761,7 +714,7 @@ class Client extends GuzzleClient
      */
     public function teams()
     {
-        return new TeamsResponse($this->makeRequest('get', '/teams'));
+        return new TeamsResponse($this->connector->request('get', '/teams', $this->query));
     }
 
     /**
@@ -771,7 +724,7 @@ class Client extends GuzzleClient
      * @param string $name
      * @return OperationResponse
      */
-    public function createTeam($uuid, $name)
+    public function teamCreate($uuid, $name)
     {
         $options = [
             'form_params' => [
@@ -779,32 +732,16 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return new OperationResponse($this->makeRequest('post', "/organizations/${uuid}/teams", $options));
+        return new OperationResponse($this->connector->request('post', "/organizations/${uuid}/teams", $this->query, $options));
     }
 
     /**
      * @param string $teamUuid
      * @return OperationResponse
      */
-    public function deleteTeam($teamUuid)
+    public function teamRemove($teamUuid)
     {
-        return new OperationResponse($this->makeRequest('delete', "/teams/${teamUuid}"));
-    }
-
-    /**
-     * @param $teamUuid
-     * @param $name
-     * @return OperationResponse
-     */
-    public function renameTeam($teamUuid, $name)
-    {
-        $options = [
-            'form_params' => [
-                'name' => $name,
-            ],
-        ];
-
-        return new OperationResponse($this->makeRequest('put', "/teams/${teamUuid}", $options));
+        return new OperationResponse($this->connector->request('delete', "/teams/${teamUuid}", $this->query));
     }
 
     /**
@@ -812,7 +749,7 @@ class Client extends GuzzleClient
      * @param string $applicationUuid
      * @return OperationResponse
      */
-    public function addApplicationToTeam($teamUuid, $applicationUuid)
+    public function teamAddApplication($teamUuid, $applicationUuid)
     {
         $options = [
             'form_params' => [
@@ -820,18 +757,18 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return new OperationResponse($this->makeRequest('post', "/teams/${teamUuid}/applications", $options));
+        return new OperationResponse($this->connector->request('post', "/teams/${teamUuid}/applications", $this->query, $options));
     }
 
     /**
      * Invites a user to join a team.
      *
-     * @param string $teamUuid
+     * @param string $uuid
      * @param string $email
      * @param array  $roles
      * @return OperationResponse
      */
-    public function createTeamInvite($teamUuid, $email, $roles)
+    public function teamInvite($uuid, $email, $roles)
     {
         $options = [
             'form_params' => [
@@ -840,72 +777,52 @@ class Client extends GuzzleClient
             ],
         ];
 
-        return new OperationResponse($this->makeRequest('post', "/teams/${teamUuid}/invites", $options));
-    }
-
-    /**
-     * @param $organizationUuid
-     * @param $email
-     * @return OperationResponse
-     */
-    public function createOrganizationAdminInvite($organizationUuid, $email)
-    {
-        $options = [
-            'form_params' => [
-                'email' => $email,
-            ],
-        ];
-
-        return new OperationResponse(
-            $this->makeRequest('post', "/organizations/${organizationUuid}/admin-invites", $options)
-        );
+        return new OperationResponse($this->connector->request('post', "/teams/${uuid}/invites", $this->query, $options));
     }
 
     /**
      * Show all applications associated with a team.
      *
-     * @param string $teamUuid
+     * @param string $uuid
      * @return ApplicationResponse
      */
-    public function teamApplications($teamUuid)
+    public function teamApplications($uuid)
     {
-        return new ApplicationResponse($this->makeRequest('get', "/teams/${teamUuid}/applications"));
+        return new ApplicationResponse($this->connector->request('get', "/teams/${uuid}/applications", $this->query));
     }
 
     /**
      * Show all members of an organisation.
      *
-     * @param string $organizationUuid
+     * @param string $uuid
      * @return MembersResponse
      */
-    public function members($organizationUuid)
+    public function members($uuid)
     {
-        return new MembersResponse($this->makeRequest('get', "/organizations/${organizationUuid}/members"));
+        return new MembersResponse($this->connector->request('get', "/organizations/${uuid}/members", $this->query));
     }
 
     /**
      * Show all members invited to an organisation.
      *
-     * @param string $organizationUuid
+     * @param string $uuid
      * @return InvitationsResponse
      */
-    public function invitees($organizationUuid)
+    public function invitees($uuid)
     {
-        return new InvitationsResponse($this->makeRequest('get', "/organizations/${organizationUuid}/team-invites"));
+        return new InvitationsResponse($this->connector->request('get', "/organizations/${uuid}/team-invites", $this->query));
     }
 
     /**
      * Delete a member from an organisation.
      *
-     * @param string $organizationUuid
-     * @param string $memberUuid
+     * @param string $uuidSite
+     * @param string $uuidMember
      * @return OperationResponse
      */
-    public function deleteMember($organizationUuid, $memberUuid)
+    public function deleteMember($uuidSite, $uuidMember)
     {
-        return new OperationResponse(
-            $this->makeRequest('delete', "/organizations/${organizationUuid}/members/${memberUuid}")
-        );
+        return new OperationResponse($this->connector->request('delete', "/organizations/${uuidSite}/members/${uuidMember}", $this->query));
     }
 
     /**
@@ -915,6 +832,6 @@ class Client extends GuzzleClient
      */
     public function permissions()
     {
-        return new PermissionsResponse($this->makeRequest('get', '/permissions'));
+        return new PermissionsResponse($this->connector->request('get', '/permissions', $this->query));
     }
 }

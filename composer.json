@@ -11,12 +11,16 @@
     "require": {
         "acquia/http-hmac-php": "^3.1",
         "guzzlehttp/guzzle": "^6.3",
-        "php": "^7.0"
+        "php": "^7.0",
+        "squizlabs/php_codesniffer": "^3.1",
+        "symfony/yaml": "^3.3",
+        "symfony/dependency-injection": "^3.3",
+        "symfony/config": "^3.3",
+        "symfony/console": "^3.3"
     },
     "require-dev": {
         "php-coveralls/php-coveralls": "dev-master",
-        "phpunit/phpunit": "^6.4",
-        "squizlabs/php_codesniffer": "^3.1"
+        "phpunit/phpunit": "^6.4"
     },
     "autoload":{
         "psr-4":{
@@ -28,5 +32,8 @@
         "psr-4":{
             "AcquiaCloudApi\\Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": "phpunit"
     }
 }

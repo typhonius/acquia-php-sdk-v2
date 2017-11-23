@@ -1,0 +1,13 @@
+services:
+
+  client:
+    class: AcquiaCloudApi\CloudApi\Client
+    factory: ['AcquiaCloudApi\CloudApi\Client:factory']
+    arguments: ['@connector']
+
+  connector:
+    class: AcquiaCloudApi\CloudApi\Connector
+    arguments: ['@guzzle']
+
+  guzzle:
+    class: \GuzzleHttp\Client

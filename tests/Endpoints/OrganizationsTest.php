@@ -19,17 +19,8 @@ class OrganizationsTest extends CloudApiTestCase
     public function testGetOrganizations()
     {
 
-        $response = $this->generateCloudApiResponse('Endpoints/getOrganizations.json');
-        $organizations = new \AcquiaCloudApi\Response\OrganizationsResponse($response);
-
-
-        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
-        ->disableOriginalConstructor()
-        ->setMethods(['organizations'])
-        ->getMock();
-        $client->expects($this->once())
-        ->method('organizations')
-        ->will($this->returnValue($organizations));
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getOrganizations.json');
+        $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
         $result = $client->organizations();

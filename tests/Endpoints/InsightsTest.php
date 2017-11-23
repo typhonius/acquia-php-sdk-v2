@@ -16,18 +16,8 @@ class InsightsTest extends CloudApiTestCase
     public function testGetInsights()
     {
 
-        $response = $this->generateCloudApiResponse('Endpoints/getInsights.json');
-        $insights = new \AcquiaCloudApi\Response\InsightsResponse($response);
-
-
-        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
-        ->disableOriginalConstructor()
-        ->setMethods(['applicationInsights'])
-        ->getMock();
-        $client->expects($this->once())
-        ->method('applicationInsights')
-        ->with('8ff6c046-ec64-4ce4-bea6-27845ec18600')
-        ->will($this->returnValue($insights));
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getInsights.json');
+        $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
         $result = $client->applicationInsights('8ff6c046-ec64-4ce4-bea6-27845ec18600');

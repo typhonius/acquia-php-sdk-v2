@@ -45,53 +45,34 @@ abstract class CloudApiTestCase extends TestCase
      * @param $response
      * @return static
      */
-    protected function getMockClient($response)
+    protected function getMockClient($response = '')
     {
-        $connector = $this
-            ->getMockBuilder('AcquiaCloudApi\CloudApi\Connector')
-            ->disableOriginalConstructor()
-            ->setMethods(['makeRequest'])
-            ->getMock();
-        $connector
-            ->expects($this->atLeastOnce())
-            ->method('makeRequest')
-            ->willReturn($response);
-        $client = Client::factory(
-            [
-                'key' => 'd0697bfc-7f56-4942-9205-b5686bf5b3f5',
-                'secret' => 'D5UfO/4FfNBWn4+0cUwpLOoFzfP7Qqib4AoY+wYGsKE=',
-            ],
+        if ($response) {
+            $connector = $this
+                ->getMockBuilder('AcquiaCloudApi\CloudApi\Connector')
+                ->disableOriginalConstructor()
+                ->setMethods(['makeRequest'])
+                ->getMock();
             $connector
-        );
+                ->expects($this->atLeastOnce())
+                ->method('makeRequest')
+                ->willReturn($response);
+        }
+        else {
+            $connector = $this
+                ->getMockBuilder('AcquiaCloudApi\CloudApi\Connector')
+                ->disableOriginalConstructor()
+                ->getMock();
+        }
 
-        return $client;
-    }
-
-    // To be removed.
-    /**
-    protected function generateCloudApiResponse($fixture)
-    {
-        $response = $this->getPsr7JsonResponseForFixture($fixture);
-
-        $client = $this->getMockCloudApiClient();
-        $reflection = new \ReflectionClass(get_class($client));
-        $method = $reflection->getMethod('processResponse');
-        $method->setAccessible(true);
-
-        return $method->invokeArgs($client, [$response]);
-    }
-     **/
-
-    /**
-    protected function getMockCloudApiClient()
-    {
         $client = Client::factory(
             [
                 'key' => 'd0697bfc-7f56-4942-9205-b5686bf5b3f5',
                 'secret' => 'D5UfO/4FfNBWn4+0cUwpLOoFzfP7Qqib4AoY+wYGsKE=',
             ],
             $connector);
+
         return $client;
     }
-     **/
+
 }

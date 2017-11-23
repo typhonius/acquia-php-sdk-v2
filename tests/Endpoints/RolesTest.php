@@ -70,7 +70,7 @@ class RolesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
-        $result = $client->updateRolePermissions('r47ac10b-58cc-4372-a567-0e02b2c3d470', ['pull from prod']);
+        $result = $client->updateRole('r47ac10b-58cc-4372-a567-0e02b2c3d470', ['pull from prod']);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Updating role.', $result->message);

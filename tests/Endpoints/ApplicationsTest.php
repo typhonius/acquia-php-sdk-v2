@@ -21,7 +21,10 @@ class ApplicationsTest extends CloudApiTestCase
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getApplications.json');
         $client = $this->getMockClient($response);
+
+        /** @var AcquiaCloudApi\CloudApi\Client $client */
         $result = $client->applications();
+
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\ApplicationsResponse', $result);
 

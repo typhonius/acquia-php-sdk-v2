@@ -45,17 +45,26 @@ abstract class CloudApiTestCase extends TestCase
      * @param $response
      * @return static
      */
-    protected function getMockClient($response)
+    protected function getMockClient($response = '')
     {
-        $connector = $this
-            ->getMockBuilder('AcquiaCloudApi\CloudApi\Connector')
-            ->disableOriginalConstructor()
-            ->setMethods(['makeRequest'])
-            ->getMock();
-        $connector
-            ->expects($this->atLeastOnce())
-            ->method('makeRequest')
-            ->willReturn($response);
+        if ($response) {
+            $connector = $this
+                ->getMockBuilder('AcquiaCloudApi\CloudApi\Connector')
+                ->disableOriginalConstructor()
+                ->setMethods(['makeRequest'])
+                ->getMock();
+            $connector
+                ->expects($this->atLeastOnce())
+                ->method('makeRequest')
+                ->willReturn($response);
+        }
+        else {
+            $connector = $this
+                ->getMockBuilder('AcquiaCloudApi\CloudApi\Connector')
+                ->disableOriginalConstructor()
+                ->getMock();
+        }
+
         $client = Client::factory(
             [
                 'key' => 'd0697bfc-7f56-4942-9205-b5686bf5b3f5',

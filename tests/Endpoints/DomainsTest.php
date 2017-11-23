@@ -12,21 +12,11 @@ class DomainsTest extends CloudApiTestCase
     public function testGetDomains()
     {
 
-        $response = $this->generateCloudApiResponse('Endpoints/getDomains.json');
-        $domains = new \AcquiaCloudApi\Response\DomainsResponse($response);
-
-
-        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
-        ->disableOriginalConstructor()
-        ->setMethods(['domains'])
-        ->getMock();
-        $client->expects($this->once())
-        ->method('domains')
-        ->with('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851')
-        ->will($this->returnValue($domains));
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getDomains.json');
+        $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
-        $result = $client->domains('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
+        $result = $client->domains('185f07c7-9c4f-407b-8968-67892ebcb38a');
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\DomainsResponse', $result);
@@ -42,45 +32,27 @@ class DomainsTest extends CloudApiTestCase
 
     public function testDomainAdd()
     {
-        $response = $this->generateCloudApiResponse('Endpoints/addDomain.json');
-
-        $message = new \AcquiaCloudApi\Response\OperationResponse($response);
-
-        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
-        ->disableOriginalConstructor()
-        ->setMethods(['createDomain'])
-        ->getMock();
-
-        $client->expects($this->once())
-        ->method('createDomain')
-        ->with('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'new-domain.com')
-        ->will($this->returnValue($message));
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/addDomain.json');
+        $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
         $result = $client->createDomain('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'new-domain.com');
+
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals("The domain 'new-domain.com' is being added.", $result->message);
     }
 
     public function testDomainDelete()
     {
-        $response = $this->generateCloudApiResponse('Endpoints/deleteDomain.json');
-
-        $message = new \AcquiaCloudApi\Response\OperationResponse($response);
-
-        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
-        ->disableOriginalConstructor()
-        ->setMethods(['deleteDomain'])
-        ->getMock();
-
-        $client->expects($this->once())
-        ->method('deleteDomain')
-        ->with('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'deleted-domain.com')
-        ->will($this->returnValue($message));
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/deleteDomain.json');
+        $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
         $result = $client->deleteDomain('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'deleted-domain.com');
+
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-        $this->assertEquals('Removing the domain deleted-domain.com', $result->message);
+
+        $this->assertEquals("Removing the domain deleted-domain.com", $result->message);
     }
 }

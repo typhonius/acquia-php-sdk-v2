@@ -16,11 +16,15 @@ class CodeTest extends CloudApiTestCase
         /** @var AcquiaCloudApi\CloudApi\Client $client */
         $result = $client->code('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
-        $this->assertNotInstanceOf('\AcquiaCloudApi\Response\BranchesResponse', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\BranchResponse', $result);
+        $this->assertInstanceOf('\ArrayObject', $result);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\BranchesResponse', $result);
 
-        foreach ($this->properties as $property) {
-            $this->assertObjectHasAttribute($property, $result);
+        foreach ($result as $record) {
+            $this->assertInstanceOf('\AcquiaCloudApi\Response\BranchResponse', $record);
+
+            foreach ($this->properties as $property) {
+                $this->assertObjectHasAttribute($property, $record);
+            }
         }
     }
 

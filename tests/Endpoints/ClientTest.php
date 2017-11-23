@@ -32,7 +32,4 @@ class ClientTest extends CloudApiTestCase
         $this->assertTrue(empty($client->getQuery()));
     }
 
-    public function testApplications()
-    {
-    }
 }

@@ -24,7 +24,6 @@ use AcquiaCloudApi\Response\ServersResponse;
 use AcquiaCloudApi\Response\TasksResponse;
 use AcquiaCloudApi\Response\TeamsResponse;
 use Psr\Http\Message\StreamInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class Client
@@ -50,7 +49,7 @@ class Client
 
     /**
      * @param array $config
-     * @param ContainerInterface $container
+     * @param Connector $connector
      *
      * @return static
      */

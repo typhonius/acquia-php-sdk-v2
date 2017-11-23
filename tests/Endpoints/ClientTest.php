@@ -28,7 +28,7 @@ class ClientTest extends CloudApiTestCase
                 'secret' => 'D5UfO/4FfNBWn4+0cUwpLOoFzfP7Qqib4AoY+wYGsKE=',
             ],
             $connector
-            );
+        );
         $this->assertTrue(empty($client->getQuery()));
     }
 

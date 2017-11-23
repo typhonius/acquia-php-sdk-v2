@@ -232,7 +232,7 @@ class Client
      * @param string $dbName
      * @return OperationResponse
      */
-    public function databaseBackup($id, $dbName)
+    public function createDatabaseBackup($id, $dbName)
     {
         return new OperationResponse($this->connector->request('post', "/environments/${id}/databases/${dbName}/backups", $this->query));
     }
@@ -256,7 +256,7 @@ class Client
      * @param string $backupId
      * @return BackupResponse
      */
-    public function databaseBackupInfo($id, $backupId)
+    public function databaseBackup($id, $backupId)
     {
          return new BackupResponse($this->connector->request('get', "/environments/${id}/database-backups/${backupId}", $this->query));
     }
@@ -268,7 +268,7 @@ class Client
     * @param string $backupId
     * @return OperationResponse
     */
-    public function databaseBackupRestore($id, $backupId)
+    public function restoreDatabaseBackup($id, $backupId)
     {
         return new OperationResponse(
             $this->connector->request('post', "/environments/${id}/database-backups/${backupId}/actions/restore", $this->query)
@@ -330,7 +330,7 @@ class Client
      * @param string $hostname
      * @return OperationResponse
      */
-    public function addDomain($id, $hostname)
+    public function createDomain($id, $hostname)
     {
 
         $options = [
@@ -523,7 +523,7 @@ class Client
      * @param string $label
      * @return OperationResponse
      */
-    public function addCron($id, $command, $frequency, $label)
+    public function createCron($id, $command, $frequency, $label)
     {
 
         $options = [
@@ -656,7 +656,7 @@ class Client
      * @param array  $permissions
      * @return OperationResponse
      */
-    public function roleUpdatePermissions($roleUuid, array $permissions)
+    public function updateRole($roleUuid, array $permissions)
     {
         $options = [
             'form_params' => [
@@ -674,7 +674,7 @@ class Client
      * @param null|string $description
      * @return OperationResponse
      */
-    public function organizationRoleCreate($uuid, $name, array $permissions, $description = null)
+    public function createRole($uuid, $name, array $permissions, $description = null)
     {
         $options = [
             'form_params' => [
@@ -691,7 +691,7 @@ class Client
      * @param string $roleUuid
      * @return OperationResponse
      */
-    public function roleRemove($roleUuid)
+    public function deleteRole($roleUuid)
     {
         return new OperationResponse($this->connector->request('delete', "/roles/${roleUuid}", $this->query));
     }
@@ -718,13 +718,29 @@ class Client
     }
 
     /**
+     * @param string $teamUuid
+     * @param string $name
+     * @return OperationResponse
+     */
+    public function renameTeam($teamUuid, $name)
+    {
+          $options = [
+                'form_params' => [
+                      'name' => $name,
+                  ],
+            ];
+
+          return new OperationResponse($this->connector->request('put', "/teams/${teamUuid}", $options));
+    }
+
+    /**
      * Create a new team.
      *
      * @param string $uuid
      * @param string $name
      * @return OperationResponse
      */
-    public function teamCreate($uuid, $name)
+    public function createTeam($uuid, $name)
     {
         $options = [
             'form_params' => [
@@ -749,7 +765,7 @@ class Client
      * @param string $applicationUuid
      * @return OperationResponse
      */
-    public function teamAddApplication($teamUuid, $applicationUuid)
+    public function addApplicationToTeam($teamUuid, $applicationUuid)
     {
         $options = [
             'form_params' => [
@@ -763,12 +779,12 @@ class Client
     /**
      * Invites a user to join a team.
      *
-     * @param string $uuid
+     * @param string $teamUuid
      * @param string $email
      * @param array  $roles
      * @return OperationResponse
      */
-    public function teamInvite($uuid, $email, $roles)
+    public function createTeamInvite($teamUuid, $email, $roles)
     {
         $options = [
             'form_params' => [
@@ -777,16 +793,34 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/teams/${uuid}/invites", $this->query, $options));
+        return new OperationResponse($this->connector->request('post', "/teams/${teamUuid}/invites", $options));
+    }
+
+    /**
+     * Invites a user to become admin of an organization.
+     *
+     * @param string $organizationUuid
+     * @param string $email
+     * @return OperationResponse
+     */
+    public function createOrganizationAdminInvite($organizationUuid, $email)
+    {
+        $options = [
+            'form_params' => [
+                'email' => $email,
+            ],
+        ];
+
+        return new OperationResponse($this->connector->request('post', "/teams/${organizationUuid}/invites", $this->query, $options));
     }
 
     /**
      * Show all applications associated with a team.
      *
-     * @param string $uuid
+     * @param string $teamUuid
      * @return ApplicationResponse
      */
-    public function teamApplications($uuid)
+    public function teamApplications($teamUuid)
     {
         return new ApplicationResponse($this->connector->request('get', "/teams/${uuid}/applications", $this->query));
     }
@@ -794,35 +828,35 @@ class Client
     /**
      * Show all members of an organisation.
      *
-     * @param string $uuid
+     * @param string $organizationUuid
      * @return MembersResponse
      */
-    public function members($uuid)
+    public function members($organizationUuid)
     {
-        return new MembersResponse($this->connector->request('get', "/organizations/${uuid}/members", $this->query));
+        return new MembersResponse($this->connector->request('get', "/organizations/${organizationUuid}/members", $this->query));
     }
 
     /**
      * Show all members invited to an organisation.
      *
-     * @param string $uuid
+     * @param string $organizationUuid
      * @return InvitationsResponse
      */
-    public function invitees($uuid)
+    public function invitees($organizationUuid)
     {
-        return new InvitationsResponse($this->connector->request('get', "/organizations/${uuid}/team-invites", $this->query));
+        return new InvitationsResponse($this->connector->request('get', "/organizations/${organizationUuid}/team-invites", $this->query));
     }
 
     /**
      * Delete a member from an organisation.
      *
-     * @param string $uuidSite
-     * @param string $uuidMember
+     * @param string $organizationUuid
+     * @param string $memberUuid
      * @return OperationResponse
      */
-    public function deleteMember($uuidSite, $uuidMember)
+    public function deleteMember($organizationUuid, $memberUuid)
     {
-        return new OperationResponse($this->connector->request('delete', "/organizations/${uuidSite}/members/${uuidMember}", $this->query));
+        return new OperationResponse($this->connector->request('delete', "/organizations/${organizationUuid}/members/${memberUuid}", $this->query));
     }
 
     /**

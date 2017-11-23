@@ -89,5 +89,4 @@ class MembersTest extends CloudApiTestCase
             }
         }
     }
-
 }

@@ -14,18 +14,8 @@ class RolesTest extends CloudApiTestCase
     public function testGetRoles()
     {
 
-        $response = $this->generateCloudApiResponse('Endpoints/getOrganizationRoles.json');
-        $roles = new \AcquiaCloudApi\Response\RolesResponse($response);
-
-        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
-        ->disableOriginalConstructor()
-        ->setMethods(['organizationRoles'])
-        ->getMock();
-
-        $client->expects($this->once())
-        ->method('organizationRoles')
-        ->with('8ff6c046-ec64-4ce4-bea6-27845ec18600')
-        ->will($this->returnValue($roles));
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getOrganizationRoles.json');
+        $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
         $result = $client->organizationRoles('8ff6c046-ec64-4ce4-bea6-27845ec18600');
@@ -45,18 +35,8 @@ class RolesTest extends CloudApiTestCase
     public function testCreateRole()
     {
 
-        $response = $this->generateCloudApiResponse('Endpoints/addRole.json');
-        $task = new \AcquiaCloudApi\Response\OperationResponse($response);
-
-        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
-        ->disableOriginalConstructor()
-        ->setMethods(['createRole'])
-        ->getMock();
-
-        $client->expects($this->once())
-        ->method('createRole')
-        ->with('8ff6c046-ec64-4ce4-bea6-27845ec18600')
-        ->will($this->returnValue($task));
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/addRole.json');
+        $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
         $result = $client->createRole(
@@ -73,18 +53,8 @@ class RolesTest extends CloudApiTestCase
     public function testDeleteRole()
     {
 
-        $response = $this->generateCloudApiResponse('Endpoints/deleteRole.json');
-        $task = new \AcquiaCloudApi\Response\OperationResponse($response);
-
-        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
-        ->disableOriginalConstructor()
-        ->setMethods(['deleteRole'])
-        ->getMock();
-
-        $client->expects($this->once())
-        ->method('deleteRole')
-        ->with('r47ac10b-58cc-4372-a567-0e02b2c3d470')
-        ->will($this->returnValue($task));
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/deleteRole.json');
+        $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
         $result = $client->deleteRole('r47ac10b-58cc-4372-a567-0e02b2c3d470');
@@ -96,18 +66,8 @@ class RolesTest extends CloudApiTestCase
     public function testUpdateRole()
     {
 
-        $response = $this->generateCloudApiResponse('Endpoints/updateRole.json');
-        $task = new \AcquiaCloudApi\Response\OperationResponse($response);
-
-        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
-        ->disableOriginalConstructor()
-        ->setMethods(['updateRolePermissions'])
-        ->getMock();
-
-        $client->expects($this->once())
-        ->method('updateRolePermissions')
-        ->with('r47ac10b-58cc-4372-a567-0e02b2c3d470', ['pull from prod'])
-        ->will($this->returnValue($task));
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/updateRole.json');
+        $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
         $result = $client->updateRolePermissions('r47ac10b-58cc-4372-a567-0e02b2c3d470', ['pull from prod']);

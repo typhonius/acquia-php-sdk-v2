@@ -23,7 +23,6 @@ class EnvironmentsTest extends CloudApiTestCase
     public function testGetEnvironments()
     {
 
-
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getEnvironments.json');
         $client = $this->getMockClient($response);
 
@@ -45,6 +44,7 @@ class EnvironmentsTest extends CloudApiTestCase
     public function testGetEnvironment()
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getEnvironment.json');
+
         $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */

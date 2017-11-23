@@ -31,18 +31,8 @@ class MembersTest extends CloudApiTestCase
     public function testGetOrganizationMembers()
     {
 
-        $response = $this->generateCloudApiResponse('Endpoints/getOrganizationMembers.json');
-        $members = new \AcquiaCloudApi\Response\MembersResponse($response);
-
-        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
-        ->disableOriginalConstructor()
-        ->setMethods(['members'])
-        ->getMock();
-
-        $client->expects($this->once())
-        ->method('members')
-        ->with('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851')
-        ->will($this->returnValue($members));
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getOrganizationMembers.json');
+        $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
         $result = $client->members('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
@@ -62,18 +52,8 @@ class MembersTest extends CloudApiTestCase
     public function testGetOrganizationInvitees()
     {
 
-        $response = $this->generateCloudApiResponse('Endpoints/getOrganizationInvitees.json');
-        $invitations = new \AcquiaCloudApi\Response\InvitationsResponse($response);
-
-        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
-        ->disableOriginalConstructor()
-        ->setMethods(['invitees'])
-        ->getMock();
-
-        $client->expects($this->once())
-        ->method('invitees')
-        ->with('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851')
-        ->will($this->returnValue($invitations));
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getOrganizationInvitees.json');
+        $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
         $result = $client->invitees('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');

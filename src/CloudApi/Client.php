@@ -118,7 +118,7 @@ class Client
      * @param string $name
      * @return OperationResponse
      */
-    public function applicationRename($uuid, $name)
+    public function renameApplication($uuid, $name)
     {
 
         $options = [
@@ -776,7 +776,7 @@ class Client
      * @param string $teamUuid
      * @return OperationResponse
      */
-    public function teamRemove($teamUuid)
+    public function deleteTeam($teamUuid)
     {
         return new OperationResponse(
             $this->connector->request('delete', "/teams/${teamUuid}", $this->query)

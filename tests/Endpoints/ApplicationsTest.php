@@ -59,7 +59,7 @@ class ApplicationsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
-        $result = $client->applicationRename('8ff6c046-ec64-4ce4-bea6-27845ec18600', "My application's new name");
+        $result = $client->renameApplication('8ff6c046-ec64-4ce4-bea6-27845ec18600', "My application's new name");
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 

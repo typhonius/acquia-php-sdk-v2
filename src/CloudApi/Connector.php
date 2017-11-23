@@ -38,7 +38,8 @@ class Connector
         ]);
     }
 
-    public function setConfig($config = []) {
+    public function setConfig($config = [])
+    {
         $this->config = $config;
     }
 
@@ -50,7 +51,7 @@ class Connector
      *
      * @return mixed|StreamInterface
      */
-    public function request(string $verb, string $path, Array $query = [], array $options = array())
+    public function request(string $verb, string $path, array $query = [], array $options = array())
     {
         $response = $this->makeRequest($verb, $path, $query, $options);
 
@@ -64,7 +65,7 @@ class Connector
      * @param array $options
      * @return array|object
      */
-    public function makeRequest(string $verb, string $path, Array $query = [], array $options = array())
+    public function makeRequest(string $verb, string $path, array $query = [], array $options = array())
     {
 
         // @TODO sort, filter, limit, offset
@@ -115,5 +116,4 @@ class Connector
 
         return $return;
     }
-
 }

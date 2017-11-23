@@ -81,7 +81,7 @@ interface ClientInterface
      * @param string $name
      * @return OperationResponse
      */
-    public function applicationRename($uuid, $name);
+    public function renameApplication($uuid, $name);
 
     /**
      * Shows all code branches and tags in an application.
@@ -148,7 +148,7 @@ interface ClientInterface
      * @param string $dbName
      * @return OperationResponse
      */
-    public function databaseBackup($id, $dbName);
+    public function createDatabaseBackup($id, $dbName);
 
     /**
      * Shows all database backups in an environment.
@@ -166,7 +166,7 @@ interface ClientInterface
      * @param string $backupId
      * @return BackupResponse
      */
-    public function databaseBackupInfo($id, $backupId);
+    public function databaseBackup($id, $backupId);
 
    /**
     * Restores a database backup to a database in an environment.
@@ -175,7 +175,7 @@ interface ClientInterface
     * @param string $backupId
     * @return OperationResponse
     */
-    public function databaseBackupRestore($id, $backupId);
+    public function restoreDatabaseBackup($id, $backupId);
 
     /**
      * Copies files from an environment to another environment.
@@ -210,7 +210,7 @@ interface ClientInterface
      * @param string $hostname
      * @return OperationResponse
      */
-    public function addDomain($id, $hostname);
+    public function createDomain($id, $hostname);
 
     /**
      * Deletes a domain from an environment.
@@ -329,7 +329,7 @@ interface ClientInterface
      * @param string $label
      * @return OperationResponse
      */
-    public function addCron($id, $command, $frequency, $label);
+    public function createCron($id, $command, $frequency, $label);
 
     /**
      * Delete a cron task.
@@ -408,7 +408,7 @@ interface ClientInterface
      * @param array  $permissions
      * @return OperationResponse
      */
-    public function roleUpdatePermissions($roleUuid, array $permissions);
+    public function updateRole($roleUuid, array $permissions);
 
     /**
      * @param string      $uuid
@@ -417,13 +417,13 @@ interface ClientInterface
      * @param null|string $description
      * @return OperationResponse
      */
-    public function organizationRoleCreate($uuid, $name, array $permissions, $description = null);
+    public function createRole($uuid, $name, array $permissions, $description = null);
 
     /**
      * @param string $roleUuid
      * @return OperationResponse
      */
-    public function roleRemove($roleUuid);
+    public function deleteRole($roleUuid);
 
     /**
      * Show all teams in an organization.
@@ -447,20 +447,20 @@ interface ClientInterface
      * @param string $name
      * @return OperationResponse
      */
-    public function teamCreate($uuid, $name);
+    public function createTeam($uuid, $name);
 
     /**
      * @param string $teamUuid
      * @return OperationResponse
      */
-    public function teamRemove($teamUuid);
+    public function deleteTeam($teamUuid);
 
     /**
      * @param string $teamUuid
      * @param string $applicationUuid
      * @return OperationResponse
      */
-    public function teamAddApplication($teamUuid, $applicationUuid);
+    public function addApplicationToTeam($teamUuid, $applicationUuid);
 
     /**
      * Invites a user to join a team.
@@ -470,7 +470,7 @@ interface ClientInterface
      * @param array  $roles
      * @return OperationResponse
      */
-    public function teamInvite($uuid, $email, $roles);
+    public function createTeamInvite($uuid, $email, $roles);
 
     /**
      * Show all applications associated with a team.

@@ -4,7 +4,7 @@ Acquia PHP SDK for CloudAPI v2
 
 [![Build Status](https://travis-ci.org/typhonius/acquia-php-sdk-v2.svg?branch=master)](https://travis-ci.org/typhonius/acquia-php-sdk-v2)
 [![Total Downloads](https://poser.pugx.org/typhonius/acquia-php-sdk-v2/downloads.png)](https://packagist.org/packages/typhonius/acquia-php-sdk-v2) 
-[![Coverage Status](https://coveralls.io/repos/typhonius/acquia-php-sdk-v2/badge.svg?branch=master&service=github)](https://coveralls.io/github/typhonius/acquia-php-sdk-v2?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/typhonius/acquia-php-sdk-v2/badge.svg?branch=master)](https://coveralls.io/github/typhonius/acquia-php-sdk-v2?branch=master)
 [![License](https://poser.pugx.org/typhonius/acquia-php-sdk-v2/license.png)](https://www.versioneye.com/user/projects/5a100a260fb24f2a31716fd9?child=5a100a260fb24f2a31716fd9#tab-licenses)
 
 [![Latest Stable Version](https://poser.pugx.org/typhonius/acquia-php-sdk-v2/v/stable.png)](https://packagist.org/packages/typhonius/acquia-php-sdk-v2)

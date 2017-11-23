@@ -158,16 +158,16 @@ class DatabasesTest extends CloudApiTestCase
 
         $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
         ->disableOriginalConstructor()
-        ->setMethods(['databaseBackup'])
+        ->setMethods(['createDatabaseBackup'])
         ->getMock();
 
         $client->expects($this->once())
-        ->method('databaseBackup')
+        ->method('createDatabaseBackup')
         ->with('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'db_name')
         ->will($this->returnValue($message));
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
-        $result = $client->databaseBackup('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'db_name');
+        $result = $client->createDatabaseBackup('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'db_name');
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('The database is being backed up.', $result->message);
     }
@@ -211,16 +211,16 @@ class DatabasesTest extends CloudApiTestCase
 
         $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
         ->disableOriginalConstructor()
-        ->setMethods(['databaseBackupInfo'])
+        ->setMethods(['databaseBackup'])
         ->getMock();
 
         $client->expects($this->once())
-        ->method('databaseBackupInfo')
+        ->method('databaseBackup')
         ->with('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 2)
         ->will($this->returnValue($backups));
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
-        $result = $client->databaseBackupInfo('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 2);
+        $result = $client->databaseBackup('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 2);
 
         $this->assertNotInstanceOf('\ArrayObject', $result);
         $this->assertNotInstanceOf('\AcquiaCloudApi\Response\BackupsResponse', $result);

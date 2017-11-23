@@ -48,16 +48,16 @@ class DomainsTest extends CloudApiTestCase
 
         $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
         ->disableOriginalConstructor()
-        ->setMethods(['addDomain'])
+        ->setMethods(['createDomain'])
         ->getMock();
 
         $client->expects($this->once())
-        ->method('addDomain')
+        ->method('createDomain')
         ->with('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'new-domain.com')
         ->will($this->returnValue($message));
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
-        $result = $client->addDomain('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'new-domain.com');
+        $result = $client->createDomain('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'new-domain.com');
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals("The domain 'new-domain.com' is being added.", $result->message);
     }

@@ -10,54 +10,30 @@ class CodeTest extends CloudApiTestCase
 
     public function testGetBranches()
     {
-
-        $response = $this->generateCloudApiResponse('Endpoints/getCode.json');
-        $branches = new \AcquiaCloudApi\Response\BranchesResponse($response);
-
-        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
-        ->disableOriginalConstructor()
-        ->setMethods(['code'])
-        ->getMock();
-
-        $client->expects($this->once())
-        ->method('code')
-        ->with('8ff6c046-ec64-4ce4-bea6-27845ec18600')
-        ->will($this->returnValue($branches));
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getCode.json');
+        $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
         $result = $client->code('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
-        $this->assertInstanceOf('\ArrayObject', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\BranchesResponse', $result);
+        $this->assertNotInstanceOf('\AcquiaCloudApi\Response\BranchesResponse', $result);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\BranchResponse', $result);
 
-        foreach ($result as $record) {
-            $this->assertInstanceOf('\AcquiaCloudApi\Response\BranchResponse', $record);
-
-            foreach ($this->properties as $property) {
-                $this->assertObjectHasAttribute($property, $record);
-            }
+        foreach ($this->properties as $property) {
+            $this->assertObjectHasAttribute($property, $result);
         }
     }
 
     public function testCodeSwitch()
     {
-        $response = $this->generateCloudApiResponse('Endpoints/switchCode.json');
-
-        $message = new \AcquiaCloudApi\Response\OperationResponse($response);
-
-        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
-        ->disableOriginalConstructor()
-        ->setMethods(['switchCode'])
-        ->getMock();
-
-        $client->expects($this->once())
-        ->method('switchCode')
-        ->with('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'my-feature-branch')
-        ->will($this->returnValue($message));
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/switchCode.json');
+        $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
         $result = $client->switchCode('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'my-feature-branch');
+
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals('The code is being switched.', $result->message);
     }
 }

@@ -24,6 +24,7 @@ use AcquiaCloudApi\Response\ServersResponse;
 use AcquiaCloudApi\Response\TasksResponse;
 use AcquiaCloudApi\Response\TeamsResponse;
 use Psr\Http\Message\StreamInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class Client
@@ -209,7 +210,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/applications/${uuid}/databases", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/applications/${uuid}/databases", $this->query, $options)
+        );
     }
 
     /**
@@ -289,7 +292,9 @@ class Client
            ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/environments/${idTo}/files", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/environments/${idTo}/files", $this->query, $options)
+        );
     }
 
     /**
@@ -308,7 +313,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/environments/${id}/code/actions/switch", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/environments/${id}/code/actions/switch", $this->query, $options)
+        );
     }
 
     /**
@@ -338,7 +345,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/environments/${id}/domains", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/environments/${id}/domains", $this->query, $options)
+        );
     }
 
     /**
@@ -370,7 +379,7 @@ class Client
         ];
 
         return new OperationResponse(
-            $this->connector->request('post', "/environments/${id}/domains/actions/clear-varnish", $this->query, $options)
+            $this->connector->request('post', "/environments/${id}/domains/actions/clear-varnish",$this->query, $this->query, $options)
         );
     }
 
@@ -423,7 +432,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/environments/${id}/actions/change-label", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/environments/${id}/actions/change-label", $this->query, $options)
+        );
     }
 
     /**
@@ -533,7 +544,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/environments/${id}/crons", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/environments/${id}/crons", $this->query, $options)
+        );
     }
 
     /**
@@ -663,7 +676,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('put', "/roles/${roleUuid}", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('put', "/roles/${roleUuid}", $this->query, $options)
+        );
     }
 
     /**
@@ -683,7 +698,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/organizations/${uuid}/roles", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/organizations/${uuid}/roles", $this->query, $options)
+        );
     }
 
     /**
@@ -713,7 +730,27 @@ class Client
      */
     public function teams()
     {
-        return new TeamsResponse($this->connector->request('get', '/teams', $this->query));
+        return new TeamsResponse(
+            $this->connector->request('get', '/teams', $this->query)
+        );
+    }
+
+    /**
+     * @param string $teamUuid
+     * @param string $name
+     * @return OperationResponse
+     */
+    public function renameTeam($teamUuid, $name)
+    {
+          $options = [
+                'form_params' => [
+                      'name' => $name,
+                  ],
+            ];
+
+          return new OperationResponse(
+              $this->connector->request('put', "/teams/${teamUuid}", $options)
+          );
     }
 
     /**
@@ -731,7 +768,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/organizations/${uuid}/teams", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/organizations/${uuid}/teams", $this->query, $options)
+        );
     }
 
     /**
@@ -740,7 +779,9 @@ class Client
      */
     public function teamRemove($teamUuid)
     {
-        return new OperationResponse($this->connector->request('delete', "/teams/${teamUuid}", $this->query));
+        return new OperationResponse(
+            $this->connector->request('delete', "/teams/${teamUuid}", $this->query)
+        );
     }
 
     /**
@@ -756,7 +797,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/teams/${teamUuid}/applications", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/teams/${teamUuid}/applications", $this->query, $options)
+        );
     }
 
     /**
@@ -776,7 +819,29 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/teams/${uuid}/invites", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/teams/${teamUuid}/invites", $options)
+        );
+    }
+
+    /**
+     * Invites a user to become admin of an organization.
+     *
+     * @param string $organizationUuid
+     * @param string $email
+     * @return OperationResponse
+     */
+    public function createOrganizationAdminInvite($organizationUuid, $email)
+    {
+        $options = [
+            'form_params' => [
+                'email' => $email,
+            ],
+        ];
+
+        return new OperationResponse(
+            $this->connector->request('post', "/teams/${organizationUuid}/invites", $this->query, $options)
+        );
     }
 
     /**
@@ -821,7 +886,13 @@ class Client
      */
     public function deleteMember($uuidSite, $uuidMember)
     {
-        return new OperationResponse($this->connector->request('delete', "/organizations/${uuidSite}/members/${uuidMember}", $this->query));
+        return new OperationResponse(
+            $this->connector->request(
+                'delete',
+                "/organizations/${organizationUuid}/members/${memberUuid}",
+                $this->query
+            )
+        );
     }
 
     /**

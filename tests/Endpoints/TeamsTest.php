@@ -3,7 +3,7 @@
 class TeamsTest extends CloudApiTestCase
 {
 
-    public $properties = [
+    protected $properties = [
         'uuid',
         'name',
         'created_at',
@@ -15,17 +15,8 @@ class TeamsTest extends CloudApiTestCase
     public function testGetTeams()
     {
 
-        $response = $this->generateCloudApiResponse('Endpoints/getTeams.json');
-        $teams = new \AcquiaCloudApi\Response\TeamsResponse($response);
-
-        $client = $this->getMockBuilder('\AcquiaCloudApi\CloudApi\Client')
-        ->disableOriginalConstructor()
-        ->setMethods(['teams'])
-        ->getMock();
-
-        $client->expects($this->once())
-        ->method('teams')
-        ->will($this->returnValue($teams));
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getTeams.json');
+        $client = $this->getMockClient($response);
 
         /** @var AcquiaCloudApi\CloudApi\Client $client */
         $result = $client->teams();

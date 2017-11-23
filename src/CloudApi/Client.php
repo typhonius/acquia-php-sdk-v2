@@ -210,7 +210,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/applications/${uuid}/databases", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/applications/${uuid}/databases", $this->query, $options)
+        );
     }
 
     /**
@@ -222,7 +224,9 @@ class Client
      */
     public function databaseDelete($uuid, $name)
     {
-        return new OperationResponse($this->connector->request('post', "/applications/${uuid}/databases/${name}", $this->query));
+        return new OperationResponse(
+            $this->connector->request('post', "/applications/${uuid}/databases/${name}", $this->query)
+        );
     }
 
     /**
@@ -234,7 +238,9 @@ class Client
      */
     public function createDatabaseBackup($id, $dbName)
     {
-        return new OperationResponse($this->connector->request('post', "/environments/${id}/databases/${dbName}/backups", $this->query));
+        return new OperationResponse(
+            $this->connector->request('post', "/environments/${id}/databases/${dbName}/backups", $this->query)
+        );
     }
 
     /**
@@ -246,7 +252,9 @@ class Client
      */
     public function databaseBackups($id, $dbName)
     {
-        return new BackupsResponse($this->connector->request('get', "/environments/${id}/databases/${dbName}/backups", $this->query));
+        return new BackupsResponse(
+            $this->connector->request('get', "/environments/${id}/databases/${dbName}/backups", $this->query)
+        );
     }
 
     /**
@@ -258,7 +266,9 @@ class Client
      */
     public function databaseBackup($id, $backupId)
     {
-         return new BackupResponse($this->connector->request('get', "/environments/${id}/database-backups/${backupId}", $this->query));
+         return new BackupResponse(
+             $this->connector->request('get', "/environments/${id}/database-backups/${backupId}", $this->query)
+         );
     }
 
    /**
@@ -271,7 +281,11 @@ class Client
     public function restoreDatabaseBackup($id, $backupId)
     {
         return new OperationResponse(
-            $this->connector->request('post', "/environments/${id}/database-backups/${backupId}/actions/restore", $this->query)
+            $this->connector->request(
+                'post',
+                "/environments/${id}/database-backups/${backupId}/actions/restore",
+                $this->query
+            )
         );
     }
 
@@ -290,7 +304,9 @@ class Client
            ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/environments/${idTo}/files", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/environments/${idTo}/files", $this->query, $options)
+        );
     }
 
     /**
@@ -309,7 +325,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/environments/${id}/code/actions/switch", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/environments/${id}/code/actions/switch", $this->query, $options)
+        );
     }
 
     /**
@@ -320,7 +338,9 @@ class Client
      */
     public function domains($id)
     {
-        return new DomainsResponse($this->connector->request('get', "/environments/${id}/domains", $this->query));
+        return new DomainsResponse(
+            $this->connector->request('get', "/environments/${id}/domains", $this->query)
+        );
     }
 
     /**
@@ -339,7 +359,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/environments/${id}/domains", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/environments/${id}/domains", $this->query, $options)
+        );
     }
 
     /**
@@ -351,7 +373,9 @@ class Client
      */
     public function deleteDomain($id, $domain)
     {
-        return new OperationResponse($this->connector->request('delete', "/environments/${id}/domains/${domain}", $this->query));
+        return new OperationResponse(
+            $this->connector->request('delete', "/environments/${id}/domains/${domain}", $this->query)
+        );
     }
 
     /**
@@ -371,7 +395,12 @@ class Client
         ];
 
         return new OperationResponse(
-            $this->connector->request('post', "/environments/${id}/domains/actions/clear-varnish", $this->query, $options)
+            $this->connector->request(
+                'post',
+                "/environments/${id}/domains/actions/clear-varnish",
+                $this->query,
+                $options
+            )
         );
     }
 
@@ -383,7 +412,9 @@ class Client
      */
     public function tasks($uuid)
     {
-        return new TasksResponse($this->connector->request('get', "/applications/${uuid}/tasks", $this->query));
+        return new TasksResponse(
+            $this->connector->request('get', "/applications/${uuid}/tasks", $this->query)
+        );
     }
 
     /**
@@ -394,7 +425,9 @@ class Client
      */
     public function environments($uuid)
     {
-        return new EnvironmentsResponse($this->connector->request('get', "/applications/${uuid}/environments", $this->query));
+        return new EnvironmentsResponse(
+            $this->connector->request('get', "/applications/${uuid}/environments", $this->query)
+        );
     }
 
     /**
@@ -405,7 +438,9 @@ class Client
      */
     public function environment($id)
     {
-        return new EnvironmentResponse($this->connector->request('get', "/environments/${id}", $this->query));
+        return new EnvironmentResponse(
+            $this->connector->request('get', "/environments/${id}", $this->query)
+        );
     }
 
     /**
@@ -424,7 +459,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/environments/${id}/actions/change-label", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/environments/${id}/actions/change-label", $this->query, $options)
+        );
     }
 
     /**
@@ -435,7 +472,9 @@ class Client
      */
     public function servers($id)
     {
-        return new ServersResponse($this->connector->request('get', "/environments/${id}/servers", $this->query));
+        return new ServersResponse(
+            $this->connector->request('get', "/environments/${id}/servers", $this->query)
+        );
     }
 
     /**
@@ -446,7 +485,9 @@ class Client
      */
     public function enableLiveDev($id)
     {
-        return new OperationResponse($this->connector->request('post', "/environments/${id}/livedev/actions/enable", $this->query));
+        return new OperationResponse(
+            $this->connector->request('post', "/environments/${id}/livedev/actions/enable", $this->query)
+        );
     }
 
     /**
@@ -477,7 +518,9 @@ class Client
      */
     public function enableProductionMode($id)
     {
-        return new OperationResponse($this->connector->request('post', "/environments/${id}/production-mode/actions/enable", $this->query));
+        return new OperationResponse(
+            $this->connector->request('post', "/environments/${id}/production-mode/actions/enable", $this->query)
+        );
     }
 
     /**
@@ -488,7 +531,9 @@ class Client
      */
     public function disableProductionMode($id)
     {
-        return new OperationResponse($this->connector->request('post', "/environments/${id}/production-mode/actions/disable", $this->query));
+        return new OperationResponse(
+            $this->connector->request('post', "/environments/${id}/production-mode/actions/disable", $this->query)
+        );
     }
 
     /**
@@ -499,7 +544,9 @@ class Client
      */
     public function crons($id)
     {
-        return new CronsResponse($this->connector->request('get', "/environments/${id}/crons", $this->query));
+        return new CronsResponse(
+            $this->connector->request('get', "/environments/${id}/crons", $this->query)
+        );
     }
 
     /**
@@ -511,7 +558,9 @@ class Client
      */
     public function cron($id, $cronId)
     {
-        return new CronResponse($this->connector->request('get', "/environments/${id}/crons/${cronId}", $this->query));
+        return new CronResponse(
+            $this->connector->request('get', "/environments/${id}/crons/${cronId}", $this->query)
+        );
     }
 
     /**
@@ -534,7 +583,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/environments/${id}/crons", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/environments/${id}/crons", $this->query, $options)
+        );
     }
 
     /**
@@ -546,7 +597,9 @@ class Client
      */
     public function deleteCron($id, $cronId)
     {
-        return new OperationResponse($this->connector->request('delete', "/environments/${id}/crons/${cronId}", $this->query));
+        return new OperationResponse(
+            $this->connector->request('delete', "/environments/${id}/crons/${cronId}", $this->query)
+        );
     }
 
     /**
@@ -558,7 +611,9 @@ class Client
      */
     public function disableCron($id, $cronId)
     {
-        return new OperationResponse($this->connector->request('post', "/environments/${id}/crons/${cronId}/actions/disable", $this->query));
+        return new OperationResponse(
+            $this->connector->request('post', "/environments/${id}/crons/${cronId}/actions/disable", $this->query)
+        );
     }
 
     /**
@@ -570,7 +625,9 @@ class Client
      */
     public function enableCron($id, $cronId)
     {
-        return new OperationResponse($this->connector->request('post', "/environments/${id}/crons/${cronId}/actions/enable", $this->query));
+        return new OperationResponse(
+            $this->connector->request('post', "/environments/${id}/crons/${cronId}/actions/enable", $this->query)
+        );
     }
 
     /**
@@ -589,7 +646,9 @@ class Client
      */
     public function applicationInsights($uuid)
     {
-        return new InsightsResponse($this->connector->request('get', "/applications/${uuid}/insight", $this->query));
+        return new InsightsResponse(
+            $this->connector->request('get', "/applications/${uuid}/insight", $this->query)
+        );
     }
 
     /**
@@ -600,7 +659,9 @@ class Client
      */
     public function environmentInsights($id)
     {
-        return new InsightsResponse($this->connector->request('get', "/environments/${id}/insight", $this->query));
+        return new InsightsResponse(
+            $this->connector->request('get', "/environments/${id}/insight", $this->query)
+        );
     }
 
     /**
@@ -610,7 +671,9 @@ class Client
      */
     public function organizations()
     {
-        return new OrganizationsResponse($this->connector->request('get', '/organizations', $this->query));
+        return new OrganizationsResponse(
+            $this->connector->request('get', '/organizations', $this->query)
+        );
     }
 
     /**
@@ -622,7 +685,9 @@ class Client
      */
     public function organizationApplications($uuid)
     {
-        return new ApplicationsResponse($this->connector->request('get', "/organizations/${uuid}/applications", $this->query));
+        return new ApplicationsResponse(
+            $this->connector->request('get', "/organizations/${uuid}/applications", $this->query)
+        );
     }
 
     /**
@@ -648,7 +713,9 @@ class Client
      */
     public function organizationRoles($uuid)
     {
-        return new RolesResponse($this->connector->request('get', "/organizations/${uuid}/roles", $this->query));
+        return new RolesResponse(
+            $this->connector->request('get', "/organizations/${uuid}/roles", $this->query)
+        );
     }
 
     /**
@@ -664,7 +731,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('put', "/roles/${roleUuid}", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('put', "/roles/${roleUuid}", $this->query, $options)
+        );
     }
 
     /**
@@ -684,7 +753,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/organizations/${uuid}/roles", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/organizations/${uuid}/roles", $this->query, $options)
+        );
     }
 
     /**
@@ -693,7 +764,9 @@ class Client
      */
     public function deleteRole($roleUuid)
     {
-        return new OperationResponse($this->connector->request('delete', "/roles/${roleUuid}", $this->query));
+        return new OperationResponse(
+            $this->connector->request('delete', "/roles/${roleUuid}", $this->query)
+        );
     }
 
     /**
@@ -704,7 +777,9 @@ class Client
      */
     public function organizationTeams($organizationUuid)
     {
-        return new TeamsResponse($this->connector->request('get', "/organizations/${organizationUuid}/teams", $this->query));
+        return new TeamsResponse(
+            $this->connector->request('get', "/organizations/${organizationUuid}/teams", $this->query)
+        );
     }
 
     /**
@@ -714,7 +789,9 @@ class Client
      */
     public function teams()
     {
-        return new TeamsResponse($this->connector->request('get', '/teams', $this->query));
+        return new TeamsResponse(
+            $this->connector->request('get', '/teams', $this->query)
+        );
     }
 
     /**
@@ -730,7 +807,9 @@ class Client
                   ],
             ];
 
-          return new OperationResponse($this->connector->request('put', "/teams/${teamUuid}", $options));
+          return new OperationResponse(
+              $this->connector->request('put', "/teams/${teamUuid}", $options)
+          );
     }
 
     /**
@@ -748,7 +827,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/organizations/${uuid}/teams", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/organizations/${uuid}/teams", $this->query, $options)
+        );
     }
 
     /**
@@ -757,7 +838,9 @@ class Client
      */
     public function teamRemove($teamUuid)
     {
-        return new OperationResponse($this->connector->request('delete', "/teams/${teamUuid}", $this->query));
+        return new OperationResponse(
+            $this->connector->request('delete', "/teams/${teamUuid}", $this->query)
+        );
     }
 
     /**
@@ -773,7 +856,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/teams/${teamUuid}/applications", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/teams/${teamUuid}/applications", $this->query, $options)
+        );
     }
 
     /**
@@ -793,7 +878,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/teams/${teamUuid}/invites", $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/teams/${teamUuid}/invites", $options)
+        );
     }
 
     /**
@@ -811,7 +898,9 @@ class Client
             ],
         ];
 
-        return new OperationResponse($this->connector->request('post', "/teams/${organizationUuid}/invites", $this->query, $options));
+        return new OperationResponse(
+            $this->connector->request('post', "/teams/${organizationUuid}/invites", $this->query, $options)
+        );
     }
 
     /**
@@ -822,7 +911,9 @@ class Client
      */
     public function teamApplications($teamUuid)
     {
-        return new ApplicationResponse($this->connector->request('get', "/teams/${uuid}/applications", $this->query));
+        return new ApplicationResponse(
+            $this->connector->request('get', "/teams/${teamUuid}/applications", $this->query)
+        );
     }
 
     /**
@@ -833,7 +924,9 @@ class Client
      */
     public function members($organizationUuid)
     {
-        return new MembersResponse($this->connector->request('get', "/organizations/${organizationUuid}/members", $this->query));
+        return new MembersResponse(
+            $this->connector->request('get', "/organizations/${organizationUuid}/members", $this->query)
+        );
     }
 
     /**
@@ -844,7 +937,9 @@ class Client
      */
     public function invitees($organizationUuid)
     {
-        return new InvitationsResponse($this->connector->request('get', "/organizations/${organizationUuid}/team-invites", $this->query));
+        return new InvitationsResponse(
+            $this->connector->request('get', "/organizations/${organizationUuid}/team-invites", $this->query)
+        );
     }
 
     /**
@@ -856,7 +951,13 @@ class Client
      */
     public function deleteMember($organizationUuid, $memberUuid)
     {
-        return new OperationResponse($this->connector->request('delete', "/organizations/${organizationUuid}/members/${memberUuid}", $this->query));
+        return new OperationResponse(
+            $this->connector->request(
+                'delete',
+                "/organizations/${organizationUuid}/members/${memberUuid}",
+                $this->query
+            )
+        );
     }
 
     /**
@@ -866,6 +967,8 @@ class Client
      */
     public function permissions()
     {
-        return new PermissionsResponse($this->connector->request('get', '/permissions', $this->query));
+        return new PermissionsResponse(
+            $this->connector->request('get', '/permissions', $this->query)
+        );
     }
 }

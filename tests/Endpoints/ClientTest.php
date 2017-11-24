@@ -36,6 +36,7 @@ class ClientTest extends CloudApiTestCase
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $client->addQuery('filter', 'name=@*2014*');
+        $client->addQuery('filter', 'type=@*true*');
         $result = $client->code('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         foreach ($result as $record) {

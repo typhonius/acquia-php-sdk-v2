@@ -52,6 +52,12 @@ class Connector implements ConnectorInterface
      */
     public function request(string $verb, string $path, array $query = [], array $options = array())
     {
+        $options['query'] = $query;
+
+        if (!empty($options['query']['filter']) && is_array($options['query']['filter'])) {
+            // Default to an AND filter.
+            $options['query']['filter'] = implode(',', $options['query']['filter']);
+        }
         $response = $this->makeRequest($verb, $path, $query, $options);
 
         return $this->processResponse($response);
@@ -66,13 +72,6 @@ class Connector implements ConnectorInterface
      */
     public function makeRequest(string $verb, string $path, array $query = [], array $options = array())
     {
-        $options['query'] = $query;
-
-        if (!empty($options['query']['filter']) && is_array($options['query']['filter'])) {
-            // Default to an AND filter.
-            $options['query']['filter'] = implode(',', $options['query']['filter']);
-        }
-
         try {
             $response = $this->client->$verb(self::BASE_URI . $path, $options);
         } catch (ClientException $e) {

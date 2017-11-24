@@ -1,0 +1,45 @@
+{
+    "total": 2,
+    "_links": {
+        "self": {
+            "href": "{baseUri}/users/a18a1d80-8896-11e1-9eb5-12313928d5b8/teams"
+        },
+        "parent": {
+            "href": "{baseUri}/users/a18a1d80-8896-11e1-9eb5-12313928d5b8"
+        }
+    },
+    "_embedded": {
+        "items": [
+            {
+                "uuid": "abcd1234-82b5-11e3-9170-12313920a02c",
+                "name": "Team Name 1",
+                "created_at": "2013-10-28T14:16:07-0700",
+                "updated_at": "2015-02-19T08:53:10-0800",
+                "organization": {
+                    "uuid": "2375e327-3fff-11e3-9170-12313920a02c",
+                    "name": "Sample Organization"
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/teams/2c9ea556-4016-11e3-9170-12313920a02c"
+                    }
+                }
+            },
+            {
+                "uuid": "1234abcd-82b5-11e3-9170-12313920a02c",
+                "name": "Team Name 2",
+                "created_at": "2014-05-27T11:55:39-0700",
+                "updated_at": "2015-01-30T05:49:16-0800",
+                "organization": {
+                    "uuid": "2375e327-3fff-11e3-9170-12313920a02c",
+                    "name": "Sample Organization"
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/teams/9ca6ecc0-e5d0-11e3-9eb3-22000b04072f"
+                    }
+                }
+            }
+        ]
+    }
+}

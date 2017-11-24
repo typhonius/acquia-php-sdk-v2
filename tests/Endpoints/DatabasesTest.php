@@ -145,4 +145,17 @@ class DatabasesTest extends CloudApiTestCase
             $this->assertObjectHasAttribute($property, $result);
         }
     }
+
+    public function testRestoreDatabaseBackup()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/restoreDatabaseBackup.json');
+        $client = $this->getMockClient($response);
+
+        /** @var AcquiaCloudApi\CloudApi\Client $client */
+        $result = $client->restoreDatabaseBackup('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 12);
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
+        $this->assertEquals('The backup is being restored.', $result->message);
+    }
 }

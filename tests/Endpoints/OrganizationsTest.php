@@ -36,4 +36,17 @@ class OrganizationsTest extends CloudApiTestCase
             }
         }
     }
+
+    public function testCreateOrganizationAdminInvite()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/createOrganizationAdminInvite.json');
+        $client = $this->getMockClient($response);
+
+        /** @var AcquiaCloudApi\CloudApi\Client $client */
+        $result = $client->createOrganizationAdminInvite('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'user@example.com');
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
+        $this->assertEquals('Invited organization administrator.', $result->message);
+    }
 }

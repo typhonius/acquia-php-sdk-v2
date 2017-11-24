@@ -884,7 +884,7 @@ class Client
      */
     public function teamApplications($teamUuid)
     {
-        return new ApplicationResponse(
+        return new ApplicationsResponse(
             $this->connector->request('get', "/teams/${teamUuid}/applications", $this->query)
         );
     }

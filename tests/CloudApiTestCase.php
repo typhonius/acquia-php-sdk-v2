@@ -21,6 +21,7 @@ abstract class CloudApiTestCase extends TestCase
         $this->assertFileExists($path);
         $stream = Psr7\stream_for(file_get_contents($path));
         $this->assertInstanceOf(Psr7\Stream::class, $stream);
+
         return $stream;
     }
 
@@ -40,13 +41,13 @@ abstract class CloudApiTestCase extends TestCase
         return new Psr7\Response($statusCode, ['Content-Type' => 'application/json'], $stream);
     }
 
-  /**
-   * Returns a PSR7 Response (Gzip) for a given fixture.
-   *
-   * @param  string        $fixture    The fixture to create the response for.
-   * @param  integer       $statusCode A HTTP Status Code for the response.
-   * @return Psr7\Response
-   */
+    /**
+     * Returns a PSR7 Response (Gzip) for a given fixture.
+     *
+     * @param  string        $fixture    The fixture to create the response for.
+     * @param  integer       $statusCode A HTTP Status Code for the response.
+     * @return Psr7\Response
+     */
     protected function getPsr7GzipResponseForFixture($fixture, $statusCode = 200): Psr7\Response
     {
         $stream = $this->getPsr7StreamForFixture($fixture);

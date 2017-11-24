@@ -377,7 +377,7 @@ class Client
      * @param array  $domains
      * @return OperationResponse
      */
-    public function purgeVarnishCache($id, $domains)
+    public function purgeVarnishCache($id, array $domains)
     {
 
         $options = [

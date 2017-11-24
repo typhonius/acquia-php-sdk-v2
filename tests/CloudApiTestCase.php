@@ -65,14 +65,8 @@ abstract class CloudApiTestCase extends TestCase
                 ->getMock();
         }
 
-        $client = Client::factory(
-            [
-                'key' => 'd0697bfc-7f56-4942-9205-b5686bf5b3f5',
-                'secret' => 'D5UfO/4FfNBWn4+0cUwpLOoFzfP7Qqib4AoY+wYGsKE=',
-            ],
-            $connector);
+        $client = Client::factory($connector);
 
         return $client;
     }
-
 }

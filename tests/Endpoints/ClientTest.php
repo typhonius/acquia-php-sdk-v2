@@ -21,14 +21,12 @@ class ClientTest extends CloudApiTestCase
 
     public function testClearQuery()
     {
-        $connector = new Connector(new GuzzleClient);
-        $client = Client::factory(
-            [
-                'key' => 'd0697bfc-7f56-4942-9205-b5686bf5b3f5',
-                'secret' => 'D5UfO/4FfNBWn4+0cUwpLOoFzfP7Qqib4AoY+wYGsKE=',
-            ],
-            $connector
-            );
+        $config = [
+            'key' => 'd0697bfc-7f56-4942-9205-b5686bf5b3f5',
+            'secret' => 'D5UfO/4FfNBWn4+0cUwpLOoFzfP7Qqib4AoY+wYGsKE=',
+        ];
+        $connector = new Connector(new GuzzleClient, $config);
+        $client = Client::factory($connector);
         $this->assertTrue(empty($client->getQuery()));
     }
 

@@ -38,11 +38,6 @@ class Connector
         ]);
     }
 
-    public function setConfig($config = [])
-    {
-        $this->config = $config;
-    }
-
     /**
      * @param string $verb
      * @param string $path
@@ -92,6 +87,7 @@ class Connector
     /**
      * @param ResponseInterface $response
      * @return mixed|StreamInterface
+     * @throws Exception
      */
     public function processResponse(ResponseInterface $response)
     {
@@ -105,8 +101,7 @@ class Connector
             if (property_exists($object, '_embedded') && property_exists($object->_embedded, 'items')) {
                 $return = $object->_embedded->items;
             } elseif (property_exists($object, 'error')) {
-                $this->error = true;
-                $return = $object->message;
+                throw new \Exception($object->message);
             } else {
                 $return = $object;
             }

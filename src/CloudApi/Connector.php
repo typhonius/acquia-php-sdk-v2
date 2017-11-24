@@ -29,18 +29,10 @@ class Connector implements ConnectorInterface
      * Connector constructor.
      *
      * @param GuzzleClient $client
-     * @param array        $config
      */
-    public function __construct(GuzzleClient $client, $config)
+    public function __construct(GuzzleClient $client)
     {
-        $key = new Key($config['key'], $config['secret']);
-        $middleware = new HmacAuthMiddleware($key);
-        $stack = HandlerStack::create();
-        $stack->push($middleware);
-
-        $this->client = new GuzzleClient([
-            'handler' => $stack,
-        ]);
+        $this->client = $client;
     }
 
     /**

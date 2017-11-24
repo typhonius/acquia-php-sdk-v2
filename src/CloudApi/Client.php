@@ -137,15 +137,6 @@ class Client
     }
 
     /**
-     * @param string $uuid
-     * @return StreamInterface
-     */
-    public function features($uuid)
-    {
-        return $this->connector->request('get', "/applications/${uuid}/features", $this->query);
-    }
-
-    /**
      * Shows all databases in an application.
      *
      * @param string $uuid

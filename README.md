@@ -48,12 +48,11 @@ use AcquiaCloudApi\CloudApi\Connector;
 $key = 'd0697bfc-7f56-4942-9205-b5686bf5b3f5';
 $secret = 'D5UfO/4FfNBWn4+0cUwpLOoFzfP7Qqib4AoY+wYGsKE=';
 
-$client = new GuzzleHttp\Client();
 $config = [
     'key' => $key,
     'secret' => $secret,
 ];
-$connector = new Connector($client, $config);
+$connector = new Connector($config);
 $cloudapi = Client::factory($connector);
 
 // Get all applications.

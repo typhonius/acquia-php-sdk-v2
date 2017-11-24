@@ -25,7 +25,7 @@ class ClientTest extends CloudApiTestCase
             'key' => 'd0697bfc-7f56-4942-9205-b5686bf5b3f5',
             'secret' => 'D5UfO/4FfNBWn4+0cUwpLOoFzfP7Qqib4AoY+wYGsKE=',
         ];
-        $connector = new Connector(new GuzzleClient, $config);
+        $connector = new Connector($config);
         $client = Client::factory($connector);
         $this->assertTrue(empty($client->getQuery()));
     }

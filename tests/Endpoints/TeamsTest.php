@@ -33,55 +33,55 @@ class TeamsTest extends CloudApiTestCase
         }
     }
 
-  public function testCreateTeamInvite()
-  {
-    $response = $this->getPsr7JsonResponseForFixture('Endpoints/createTeamInvite.json');
-    $client = $this->getMockClient($response);
+    public function testCreateTeamInvite()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/createTeamInvite.json');
+        $client = $this->getMockClient($response);
 
-    /** @var AcquiaCloudApi\CloudApi\Client $client */
-    $result = $client->createTeamInvite('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'hello@example.com', ['access permissions', 'access servers']);
+        /** @var AcquiaCloudApi\CloudApi\Client $client */
+        $result = $client->createTeamInvite('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'hello@example.com', ['access permissions', 'access servers']);
 
-    $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
-    $this->assertEquals("Invited team member.", $result->message);
-  }
+        $this->assertEquals("Invited team member.", $result->message);
+    }
 
-  public function testCreateTeam()
-  {
-    $response = $this->getPsr7JsonResponseForFixture('Endpoints/createTeam.json');
-    $client = $this->getMockClient($response);
+    public function testCreateTeam()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/createTeam.json');
+        $client = $this->getMockClient($response);
 
-    /** @var AcquiaCloudApi\CloudApi\Client $client */
-    $result = $client->createTeam('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'Mega Team');
+        /** @var AcquiaCloudApi\CloudApi\Client $client */
+        $result = $client->createTeam('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'Mega Team');
 
-    $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
-    $this->assertEquals("Team created.", $result->message);
-  }
+        $this->assertEquals("Team created.", $result->message);
+    }
 
-  public function testRenameTeam()
-  {
-    $response = $this->getPsr7JsonResponseForFixture('Endpoints/RenameTeam.json');
-    $client = $this->getMockClient($response);
+    public function testRenameTeam()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/RenameTeam.json');
+        $client = $this->getMockClient($response);
 
-    /** @var AcquiaCloudApi\CloudApi\Client $client */
-    $result = $client->renameTeam('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'My Cool Application');
+        /** @var AcquiaCloudApi\CloudApi\Client $client */
+        $result = $client->renameTeam('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'My Cool Application');
 
-    $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
-    $this->assertEquals("Team renamed.", $result->message);
-  }
+        $this->assertEquals("Team renamed.", $result->message);
+    }
 
-  public function testDeleteTeam()
-  {
-    $response = $this->getPsr7JsonResponseForFixture('Endpoints/DeleteTeam.json');
-    $client = $this->getMockClient($response);
+    public function testDeleteTeam()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/DeleteTeam.json');
+        $client = $this->getMockClient($response);
 
-    /** @var AcquiaCloudApi\CloudApi\Client $client */
-    $result = $client->deleteTeam('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
+        /** @var AcquiaCloudApi\CloudApi\Client $client */
+        $result = $client->deleteTeam('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
-    $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
-    $this->assertEquals("Removed team.", $result->message);
-  }
+        $this->assertEquals("Removed team.", $result->message);
+    }
 }

@@ -62,15 +62,10 @@ class Connector implements ConnectorInterface
      * @param string $path
      * @param array  $query
      * @param array  $options
-     * @return array|object
+     * @return ResponseInterface
      */
     public function makeRequest(string $verb, string $path, array $query = [], array $options = array())
     {
-
-        // @TODO sort, filter, limit, offset
-        // Sortable by: 'name', 'label', 'weight'.
-        // Filterable by: 'name', 'label', 'weight'.
-
         $options['query'] = $query;
 
         if (!empty($options['query']['filter']) && is_array($options['query']['filter'])) {

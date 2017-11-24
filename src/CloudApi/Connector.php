@@ -28,10 +28,9 @@ class Connector implements ConnectorInterface
     /**
      * Connector constructor.
      *
-     * @param GuzzleClient $client
-     * @param array        $config
+     * @param array $config
      */
-    public function __construct(GuzzleClient $client, $config)
+    public function __construct($config)
     {
         $key = new Key($config['key'], $config['secret']);
         $middleware = new HmacAuthMiddleware($key);
@@ -97,7 +96,6 @@ class Connector implements ConnectorInterface
     public function processResponse(ResponseInterface $response)
     {
 
-        // @TODO detect status code here and exit early.
         $body = $response->getBody();
 
         $object = json_decode($body);

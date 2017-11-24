@@ -7,6 +7,18 @@ use GuzzleHttp\Client as GuzzleClient;
 class ClientTest extends CloudApiTestCase
 {
 
+    protected $properties = [
+        'uuid',
+        'name',
+        'hosting',
+        'subscription',
+        'organization',
+        'type',
+        'flags',
+        'status',
+        'links'
+    ];
+
     public function testClearQuery()
     {
         $config = [

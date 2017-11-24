@@ -84,4 +84,38 @@ class TeamsTest extends CloudApiTestCase
 
         $this->assertEquals("Removed team.", $result->message);
     }
+
+    public function testGetOrganizationTeams()
+    {
+
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getOrganizationTeams.json');
+        $client = $this->getMockClient($response);
+
+        /** @var AcquiaCloudApi\CloudApi\Client $client */
+        $result = $client->organizationTeams('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+
+        $this->assertInstanceOf('\ArrayObject', $result);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamsResponse', $result);
+
+        foreach ($result as $record) {
+            $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamResponse', $record);
+
+            foreach ($this->properties as $property) {
+                $this->assertObjectHasAttribute($property, $record);
+            }
+        }
+    }
+
+    public function testAddApplicationToTeam()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/addApplicationToTeam.json');
+        $client = $this->getMockClient($response);
+
+        /** @var AcquiaCloudApi\CloudApi\Client $client */
+        $result = $client->addApplicationToTeam('8ff6c046-ec64-4ce4-bea6-27845ec18600', '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
+        $this->assertEquals('Added application to team.', $result->message);
+    }
 }

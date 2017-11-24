@@ -1,0 +1,84 @@
+{
+    "total": 2,
+    "pagination": {
+        "total": 2,
+        "limit": 10,
+        "offset": 0
+    },
+    "_links": {
+        "self": {
+            "href": "{baseUri}/organizations/g47ac10b-58cc-4372-a567-0e02b2c3d470/applications"
+        },
+        "sort": {
+            "href": "{baseUri}/organizations/g47ac10b-58cc-4372-a567-0e02b2c3d470/applications{?sort}",
+            "templated": true
+        },
+        "filter": {
+            "href": "{baseUri}/organizations/g47ac10b-58cc-4372-a567-0e02b2c3d470/applications{?filter}",
+            "templated": true
+        },
+        "limit": {
+            "href": "{baseUri}/organizations/g47ac10b-58cc-4372-a567-0e02b2c3d470/applications{?limit}",
+            "templated": true
+        },
+        "parent": {
+            "href": "{baseUri}/organizations/g47ac10b-58cc-4372-a567-0e02b2c3d470"
+        }
+    },
+    "_embedded": {
+        "items": [
+            {
+                "id": 241643,
+                "uuid": "a47ac10b-58cc-4372-a567-0e02b2c3d470",
+                "name": "Sample application 1",
+                "hosting" : {
+                    "type": "acp",
+                    "id": "devcloud:devcloud2"
+                },
+                "subscription": {
+                    "uuid": "s47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "Sample subscription"
+                },
+                "organization": {
+                    "uuid": "g47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "Sample organization"
+                },
+                "flags": {
+                    "remote_admin": true
+                },
+                "status": "normal",
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470"
+                    }
+                }
+            },
+            {
+                "id": 954291,
+                "uuid": "a47ac10b-58cc-4372-a567-0e02b2c3d471",
+                "name": "Sample application 2",
+                "hosting" : {
+                    "type": "free",
+                    "id": "devcloud:devcloud2"
+                },
+                "subscription": {
+                    "uuid": "s47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "Sample subscription"
+                },
+                "organization": {
+                    "uuid": "g47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "name": "Sample organization"
+                },
+                "flags": {
+                    "remote_admin": false
+                },
+                "status": "provisioning",
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/applications/a47ac10b-58cc-4372-a567-0e02b2c3d471"
+                    }
+                }
+            }
+        ]
+    }
+}

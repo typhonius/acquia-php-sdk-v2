@@ -81,5 +81,5 @@ class MembersTest extends CloudApiTestCase
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
         $this->assertEquals("Organization member removed.", $result->message);
-  }
+    }
 }

@@ -57,8 +57,7 @@ abstract class CloudApiTestCase extends TestCase
                 ->expects($this->atLeastOnce())
                 ->method('makeRequest')
                 ->willReturn($response);
-        }
-        else {
+        } else {
             $connector = $this
                 ->getMockBuilder('AcquiaCloudApi\CloudApi\Connector')
                 ->disableOriginalConstructor()

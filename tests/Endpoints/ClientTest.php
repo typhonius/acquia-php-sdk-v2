@@ -29,5 +29,4 @@ class ClientTest extends CloudApiTestCase
         $client = Client::factory($connector);
         $this->assertTrue(empty($client->getQuery()));
     }
-
 }

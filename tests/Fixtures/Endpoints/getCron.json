@@ -1,0 +1,28 @@
+{
+    "id": "24",
+    "server": {},
+    "command": "/usr/local/bin/drush cc all",
+    "minute": "25",
+    "hour": "7",
+    "day_month": "*",
+    "month": "*",
+    "day_week": "*",
+    "label": null,
+    "flags": {
+        "enabled": true,
+        "system": false,
+        "on_any_web": true
+    },
+    "environment": {
+        "id": "24-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+        "name": "dev"
+    },
+    "_links": {
+        "self": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/crons/24"
+        },
+        "parent": {
+            "href": "{baseUri}/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/crons"
+        }
+    }
+}

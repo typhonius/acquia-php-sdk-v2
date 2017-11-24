@@ -29,6 +29,20 @@ class ClientTest extends CloudApiTestCase
         $this->assertEquals($expectedQuery, $client->getQuery());
     }
 
+    public function testFilteredQuery()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getFilteredCode.json');
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $client->addQuery('filter', 'name=@*2014*');
+        $result = $client->code('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+
+        foreach ($result as $record) {
+            $this->assertContains('2014', $record->name);
+        }
+    }
+
     public function testClearQuery()
     {
         $config = [

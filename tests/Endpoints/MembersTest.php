@@ -69,4 +69,17 @@ class MembersTest extends CloudApiTestCase
             }
         }
     }
+
+    public function testMemberDelete()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/deleteMember.json');
+        $client = $this->getMockClient($response);
+
+        /** @var AcquiaCloudApi\CloudApi\Client $client */
+        $result = $client->deleteMember('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
+        $this->assertEquals("Organization member removed.", $result->message);
+  }
 }

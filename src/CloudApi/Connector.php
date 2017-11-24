@@ -26,9 +26,9 @@ class Connector
      *
      * @param GuzzleClient $client
      */
-    public function __construct(GuzzleClient $client)
+    public function __construct(GuzzleClient $client, $config)
     {
-        $key = new Key($this->config['key'], $this->config['secret']);
+        $key = new Key($config['key'], $config['secret']);
         $middleware = new HmacAuthMiddleware($key);
         $stack = HandlerStack::create();
         $stack->push($middleware);

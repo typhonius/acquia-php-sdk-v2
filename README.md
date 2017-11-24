@@ -43,14 +43,18 @@ Basic usage examples for the SDK.
 require 'vendor/autoload.php';
 
 use AcquiaCloudApi\CloudApi\Client;
+use AcquiaCloudApi\CloudApi\Connector;
 
-$key_id = 'd0697bfc-7f56-4942-9205-b5686bf5b3f5';
+$key = 'd0697bfc-7f56-4942-9205-b5686bf5b3f5';
 $secret = 'D5UfO/4FfNBWn4+0cUwpLOoFzfP7Qqib4AoY+wYGsKE=';
 
-$cloudapi = Client::factory([
-    'key' => $key_id,
+$client = new GuzzleHttp\Client();
+$config = [
+    'key' => $key,
     'secret' => $secret,
-]);
+];
+$connector = new Connector($client, $config);
+$cloudapi = Client::factory($connector);
 
 // Get all applications.
 $applications = $cloudapi->applications();

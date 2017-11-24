@@ -24,7 +24,6 @@ use AcquiaCloudApi\Response\ServersResponse;
 use AcquiaCloudApi\Response\TasksResponse;
 use AcquiaCloudApi\Response\TeamsResponse;
 use Psr\Http\Message\StreamInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class Client
@@ -38,26 +37,21 @@ class Client
 
     /**
      * Client constructor.
-     * @param array $config
-     *
      * @param Connector $connector
      */
-    public function __construct(array $config, Connector $connector)
+    public function __construct(Connector $connector)
     {
         $this->connector = $connector;
-        $this->connector->setConfig($config);
     }
 
     /**
-     * @param array $config
      * @param Connector $connector
      *
      * @return static
      */
-    public static function factory(array $config, Connector $connector)
+    public static function factory(Connector $connector)
     {
         $client = new static(
-            $config,
             $connector
         );
 

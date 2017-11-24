@@ -1,0 +1,27 @@
+{
+    "total": 4,
+    "_links": {
+        "self": {
+            "href": "{baseUri}/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470/code"
+        },
+        "parent": {
+            "href": "{baseUri}/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470"
+        }
+    },
+    "_embedded": {
+        "items": [
+            {
+                "name": "tags/2014-09-03",
+                "flags": {
+                    "tag": true
+                }
+            },
+            {
+                "name": "tags/2014-09-03.0",
+                "flags": {
+                    "tag": true
+                }
+            }
+        ]
+    }
+}

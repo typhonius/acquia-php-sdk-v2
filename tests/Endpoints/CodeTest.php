@@ -4,8 +4,8 @@ class CodeTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'name',
-    'flags',
+        'name',
+        'flags',
     ];
 
     public function testGetBranches()

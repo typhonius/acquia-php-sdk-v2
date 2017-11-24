@@ -22,7 +22,7 @@ class OrganizationsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getOrganizations.json');
         $client = $this->getMockClient($response);
 
-        /** @var AcquiaCloudApi\CloudApi\Client $client */
+      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $result = $client->organizations();
 
         $this->assertInstanceOf('\ArrayObject', $result);
@@ -42,7 +42,7 @@ class OrganizationsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/createOrganizationAdminInvite.json');
         $client = $this->getMockClient($response);
 
-        /** @var AcquiaCloudApi\CloudApi\Client $client */
+      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $result = $client->createOrganizationAdminInvite('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'user@example.com');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);

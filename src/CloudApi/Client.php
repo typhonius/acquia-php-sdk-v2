@@ -29,27 +29,27 @@ use Psr\Http\Message\StreamInterface;
  * Class Client
  * @package AcquiaCloudApi\CloudApi
  */
-class Client
+class Client implements ClientInterface
 {
     protected $connector;
 
     protected $query = [];
 
-    /**
-     * Client constructor.
-     * @param Connector $connector
-     */
-    public function __construct(Connector $connector)
+  /**
+   * Client constructor.
+   * @param ConnectorInterface $connector
+   */
+    public function __construct(ConnectorInterface $connector)
     {
         $this->connector = $connector;
     }
 
-    /**
-     * @param Connector $connector
-     *
-     * @return static
-     */
-    public static function factory(Connector $connector)
+  /**
+   * @param ConnectorInterface $connector
+   *
+   * @return static
+   */
+    public static function factory(ConnectorInterface $connector)
     {
         $client = new static(
             $connector

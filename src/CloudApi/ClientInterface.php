@@ -2,8 +2,6 @@
 
 namespace AcquiaCloudApi\CloudApi;
 
-use Acquia\Hmac\Guzzle\HmacAuthMiddleware;
-use Acquia\Hmac\Key;
 use AcquiaCloudApi\Response\ApplicationResponse;
 use AcquiaCloudApi\Response\ApplicationsResponse;
 use AcquiaCloudApi\Response\BackupResponse;
@@ -25,31 +23,23 @@ use AcquiaCloudApi\Response\RolesResponse;
 use AcquiaCloudApi\Response\ServersResponse;
 use AcquiaCloudApi\Response\TasksResponse;
 use AcquiaCloudApi\Response\TeamsResponse;
-use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\HandlerStack;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * Interface ClientInterface
+ * Class Client
  * @package AcquiaCloudApi\CloudApi
  */
 interface ClientInterface
 {
     /**
-     * @var string BASE_URI
-     */
-    const BASE_URI = 'https://cloud.acquia.com/api';
-
-    /**
-     * @param array $config
-     * @return static
-     */
-    public static function factory(array $config = array());
-
-    /**
+     * Get query from Client.
      *
+     * @return array
+     */
+    public function getQuery();
+
+    /**
+     * Clear query.
      */
     public function clearQuery();
 
@@ -90,12 +80,6 @@ interface ClientInterface
      * @return BranchesResponse
      */
     public function code($uuid);
-
-    /**
-     * @param string $uuid
-     * @return StreamInterface
-     */
-    public function features($uuid);
 
     /**
      * Shows all databases in an application.
@@ -168,13 +152,13 @@ interface ClientInterface
      */
     public function databaseBackup($id, $backupId);
 
-   /**
-    * Restores a database backup to a database in an environment.
-    *
-    * @param string $id
-    * @param string $backupId
-    * @return OperationResponse
-    */
+    /**
+     * Restores a database backup to a database in an environment.
+     *
+     * @param string $id
+     * @param string $backupId
+     * @return OperationResponse
+     */
     public function restoreDatabaseBackup($id, $backupId);
 
     /**
@@ -225,10 +209,10 @@ interface ClientInterface
      * Purges varnish for selected domains in an environment.
      *
      * @param string $id
-     * @param array  $domains
+     * @param array $domains
      * @return OperationResponse
      */
-    public function purgeVarnishCache($id, $domains);
+    public function purgeVarnishCache($id, array $domains);
 
     /**
      * Shows all tasks in an application.
@@ -314,8 +298,8 @@ interface ClientInterface
     /**
      * Get information about a cron task.
      *
-     * @param string $id     The environment ID
-     * @param int    $cronId
+     * @param string $id The environment ID
+     * @param int $cronId
      * @return CronResponse
      */
     public function cron($id, $cronId);
@@ -335,7 +319,7 @@ interface ClientInterface
      * Delete a cron task.
      *
      * @param string $id
-     * @param int    $cronId
+     * @param int $cronId
      * @return OperationResponse
      */
     public function deleteCron($id, $cronId);
@@ -344,7 +328,7 @@ interface ClientInterface
      * Disable a cron task.
      *
      * @param string $id
-     * @param int    $cronId
+     * @param int $cronId
      * @return OperationResponse
      */
     public function disableCron($id, $cronId);
@@ -353,7 +337,7 @@ interface ClientInterface
      * Enable a cron task.
      *
      * @param string $id
-     * @param int    $cronId
+     * @param int $cronId
      * @return OperationResponse
      */
     public function enableCron($id, $cronId);
@@ -405,15 +389,15 @@ interface ClientInterface
 
     /**
      * @param string $roleUuid
-     * @param array  $permissions
+     * @param array $permissions
      * @return OperationResponse
      */
     public function updateRole($roleUuid, array $permissions);
 
     /**
-     * @param string      $uuid
-     * @param string      $name
-     * @param array       $permissions
+     * @param string $uuid
+     * @param string $name
+     * @param array $permissions
      * @param null|string $description
      * @return OperationResponse
      */
@@ -441,6 +425,13 @@ interface ClientInterface
     public function teams();
 
     /**
+     * @param string $teamUuid
+     * @param string $name
+     * @return OperationResponse
+     */
+    public function renameTeam($teamUuid, $name);
+
+    /**
      * Create a new team.
      *
      * @param string $uuid
@@ -465,45 +456,54 @@ interface ClientInterface
     /**
      * Invites a user to join a team.
      *
-     * @param string $uuid
+     * @param string $teamUuid
      * @param string $email
-     * @param array  $roles
+     * @param array $roles
      * @return OperationResponse
      */
-    public function createTeamInvite($uuid, $email, $roles);
+    public function createTeamInvite($teamUuid, $email, $roles);
+
+    /**
+     * Invites a user to become admin of an organization.
+     *
+     * @param string $organizationUuid
+     * @param string $email
+     * @return OperationResponse
+     */
+    public function createOrganizationAdminInvite($organizationUuid, $email);
 
     /**
      * Show all applications associated with a team.
      *
-     * @param string $uuid
+     * @param string $teamUuid
      * @return ApplicationResponse
      */
-    public function teamApplications($uuid);
+    public function teamApplications($teamUuid);
 
     /**
      * Show all members of an organisation.
      *
-     * @param string $uuid
+     * @param string $organizationUuid
      * @return MembersResponse
      */
-    public function members($uuid);
+    public function members($organizationUuid);
 
     /**
      * Show all members invited to an organisation.
      *
-     * @param string $uuid
+     * @param string $organizationUuid
      * @return InvitationsResponse
      */
-    public function invitees($uuid);
+    public function invitees($organizationUuid);
 
     /**
      * Delete a member from an organisation.
      *
-     * @param string $uuidSite
-     * @param string $uuidMember
+     * @param string $organizationUuid
+     * @param string $memberUuid
      * @return OperationResponse
      */
-    public function deleteMember($uuidSite, $uuidMember);
+    public function deleteMember($organizationUuid, $memberUuid);
 
     /**
      * Show all available permissions.

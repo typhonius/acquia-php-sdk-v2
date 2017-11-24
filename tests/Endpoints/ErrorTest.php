@@ -10,7 +10,7 @@ class ErrorTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         try {
-            /** @var AcquiaCloudApi\CloudApi\Client $client */
+          /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
             $client->applications();
         } catch (Exception $e) {
             $this->assertEquals($e->getMessage(), 'You do not have permission to view applications.');
@@ -28,7 +28,7 @@ class ErrorTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         try {
-            /** @var AcquiaCloudApi\CloudApi\Client $client */
+          /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
             $client->applications();
         } catch (Exception $e) {
             $this->assertEquals($e->getMessage(), 'The application you are trying to access does not exist, or you do not have permission to access it.');

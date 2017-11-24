@@ -31,7 +31,9 @@ class ApplicationResponse
         $this->hosting = $application->hosting;
         $this->subscription = $application->subscription;
         $this->organization = $application->organization;
-        $this->type = $application->type;
+        if (property_exists($application, 'type')) {
+            $this->type = $application->type;
+        }
         $this->flags = $application->flags;
         $this->status = $application->status;
         $this->links = $application->_links;

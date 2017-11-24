@@ -33,4 +33,24 @@ class InsightsTest extends CloudApiTestCase
             }
         }
     }
+
+    public function testGetEnvironmentInsights()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getEnvironmentInsights.json');
+        $client = $this->getMockClient($response);
+
+        /** @var AcquiaCloudApi\CloudApi\Client $client */
+        $result = $client->environmentInsights('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
+
+        $this->assertInstanceOf('\ArrayObject', $result);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightsResponse', $result);
+
+        foreach ($result as $record) {
+              $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightResponse', $record);
+
+            foreach ($this->properties as $property) {
+                $this->assertObjectHasAttribute($property, $record);
+            }
+        }
+    }
 }

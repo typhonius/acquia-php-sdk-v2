@@ -10,7 +10,11 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use GuzzleHttp\HandlerStack;
 
-class Connector
+/**
+ * Class Connector
+ * @package AcquiaCloudApi\CloudApi
+ */
+class Connector implements ConnectorInterface
 {
     /**
      * @var string BASE_URI
@@ -25,6 +29,7 @@ class Connector
      * Connector constructor.
      *
      * @param GuzzleClient $client
+     * @param array        $config
      */
     public function __construct(GuzzleClient $client, $config)
     {
@@ -41,8 +46,8 @@ class Connector
     /**
      * @param string $verb
      * @param string $path
-     * @param array $query
-     * @param array $options
+     * @param array  $query
+     * @param array  $options
      *
      * @return mixed|StreamInterface
      */
@@ -56,8 +61,8 @@ class Connector
     /**
      * @param string $verb
      * @param string $path
-     * @param array $query
-     * @param array $options
+     * @param array  $query
+     * @param array  $options
      * @return array|object
      */
     public function makeRequest(string $verb, string $path, array $query = [], array $options = array())
@@ -87,7 +92,7 @@ class Connector
     /**
      * @param ResponseInterface $response
      * @return mixed|StreamInterface
-     * @throws Exception
+     * @throws \Exception
      */
     public function processResponse(ResponseInterface $response)
     {
@@ -101,7 +106,7 @@ class Connector
             if (property_exists($object, '_embedded') && property_exists($object->_embedded, 'items')) {
                 $return = $object->_embedded->items;
             } elseif (property_exists($object, 'error')) {
-                throw new \Exception($object->message);
+                  throw new \Exception($object->message);
             } else {
                 $return = $object;
             }

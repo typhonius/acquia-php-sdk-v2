@@ -26,7 +26,7 @@ class EnvironmentsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getEnvironments.json');
         $client = $this->getMockClient($response);
 
-        /** @var AcquiaCloudApi\CloudApi\Client $client */
+      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $result = $client->environments('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\ArrayObject', $result);
@@ -47,7 +47,7 @@ class EnvironmentsTest extends CloudApiTestCase
 
         $client = $this->getMockClient($response);
 
-        /** @var AcquiaCloudApi\CloudApi\Client $client */
+      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $result = $client->environment('24-a47ac10b-58cc-4372-a567-0e02b2c3d470');
 
         $this->assertNotInstanceOf('\AcquiaCloudApi\Response\EnvironmentsResponse', $result);
@@ -64,7 +64,7 @@ class EnvironmentsTest extends CloudApiTestCase
 
         $client = $this->getMockClient($response);
 
-        /** @var AcquiaCloudApi\CloudApi\Client $client */
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $result = $client->renameEnvironment('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'Alpha');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);

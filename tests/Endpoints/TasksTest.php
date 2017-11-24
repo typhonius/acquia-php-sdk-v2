@@ -24,7 +24,7 @@ class TasksTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getTasks.json');
         $client = $this->getMockClient($response);
 
-        /** @var AcquiaCloudApi\CloudApi\Client $client */
+      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $result = $client->tasks('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\ArrayObject', $result);
@@ -45,7 +45,7 @@ class TasksTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getFilteredTasks.json');
         $client = $this->getMockClient($response);
 
-        /** @var AcquiaCloudApi\CloudApi\Client $client */
+      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $client->addQuery('filter', 'name=@DatabaseBackupCreated');
         $result = $client->tasks('8ff6c046-ec64-4ce4-bea6-27845ec18600');
         $client->clearQuery();

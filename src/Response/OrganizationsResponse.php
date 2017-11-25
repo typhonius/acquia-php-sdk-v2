@@ -10,9 +10,9 @@ class OrganizationsResponse extends \ArrayObject
 {
 
     /**
-    * OrganizationsResponse constructor.
-    * @param array $organizations
-    */
+     * OrganizationsResponse constructor.
+     * @param array $organizations
+     */
     public function __construct($organizations)
     {
         parent::__construct(array_map(function ($organization) {

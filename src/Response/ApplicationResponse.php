@@ -9,6 +9,7 @@ namespace AcquiaCloudApi\Response;
 class ApplicationResponse
 {
 
+    public $id;
     public $uuid;
     public $name;
     public $hosting;

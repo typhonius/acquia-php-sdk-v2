@@ -871,7 +871,7 @@ class Client implements ClientInterface
      * Show all applications associated with a team.
      *
      * @param string $teamUuid
-     * @return ApplicationResponse
+     * @return ApplicationsResponse
      */
     public function teamApplications($teamUuid)
     {

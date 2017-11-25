@@ -48,7 +48,7 @@ class Connector implements ConnectorInterface
      * @param array  $query
      * @param array  $options
      *
-     * @return mixed|StreamInterface
+     * @return object|array|StreamInterface
      */
     public function request(string $verb, string $path, array $query = [], array $options = array())
     {
@@ -84,7 +84,7 @@ class Connector implements ConnectorInterface
 
     /**
      * @param ResponseInterface $response
-     * @return mixed|StreamInterface
+     * @return object|array|StreamInterface
      * @throws \Exception
      */
     public function processResponse(ResponseInterface $response)

@@ -26,7 +26,7 @@ use AcquiaCloudApi\Response\TeamsResponse;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * Class Client
+ * Interface ClientInterface
  * @package AcquiaCloudApi\CloudApi
  */
 interface ClientInterface
@@ -59,43 +59,43 @@ interface ClientInterface
     /**
      * Shows information about an application.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @return ApplicationResponse
      */
-    public function application($uuid);
+    public function application($applicationUuid);
 
     /**
      * Renames an application.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @param string $name
      * @return OperationResponse
      */
-    public function renameApplication($uuid, $name);
+    public function renameApplication($applicationUuid, $name);
 
     /**
      * Shows all code branches and tags in an application.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @return BranchesResponse
      */
-    public function code($uuid);
+    public function code($applicationUuid);
 
     /**
      * Shows all databases in an application.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @return DatabasesResponse
      */
-    public function databases($uuid);
+    public function databases($applicationUuid);
 
     /**
      * Shows all databases in an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return DatabasesResponse
      */
-    public function environmentDatabases($id);
+    public function environmentDatabases($environmentUuid);
 
     /**
      * Copies a database from an environment to an environment.
@@ -110,237 +110,237 @@ interface ClientInterface
     /**
      * Create a new database.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @param string $name
      * @return OperationResponse
      */
-    public function databaseCreate($uuid, $name);
+    public function databaseCreate($applicationUuid, $name);
 
     /**
      * Delete a database.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @param string $name
      * @return OperationResponse
      */
-    public function databaseDelete($uuid, $name);
+    public function databaseDelete($applicationUuid, $name);
 
     /**
      * Backup a database.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param string $dbName
      * @return OperationResponse
      */
-    public function createDatabaseBackup($id, $dbName);
+    public function createDatabaseBackup($environmentUuid, $dbName);
 
     /**
      * Shows all database backups in an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param string $dbName
      * @return BackupsResponse
      */
-    public function databaseBackups($id, $dbName);
+    public function databaseBackups($environmentUuid, $dbName);
 
     /**
      * Gets information about a database backup.
      *
-     * @param string $id
-     * @param string $backupId
+     * @param string $environmentUuid
+     * @param int    $backupId
      * @return BackupResponse
      */
-    public function databaseBackup($id, $backupId);
+    public function databaseBackup($environmentUuid, $backupId);
 
     /**
      * Restores a database backup to a database in an environment.
      *
-     * @param string $id
-     * @param string $backupId
+     * @param string $environmentUuid
+     * @param int    $backupId
      * @return OperationResponse
      */
-    public function restoreDatabaseBackup($id, $backupId);
+    public function restoreDatabaseBackup($environmentUuid, $backupId);
 
     /**
      * Copies files from an environment to another environment.
      *
-     * @param string $idFrom
-     * @param string $idTo
+     * @param string $environmentUuidFrom
+     * @param string $environmentUuidTo
      * @return OperationResponse
      */
-    public function copyFiles($idFrom, $idTo);
+    public function copyFiles($environmentUuidFrom, $environmentUuidTo);
 
     /**
      * Deploys a code branch/tag to an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param string $branch
      * @return OperationResponse
      */
-    public function switchCode($id, $branch);
+    public function switchCode($environmentUuid, $branch);
 
     /**
      * Shows all domains on an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return DomainsResponse
      */
-    public function domains($id);
+    public function domains($environmentUuid);
 
     /**
      * Adds a domain to an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param string $hostname
      * @return OperationResponse
      */
-    public function createDomain($id, $hostname);
+    public function createDomain($environmentUuid, $hostname);
 
     /**
      * Deletes a domain from an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param string $domain
      * @return OperationResponse
      */
-    public function deleteDomain($id, $domain);
+    public function deleteDomain($environmentUuid, $domain);
 
     /**
      * Purges varnish for selected domains in an environment.
      *
-     * @param string $id
-     * @param array $domains
+     * @param string $environmentUuid
+     * @param array  $domains
      * @return OperationResponse
      */
-    public function purgeVarnishCache($id, array $domains);
+    public function purgeVarnishCache($environmentUuid, array $domains);
 
     /**
      * Shows all tasks in an application.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @return TasksResponse
      */
-    public function tasks($uuid);
+    public function tasks($applicationUuid);
 
     /**
      * Shows all environments in an application.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @return EnvironmentsResponse
      */
-    public function environments($uuid);
+    public function environments($applicationUuid);
 
     /**
      * Gets information about an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return EnvironmentResponse
      */
-    public function environment($id);
+    public function environment($environmentUuid);
 
     /**
      * Renames an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param string $label
      * @return OperationResponse
      */
-    public function renameEnvironment($id, $label);
+    public function renameEnvironment($environmentUuid, $label);
 
     /**
      * Show all servers associated with an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return ServersResponse
      */
-    public function servers($id);
+    public function servers($environmentUuid);
 
     /**
      * Enable livedev mode for an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return OperationResponse
      */
-    public function enableLiveDev($id);
+    public function enableLiveDev($environmentUuid);
 
     /**
      * Disable livedev mode for an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return OperationResponse
      */
-    public function disableLiveDev($id);
+    public function disableLiveDev($environmentUuid);
 
     /**
      * Enable production mode for an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return OperationResponse
      */
-    public function enableProductionMode($id);
+    public function enableProductionMode($environmentUuid);
 
     /**
      * Disable production mode for an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return OperationResponse
      */
-    public function disableProductionMode($id);
+    public function disableProductionMode($environmentUuid);
 
     /**
      * Show all cron tasks for an environment.
      *
-     * @param string $id The environment ID
+     * @param string $environmentUuid The environment ID
      * @return CronsResponse
      */
-    public function crons($id);
+    public function crons($environmentUuid);
 
     /**
      * Get information about a cron task.
      *
-     * @param string $id The environment ID
-     * @param int $cronId
+     * @param string $environmentUuid The environment ID
+     * @param int    $cronId
      * @return CronResponse
      */
-    public function cron($id, $cronId);
+    public function cron($environmentUuid, $cronId);
 
     /**
      * Add a cron task.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param string $command
      * @param string $frequency
      * @param string $label
      * @return OperationResponse
      */
-    public function createCron($id, $command, $frequency, $label);
+    public function createCron($environmentUuid, $command, $frequency, $label);
 
     /**
      * Delete a cron task.
      *
-     * @param string $id
-     * @param int $cronId
+     * @param string $environmentUuid
+     * @param int    $cronId
      * @return OperationResponse
      */
-    public function deleteCron($id, $cronId);
+    public function deleteCron($environmentUuid, $cronId);
 
     /**
      * Disable a cron task.
      *
-     * @param string $id
-     * @param int $cronId
+     * @param string $environmentUuid
+     * @param int    $cronId
      * @return OperationResponse
      */
-    public function disableCron($id, $cronId);
+    public function disableCron($environmentUuid, $cronId);
 
     /**
      * Enable a cron task.
      *
-     * @param string $id
-     * @param int $cronId
+     * @param string $environmentUuid
+     * @param int    $cronId
      * @return OperationResponse
      */
-    public function enableCron($id, $cronId);
+    public function enableCron($environmentUuid, $cronId);
 
     /**
      * @return StreamInterface
@@ -350,18 +350,18 @@ interface ClientInterface
     /**
      * Show insights data from an application.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @return InsightsResponse
      */
-    public function applicationInsights($uuid);
+    public function applicationInsights($applicationUuid);
 
     /**
      * Show insights data from a specific environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return InsightsResponse
      */
-    public function environmentInsights($id);
+    public function environmentInsights($environmentUuid);
 
     /**
      * Show all organizations.
@@ -373,35 +373,35 @@ interface ClientInterface
     /**
      * Show all applications in an organisation.
      *
-     * @param string $uuid
+     * @param string $organizationUuid
      *
      * @return ApplicationsResponse
      */
-    public function organizationApplications($uuid);
+    public function organizationApplications($organizationUuid);
 
     /**
      * Show all roles in an organization.
      *
-     * @param string $uuid
+     * @param string $organizationUuid
      * @return RolesResponse
      */
-    public function organizationRoles($uuid);
+    public function organizationRoles($organizationUuid);
 
     /**
      * @param string $roleUuid
-     * @param array $permissions
+     * @param array  $permissions
      * @return OperationResponse
      */
     public function updateRole($roleUuid, array $permissions);
 
     /**
-     * @param string $uuid
-     * @param string $name
-     * @param array $permissions
+     * @param string      $organizationUuid
+     * @param string      $name
+     * @param array       $permissions
      * @param null|string $description
      * @return OperationResponse
      */
-    public function createRole($uuid, $name, array $permissions, $description = null);
+    public function createRole($organizationUuid, $name, array $permissions, $description = null);
 
     /**
      * @param string $roleUuid
@@ -434,11 +434,11 @@ interface ClientInterface
     /**
      * Create a new team.
      *
-     * @param string $uuid
+     * @param string $organizationUuid
      * @param string $name
      * @return OperationResponse
      */
-    public function createTeam($uuid, $name);
+    public function createTeam($organizationUuid, $name);
 
     /**
      * @param string $teamUuid
@@ -458,7 +458,7 @@ interface ClientInterface
      *
      * @param string $teamUuid
      * @param string $email
-     * @param array $roles
+     * @param array  $roles
      * @return OperationResponse
      */
     public function createTeamInvite($teamUuid, $email, $roles);
@@ -476,7 +476,7 @@ interface ClientInterface
      * Show all applications associated with a team.
      *
      * @param string $teamUuid
-     * @return ApplicationResponse
+     * @return ApplicationsResponse
      */
     public function teamApplications($teamUuid);
 

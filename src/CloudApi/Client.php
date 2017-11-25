@@ -35,20 +35,20 @@ class Client implements ClientInterface
 
     protected $query = [];
 
-  /**
-   * Client constructor.
-   * @param ConnectorInterface $connector
-   */
+    /**
+     * Client constructor.
+     * @param ConnectorInterface $connector
+     */
     public function __construct(ConnectorInterface $connector)
     {
         $this->connector = $connector;
     }
 
-  /**
-   * @param ConnectorInterface $connector
-   *
-   * @return static
-   */
+    /**
+     * @param ConnectorInterface $connector
+     *
+     * @return static
+     */
     public static function factory(ConnectorInterface $connector)
     {
         $client = new static(
@@ -98,22 +98,28 @@ class Client implements ClientInterface
     /**
      * Shows information about an application.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @return ApplicationResponse
      */
-    public function application($uuid)
+    public function application($applicationUuid)
     {
-        return new ApplicationResponse($this->connector->request('get', "/applications/${uuid}", $this->query));
+        return new ApplicationResponse(
+            $this->connector->request(
+                'get',
+                "/applications/${applicationUuid}",
+                $this->query
+            )
+        );
     }
 
     /**
      * Renames an application.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @param string $name
      * @return OperationResponse
      */
-    public function renameApplication($uuid, $name)
+    public function renameApplication($applicationUuid, $name)
     {
 
         $options = [
@@ -122,40 +128,65 @@ class Client implements ClientInterface
             ],
         ];
 
-        return new OperationResponse($this->connector->request('put', "/applications/${uuid}", $options, $this->query));
+        return new OperationResponse(
+            $this->connector->request(
+                'put',
+                "/applications/${applicationUuid}",
+                $options,
+                $this->query
+            )
+        );
     }
 
     /**
      * Shows all code branches and tags in an application.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @return BranchesResponse
      */
-    public function code($uuid)
+    public function code($applicationUuid)
     {
-        return new BranchesResponse($this->connector->request('get', "/applications/${uuid}/code", $this->query));
+        return new BranchesResponse(
+            $this->connector->request(
+                'get',
+                "/applications/${applicationUuid}/code",
+                $this->query
+            )
+        );
     }
 
     /**
      * Shows all databases in an application.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @return DatabasesResponse
      */
-    public function databases($uuid)
+    public function databases($applicationUuid)
     {
-        return new DatabasesResponse($this->connector->request('get', "/applications/${uuid}/databases", $this->query));
+        return new DatabasesResponse(
+            $this->connector->request(
+                'get',
+                "/applications/${applicationUuid}/databases",
+                $this->query
+            )
+        );
     }
 
     /**
      * Shows all databases in an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return DatabasesResponse
      */
-    public function environmentDatabases($id)
+    public function environmentDatabases($environmentUuid)
     {
-        return new DatabasesResponse($this->connector->request('get', "/environments/${id}/databases", $this->query));
+        return new DatabasesResponse(
+            $this->connector->request(
+                'get',
+                "/environments/${environmentUuid}/databases",
+                $this->query
+            )
+        );
     }
 
     /**
@@ -183,11 +214,11 @@ class Client implements ClientInterface
     /**
      * Create a new database.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @param string $name
      * @return OperationResponse
      */
-    public function databaseCreate($uuid, $name)
+    public function databaseCreate($applicationUuid, $name)
     {
         $options = [
             'form_params' => [
@@ -196,79 +227,91 @@ class Client implements ClientInterface
         ];
 
         return new OperationResponse(
-            $this->connector->request('post', "/applications/${uuid}/databases", $this->query, $options)
+            $this->connector->request('post', "/applications/${applicationUuid}/databases", $this->query, $options)
         );
     }
 
     /**
      * Delete a database.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @param string $name
      * @return OperationResponse
      */
-    public function databaseDelete($uuid, $name)
+    public function databaseDelete($applicationUuid, $name)
     {
         return new OperationResponse(
-            $this->connector->request('post', "/applications/${uuid}/databases/${name}", $this->query)
+            $this->connector->request('post', "/applications/${applicationUuid}/databases/${name}", $this->query)
         );
     }
 
     /**
      * Backup a database.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param string $dbName
      * @return OperationResponse
      */
-    public function createDatabaseBackup($id, $dbName)
+    public function createDatabaseBackup($environmentUuid, $dbName)
     {
         return new OperationResponse(
-            $this->connector->request('post', "/environments/${id}/databases/${dbName}/backups", $this->query)
+            $this->connector->request(
+                'post',
+                "/environments/${environmentUuid}/databases/${dbName}/backups",
+                $this->query
+            )
         );
     }
 
     /**
      * Shows all database backups in an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param string $dbName
      * @return BackupsResponse
      */
-    public function databaseBackups($id, $dbName)
+    public function databaseBackups($environmentUuid, $dbName)
     {
         return new BackupsResponse(
-            $this->connector->request('get', "/environments/${id}/databases/${dbName}/backups", $this->query)
+            $this->connector->request(
+                'get',
+                "/environments/${environmentUuid}/databases/${dbName}/backups",
+                $this->query
+            )
         );
     }
 
     /**
      * Gets information about a database backup.
      *
-     * @param string $id
-     * @param string $backupId
+     * @param string $environmentUuid
+     * @param int    $backupId
      * @return BackupResponse
      */
-    public function databaseBackup($id, $backupId)
+    public function databaseBackup($environmentUuid, $backupId)
     {
          return new BackupResponse(
-             $this->connector->request('get', "/environments/${id}/database-backups/${backupId}", $this->query)
+             $this->connector->request(
+                 'get',
+                 "/environments/${environmentUuid}/database-backups/${backupId}",
+                 $this->query
+             )
          );
     }
 
-   /**
-    * Restores a database backup to a database in an environment.
-    *
-    * @param string $id
-    * @param string $backupId
-    * @return OperationResponse
-    */
-    public function restoreDatabaseBackup($id, $backupId)
+    /**
+     * Restores a database backup to a database in an environment.
+     *
+     * @param string $environmentUuid
+     * @param int    $backupId
+     * @return OperationResponse
+     */
+    public function restoreDatabaseBackup($environmentUuid, $backupId)
     {
         return new OperationResponse(
             $this->connector->request(
                 'post',
-                "/environments/${id}/database-backups/${backupId}/actions/restore",
+                "/environments/${environmentUuid}/database-backups/${backupId}/actions/restore",
                 $this->query
             )
         );
@@ -277,31 +320,31 @@ class Client implements ClientInterface
     /**
      * Copies files from an environment to another environment.
      *
-     * @param string $idFrom
-     * @param string $idTo
+     * @param string $environmentUuidFrom
+     * @param string $environmentUuidTo
      * @return OperationResponse
      */
-    public function copyFiles($idFrom, $idTo)
+    public function copyFiles($environmentUuidFrom, $environmentUuidTo)
     {
         $options = [
            'form_params' => [
-               'source' => $idFrom,
+               'source' => $environmentUuidFrom,
            ],
         ];
 
         return new OperationResponse(
-            $this->connector->request('post', "/environments/${idTo}/files", $this->query, $options)
+            $this->connector->request('post', "/environments/${environmentUuidTo}/files", $this->query, $options)
         );
     }
 
     /**
      * Deploys a code branch/tag to an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param string $branch
      * @return OperationResponse
      */
-    public function switchCode($id, $branch)
+    public function switchCode($environmentUuid, $branch)
     {
 
         $options = [
@@ -311,29 +354,40 @@ class Client implements ClientInterface
         ];
 
         return new OperationResponse(
-            $this->connector->request('post', "/environments/${id}/code/actions/switch", $this->query, $options)
+            $this->connector->request(
+                'post',
+                "/environments/${environmentUuid}/code/actions/switch",
+                $this->query,
+                $options
+            )
         );
     }
 
     /**
      * Shows all domains on an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return DomainsResponse
      */
-    public function domains($id)
+    public function domains($environmentUuid)
     {
-        return new DomainsResponse($this->connector->request('get', "/environments/${id}/domains", $this->query));
+        return new DomainsResponse(
+            $this->connector->request(
+                'get',
+                "/environments/${environmentUuid}/domains",
+                $this->query
+            )
+        );
     }
 
     /**
      * Adds a domain to an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param string $hostname
      * @return OperationResponse
      */
-    public function createDomain($id, $hostname)
+    public function createDomain($environmentUuid, $hostname)
     {
 
         $options = [
@@ -343,32 +397,32 @@ class Client implements ClientInterface
         ];
 
         return new OperationResponse(
-            $this->connector->request('post', "/environments/${id}/domains", $this->query, $options)
+            $this->connector->request('post', "/environments/${environmentUuid}/domains", $this->query, $options)
         );
     }
 
     /**
      * Deletes a domain from an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param string $domain
      * @return OperationResponse
      */
-    public function deleteDomain($id, $domain)
+    public function deleteDomain($environmentUuid, $domain)
     {
         return new OperationResponse(
-            $this->connector->request('delete', "/environments/${id}/domains/${domain}", $this->query)
+            $this->connector->request('delete', "/environments/${environmentUuid}/domains/${domain}", $this->query)
         );
     }
 
     /**
      * Purges varnish for selected domains in an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param array  $domains
      * @return OperationResponse
      */
-    public function purgeVarnishCache($id, array $domains)
+    public function purgeVarnishCache($environmentUuid, array $domains)
     {
 
         $options = [
@@ -380,8 +434,7 @@ class Client implements ClientInterface
         return new OperationResponse(
             $this->connector->request(
                 'post',
-                "/environments/${id}/domains/actions/clear-varnish",
-                $this->query,
+                "/environments/${environmentUuid}/domains/actions/clear-varnish",
                 $this->query,
                 $options
             )
@@ -391,46 +444,62 @@ class Client implements ClientInterface
     /**
      * Shows all tasks in an application.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @return TasksResponse
      */
-    public function tasks($uuid)
+    public function tasks($applicationUuid)
     {
-        return new TasksResponse($this->connector->request('get', "/applications/${uuid}/tasks", $this->query));
+        return new TasksResponse(
+            $this->connector->request(
+                'get',
+                "/applications/${applicationUuid}/tasks",
+                $this->query
+            )
+        );
     }
 
     /**
      * Shows all environments in an application.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @return EnvironmentsResponse
      */
-    public function environments($uuid)
+    public function environments($applicationUuid)
     {
         return new EnvironmentsResponse(
-            $this->connector->request('get', "/applications/${uuid}/environments", $this->query)
+            $this->connector->request(
+                'get',
+                "/applications/${applicationUuid}/environments",
+                $this->query
+            )
         );
     }
 
     /**
      * Gets information about an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return EnvironmentResponse
      */
-    public function environment($id)
+    public function environment($environmentUuid)
     {
-        return new EnvironmentResponse($this->connector->request('get', "/environments/${id}", $this->query));
+        return new EnvironmentResponse(
+            $this->connector->request(
+                'get',
+                "/environments/${environmentUuid}",
+                $this->query
+            )
+        );
     }
 
     /**
      * Renames an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param string $label
      * @return OperationResponse
      */
-    public function renameEnvironment($id, $label)
+    public function renameEnvironment($environmentUuid, $label)
     {
 
         $options = [
@@ -440,41 +509,52 @@ class Client implements ClientInterface
         ];
 
         return new OperationResponse(
-            $this->connector->request('post', "/environments/${id}/actions/change-label", $this->query, $options)
+            $this->connector->request(
+                'post',
+                "/environments/${environmentUuid}/actions/change-label",
+                $this->query,
+                $options
+            )
         );
     }
 
     /**
      * Show all servers associated with an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return ServersResponse
      */
-    public function servers($id)
+    public function servers($environmentUuid)
     {
-        return new ServersResponse($this->connector->request('get', "/environments/${id}/servers", $this->query));
+        return new ServersResponse(
+            $this->connector->request(
+                'get',
+                "/environments/${environmentUuid}/servers",
+                $this->query
+            )
+        );
     }
 
     /**
      * Enable livedev mode for an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return OperationResponse
      */
-    public function enableLiveDev($id)
+    public function enableLiveDev($environmentUuid)
     {
         return new OperationResponse(
-            $this->connector->request('post', "/environments/${id}/livedev/actions/enable", $this->query)
+            $this->connector->request('post', "/environments/${environmentUuid}/livedev/actions/enable", $this->query)
         );
     }
 
     /**
      * Disable livedev mode for an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return OperationResponse
      */
-    public function disableLiveDev($id)
+    public function disableLiveDev($environmentUuid)
     {
 
         $options = [
@@ -484,69 +564,94 @@ class Client implements ClientInterface
         ];
 
         return new OperationResponse(
-            $this->connector->request('post', "/environments/${id}/livedev/actions/disable", $this->query, $options)
+            $this->connector->request(
+                'post',
+                "/environments/${environmentUuid}/livedev/actions/disable",
+                $this->query,
+                $options
+            )
         );
     }
 
     /**
      * Enable production mode for an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return OperationResponse
      */
-    public function enableProductionMode($id)
+    public function enableProductionMode($environmentUuid)
     {
         return new OperationResponse(
-            $this->connector->request('post', "/environments/${id}/production-mode/actions/enable", $this->query)
+            $this->connector->request(
+                'post',
+                "/environments/${environmentUuid}/production-mode/actions/enable",
+                $this->query
+            )
         );
     }
 
     /**
      * Disable production mode for an environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return OperationResponse
      */
-    public function disableProductionMode($id)
+    public function disableProductionMode($environmentUuid)
     {
         return new OperationResponse(
-            $this->connector->request('post', "/environments/${id}/production-mode/actions/disable", $this->query)
+            $this->connector->request(
+                'post',
+                "/environments/${environmentUuid}/production-mode/actions/disable",
+                $this->query
+            )
         );
     }
 
     /**
      * Show all cron tasks for an environment.
      *
-     * @param string $id The environment ID
+     * @param string $environmentUuid The environment ID
      * @return CronsResponse
      */
-    public function crons($id)
+    public function crons($environmentUuid)
     {
-        return new CronsResponse($this->connector->request('get', "/environments/${id}/crons", $this->query));
+        return new CronsResponse(
+            $this->connector->request(
+                'get',
+                "/environments/${environmentUuid}/crons",
+                $this->query
+            )
+        );
     }
 
     /**
      * Get information about a cron task.
      *
-     * @param string $id     The environment ID
+     * @param string $environmentUuid The environment ID
      * @param int    $cronId
      * @return CronResponse
      */
-    public function cron($id, $cronId)
+    public function cron($environmentUuid, $cronId)
     {
-        return new CronResponse($this->connector->request('get', "/environments/${id}/crons/${cronId}", $this->query));
+        return new CronResponse(
+            $this->connector->request(
+                'get',
+                "/environments/${environmentUuid}/crons/${cronId}",
+                $this->query
+            )
+        );
     }
 
     /**
      * Add a cron task.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param string $command
      * @param string $frequency
      * @param string $label
      * @return OperationResponse
      */
-    public function createCron($id, $command, $frequency, $label)
+    public function createCron($environmentUuid, $command, $frequency, $label)
     {
 
         $options = [
@@ -558,49 +663,57 @@ class Client implements ClientInterface
         ];
 
         return new OperationResponse(
-            $this->connector->request('post', "/environments/${id}/crons", $this->query, $options)
+            $this->connector->request('post', "/environments/${environmentUuid}/crons", $this->query, $options)
         );
     }
 
     /**
      * Delete a cron task.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param int    $cronId
      * @return OperationResponse
      */
-    public function deleteCron($id, $cronId)
+    public function deleteCron($environmentUuid, $cronId)
     {
         return new OperationResponse(
-            $this->connector->request('delete', "/environments/${id}/crons/${cronId}", $this->query)
+            $this->connector->request('delete', "/environments/${environmentUuid}/crons/${cronId}", $this->query)
         );
     }
 
     /**
      * Disable a cron task.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param int    $cronId
      * @return OperationResponse
      */
-    public function disableCron($id, $cronId)
+    public function disableCron($environmentUuid, $cronId)
     {
         return new OperationResponse(
-            $this->connector->request('post', "/environments/${id}/crons/${cronId}/actions/disable", $this->query)
+            $this->connector->request(
+                'post',
+                "/environments/${environmentUuid}/crons/${cronId}/actions/disable",
+                $this->query
+            )
         );
     }
 
     /**
      * Enable a cron task.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @param int    $cronId
      * @return OperationResponse
      */
-    public function enableCron($id, $cronId)
+    public function enableCron($environmentUuid, $cronId)
     {
         return new OperationResponse(
-            $this->connector->request('post', "/environments/${id}/crons/${cronId}/actions/enable", $this->query)
+            $this->connector->request(
+                'post',
+                "/environments/${environmentUuid}/crons/${cronId}/actions/enable",
+                $this->query
+            )
         );
     }
 
@@ -615,23 +728,27 @@ class Client implements ClientInterface
     /**
      * Show insights data from an application.
      *
-     * @param string $uuid
+     * @param string $applicationUuid
      * @return InsightsResponse
      */
-    public function applicationInsights($uuid)
+    public function applicationInsights($applicationUuid)
     {
-        return new InsightsResponse($this->connector->request('get', "/applications/${uuid}/insight", $this->query));
+        return new InsightsResponse(
+            $this->connector->request('get', "/applications/${applicationUuid}/insight", $this->query)
+        );
     }
 
     /**
      * Show insights data from a specific environment.
      *
-     * @param string $id
+     * @param string $environmentUuid
      * @return InsightsResponse
      */
-    public function environmentInsights($id)
+    public function environmentInsights($environmentUuid)
     {
-        return new InsightsResponse($this->connector->request('get', "/environments/${id}/insight", $this->query));
+        return new InsightsResponse(
+            $this->connector->request('get', "/environments/${environmentUuid}/insight", $this->query)
+        );
     }
 
     /**
@@ -647,41 +764,28 @@ class Client implements ClientInterface
     /**
      * Show all applications in an organisation.
      *
-     * @param string $uuid
+     * @param string $organizationUuid
      *
      * @return ApplicationsResponse
      */
-    public function organizationApplications($uuid)
+    public function organizationApplications($organizationUuid)
     {
         return new ApplicationsResponse(
-            $this->connector->request('get', "/organizations/${uuid}/applications", $this->query)
+            $this->connector->request('get', "/organizations/${organizationUuid}/applications", $this->query)
         );
     }
 
     /**
-     * @param $name
-     * @return OperationResponse
-     */
-//    public function organizationCreate($name)
-//    {
-//        $options = [
-//            'form_params' => [
-//                'name' => $name,
-//            ],
-//        ];
-//
-//        return new OperationResponse($this->request('post', '/organizations', $options));
-//    }
-
-    /**
      * Show all roles in an organization.
      *
-     * @param string $uuid
+     * @param string $organizationUuid
      * @return RolesResponse
      */
-    public function organizationRoles($uuid)
+    public function organizationRoles($organizationUuid)
     {
-        return new RolesResponse($this->connector->request('get', "/organizations/${uuid}/roles", $this->query));
+        return new RolesResponse(
+            $this->connector->request('get', "/organizations/${organizationUuid}/roles", $this->query)
+        );
     }
 
     /**
@@ -703,13 +807,13 @@ class Client implements ClientInterface
     }
 
     /**
-     * @param string      $uuid
+     * @param string      $organizationUuid
      * @param string      $name
      * @param array       $permissions
      * @param null|string $description
      * @return OperationResponse
      */
-    public function createRole($uuid, $name, array $permissions, $description = null)
+    public function createRole($organizationUuid, $name, array $permissions, $description = null)
     {
         $options = [
             'form_params' => [
@@ -720,7 +824,7 @@ class Client implements ClientInterface
         ];
 
         return new OperationResponse(
-            $this->connector->request('post', "/organizations/${uuid}/roles", $this->query, $options)
+            $this->connector->request('post', "/organizations/${organizationUuid}/roles", $this->query, $options)
         );
     }
 
@@ -779,11 +883,11 @@ class Client implements ClientInterface
     /**
      * Create a new team.
      *
-     * @param string $uuid
+     * @param string $organizationUuid
      * @param string $name
      * @return OperationResponse
      */
-    public function createTeam($uuid, $name)
+    public function createTeam($organizationUuid, $name)
     {
         $options = [
             'form_params' => [
@@ -792,7 +896,7 @@ class Client implements ClientInterface
         ];
 
         return new OperationResponse(
-            $this->connector->request('post', "/organizations/${uuid}/teams", $this->query, $options)
+            $this->connector->request('post', "/organizations/${organizationUuid}/teams", $this->query, $options)
         );
     }
 

@@ -98,7 +98,7 @@ class Connector implements ConnectorInterface
             if (property_exists($object, '_embedded') && property_exists($object->_embedded, 'items')) {
                 $return = $object->_embedded->items;
             } elseif (property_exists($object, 'error')) {
-                  throw new \Exception($object->message);
+                throw new \Exception($object->message);
             } else {
                 $return = $object;
             }

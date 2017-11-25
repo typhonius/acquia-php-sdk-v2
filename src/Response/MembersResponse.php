@@ -10,9 +10,9 @@ class MembersResponse extends \ArrayObject
 {
 
     /**
-    * MembersResponse constructor.
-    * @param array $members
-    */
+     * MembersResponse constructor.
+     * @param array $members
+     */
     public function __construct($members)
     {
         parent::__construct(array_map(function ($member) {

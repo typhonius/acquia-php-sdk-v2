@@ -10,9 +10,9 @@ class EnvironmentsResponse extends \ArrayObject
 {
 
     /**
-    * EnvironmentsResponse constructor.
-    * @param array $environments
-    */
+     * EnvironmentsResponse constructor.
+     * @param array $environments
+     */
     public function __construct($environments)
     {
         parent::__construct(array_map(function ($environment) {

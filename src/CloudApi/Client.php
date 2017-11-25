@@ -290,13 +290,13 @@ class Client implements ClientInterface
      */
     public function databaseBackup($environmentUuid, $backupId)
     {
-         return new BackupResponse(
-             $this->connector->request(
-                 'get',
-                 "/environments/${environmentUuid}/database-backups/${backupId}",
-                 $this->query
-             )
-         );
+        return new BackupResponse(
+            $this->connector->request(
+                'get',
+                "/environments/${environmentUuid}/database-backups/${backupId}",
+                $this->query
+            )
+        );
     }
 
     /**
@@ -327,9 +327,9 @@ class Client implements ClientInterface
     public function copyFiles($environmentUuidFrom, $environmentUuidTo)
     {
         $options = [
-           'form_params' => [
-               'source' => $environmentUuidFrom,
-           ],
+            'form_params' => [
+                'source' => $environmentUuidFrom,
+            ],
         ];
 
         return new OperationResponse(
@@ -869,15 +869,15 @@ class Client implements ClientInterface
      */
     public function renameTeam($teamUuid, $name)
     {
-          $options = [
-                'form_params' => [
-                      'name' => $name,
-                  ],
-            ];
+        $options = [
+            'form_params' => [
+                'name' => $name,
+            ],
+        ];
 
-          return new OperationResponse(
-              $this->connector->request('put', "/teams/${teamUuid}", $options)
-          );
+        return new OperationResponse(
+            $this->connector->request('put', "/teams/${teamUuid}", $options)
+        );
     }
 
     /**

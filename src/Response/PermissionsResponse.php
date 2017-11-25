@@ -10,9 +10,9 @@ class PermissionsResponse extends \ArrayObject
 {
 
     /**
-    * PermissionsResponse constructor.
-    * @param array $permissions
-    */
+     * PermissionsResponse constructor.
+     * @param array $permissions
+     */
     public function __construct($permissions)
     {
         parent::__construct(array_map(function ($permission) {

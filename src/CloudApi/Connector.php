@@ -50,7 +50,7 @@ class Connector implements ConnectorInterface
      *
      * @return object|array|StreamInterface
      */
-    public function request(string $verb, string $path, array $query = [], array $options = array())
+    public function request(string $verb, string $path, array $query = [], array $options = [])
     {
         $options['query'] = $query;
 
@@ -70,7 +70,7 @@ class Connector implements ConnectorInterface
      * @param array  $options
      * @return ResponseInterface
      */
-    public function makeRequest(string $verb, string $path, array $query = [], array $options = array())
+    public function makeRequest(string $verb, string $path, array $query = [], array $options = [])
     {
         try {
             $response = $this->client->$verb(self::BASE_URI . $path, $options);

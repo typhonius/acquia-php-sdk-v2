@@ -5,6 +5,10 @@ namespace AcquiaCloudApi\CloudApi;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
+/**
+ * Interface ConnectorInterface
+ * @package AcquiaCloudApi\CloudApi
+ */
 interface ConnectorInterface
 {
     /**

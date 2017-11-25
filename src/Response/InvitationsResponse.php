@@ -11,7 +11,7 @@ class InvitationsResponse extends \ArrayObject
 
     /**
     * MembersResponse constructor.
-    * @param array $members
+    * @param array $invitations
     */
     public function __construct($invitations)
     {

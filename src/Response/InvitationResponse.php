@@ -12,7 +12,7 @@ class InvitationResponse
     public $email;
     public $author;
     public $applications;
-    public $organizations;
+    public $organization;
     public $roles;
     public $team;
     public $created_at;

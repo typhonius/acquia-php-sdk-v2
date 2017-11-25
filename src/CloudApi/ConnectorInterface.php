@@ -13,7 +13,7 @@ interface ConnectorInterface
      * @param array  $query
      * @param array  $options
      *
-     * @return mixed|StreamInterface
+     * @return object|array|StreamInterface
      */
     public function request(string $verb, string $path, array $query = [], array $options = array());
 
@@ -22,13 +22,13 @@ interface ConnectorInterface
      * @param string $path
      * @param array  $query
      * @param array  $options
-     * @return array|object
+     * @return ResponseInterface
      */
     public function makeRequest(string $verb, string $path, array $query = [], array $options = array());
 
     /**
      * @param ResponseInterface $response
-     * @return mixed|StreamInterface
+     * @return object|array|StreamInterface
      * @throws \Exception
      */
     public function processResponse(ResponseInterface $response);

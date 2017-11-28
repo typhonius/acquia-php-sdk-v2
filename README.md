@@ -66,6 +66,6 @@ $servers = $cloudapi->servers($environment->uuid);
 
 ```
 
-## I just want to use this not develop against it
+## I just want to talk to the API without having to write code
 
-A Robo application has been created that uses this SDK and creates a command line tool for interacting with the API. [The application may be found here](https://github.com/typhonius/acquia_cli) using the acquia-api-v2 branch.
+The [Acquia Cli Robo application](https://github.com/typhonius/acquia_cli) creates a command line tool for communicating with the API using this SDK. Its purpose is to provide a simple mechanism for interacting with the API without having to write a line of code.

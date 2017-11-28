@@ -30,6 +30,9 @@
         }
     },
     "scripts": {
-        "test": "phpunit"
+        "lint": "php -l ./src/",
+        "sniff": "./vendor/bin/phpcs -s --standard=PSR2 ./src/",
+        "test": "./vendor/bin/phpunit --coverage-clover ./tests/logs/clover.xml",
+        "coveralls": "php ./vendor/bin/coveralls -v"
     }
 }

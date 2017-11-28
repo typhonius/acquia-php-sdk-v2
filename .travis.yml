@@ -13,9 +13,10 @@ install:
 
 script:
     - cd ${TRAVIS_BUILD_DIR}
-    - php -l src/
-    - ./vendor/bin/phpcs -s --standard=PSR2 ./src/
-    - ./vendor/bin/phpunit --coverage-clover ./tests/logs/clover.xml
+    - composer lint
+    - composer sniff
+    - composer test
 
 after_script:
-    - cd ${TRAVIS_BUILD_DIR} && php vendor/bin/coveralls -v
+    - cd ${TRAVIS_BUILD_DIR}
+    - composer coveralls

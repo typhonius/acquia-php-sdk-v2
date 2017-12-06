@@ -21,8 +21,14 @@ class Connector implements ConnectorInterface
      */
     const BASE_URI = 'https://cloud.acquia.com/api';
 
+    /**
+     * @var GuzzleClient The Guzzle Client to communicate with the API.
+     */
     protected $client;
 
+    /**
+     * @var array Injected configuration values.
+     */
     protected $config;
 
     /**
@@ -43,6 +49,8 @@ class Connector implements ConnectorInterface
     }
 
     /**
+     * Takes parameters passed in, makes a request to the API, and processes the response.
+     *
      * @param string $verb
      * @param string $path
      * @param array  $query
@@ -64,6 +72,8 @@ class Connector implements ConnectorInterface
     }
 
     /**
+     * Makes a request to the API.
+     *
      * @param string $verb
      * @param string $path
      * @param array  $query
@@ -83,6 +93,8 @@ class Connector implements ConnectorInterface
     }
 
     /**
+     * Processes the returned response from the API.
+     *
      * @param ResponseInterface $response
      * @return object|array|StreamInterface
      * @throws \Exception

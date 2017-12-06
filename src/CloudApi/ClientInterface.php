@@ -27,6 +27,7 @@ use Psr\Http\Message\StreamInterface;
 
 /**
  * Interface ClientInterface
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 interface ClientInterface
@@ -44,6 +45,8 @@ interface ClientInterface
     public function clearQuery();
 
     /**
+     * Add a query parameter to filter results.
+     *
      * @param string $name
      * @param string $value
      */
@@ -343,6 +346,8 @@ interface ClientInterface
     public function enableCron($environmentUuid, $cronId);
 
     /**
+     * Provides an archived set of files for Acquia Drush aliases.
+     *
      * @return StreamInterface
      */
     public function drushAliases();
@@ -388,6 +393,8 @@ interface ClientInterface
     public function organizationRoles($organizationUuid);
 
     /**
+     * Update the permissions associated with a role.
+     *
      * @param string $roleUuid
      * @param array  $permissions
      * @return OperationResponse
@@ -395,6 +402,8 @@ interface ClientInterface
     public function updateRole($roleUuid, array $permissions);
 
     /**
+     * Create a new role.
+     *
      * @param string      $organizationUuid
      * @param string      $name
      * @param array       $permissions
@@ -404,6 +413,8 @@ interface ClientInterface
     public function createRole($organizationUuid, $name, array $permissions, $description = null);
 
     /**
+     * Delete a role.
+     *
      * @param string $roleUuid
      * @return OperationResponse
      */
@@ -425,6 +436,8 @@ interface ClientInterface
     public function teams();
 
     /**
+     * Rename an existing team.
+     *
      * @param string $teamUuid
      * @param string $name
      * @return OperationResponse
@@ -441,12 +454,16 @@ interface ClientInterface
     public function createTeam($organizationUuid, $name);
 
     /**
+     * Delete a team.
+     *
      * @param string $teamUuid
      * @return OperationResponse
      */
     public function deleteTeam($teamUuid);
 
     /**
+     * Add an application to a team.
+     *
      * @param string $teamUuid
      * @param string $applicationUuid
      * @return OperationResponse

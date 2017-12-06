@@ -7,11 +7,14 @@ use Psr\Http\Message\StreamInterface;
 
 /**
  * Interface ConnectorInterface
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 interface ConnectorInterface
 {
     /**
+     * Makes a request to the API.
+     *
      * @param string $verb
      * @param string $path
      * @param array  $query
@@ -19,7 +22,7 @@ interface ConnectorInterface
      *
      * @return object|array|StreamInterface
      */
-    public function request(string $verb, string $path, array $query = [], array $options = array());
+    public function request(string $verb, string $path, array $query = [], array $options = []);
 
     /**
      * @param string $verb
@@ -28,9 +31,11 @@ interface ConnectorInterface
      * @param array  $options
      * @return ResponseInterface
      */
-    public function makeRequest(string $verb, string $path, array $query = [], array $options = array());
+    public function makeRequest(string $verb, string $path, array $query = [], array $options = []);
 
     /**
+     * Processes the returned response from the API.
+     *
      * @param ResponseInterface $response
      * @return object|array|StreamInterface
      * @throws \Exception

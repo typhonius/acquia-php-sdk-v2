@@ -31,12 +31,15 @@ use Psr\Http\Message\StreamInterface;
  */
 class Client implements ClientInterface
 {
+    /** @var ConnectorInterface The API connector. */
     protected $connector;
 
+    /** @var array Query strings to be applied to the request. */
     protected $query = [];
 
     /**
      * Client constructor.
+     *
      * @param ConnectorInterface $connector
      */
     public function __construct(ConnectorInterface $connector)
@@ -45,6 +48,8 @@ class Client implements ClientInterface
     }
 
     /**
+     * Client factory method for instantiating .
+     *
      * @param ConnectorInterface $connector
      *
      * @return static
@@ -77,6 +82,8 @@ class Client implements ClientInterface
     }
 
     /**
+     * Add a query parameter to filter results.
+     *
      * @param string $name
      * @param string $value
      */
@@ -718,6 +725,8 @@ class Client implements ClientInterface
     }
 
     /**
+     * Provides an archived set of files for Acquia Drush aliases.
+     *
      * @return StreamInterface
      */
     public function drushAliases()
@@ -789,6 +798,8 @@ class Client implements ClientInterface
     }
 
     /**
+     * Update the permissions associated with a role.
+     *
      * @param string $roleUuid
      * @param array  $permissions
      * @return OperationResponse
@@ -807,6 +818,8 @@ class Client implements ClientInterface
     }
 
     /**
+     * Create a new role.
+     *
      * @param string      $organizationUuid
      * @param string      $name
      * @param array       $permissions
@@ -829,6 +842,8 @@ class Client implements ClientInterface
     }
 
     /**
+     * Delete a role.
+     *
      * @param string $roleUuid
      * @return OperationResponse
      */
@@ -863,6 +878,8 @@ class Client implements ClientInterface
     }
 
     /**
+     * Rename an existing team.
+     *
      * @param string $teamUuid
      * @param string $name
      * @return OperationResponse
@@ -901,6 +918,8 @@ class Client implements ClientInterface
     }
 
     /**
+     * Delete a team.
+     *
      * @param string $teamUuid
      * @return OperationResponse
      */
@@ -912,6 +931,8 @@ class Client implements ClientInterface
     }
 
     /**
+     * Add an application to a team.
+     *
      * @param string $teamUuid
      * @param string $applicationUuid
      * @return OperationResponse

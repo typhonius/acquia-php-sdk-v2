@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "acquia/http-hmac-php",
-            "version": "3.2.0",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acquia/http-hmac-php.git",
-                "reference": "cf4ad39fe4efadb978d49c4fe8671cadf8805920"
+                "reference": "24355c027425ee8e844ae87ac8748a77e6d05c2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acquia/http-hmac-php/zipball/cf4ad39fe4efadb978d49c4fe8671cadf8805920",
-                "reference": "cf4ad39fe4efadb978d49c4fe8671cadf8805920",
+                "url": "https://api.github.com/repos/acquia/http-hmac-php/zipball/24355c027425ee8e844ae87ac8748a77e6d05c2b",
+                "reference": "24355c027425ee8e844ae87ac8748a77e6d05c2b",
                 "shasum": ""
             },
             "require": {
@@ -67,7 +67,7 @@
             ],
             "description": "An implementation of the HTTP HMAC Spec in PHP that integrates with popular libraries such as Symfony and Guzzle.",
             "homepage": "https://github.com/acquia/http-hmac-php",
-            "time": "2017-10-27T12:46:34+00:00"
+            "time": "2017-12-05T17:55:18+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

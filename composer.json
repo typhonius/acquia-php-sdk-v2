@@ -11,7 +11,7 @@
     "require": {
         "acquia/http-hmac-php": "^3.1",
         "guzzlehttp/guzzle": "^6.3",
-        "php": "^7.1"
+        "php": "^7.0"
     },
     "require-dev": {
         "php-coveralls/php-coveralls": "dev-master",

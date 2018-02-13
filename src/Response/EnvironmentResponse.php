@@ -18,7 +18,6 @@ class EnvironmentResponse
     public $status;
     public $type;
     public $vcs;
-    public $insight;
     public $flags;
     public $configuration;
     public $links;
@@ -41,8 +40,8 @@ class EnvironmentResponse
         $this->status = $environment->status;
         $this->type = $environment->type;
         $this->vcs = $environment->vcs;
-        $this->insight = $environment->insight;
-        $this->flags = $environment->configuration;
+        $this->configuration = $environment->configuration;
+        $this->flags = $environment->flags;
         $this->links = $environment->_links;
     }
 }

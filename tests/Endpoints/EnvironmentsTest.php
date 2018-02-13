@@ -14,7 +14,6 @@ class EnvironmentsTest extends CloudApiTestCase
     'status',
     'type',
     'vcs',
-    'insight',
     'flags',
     'configuration',
     'links'

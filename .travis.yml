@@ -4,12 +4,26 @@ language: php
 php:
     - 7.1
 
+env:
+    - VERSION=LOCK
+    - VERSION=HIGHEST
+    - VERSION=LOWEST
+
+
 before_install:
     - composer self-update
     - composer validate --no-check-all --ansi
 
 install:
-    - travis_retry composer install --no-interaction --prefer-source
+    - 'if [ $VERSION = "LOCK" ]; then
+          travis_retry composer install --no-interaction --prefer-source
+      fi;'
+    - 'if [ $VERSION = "HIGHEST" ]; then
+          travis_retry composer update --no-interaction --prefer-source
+      fi;'
+    - 'if [ $VERSION = "LOWEST" ]; then
+          travis_retry composer update --no-interaction --prefer-source --prefer-lowest
+      fi;'
 
 script:
     - cd ${TRAVIS_BUILD_DIR}

@@ -9,7 +9,7 @@
     ],
     "license": "MIT",
     "require": {
-        "acquia/http-hmac-php": "^3.1",
+        "acquia/http-hmac-php": "^2.0 || ^3.1",
         "guzzlehttp/guzzle": "^6.3",
         "php": ">=5.6"
     },

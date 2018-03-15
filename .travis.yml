@@ -16,13 +16,13 @@ before_install:
 
 install:
     - 'if [ $VERSION = "LOCK" ]; then
-          travis_retry composer install --no-interaction --prefer-source
+          travis_retry composer install --no-interaction --prefer-source;
       fi;'
     - 'if [ $VERSION = "HIGHEST" ]; then
-          travis_retry composer update --no-interaction --prefer-source
+          travis_retry composer update --no-interaction --prefer-source;
       fi;'
     - 'if [ $VERSION = "LOWEST" ]; then
-          travis_retry composer update --no-interaction --prefer-source --prefer-lowest
+          travis_retry composer update --no-interaction --prefer-source --prefer-lowest;
       fi;'
 
 script:

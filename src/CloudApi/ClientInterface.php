@@ -183,6 +183,16 @@ interface ClientInterface
     public function switchCode($environmentUuid, $branch);
 
     /**
+     * Deploys code from one environment to another environment.
+     *
+     * @param string $environmentFromUuid
+     * @param string $environmentToUuid
+     * @param string $commitMessage
+     * @return OperationResponse
+     */
+    public function deployCode($environmentUuid, $branch);
+
+    /**
      * Shows all domains on an environment.
      *
      * @param string $environmentUuid

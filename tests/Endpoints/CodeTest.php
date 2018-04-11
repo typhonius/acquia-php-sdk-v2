@@ -40,4 +40,17 @@ class CodeTest extends CloudApiTestCase
 
         $this->assertEquals('The code is being switched.', $result->message);
     }
+
+    public function testCodeDeploy()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/deployCode.json');
+        $client = $this->getMockClient($response);
+
+      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $result = $client->deployCode('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'f9ef59eb-13ee-4050-8120-5524d8ce9821', 'Commit message');
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
+        $this->assertEquals('The code is being deployed.', $result->message);
+    }
 }

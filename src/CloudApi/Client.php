@@ -371,6 +371,33 @@ class Client implements ClientInterface
     }
 
     /**
+     * Deploys code from one environment to another environment.
+     *
+     * @param string $environmentFromUuid
+     * @param string $environmentToUuid
+     * @param string $commitMessage
+     */
+    public function deployCode($environmentFromUuid, $environmentToUuid, $commitMessage = null)
+    {
+
+        $options = [
+            'form_params' => [
+                'source' => $environmentFromUuid,
+                'message' => $commitMessage,
+            ],
+        ];
+
+        return new OperationResponse(
+            $this->connector->request(
+                'post',
+                "/environments/${environmentToUuid}/code",
+                $this->query,
+                $options
+            )
+        );
+    }
+
+    /**
      * Shows all domains on an environment.
      *
      * @param string $environmentUuid

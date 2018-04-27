@@ -1,0 +1,27 @@
+{
+    "logstream": {
+        "url": "wss://logstream.example.com/ah_websocket/logstream/v1",
+        "params": {
+            "t": 1516990002,
+            "hmac": "d8b940bb5a1865e57b22734d541ed981c89f952e527b0a983d0e457437a43c23",
+            "environment": "prod",
+            "site": "clouduidev:qa4"
+        },
+        "commands": [
+            "stream-environment",
+            "enable",
+            "disable"
+        ]
+    },
+    "_links": {
+        "self": {
+            "href": "{baseUri}environments/24-0c7e79ab-1c4a-424e-8446-76ae8be7e851/logstream"
+        },
+        "wss": {
+            "href": "wss://logstream.example.com/ah_websocket/logstream/v1"
+        },
+        "parent": {
+            "href": "{baseUri}/environments/24-0c7e79ab-1c4a-424e-8446-76ae8be7e851"
+        }
+    }
+}

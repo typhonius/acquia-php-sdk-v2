@@ -16,6 +16,7 @@ use AcquiaCloudApi\Response\EnvironmentResponse;
 use AcquiaCloudApi\Response\EnvironmentsResponse;
 use AcquiaCloudApi\Response\InsightsResponse;
 use AcquiaCloudApi\Response\InvitationsResponse;
+use AcquiaCloudApi\Response\LogstreamResponse;
 use AcquiaCloudApi\Response\MembersResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\OrganizationsResponse;

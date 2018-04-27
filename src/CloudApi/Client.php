@@ -17,6 +17,7 @@ use AcquiaCloudApi\Response\EnvironmentResponse;
 use AcquiaCloudApi\Response\EnvironmentsResponse;
 use AcquiaCloudApi\Response\InsightsResponse;
 use AcquiaCloudApi\Response\InvitationsResponse;
+use AcquiaCloudApi\Response\LogstreamResponse;
 use AcquiaCloudApi\Response\MembersResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\OrganizationsResponse;
@@ -1158,5 +1159,15 @@ class Client implements ClientInterface
     public function permissions()
     {
         return new PermissionsResponse($this->connector->request('get', '/permissions', $this->query));
+    }
+
+    /**
+     * Returns logstream WSS streams.
+     *
+     * @return LogstreamResponse
+     */
+    public function logstream($environmentUuid)
+    {
+        return new LogstreamResponse($this->connector->request('get', "/environments/${environmentUuid}/logstream"));
     }
 }

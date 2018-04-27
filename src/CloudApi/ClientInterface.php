@@ -565,4 +565,11 @@ interface ClientInterface
      * @return PermissionsResponse
      */
     public function permissions();
+
+    /**
+     * Returns logstream WSS streams.
+     *
+     * @return LogstreamResponse
+     */
+    public function logstream($environmentUuid);
 }

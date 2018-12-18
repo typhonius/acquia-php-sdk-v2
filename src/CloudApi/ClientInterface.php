@@ -150,19 +150,21 @@ interface ClientInterface
      * Gets information about a database backup.
      *
      * @param string $environmentUuid
+     * @param string $dbName
      * @param int    $backupId
      * @return BackupResponse
      */
-    public function databaseBackup($environmentUuid, $backupId);
+    public function databaseBackup($environmentUuid, $dbName, $backupId);
 
     /**
      * Restores a database backup to a database in an environment.
      *
      * @param string $environmentUuid
+     * @param string $dbName
      * @param int    $backupId
      * @return OperationResponse
      */
-    public function restoreDatabaseBackup($environmentUuid, $backupId);
+    public function restoreDatabaseBackup($environmentUuid, $dbName, $backupId);
 
     /**
      * Copies files from an environment to another environment.

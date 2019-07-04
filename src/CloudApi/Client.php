@@ -538,18 +538,18 @@ class Client implements ClientInterface
     public function modifyEnvironment($environmentUuid, array $config)
     {
 
-      $options = [
-        'form_params' => $config,
-      ];
+        $options = [
+          'form_params' => $config,
+        ];
 
-      return new OperationResponse(
-        $this->connector->request(
-          'put',
-          "/environments/${environmentUuid}",
-          $this->query,
-          $options
-        )
-      );
+        return new OperationResponse(
+            $this->connector->request(
+                'put',
+                "/environments/${environmentUuid}",
+                $this->query,
+                $options
+            )
+        );
     }
 
     /**

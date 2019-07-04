@@ -253,14 +253,14 @@ interface ClientInterface
      */
     public function environment($environmentUuid);
 
-  /**
-   * Modifies configuration settings for an environment.
-   *
-   * @param string $environmentUuid
-   * @param array $config
-   * @return OperationResponse
-   */
-  public function modifyEnvironment($environmentUuid, $config);
+    /**
+     * Modifies configuration settings for an environment.
+     *
+     * @param string $environmentUuid
+     * @param array $config
+     * @return OperationResponse
+     */
+    public function modifyEnvironment($environmentUuid, array $config);
 
     /**
      * Renames an environment.

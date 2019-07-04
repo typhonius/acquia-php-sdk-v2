@@ -57,6 +57,20 @@ class EnvironmentsTest extends CloudApiTestCase
         }
     }
 
+    public function testModifyEnvironment()
+    {
+      $response = $this->getPsr7JsonResponseForFixture('Endpoints/modifyEnvironment.json');
+
+      $client = $this->getMockClient($response);
+
+      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+      $result = $client->modifyEnvironment('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', ['version' => '7.2']);
+
+      $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
+      $this->assertEquals('The environment configuration is being updated.', $result->message);
+    }
+
     public function testRenameEnvironment()
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/renameEnvironment.json');

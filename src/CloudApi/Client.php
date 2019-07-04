@@ -248,7 +248,7 @@ class Client implements ClientInterface
     public function databaseDelete($applicationUuid, $name)
     {
         return new OperationResponse(
-            $this->connector->request('post', "/applications/${applicationUuid}/databases/${name}", $this->query)
+            $this->connector->request('delete', "/applications/${applicationUuid}/databases/${name}", $this->query)
         );
     }
 

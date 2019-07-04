@@ -559,6 +559,30 @@ class Client implements ClientInterface
     }
 
     /**
+     * Modifies configuration settings for an environment.
+     *
+     * @param string $environmentUuid
+     * @param array $config
+     * @return OperationResponse
+     */
+    public function modifyEnvironment($environmentUuid, array $config)
+    {
+
+        $options = [
+          'form_params' => $config,
+        ];
+
+        return new OperationResponse(
+            $this->connector->request(
+                'put',
+                "/environments/${environmentUuid}",
+                $this->query,
+                $options
+            )
+        );
+    }
+
+    /**
      * Renames an environment.
      *
      * @param string $environmentUuid

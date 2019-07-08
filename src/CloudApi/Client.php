@@ -2,6 +2,7 @@
 
 namespace AcquiaCloudApi\CloudApi;
 
+use AcquiaCloudApi\Response\AccountResponse;
 use AcquiaCloudApi\Response\ApplicationResponse;
 use AcquiaCloudApi\Response\ApplicationsResponse;
 use AcquiaCloudApi\Response\BackupResponse;
@@ -90,6 +91,16 @@ class Client implements ClientInterface
     public function addQuery($name, $value)
     {
         $this->query = array_merge_recursive($this->query, [$name => $value]);
+    }
+
+    /**
+     * Returns details about your account.
+     *
+     * @return AccountResponse
+     */
+    public function account()
+    {
+        return new AccountResponse($this->connector->request('get', '/account', $this->query));
     }
 
     /**

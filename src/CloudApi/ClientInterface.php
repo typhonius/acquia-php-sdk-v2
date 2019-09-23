@@ -17,6 +17,7 @@ use AcquiaCloudApi\Response\EnvironmentsResponse;
 use AcquiaCloudApi\Response\InsightsResponse;
 use AcquiaCloudApi\Response\InvitationsResponse;
 use AcquiaCloudApi\Response\MembersResponse;
+use AcquiaCloudApi\Response\NotificationResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\OrganizationsResponse;
 use AcquiaCloudApi\Response\PermissionsResponse;
@@ -66,6 +67,15 @@ interface ClientInterface
      * @return ApplicationsResponse
      */
     public function applications();
+
+
+    /**
+     * Returns details about a notification.
+     *
+     * @param string $notificationUuid
+     * @return NotificationResponse
+     */
+    public function notification($notificationUuid);
 
     /**
      * Shows information about an application.

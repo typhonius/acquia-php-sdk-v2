@@ -18,6 +18,7 @@ use AcquiaCloudApi\Response\EnvironmentsResponse;
 use AcquiaCloudApi\Response\InsightsResponse;
 use AcquiaCloudApi\Response\InvitationsResponse;
 use AcquiaCloudApi\Response\MembersResponse;
+use AcquiaCloudApi\Response\NotificationResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\OrganizationsResponse;
 use AcquiaCloudApi\Response\PermissionsResponse;
@@ -102,6 +103,22 @@ class Client implements ClientInterface
     public function account()
     {
         return new AccountResponse($this->connector->request('get', '/account', $this->query));
+    }
+
+    /**
+     * Returns details about your account.
+     *
+     * @return NotificationResponse
+     */
+    public function notification($notificationUuid)
+    {
+        return new NotificationResponse(
+            $this->connector->request(
+                'get',
+                "/notifications/${notificationUuid}",
+                $this->query
+            )
+        );
     }
 
     /**

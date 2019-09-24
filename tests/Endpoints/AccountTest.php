@@ -1,6 +1,8 @@
 <?php
 
-use AcquiaCloudApi\CloudApi\Client;
+namespace AcquiaCloudApi\Tests\Endpoints;
+
+use AcquiaCloudApi\Tests\CloudApiTestCase;
 
 class AccountTest extends CloudApiTestCase
 {

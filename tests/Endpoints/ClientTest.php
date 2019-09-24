@@ -1,8 +1,10 @@
 <?php
 
+namespace AcquiaCloudApi\Tests\Endpoints;
+
+use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\CloudApi\Client;
 use AcquiaCloudApi\CloudApi\Connector;
-use GuzzleHttp\Client as GuzzleClient;
 
 class ClientTest extends CloudApiTestCase
 {

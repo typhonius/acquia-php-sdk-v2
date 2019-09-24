@@ -1,5 +1,9 @@
 <?php
 
+namespace AcquiaCloudApi\Tests\Endpoints;
+
+use AcquiaCloudApi\Tests\CloudApiTestCase;
+
 class ServersTest extends CloudApiTestCase
 {
 

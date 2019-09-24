@@ -1,5 +1,7 @@
 <?php
 
+namespace AcquiaCloudApi\Tests;
+
 use AcquiaCloudApi\CloudApi\Client;
 use GuzzleHttp\Psr7;
 use PHPUnit\Framework\TestCase;

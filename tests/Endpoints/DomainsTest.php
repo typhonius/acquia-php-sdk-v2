@@ -34,6 +34,22 @@ class DomainsTest extends CloudApiTestCase
         }
     }
 
+    public function testGetDomain()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getDomain.json');
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $result = $client->domain('185f07c7-9c4f-407b-8968-67892ebcb38a', 'example.com');
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\DomainResponse', $result);
+        $this->assertEquals('example.com', $result->hostname);
+
+        foreach ($this->properties as $property) {
+            $this->assertObjectHasAttribute($property, $result);
+        }
+    }
+
     public function testDomainAdd()
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/addDomain.json');

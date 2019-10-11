@@ -1,0 +1,31 @@
+{
+  "hostname": "example.com",
+  "flags": {
+    "default": false,
+    "active": true,
+    "uptime": true,
+    "wildcard": false
+  },
+  "environment": {
+    "id": "24-47c9ae06-2a57-11e9-b210-d663bd873d93",
+    "name": "dev"
+  },
+  "uptime": {
+    "actual_host": "www.example.com",
+    "created_at": "2011-03-28T12:33:49-0400"
+  },
+  "_links": {
+    "self": {
+      "href": "{$baseUri}/environments/24-47c9ae06-2a57-11e9-b210-d663bd873d93/domains/example.com"
+    },
+    "status": {
+      "href": "{$baseUri}/environments/24-47c9ae06-2a57-11e9-b210-d663bd873d93/domains/example.com/status"
+    },
+    "uptime": {
+      "href": "{$baseUri}/environments/24-47c9ae06-2a57-11e9-b210-d663bd873d93/domains/example.com/metrics/uptime"
+    },
+    "parent": {
+      "href": "{$baseUri}/environments/24-47c9ae06-2a57-11e9-b210-d663bd873d93/domains"
+    }
+  }
+}

@@ -11,6 +11,7 @@ use AcquiaCloudApi\Response\BranchesResponse;
 use AcquiaCloudApi\Response\CronResponse;
 use AcquiaCloudApi\Response\CronsResponse;
 use AcquiaCloudApi\Response\DatabasesResponse;
+use AcquiaCloudApi\Response\DomainResponse;
 use AcquiaCloudApi\Response\DomainsResponse;
 use AcquiaCloudApi\Response\EnvironmentResponse;
 use AcquiaCloudApi\Response\EnvironmentsResponse;
@@ -422,6 +423,24 @@ class Client implements ClientInterface
             $this->connector->request(
                 'get',
                 "/environments/${environmentUuid}/domains",
+                $this->query
+            )
+        );
+    }
+
+    /**
+     * Return details about a domain.
+     *
+     * @param string $environmentUuid
+     * @param string $domain
+     * @return DomainResponse
+     */
+    public function domain($environmentUuid, $domain)
+    {
+        return new DomainResponse(
+            $this->connector->request(
+                'get',
+                "/environments/${environmentUuid}/domains/${domain}",
                 $this->query
             )
         );

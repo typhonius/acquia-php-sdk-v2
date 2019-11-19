@@ -2,13 +2,12 @@
 
 namespace AcquiaCloudApi\CloudApi;
 
-use Acquia\Hmac\Guzzle\HmacAuthMiddleware;
-use Acquia\Hmac\Key;
+use League\OAuth2\Client\Provider\GenericProvider;
+use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use GuzzleHttp\HandlerStack;
 
 /**
  * Class Connector
@@ -20,6 +19,16 @@ class Connector implements ConnectorInterface
      * @var string BASE_URI
      */
     const BASE_URI = 'https://cloud.acquia.com/api';
+
+    /**
+     * @var GenericProvider The OAuth 2.0 provider to use in communication.
+     */
+    protected $provider;
+
+    /**
+     * @var string The generated OAuth 2.0 access token.
+     */
+    protected $accessToken;
 
     /**
      * @var GuzzleClient The Guzzle Client to communicate with the API.
@@ -38,13 +47,12 @@ class Connector implements ConnectorInterface
      */
     public function __construct($config)
     {
-        $key = new Key($config['key'], $config['secret']);
-        $middleware = new HmacAuthMiddleware($key);
-        $stack = HandlerStack::create();
-        $stack->push($middleware);
-
-        $this->client = new GuzzleClient([
-            'handler' => $stack,
+        $this->provider = new GenericProvider([
+            'clientId'                => $config['key'],
+            'clientSecret'            => $config['secret'],
+            'urlAuthorize'            => '',
+            'urlAccessToken'          => 'https://accounts.acquia.com/api/auth/oauth/token',
+            'urlResourceOwnerDetails' => '',
         ]);
     }
 
@@ -82,8 +90,18 @@ class Connector implements ConnectorInterface
      */
     public function makeRequest(string $verb, string $path, array $query = [], array $options = [])
     {
+        if (! isset($this->accessToken)) {
+            $this->accessToken = $this->provider->getAccessToken('client_credentials');
+        }
+
         try {
-            $response = $this->client->$verb(self::BASE_URI . $path, $options);
+            $request = $this->provider->getAuthenticatedRequest(
+                $verb,
+                self::BASE_URI . $path,
+                $this->accessToken
+            );
+            $client = new GuzzleClient();
+            $response =  $client->send($request, $options);
         } catch (ClientException $e) {
             print $e->getMessage();
             $response = $e->getResponse();

@@ -88,4 +88,18 @@ class EnvironmentsTest extends CloudApiTestCase
 
         $this->assertEquals('Changing environment label.', $result->message);
     }
+
+    public function testDeleteEnvironment()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/deleteEnvironment.json');
+
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $result = $client->deleteEnvironment('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'Alpha');
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
+        $this->assertEquals('The environment is being deleted.', $result->message);
+    }
 }

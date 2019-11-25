@@ -609,6 +609,24 @@ class Client implements ClientInterface
     }
 
     /**
+     * Deletes an environment.
+     *
+     * @param string $environmentUuid
+     * @return OperationResponse
+     */
+    public function deleteEnvironment($environmentUuid)
+    {
+
+        return new OperationResponse(
+            $this->connector->request(
+                'delete',
+                "/environments/${environmentUuid}",
+                $this->query
+            )
+        );
+    }
+
+    /**
      * Show all servers associated with an environment.
      *
      * @param string $environmentUuid

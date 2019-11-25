@@ -280,6 +280,14 @@ interface ClientInterface
     public function renameEnvironment($environmentUuid, $label);
 
     /**
+     * Deletes an environment.
+     *
+     * @param string $environmentUuid
+     * @return OperationResponse
+     */
+    public function deleteEnvironment($environmentUuid);
+
+    /**
      * Show all servers associated with an environment.
      *
      * @param string $environmentUuid

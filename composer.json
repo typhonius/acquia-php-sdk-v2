@@ -10,7 +10,7 @@
     "license": "MIT",
     "require": {
         "guzzlehttp/guzzle": "^6.3",
-        "php": ">=5.6",
+        "php": ">=7.1",
         "league/oauth2-client": "^2.4"
     },
     "require-dev": {
@@ -20,7 +20,8 @@
     },
     "autoload":{
         "psr-4":{
-            "AcquiaCloudApi\\CloudApi\\":"src/CloudApi",
+            "AcquiaCloudApi\\Connector\\":"src/Connector",
+            "AcquiaCloudApi\\Endpoints\\":"src/Endpoints",
             "AcquiaCloudApi\\Response\\":"src/Response"
         }
     },
@@ -31,7 +32,7 @@
     },
     "scripts": {
         "lint": "php -l ./src/",
-        "sniff": "./vendor/bin/phpcs -s --standard=PSR2 ./src/",
+        "sniff": "./vendor/bin/phpcs -s --standard=PSR2 ./src/ ./tests/",
         "test": "./vendor/bin/phpunit --coverage-clover ./tests/logs/clover.xml",
         "coveralls": "php ./vendor/bin/php-coveralls -v"
     }

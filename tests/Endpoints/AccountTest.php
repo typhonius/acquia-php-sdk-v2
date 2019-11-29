@@ -3,6 +3,7 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
+use AcquiaCloudApi\Endpoints\Account;
 
 class AccountTest extends CloudApiTestCase
 {
@@ -26,7 +27,8 @@ class AccountTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
       /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->account();
+        $account = new Account($client);
+        $result = $account->getAccount();
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\AccountResponse', $result);
 

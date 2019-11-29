@@ -3,6 +3,7 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
+use AcquiaCloudApi\Endpoints\Application;
 
 class TasksTest extends CloudApiTestCase
 {
@@ -21,15 +22,15 @@ class TasksTest extends CloudApiTestCase
     'metadata',
     ];
 
-
     public function testGetTasks()
     {
 
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getTasks.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->tasks('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $application = new Application($client);
+        $result = $application->getTasks('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\TasksResponse', $result);
@@ -51,7 +52,8 @@ class TasksTest extends CloudApiTestCase
 
       /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $client->addQuery('filter', 'name=@DatabaseBackupCreated');
-        $result = $client->tasks('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+        $application = new Application($client);
+        $result = $application->getTasks('8ff6c046-ec64-4ce4-bea6-27845ec18600');
         $client->clearQuery();
 
         $this->assertInstanceOf('\ArrayObject', $result);

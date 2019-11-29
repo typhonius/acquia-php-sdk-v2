@@ -1,17 +1,19 @@
 <?php
 
-namespace AcquiaCloudApi\CloudApi;
+namespace AcquiaCloudApi\Connector;
 
 use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Exception\BadResponseException;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * Interface ConnectorInterface
+ * Interface ClientInterface
  *
  * @package AcquiaCloudApi\CloudApi
  */
-interface ConnectorInterface
+interface ClientInterface
 {
+
     /**
      * Makes a request to the API.
      *
@@ -22,7 +24,7 @@ interface ConnectorInterface
      *
      * @return object|array|StreamInterface
      */
-    public function request(string $verb, string $path, array $query = [], array $options = []);
+    public function request(string $verb, string $path, array $options = []);
 
     /**
      * @param string $verb
@@ -31,7 +33,7 @@ interface ConnectorInterface
      * @param array  $options
      * @return ResponseInterface
      */
-    public function makeRequest(string $verb, string $path, array $query = [], array $options = []);
+    public function makeRequest(string $verb, string $path, array $options = []);
 
     /**
      * Processes the returned response from the API.
@@ -41,4 +43,24 @@ interface ConnectorInterface
      * @throws \Exception
      */
     public function processResponse(ResponseInterface $response);
+
+    /**
+     * Get query from Client.
+     *
+     * @return array
+     */
+    public function getQuery();
+
+    /**
+     * Clear query.
+     */
+    public function clearQuery();
+
+    /**
+     * Add a query parameter to filter results.
+     *
+     * @param string $name
+     * @param string $value
+     */
+    public function addQuery($name, $value);
 }

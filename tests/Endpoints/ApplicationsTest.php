@@ -3,6 +3,7 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
+use AcquiaCloudApi\Endpoints\Application;
 
 class ApplicationsTest extends CloudApiTestCase
 {
@@ -24,8 +25,9 @@ class ApplicationsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getApplications.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->applications();
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $application = new Application($client);
+        $result = $application->getApplications();
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\ApplicationsResponse', $result);
@@ -44,8 +46,9 @@ class ApplicationsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getApplication.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->application('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $application = new Application($client);
+        $result = $application->getApplication('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertNotInstanceOf('\AcquiaCloudApi\Response\ApplicationsResponse', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\ApplicationResponse', $result);
@@ -61,50 +64,11 @@ class ApplicationsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->renameApplication('8ff6c046-ec64-4ce4-bea6-27845ec18600', "My application's new name");
+        $application = new Application($client);
+        $result = $application->renameApplication('8ff6c046-ec64-4ce4-bea6-27845ec18600', "My application's new name");
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
         $this->assertEquals('Application renamed.', $result->message);
-    }
-
-    public function testGetTeamApplications()
-    {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getTeamApplications.json');
-        $client = $this->getMockClient($response);
-
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->teamApplications('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
-
-        $this->assertInstanceOf('\ArrayObject', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\ApplicationsResponse', $result);
-
-        foreach ($result as $record) {
-            $this->assertInstanceOf('\AcquiaCloudApi\Response\ApplicationResponse', $record);
-
-            foreach ($this->properties as $property) {
-                $this->assertObjectHasAttribute($property, $record);
-            }
-        }
-    }
-
-    public function testGetOrganizationApplications()
-    {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getOrganizationApplications.json');
-        $client = $this->getMockClient($response);
-
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->organizationApplications('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
-
-        $this->assertInstanceOf('\ArrayObject', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\ApplicationsResponse', $result);
-
-        foreach ($result as $record) {
-            $this->assertInstanceOf('\AcquiaCloudApi\Response\ApplicationResponse', $record);
-
-            foreach ($this->properties as $property) {
-                $this->assertObjectHasAttribute($property, $record);
-            }
-        }
     }
 }

@@ -1,0 +1,7 @@
+{
+    "error": "multiple_errors",
+    "message": [
+        "The application you are trying to access does not exist, or you do not have permission to access it.",
+        "You do not have sufficient permissions to do this task."
+    ]
+}

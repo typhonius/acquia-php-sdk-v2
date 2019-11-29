@@ -3,6 +3,7 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
+use AcquiaCloudApi\Endpoints\Environment;
 
 class CronsTest extends CloudApiTestCase
 {
@@ -28,8 +29,9 @@ class CronsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getCrons.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->crons('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $environment = new Environment($client);
+        $result = $environment->getCrons('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\CronsResponse', $result);
@@ -48,8 +50,9 @@ class CronsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getCron.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->cron('8ff6c046-ec64-4ce4-bea6-27845ec18600', 3);
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $environment = new Environment($client);
+        $result = $environment->getCron('8ff6c046-ec64-4ce4-bea6-27845ec18600', 3);
 
         $this->assertNotInstanceOf('\AcquiaCloudApi\Response\CronsResponse', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\CronResponse', $result);
@@ -65,7 +68,13 @@ class CronsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->createCron('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', '/usr/local/bin/drush cc all', '*/30 * * * *', 'My New Cron');
+        $environment = new Environment($client);
+        $result = $environment->createCron(
+            '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
+            '/usr/local/bin/drush cc all',
+            '*/30 * * * *',
+            'My New Cron'
+        );
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
@@ -78,7 +87,8 @@ class CronsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->deleteCron('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 14);
+        $environment = new Environment($client);
+        $result = $environment->deleteCron('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 14);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
@@ -90,8 +100,9 @@ class CronsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/enableCron.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->enableCron('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $environment = new Environment($client);
+        $result = $environment->enableCron('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
@@ -103,8 +114,9 @@ class CronsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/disableCron.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->disableCron('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $environment = new Environment($client);
+        $result = $environment->disableCron('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 

@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Tests;
 
-use AcquiaCloudApi\CloudApi\Client;
+use AcquiaCloudApi\Connector\Client;
 use GuzzleHttp\Psr7;
 use PHPUnit\Framework\TestCase;
 
@@ -68,17 +68,17 @@ abstract class CloudApiTestCase extends TestCase
     {
         if ($response) {
             $connector = $this
-                ->getMockBuilder('AcquiaCloudApi\CloudApi\Connector')
+                ->getMockBuilder('AcquiaCloudApi\Connector\Connector')
                 ->disableOriginalConstructor()
-                ->setMethods(['makeRequest'])
+                ->setMethods(['sendRequest'])
                 ->getMock();
             $connector
                 ->expects($this->atLeastOnce())
-                ->method('makeRequest')
+                ->method('sendRequest')
                 ->willReturn($response);
         } else {
             $connector = $this
-                ->getMockBuilder('AcquiaCloudApi\CloudApi\Connector')
+                ->getMockBuilder('AcquiaCloudApi\Connector\Connector')
                 ->disableOriginalConstructor()
                 ->getMock();
         }

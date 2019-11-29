@@ -3,6 +3,8 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
+use AcquiaCloudApi\Endpoints\Organization;
+use AcquiaCloudApi\Endpoints\Role;
 
 class RolesTest extends CloudApiTestCase
 {
@@ -21,8 +23,9 @@ class RolesTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getOrganizationRoles.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->organizationRoles('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $organization = new Organization($client);
+        $result = $organization->getRoles('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\RolesResponse', $result);
@@ -43,7 +46,8 @@ class RolesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
       /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->createRole(
+        $organization = new Organization($client);
+        $result = $organization->createRole(
             '8ff6c046-ec64-4ce4-bea6-27845ec18600',
             'My new role',
             ['access cloud api', 'pull from prod'],
@@ -60,8 +64,9 @@ class RolesTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/deleteRole.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->deleteRole('r47ac10b-58cc-4372-a567-0e02b2c3d470');
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $role = new Role($client);
+        $result = $role->deleteRole('r47ac10b-58cc-4372-a567-0e02b2c3d470');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Deleted role.', $result->message);
@@ -73,8 +78,9 @@ class RolesTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/updateRole.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->updateRole('r47ac10b-58cc-4372-a567-0e02b2c3d470', ['pull from prod']);
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $role = new Role($client);
+        $result = $role->updateRole('r47ac10b-58cc-4372-a567-0e02b2c3d470', ['pull from prod']);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Updating role.', $result->message);

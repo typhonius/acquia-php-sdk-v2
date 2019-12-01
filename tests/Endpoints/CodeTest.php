@@ -41,8 +41,8 @@ class CodeTest extends CloudApiTestCase
         $result = $client->switchCode('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'my-feature-branch');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
-        $this->assertEquals('The code is being switched.', $result->message);
+        $this->assertOperationResponse($result);
+        $this->assertEquals('Switching code.', $result->message);
     }
 
     public function testCodeDeploy()
@@ -54,7 +54,7 @@ class CodeTest extends CloudApiTestCase
         $result = $client->deployCode('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'f9ef59eb-13ee-4050-8120-5524d8ce9821', 'Commit message');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
-        $this->assertEquals('The code is being deployed.', $result->message);
+        $this->assertOperationResponse($result);
+        $this->assertEquals('Deploying code.', $result->message);
     }
 }

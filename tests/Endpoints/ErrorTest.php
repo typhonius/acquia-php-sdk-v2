@@ -7,7 +7,7 @@ use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\RequestInterface;
-use AcquiaCloudApi\Endpoints\Application;
+use AcquiaCloudApi\Endpoints\Applications;
 use AcquiaCloudApi\Connector\Client;
 use AcquiaCloudApi\Connector\Connector;
 
@@ -22,7 +22,7 @@ class ErrorTest extends CloudApiTestCase
 
         try {
             /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-            $application = new Application($client);
+            $application = new Applications($client);
             $application->getApplications();
         } catch (\Exception $e) {
             $this->assertEquals($e->getMessage(), 'You do not have permission to view applications.');
@@ -41,7 +41,7 @@ class ErrorTest extends CloudApiTestCase
 
         try {
             /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-            $application = new Application($client);
+            $application = new Applications($client);
             $application->getApplications();
         } catch (\Exception $e) {
             $this->assertEquals(
@@ -62,7 +62,7 @@ class ErrorTest extends CloudApiTestCase
 
         try {
             /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-            $application = new Application($client);
+            $application = new Applications($client);
             $application->getApplications();
         } catch (\Exception $e) {
             $error = <<< EOM

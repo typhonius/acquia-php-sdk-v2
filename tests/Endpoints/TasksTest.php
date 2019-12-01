@@ -3,7 +3,7 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Endpoints\Application;
+use AcquiaCloudApi\Endpoints\Applications;
 
 class TasksTest extends CloudApiTestCase
 {
@@ -29,7 +29,7 @@ class TasksTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $application = new Application($client);
+        $application = new Applications($client);
         $result = $application->getTasks('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\ArrayObject', $result);
@@ -52,7 +52,7 @@ class TasksTest extends CloudApiTestCase
 
       /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $client->addQuery('filter', 'name=@DatabaseBackupCreated');
-        $application = new Application($client);
+        $application = new Applications($client);
         $result = $application->getTasks('8ff6c046-ec64-4ce4-bea6-27845ec18600');
         $client->clearQuery();
 

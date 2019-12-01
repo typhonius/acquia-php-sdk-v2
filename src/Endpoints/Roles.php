@@ -12,7 +12,7 @@ use AcquiaCloudApi\Response\OperationResponse;
  * Class Client
  * @package AcquiaCloudApi\CloudApi
  */
-class Role implements CloudApi
+class Roles implements CloudApi
 {
 
     /** @var ClientInterface The API client. */

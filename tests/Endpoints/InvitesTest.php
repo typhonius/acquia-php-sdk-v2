@@ -3,7 +3,7 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Endpoints\Organization;
+use AcquiaCloudApi\Endpoints\Organizations;
 
 class InvitesTest extends CloudApiTestCase
 {
@@ -29,7 +29,7 @@ class InvitesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $organization = new Organization($client);
+        $organization = new Organizations($client);
         $result = $organization->getInvitees('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\ArrayObject', $result);

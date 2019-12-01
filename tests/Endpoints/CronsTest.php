@@ -3,7 +3,7 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Endpoints\Environment;
+use AcquiaCloudApi\Endpoints\Environments;
 
 class CronsTest extends CloudApiTestCase
 {
@@ -30,7 +30,7 @@ class CronsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->getCrons('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\ArrayObject', $result);
@@ -51,7 +51,7 @@ class CronsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->getCron('8ff6c046-ec64-4ce4-bea6-27845ec18600', 3);
 
         $this->assertNotInstanceOf('\AcquiaCloudApi\Response\CronsResponse', $result);
@@ -68,7 +68,7 @@ class CronsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->createCron(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
             '/usr/local/bin/drush cc all',
@@ -87,7 +87,7 @@ class CronsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->deleteCron('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 14);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
@@ -101,7 +101,7 @@ class CronsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->enableCron('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
@@ -115,7 +115,7 @@ class CronsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->disableCron('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);

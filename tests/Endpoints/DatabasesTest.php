@@ -3,8 +3,8 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Endpoints\Environment;
-use AcquiaCloudApi\Endpoints\Application;
+use AcquiaCloudApi\Endpoints\Environments;
+use AcquiaCloudApi\Endpoints\Applications;
 
 class DatabasesTest extends CloudApiTestCase
 {
@@ -30,7 +30,7 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $application = new Application($client);
+        $application = new Applications($client);
         $result = $application->getDatabases('185f07c7-9c4f-407b-8968-67892ebcb38a');
 
         $this->assertInstanceOf('\ArrayObject', $result);
@@ -51,7 +51,7 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->getDatabases('24-a47ac10b-58cc-4372-a567-0e02b2c3d470');
 
         $this->assertInstanceOf('\ArrayObject', $result);
@@ -72,7 +72,7 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->databaseCopy(
             '24-a47ac10b-58cc-4372-a567-0e02b2c3d470',
             'db_name',
@@ -90,7 +90,7 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $application = new Application($client);
+        $application = new Applications($client);
         $result = $application->createDatabase('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'db_name');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
@@ -104,7 +104,7 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $application = new Application($client);
+        $application = new Applications($client);
         $result = $application->deleteDatabase('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'db_name');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
@@ -118,7 +118,7 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->createDatabaseBackup('185f07c7-9c4f-407b-8968-67892ebcb38a', 'db_name');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
@@ -132,7 +132,7 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->getDatabaseBackups('185f07c7-9c4f-407b-8968-67892ebcb38a', 'db_name');
 
         $this->assertInstanceOf('\ArrayObject', $result);
@@ -153,7 +153,7 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->getDatabaseBackup('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'db_name', 12);
 
         $this->assertNotInstanceOf('\AcquiaCloudApi\Response\BackupsResponse', $result);
@@ -170,7 +170,7 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->restoreDatabaseBackup('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'db_name', 12);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);

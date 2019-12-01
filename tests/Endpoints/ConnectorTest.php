@@ -5,7 +5,7 @@ namespace AcquiaCloudApi\Tests\Endpoints;
 use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Connector\Client;
 use AcquiaCloudApi\Connector\Connector;
-use AcquiaCloudApi\Endpoints\Application;
+use AcquiaCloudApi\Endpoints\Applications;
 
 class ConnectorTest extends CloudApiTestCase
 {

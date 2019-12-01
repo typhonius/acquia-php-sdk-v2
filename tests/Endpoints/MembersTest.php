@@ -3,7 +3,7 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Endpoints\Organization;
+use AcquiaCloudApi\Endpoints\Organizations;
 
 class MembersTest extends CloudApiTestCase
 {
@@ -25,7 +25,7 @@ class MembersTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $organization = new Organization($client);
+        $organization = new Organizations($client);
         $result = $organization->getMembers('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\ArrayObject', $result);
@@ -46,7 +46,7 @@ class MembersTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $organization = new Organization($client);
+        $organization = new Organizations($client);
         $result = $organization->deleteMember(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851'

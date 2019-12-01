@@ -3,7 +3,7 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Endpoints\Environment;
+use AcquiaCloudApi\Endpoints\Environments;
 
 class DomainsTest extends CloudApiTestCase
 {
@@ -21,7 +21,7 @@ class DomainsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->getDomains('185f07c7-9c4f-407b-8968-67892ebcb38a');
 
         $this->assertInstanceOf('\ArrayObject', $result);
@@ -42,7 +42,7 @@ class DomainsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->getDomain('185f07c7-9c4f-407b-8968-67892ebcb38a', 'example.com');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\DomainResponse', $result);
@@ -59,7 +59,7 @@ class DomainsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->createDomain('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'new-domain.com');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
@@ -73,7 +73,7 @@ class DomainsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->deleteDomain('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'deleted-domain.com');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);

@@ -3,8 +3,8 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Endpoints\Organization;
-use AcquiaCloudApi\Endpoints\Role;
+use AcquiaCloudApi\Endpoints\Organizations;
+use AcquiaCloudApi\Endpoints\Roles;
 
 class RolesTest extends CloudApiTestCase
 {
@@ -24,7 +24,7 @@ class RolesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $organization = new Organization($client);
+        $organization = new Organizations($client);
         $result = $organization->getRoles('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\ArrayObject', $result);
@@ -46,7 +46,7 @@ class RolesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
       /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $organization = new Organization($client);
+        $organization = new Organizations($client);
         $result = $organization->createRole(
             '8ff6c046-ec64-4ce4-bea6-27845ec18600',
             'My new role',
@@ -65,7 +65,7 @@ class RolesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $role = new Role($client);
+        $role = new Roles($client);
         $result = $role->deleteRole('r47ac10b-58cc-4372-a567-0e02b2c3d470');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
@@ -79,7 +79,7 @@ class RolesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $role = new Role($client);
+        $role = new Roles($client);
         $result = $role->updateRole('r47ac10b-58cc-4372-a567-0e02b2c3d470', ['pull from prod']);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);

@@ -45,8 +45,8 @@ require 'vendor/autoload.php';
 
 use AcquiaCloudApi\Connector\Client;
 use AcquiaCloudApi\Connector\Connector;
-use AcquiaCloudApi\Endpoints\Application;
-use AcquiaCloudApi\Endpoints\Environment;
+use AcquiaCloudApi\Endpoints\Applications;
+use AcquiaCloudApi\Endpoints\Environments;
 
 $key = 'd0697bfc-7f56-4942-9205-b5686bf5b3f5';
 $secret = 'D5UfO/4FfNBWn4+0cUwpLOoFzfP7Qqib4AoY+wYGsKE=';
@@ -59,8 +59,8 @@ $config = [
 $connector = new Connector($config);
 $client = Client::factory($connector);
 
-$application = new Application($client);
-$environment = new Environment($client);
+$application = new Applications($client);
+$environment = new Environments($client);
 
 // Get all applications.
 $applications = $application->getApplications();

@@ -3,9 +3,8 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Endpoints\Organization;
-use AcquiaCloudApi\Endpoints\Application;
-use AcquiaCloudApi\Endpoints\Team;
+use AcquiaCloudApi\Endpoints\Organizations;
+use AcquiaCloudApi\Endpoints\Teams;
 
 class OrganizationsTest extends CloudApiTestCase
 {
@@ -42,7 +41,7 @@ class OrganizationsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $organization = new Organization($client);
+        $organization = new Organizations($client);
         $result = $organization->getOrganizations();
 
         $this->assertInstanceOf('\ArrayObject', $result);
@@ -63,7 +62,7 @@ class OrganizationsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $team = new Team($client);
+        $team = new Teams($client);
         $result = $team->createOrganizationAdminInvite('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'user@example.com');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
@@ -77,7 +76,7 @@ class OrganizationsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $organization = new Organization($client);
+        $organization = new Organizations($client);
         $result = $organization->getApplications('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\ArrayObject', $result);

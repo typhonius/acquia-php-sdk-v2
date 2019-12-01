@@ -12,7 +12,7 @@ use AcquiaCloudApi\Response\OperationResponse;
  * Class Client
  * @package AcquiaCloudApi\CloudApi
  */
-class Team implements CloudApi
+class Teams implements CloudApi
 {
 
     /** @var ClientInterface The API client. */

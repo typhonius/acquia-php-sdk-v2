@@ -16,7 +16,7 @@ use AcquiaCloudApi\Response\OperationResponse;
  * Class Client
  * @package AcquiaCloudApi\CloudApi
  */
-class Application implements CloudApi
+class Applications implements CloudApi
 {
 
     /** @var ClientInterface The API client. */

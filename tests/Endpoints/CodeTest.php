@@ -3,8 +3,8 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Endpoints\Environment;
-use AcquiaCloudApi\Endpoints\Application;
+use AcquiaCloudApi\Endpoints\Environments;
+use AcquiaCloudApi\Endpoints\Applications;
 
 class CodeTest extends CloudApiTestCase
 {
@@ -20,7 +20,7 @@ class CodeTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $application = new Application($client);
+        $application = new Applications($client);
         $result = $application->getBranches('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\ArrayObject', $result);
@@ -41,7 +41,7 @@ class CodeTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->switchCode('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'my-feature-branch');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
@@ -55,7 +55,7 @@ class CodeTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environment($client);
+        $environment = new Environments($client);
         $result = $environment->deployCode(
             '8ff6c046-ec64-4ce4-bea6-27845ec18600',
             'f9ef59eb-13ee-4050-8120-5524d8ce9821',

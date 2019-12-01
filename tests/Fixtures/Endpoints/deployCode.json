@@ -1,3 +1,14 @@
 {
-  "message": "The code is being deployed."
+  "message": "Deploying code.",
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/environments/24-8fc7d3c6-2a53-11e9-b210-d663bd873d93/code"
+    },
+    "notification": {
+      "href": "https://cloud.acquia.com/api/notifications/a49eeebb-0929-444a-972c-07b94ce93ab9"
+    },
+    "parent": {
+      "href": "https://cloud.acquia.com/api/environments/24-8fc7d3c6-2a53-11e9-b210-d663bd873d93"
+    }
+  }
 }

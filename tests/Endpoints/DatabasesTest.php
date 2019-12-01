@@ -71,8 +71,8 @@ class DatabasesTest extends CloudApiTestCase
         $result = $client->databaseCopy('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'db_name', '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
-        $this->assertEquals('The database is queued for copying.', $result->message);
+        $this->assertOperationResponse($result);
+        $this->assertEquals('The database is being copied', $result->message);
     }
 
     public function testDatabaseCreate()
@@ -84,7 +84,7 @@ class DatabasesTest extends CloudApiTestCase
         $result = $client->databaseCreate('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'db_name');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
+        $this->assertOperationResponse($result);
         $this->assertEquals('The database is being created.', $result->message);
     }
 
@@ -110,8 +110,8 @@ class DatabasesTest extends CloudApiTestCase
         $result = $client->createDatabaseBackup('185f07c7-9c4f-407b-8968-67892ebcb38a', 'db_name');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
-        $this->assertEquals('The database is being backed up.', $result->message);
+        $this->assertOperationResponse($result);
+        $this->assertEquals('Creating the backup.', $result->message);
     }
 
     public function testGetDatabaseBackups()
@@ -159,7 +159,7 @@ class DatabasesTest extends CloudApiTestCase
         $result = $client->restoreDatabaseBackup('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'db_name', 12);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
-        $this->assertEquals('The backup is being restored.', $result->message);
+        $this->assertOperationResponse($result);
+        $this->assertEquals('Restoring the database backup.', $result->message);
     }
 }

@@ -1,3 +1,14 @@
 {
-    "message": "The files have been queued for copying."
-}
+    "message": "Copying files.",
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/environments/12-482e4650-1b74-44db-8d4e-e86a3b1ed908/files"
+      },
+      "notification": {
+        "href": "https://cloud.acquia.com/api/notifications/d53fccec-5c1b-4ad4-b431-5cd39ad2b453"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/environments/12-482e4650-1b74-44db-8d4e-e86a3b1ed908/files"
+      }
+    }
+  }

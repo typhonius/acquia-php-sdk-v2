@@ -1,3 +1,14 @@
 {
-    "message": "Removing the domain deleted-domain.com"
-}
+    "message": "Removing the domain example.com",
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/environments/286-f027502b-ed6c-448e-97e8-4a0def7d25e1/domains/example.com"
+      },
+      "notification": {
+        "href": "https://cloud.acquia.com/api/notifications/67b7f08f-2dff-4c86-a8a0-35c4196880a3"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/environments/286-f027502b-ed6c-448e-97e8-4a0def7d25e1/domains"
+      }
+    }
+  }

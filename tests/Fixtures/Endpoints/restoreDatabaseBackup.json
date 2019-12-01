@@ -1,3 +1,11 @@
 {
-    "message": "The backup is being restored."
-}
+    "message": "Restoring the database backup.",
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/environments/286-f027502b-ed6c-448e-97e8-4a0def7d25e1/databases/test_database_1/backups/4189098/actions/restore"
+      },
+      "notification": {
+        "href": "https://cloud.acquia.com/api/notifications/f295cd91-c3c0-422c-a1ab-e91fe972041a"
+      }
+    }
+  }

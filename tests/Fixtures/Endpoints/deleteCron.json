@@ -1,3 +1,14 @@
 {
-    "message": "Deleting cron."
-}
+    "message": "Deleting cron.",
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/environments/286-f027502b-ed6c-448e-97e8-4a0def7d25e1/crons/1891"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/environments/286-f027502b-ed6c-448e-97e8-4a0def7d25e1/crons"
+      },
+      "notification": {
+        "href": "https://cloud.acquia.com/api/notifications/767cee8d-05f6-4761-a3dc-755957dfc9e6"
+      }
+    }
+  }

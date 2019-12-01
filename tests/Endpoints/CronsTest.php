@@ -68,7 +68,7 @@ class CronsTest extends CloudApiTestCase
         $result = $client->createCron('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', '/usr/local/bin/drush cc all', '*/30 * * * *', 'My New Cron');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
+        $this->assertOperationResponse($result);
         $this->assertEquals('Creating a new cron.', $result->message);
     }
 
@@ -81,7 +81,7 @@ class CronsTest extends CloudApiTestCase
         $result = $client->deleteCron('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 14);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
+        $this->assertOperationResponse($result);
         $this->assertEquals('Deleting cron.', $result->message);
     }
 

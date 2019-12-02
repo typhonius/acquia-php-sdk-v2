@@ -1,6 +1,7 @@
 <?php
 
 use AcquiaCloudApi\CloudApi\Client;
+use AcquiaCloudApi\Tests\CloudApiTestCase;
 
 class NotificationTest extends CloudApiTestCase
 {
@@ -23,13 +24,33 @@ class NotificationTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getNotification.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $result = $client->notification('f4b37e3c-1g96-4ed4-ad20-3081fe0f9545');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\NotificationResponse', $result);
 
         foreach ($this->properties as $property) {
             $this->assertObjectHasAttribute($property, $result);
+        }
+    }
+
+    public function testGetNotifications()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getNotifications.json');
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $result = $client->notifications('f027502b-ed6c-448e-97e8-4a0def7d25e1');
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\NotificationsResponse', $result);
+        $this->assertInstanceOf('\ArrayObject', $result);
+
+        foreach ($result as $record) {
+            $this->assertInstanceOf('\AcquiaCloudApi\Response\NotificationResponse', $record);
+
+            foreach ($this->properties as $property) {
+                $this->assertObjectHasAttribute($property, $record);
+            }
         }
     }
 }

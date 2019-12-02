@@ -35,6 +35,8 @@ class NotificationResponse
         $this->status = $notification->status;
         $this->progress = $notification->progress;
         $this->context = $notification->context;
-        $this->links = $notification->_links;
+        if (property_exists($notification, '_links')) {
+            $this->links = $notification->_links;
+        }
     }
 }

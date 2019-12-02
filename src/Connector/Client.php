@@ -49,10 +49,9 @@ class Client implements ClientInterface
      *
      * @param string $verb
      * @param string $path
-     * @param array  $query
      * @param array  $options
      *
-     * @return mixed
+     * @return StreamInterface
      */
     public function request(string $verb, string $path, array $options = [])
     {
@@ -72,7 +71,6 @@ class Client implements ClientInterface
      *
      * @param string $verb
      * @param string $path
-     * @param array  $query
      * @param array  $options
      *
      * @return ResponseInterface
@@ -92,7 +90,7 @@ class Client implements ClientInterface
      * Processes the returned response from the API.
      *
      * @param ResponseInterface $response
-     * @return mixed
+     * @return StreamInterface
      * @throws \Exception
      */
     public function processResponse(ResponseInterface $response)
@@ -105,7 +103,7 @@ class Client implements ClientInterface
             // JSON is valid
             if (property_exists($object, '_embedded') && property_exists($object->_embedded, 'items')) {
                 $return = $object->_embedded->items;
-            } elseif (property_exists($object, 'error')) {
+            } elseif (property_exists($object, 'error') && property_exists($object, 'message')) {
                 if (is_array($object->message)) {
                     $output = '';
                     foreach ($object->message as $message) {
@@ -146,8 +144,8 @@ class Client implements ClientInterface
     /**
      * Add a query parameter to filter results.
      *
-     * @param string $name
-     * @param string $value
+     * @param string     $name
+     * @param string|int $value
      */
     public function addQuery($name, $value)
     {

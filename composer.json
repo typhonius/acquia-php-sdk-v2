@@ -15,8 +15,10 @@
     },
     "require-dev": {
         "php-coveralls/php-coveralls": "^2.0.0",
-        "phpunit/phpunit": "^6.4",
-        "squizlabs/php_codesniffer": "^2.7"
+        "phpunit/phpunit": "^7.0",
+        "squizlabs/php_codesniffer": "^2.7",
+        "phpstan/phpstan": "^0.11.19",
+        "phpstan/phpstan-phpunit": "^0.11.2"
     },
     "autoload":{
         "psr-4":{
@@ -34,6 +36,7 @@
         "lint": "php -l ./src/",
         "sniff": "./vendor/bin/phpcs -s --standard=PSR2 ./src/ ./tests/",
         "test": "./vendor/bin/phpunit --coverage-clover ./tests/logs/clover.xml",
+        "stan": "./vendor/bin/phpstan analyse --level 5 src tests",
         "coveralls": "php ./vendor/bin/php-coveralls -v"
     }
 }

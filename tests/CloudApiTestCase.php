@@ -61,8 +61,8 @@ abstract class CloudApiTestCase extends TestCase
     /**
      * Mock client class.
      *
-     * @param $response
-     * @return static
+     * @param  mixed  $response
+     * @return Client
      */
     protected function getMockClient($response = '')
     {
@@ -72,6 +72,7 @@ abstract class CloudApiTestCase extends TestCase
                 ->disableOriginalConstructor()
                 ->setMethods(['sendRequest'])
                 ->getMock();
+
             $connector
                 ->expects($this->atLeastOnce())
                 ->method('sendRequest')

@@ -91,9 +91,8 @@ EOM;
             ->disableOriginalConstructor()
             ->setMethods(['sendRequest'])
             ->getMock();
-
+        
         $connector->method('sendRequest')->willThrowException($exception);
-
         $client = Client::factory($connector);
         $response = $client->makeRequest('GET', '/test');
 

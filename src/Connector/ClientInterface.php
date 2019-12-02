@@ -19,7 +19,6 @@ interface ClientInterface
      *
      * @param string $verb
      * @param string $path
-     * @param array  $query
      * @param array  $options
      *
      * @return object|array|StreamInterface
@@ -29,7 +28,6 @@ interface ClientInterface
     /**
      * @param string $verb
      * @param string $path
-     * @param array  $query
      * @param array  $options
      * @return ResponseInterface
      */
@@ -59,8 +57,8 @@ interface ClientInterface
     /**
      * Add a query parameter to filter results.
      *
-     * @param string $name
-     * @param string $value
+     * @param string     $name
+     * @param string|int $value
      */
     public function addQuery($name, $value);
 }

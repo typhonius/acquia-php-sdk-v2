@@ -39,7 +39,7 @@ class Account implements CloudApi
     /**
      * Provides an archived set of files for Acquia Drush aliases.
      *
-     * @return StreamInterface
+     * @return object
      */
     public function getDrushAliases()
     {

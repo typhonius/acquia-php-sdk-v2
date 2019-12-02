@@ -20,6 +20,7 @@ use AcquiaCloudApi\Response\InvitationsResponse;
 use AcquiaCloudApi\Response\LogstreamResponse;
 use AcquiaCloudApi\Response\MembersResponse;
 use AcquiaCloudApi\Response\NotificationResponse;
+use AcquiaCloudApi\Response\NotificationsResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\OrganizationsResponse;
 use AcquiaCloudApi\Response\PermissionsResponse;
@@ -107,7 +108,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Returns details about your account.
+     * Returns details about a notification.
      *
      * @return NotificationResponse
      */
@@ -117,6 +118,24 @@ class Client implements ClientInterface
             $this->connector->request(
                 'get',
                 "/notifications/${notificationUuid}",
+                $this->query
+            )
+        );
+    }
+
+    /**
+     * Returns a list of notifications.
+     *
+     * @param string $applicationUuid
+     *
+     * @return NotificationsResponse
+     */
+    public function notifications($applicationUuid)
+    {
+        return new NotificationsResponse(
+            $this->connector->request(
+                'get',
+                "/applications/${applicationUuid}/notifications",
                 $this->query
             )
         );

@@ -1,5 +1,7 @@
 <?php
 
+use AcquiaCloudApi\Tests\CloudApiTestCase;
+
 class LogstreamTest extends CloudApiTestCase
 {
 

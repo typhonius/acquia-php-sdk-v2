@@ -1,5 +1,9 @@
 <?php
 
+namespace AcquiaCloudApi\Tests\Endpoints;
+
+use AcquiaCloudApi\Tests\CloudApiTestCase;
+
 class FiltersTest extends CloudApiTestCase
 {
 
@@ -61,7 +65,7 @@ class FiltersTest extends CloudApiTestCase
 
     public function getPrivateProperty($className, $propertyName)
     {
-        $reflector = new ReflectionClass($className);
+        $reflector = new \ReflectionClass($className);
         $property = $reflector->getProperty($propertyName);
         $property->setAccessible(true);
 

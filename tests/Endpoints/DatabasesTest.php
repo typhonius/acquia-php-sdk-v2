@@ -1,5 +1,9 @@
 <?php
 
+namespace AcquiaCloudApi\Tests\Endpoints;
+
+use AcquiaCloudApi\Tests\CloudApiTestCase;
+
 class DatabasesTest extends CloudApiTestCase
 {
 
@@ -136,7 +140,7 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->databaseBackup('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 12);
+        $result = $client->databaseBackup('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'db_name', 12);
 
         $this->assertNotInstanceOf('\AcquiaCloudApi\Response\BackupsResponse', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\BackupResponse', $result);
@@ -152,7 +156,7 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->restoreDatabaseBackup('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 12);
+        $result = $client->restoreDatabaseBackup('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'db_name', 12);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 

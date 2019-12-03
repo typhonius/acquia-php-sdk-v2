@@ -2,6 +2,7 @@
 
 namespace AcquiaCloudApi\CloudApi;
 
+use AcquiaCloudApi\Response\AccountResponse;
 use AcquiaCloudApi\Response\ApplicationResponse;
 use AcquiaCloudApi\Response\ApplicationsResponse;
 use AcquiaCloudApi\Response\BackupResponse;
@@ -52,6 +53,13 @@ interface ClientInterface
      * @param string $value
      */
     public function addQuery($name, $value);
+
+    /**
+     * Returns details about your account.
+     *
+     * @return AccountResponse
+     */
+    public function account();
 
     /**
      * Shows all applications.
@@ -151,19 +159,21 @@ interface ClientInterface
      * Gets information about a database backup.
      *
      * @param string $environmentUuid
+     * @param string $dbName
      * @param int    $backupId
      * @return BackupResponse
      */
-    public function databaseBackup($environmentUuid, $backupId);
+    public function databaseBackup($environmentUuid, $dbName, $backupId);
 
     /**
      * Restores a database backup to a database in an environment.
      *
      * @param string $environmentUuid
+     * @param string $dbName
      * @param int    $backupId
      * @return OperationResponse
      */
-    public function restoreDatabaseBackup($environmentUuid, $backupId);
+    public function restoreDatabaseBackup($environmentUuid, $dbName, $backupId);
 
     /**
      * Copies files from an environment to another environment.
@@ -182,6 +192,16 @@ interface ClientInterface
      * @return OperationResponse
      */
     public function switchCode($environmentUuid, $branch);
+
+    /**
+     * Deploys code from one environment to another environment.
+     *
+     * @param string $environmentFromUuid
+     * @param string $environmentToUuid
+     * @param string $commitMessage
+     * @return OperationResponse
+     */
+    public function deployCode($environmentUuid, $branch);
 
     /**
      * Shows all domains on an environment.
@@ -243,6 +263,15 @@ interface ClientInterface
     public function environment($environmentUuid);
 
     /**
+     * Modifies configuration settings for an environment.
+     *
+     * @param string $environmentUuid
+     * @param array $config
+     * @return OperationResponse
+     */
+    public function modifyEnvironment($environmentUuid, array $config);
+
+    /**
      * Renames an environment.
      *
      * @param string $environmentUuid
@@ -250,6 +279,14 @@ interface ClientInterface
      * @return OperationResponse
      */
     public function renameEnvironment($environmentUuid, $label);
+
+    /**
+     * Deletes an environment.
+     *
+     * @param string $environmentUuid
+     * @return OperationResponse
+     */
+    public function deleteEnvironment($environmentUuid);
 
     /**
      * Show all servers associated with an environment.

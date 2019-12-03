@@ -2,6 +2,7 @@
 
 namespace AcquiaCloudApi\CloudApi;
 
+use AcquiaCloudApi\Response\AccountResponse;
 use AcquiaCloudApi\Response\ApplicationResponse;
 use AcquiaCloudApi\Response\ApplicationsResponse;
 use AcquiaCloudApi\Response\BackupResponse;
@@ -10,6 +11,7 @@ use AcquiaCloudApi\Response\BranchesResponse;
 use AcquiaCloudApi\Response\CronResponse;
 use AcquiaCloudApi\Response\CronsResponse;
 use AcquiaCloudApi\Response\DatabasesResponse;
+use AcquiaCloudApi\Response\DomainResponse;
 use AcquiaCloudApi\Response\DomainsResponse;
 use AcquiaCloudApi\Response\EnvironmentResponse;
 use AcquiaCloudApi\Response\EnvironmentsResponse;
@@ -91,6 +93,16 @@ class Client implements ClientInterface
     public function addQuery($name, $value)
     {
         $this->query = array_merge_recursive($this->query, [$name => $value]);
+    }
+
+    /**
+     * Returns details about your account.
+     *
+     * @return AccountResponse
+     */
+    public function account()
+    {
+        return new AccountResponse($this->connector->request('get', '/account', $this->query));
     }
 
     /**
@@ -249,7 +261,7 @@ class Client implements ClientInterface
     public function databaseDelete($applicationUuid, $name)
     {
         return new OperationResponse(
-            $this->connector->request('post', "/applications/${applicationUuid}/databases/${name}", $this->query)
+            $this->connector->request('delete', "/applications/${applicationUuid}/databases/${name}", $this->query)
         );
     }
 
@@ -293,15 +305,16 @@ class Client implements ClientInterface
      * Gets information about a database backup.
      *
      * @param string $environmentUuid
+     * @param string $dbName
      * @param int    $backupId
      * @return BackupResponse
      */
-    public function databaseBackup($environmentUuid, $backupId)
+    public function databaseBackup($environmentUuid, $dbName, $backupId)
     {
         return new BackupResponse(
             $this->connector->request(
                 'get',
-                "/environments/${environmentUuid}/database-backups/${backupId}",
+                "/environments/${environmentUuid}/databases/${dbName}/backups/${backupId}",
                 $this->query
             )
         );
@@ -311,15 +324,16 @@ class Client implements ClientInterface
      * Restores a database backup to a database in an environment.
      *
      * @param string $environmentUuid
+     * @param string $dbName
      * @param int    $backupId
      * @return OperationResponse
      */
-    public function restoreDatabaseBackup($environmentUuid, $backupId)
+    public function restoreDatabaseBackup($environmentUuid, $dbName, $backupId)
     {
         return new OperationResponse(
             $this->connector->request(
                 'post',
-                "/environments/${environmentUuid}/database-backups/${backupId}/actions/restore",
+                "/environments/${environmentUuid}/databases/${dbName}/backups/${backupId}/actions/restore",
                 $this->query
             )
         );
@@ -372,6 +386,33 @@ class Client implements ClientInterface
     }
 
     /**
+     * Deploys code from one environment to another environment.
+     *
+     * @param string $environmentFromUuid
+     * @param string $environmentToUuid
+     * @param string $commitMessage
+     */
+    public function deployCode($environmentFromUuid, $environmentToUuid, $commitMessage = null)
+    {
+
+        $options = [
+            'form_params' => [
+                'source' => $environmentFromUuid,
+                'message' => $commitMessage,
+            ],
+        ];
+
+        return new OperationResponse(
+            $this->connector->request(
+                'post',
+                "/environments/${environmentToUuid}/code",
+                $this->query,
+                $options
+            )
+        );
+    }
+
+    /**
      * Shows all domains on an environment.
      *
      * @param string $environmentUuid
@@ -383,6 +424,24 @@ class Client implements ClientInterface
             $this->connector->request(
                 'get',
                 "/environments/${environmentUuid}/domains",
+                $this->query
+            )
+        );
+    }
+
+    /**
+     * Return details about a domain.
+     *
+     * @param string $environmentUuid
+     * @param string $domain
+     * @return DomainResponse
+     */
+    public function domain($environmentUuid, $domain)
+    {
+        return new DomainResponse(
+            $this->connector->request(
+                'get',
+                "/environments/${environmentUuid}/domains/${domain}",
                 $this->query
             )
         );
@@ -501,6 +560,30 @@ class Client implements ClientInterface
     }
 
     /**
+     * Modifies configuration settings for an environment.
+     *
+     * @param string $environmentUuid
+     * @param array $config
+     * @return OperationResponse
+     */
+    public function modifyEnvironment($environmentUuid, array $config)
+    {
+
+        $options = [
+          'form_params' => $config,
+        ];
+
+        return new OperationResponse(
+            $this->connector->request(
+                'put',
+                "/environments/${environmentUuid}",
+                $this->query,
+                $options
+            )
+        );
+    }
+
+    /**
      * Renames an environment.
      *
      * @param string $environmentUuid
@@ -522,6 +605,24 @@ class Client implements ClientInterface
                 "/environments/${environmentUuid}/actions/change-label",
                 $this->query,
                 $options
+            )
+        );
+    }
+
+    /**
+     * Deletes an environment.
+     *
+     * @param string $environmentUuid
+     * @return OperationResponse
+     */
+    public function deleteEnvironment($environmentUuid)
+    {
+
+        return new OperationResponse(
+            $this->connector->request(
+                'delete',
+                "/environments/${environmentUuid}",
+                $this->query
             )
         );
     }

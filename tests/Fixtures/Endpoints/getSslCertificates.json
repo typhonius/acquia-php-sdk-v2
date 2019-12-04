@@ -1,0 +1,96 @@
+{
+    "total": 3,
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/environments/5-a1a10dab-62f4-418c-bc58-ab7742078ba8/ssl/certificates"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/environments/5-a1a10dab-62f4-418c-bc58-ab7742078ba8/ssl"
+      }
+    },
+    "_embedded": {
+      "items": [
+        {
+          "id": 7,
+          "label": null,
+          "certificate": "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----",
+          "private_key": null,
+          "ca": "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----",
+          "flags": {
+            "active": true,
+            "csr": true,
+            "legacy": true
+          },
+          "expires_at": "2022-03-28T00:12:34-0400",
+          "domains": [
+            "example.com",
+            "www.example.com"
+          ],
+          "environment": {
+            "id": "5-a1a10dab-62f4-418c-bc58-ab7742078ba8",
+            "name": "prod"
+          },
+          "_links": {
+            "self": {
+              "href": "https://cloud.acquia.com/api/environments/5-a1a10dab-62f4-418c-bc58-ab7742078ba8/ssl/certificates/7"
+            },
+            "csr": {
+              "href": "https://cloud.acquia.com/api/environments/5-a1a10dab-62f4-418c-bc58-ab7742078ba8/ssl/csrs/7"
+            }
+          }
+        },
+        {
+          "id": 3,
+          "label": "Test Certificate 1",
+          "certificate": "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----",
+          "private_key": "-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----",
+          "ca": "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----",
+          "flags": {
+            "active": true,
+            "csr": false,
+            "legacy": false
+          },
+          "expires_at": "2022-03-28T00:12:34-0400",
+          "domains": [
+            "example.com",
+            "www.example.com"
+          ],
+          "environment": {
+            "id": "5-a1a10dab-62f4-418c-bc58-ab7742078ba8",
+            "name": "prod"
+          },
+          "_links": {
+            "self": {
+              "href": "https://cloud.acquia.com/api/environments/5-a1a10dab-62f4-418c-bc58-ab7742078ba8/ssl/certificates/3"
+            }
+          }
+        },
+        {
+          "id": 4,
+          "label": "Test Certificate 2",
+          "certificate": "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----",
+          "private_key": "-----BEGIN RSA PRIVATE KEY-----...-----END RSA PRIVATE KEY-----",
+          "ca": "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----",
+          "flags": {
+            "active": false,
+            "csr": true,
+            "legacy": false
+          },
+          "expires_at": "2022-03-28T00:12:34-0400",
+          "domains": [
+            "example.com",
+            "www.example.com"
+          ],
+          "environment": {
+            "id": "5-a1a10dab-62f4-418c-bc58-ab7742078ba8",
+            "name": "prod"
+          },
+          "_links": {
+            "self": {
+              "href": "https://cloud.acquia.com/api/environments/5-a1a10dab-62f4-418c-bc58-ab7742078ba8/ssl/certificates/4"
+            }
+          }
+        }
+      ]
+    }
+  }

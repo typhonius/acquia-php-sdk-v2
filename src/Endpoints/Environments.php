@@ -8,6 +8,8 @@ use AcquiaCloudApi\Response\EnvironmentsResponse;
 use AcquiaCloudApi\Response\DatabasesResponse;
 use AcquiaCloudApi\Response\CronsResponse;
 use AcquiaCloudApi\Response\CronResponse;
+use AcquiaCloudApi\Response\CertificatesResponse;
+use AcquiaCloudApi\Response\CertificateResponse;
 use AcquiaCloudApi\Response\BackupsResponse;
 use AcquiaCloudApi\Response\BackupResponse;
 use AcquiaCloudApi\Response\DomainsResponse;
@@ -586,6 +588,122 @@ class Environments implements CloudApi
     {
         return new LogstreamResponse(
             $this->client->request('get', "/environments/${environmentUuid}/logstream")
+        );
+    }
+
+    /**
+     * Returns a list of SSL certificates.
+     *
+     * @param string $environmentUuid The environment ID
+     * @return CertificatesResponse
+     */
+    public function getSslCertificates($environmentUuid)
+    {
+        return new CertificatesResponse(
+            $this->client->request(
+                'get',
+                "/environments/${environmentUuid}/ssl/certificates"
+            )
+        );
+    }
+
+    /**
+     * Returns a specific certificate by certificate ID.
+     *
+     * @param string $environmentUuid The environment ID
+     * @param int    $certificateId
+     * @return CertificateResponse
+     */
+    public function getSslCertificate($environmentUuid, $certificateId)
+    {
+        return new CertificateResponse(
+            $this->client->request(
+                'get',
+                "/environments/${environmentUuid}/ssl/certificates/${certificateId}"
+            )
+        );
+    }
+
+    /**
+     * Install an SSL certificate.
+     *
+     * @param string $environmentUuid
+     * @param string $label
+     * @param string $cert
+     * @param string $key
+     * @param string $ca
+     * @param int    $csr
+     * @param bool   $legacy
+     * @return OperationResponse
+     */
+    public function createSslCertificate($environmentUuid, $label, $cert, $key, $ca = null, $csr = null, $legacy = false)
+    {
+
+        $options = [
+            'form_params' => [
+                'label' => $label,
+                'certificate' => $cert,
+                'private_key' => $key,
+            ],
+        ];
+
+        if ($ca) {
+            $options['form_params']['ca_certificates'] = $ca;
+        }
+        if ($csr) {
+            $options['form_params']['csr_id'] = $csr;
+        }
+
+        return new OperationResponse(
+            $this->client->request('post', "/environments/${environmentUuid}/ssl/certificates", $options)
+        );
+    }
+
+    /**
+     * Delete a specific certificate by ID.
+     *
+     * @param string $environmentUuid
+     * @param int    $certificateId
+     * @return OperationResponse
+     */
+    public function deleteSslCertificate($environmentUuid, $certificateId)
+    {
+        return new OperationResponse(
+            $this->client->request('delete', "/environments/${environmentUuid}/ssl/certificates/${certificateId}")
+        );
+    }
+
+    /**
+     * Deactivates an active SSL certificate.
+     *
+     * @param string $environmentUuid
+     * @param int    $certificateId
+     * @return OperationResponse
+     */
+    public function deactivateSslCertificate($environmentUuid, $certificateId)
+    {
+        return new OperationResponse(
+            $this->client->request(
+                'post',
+                "/environments/${environmentUuid}/ssl/certificate/${certificateId}/actions/deactivate"
+            )
+        );
+    }
+
+    /**
+     * Activates an SSL certificate.
+     *
+     * @param string $environmentUuid
+     * @param int    $certificateId
+     * @return OperationResponse
+     */
+    public function activateSslCertificate($environmentUuid, $certificateId)
+    {
+        return new OperationResponse(
+            $this->client->request(
+                'post',
+                "/environments/${environmentUuid}/ssl/certificate/${certificateId}/actions/activate"
+            )
         );
     }
 }

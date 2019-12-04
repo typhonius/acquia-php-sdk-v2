@@ -1,0 +1,79 @@
+{
+  "total": 2,
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/environments/5-185f07c7-9c4f-407b-8968-67892ebcb38a/log-forwarding-destinations"
+    },
+    "parent": {
+      "href": "https://cloud.acquia.com/api/environments/5-185f07c7-9c4f-407b-8968-67892ebcb38a"
+    }
+  },
+  "_embedded": {
+    "items": [
+      {
+        "uuid": "df4c5428-8d2e-453d-9edf-e412647449b1",
+        "label": "Test destination",
+        "consumer": "sumologic",
+        "address": "example.com:1234",
+        "credentials": {
+          "certificate": {
+            "certificate": "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----",
+            "expires_at": "2018-07-16T16:15:33+00:00"
+          },
+          "key": null,
+          "token": "204d892b449026f6e4ded264c8891c400df8fc8905f07beb5f70d706f6d4d5e5"
+        },
+        "sources": [
+          "apache-access",
+          "apache-error"
+        ],
+        "status": "active",
+        "flags": {
+          "enabled": true,
+          "certificate_expiring": false
+        },
+        "health": {
+          "code": "200",
+          "details": "Destination OK",
+          "summary": "OK"
+        },
+        "environment": {
+          "id": "123-ea9060c5-1ed8-46ec-87d5-2ce2a0861577",
+          "name": "Test"
+        }
+      },
+      {
+        "uuid": "df4c5428-8d2e-453d-9edf-e412647449b5",
+        "label": "Another test destination",
+        "consumer": "syslog",
+        "address": "193.169.2.19:5678",
+        "credentials": {
+          "certificate": {
+            "certificate": "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----",
+            "expires_at": "2018-07-16T16:15:33+00:00"
+          },
+          "key": "1d0789d519c0b943cf38f401d30ffbdcd2e0c4cfb7c32ebc0c872bce62aadd4d",
+          "token": "204d892b449026f6e4ded264c8891c400df8fc8905f07beb5f70d706f6d4d5e5"
+        },
+        "sources": [
+          "drupal-request",
+          "drupal-watchdog"
+        ],
+        "status": "active",
+        "flags": {
+          "enabled": false,
+          "certificate_expiring": true
+        },
+        "health": {
+          "code": "200",
+          "details": "Destination OK",
+          "summary": "OK"
+        },
+        "environment": {
+          "id": "123-ea9060c5-1ed8-46ec-87d5-2ce2a0861577",
+          "name": "Test"
+        }
+      }
+    ]
+  }
+}

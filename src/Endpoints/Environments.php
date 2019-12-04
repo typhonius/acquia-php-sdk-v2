@@ -18,6 +18,8 @@ use AcquiaCloudApi\Response\InsightsResponse;
 use AcquiaCloudApi\Response\ServersResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\LogstreamResponse;
+use AcquiaCloudApi\Response\LogForwardingDestinationsResponse;
+use AcquiaCloudApi\Response\LogForwardingDestinationResponse;
 
 /**
  * Class Client
@@ -627,7 +629,7 @@ class Environments implements CloudApi
     /**
      * Install an SSL certificate.
      *
-     * @param string $environmentUuid
+     * @param string $envUuid
      * @param string $label
      * @param string $cert
      * @param string $key
@@ -636,7 +638,7 @@ class Environments implements CloudApi
      * @param bool   $legacy
      * @return OperationResponse
      */
-    public function createSslCertificate($environmentUuid, $label, $cert, $key, $ca = null, $csr = null, $legacy = false)
+    public function createSslCertificate($envUuid, $label, $cert, $key, $ca = null, $csr = null, $legacy = false)
     {
 
         $options = [
@@ -644,18 +646,14 @@ class Environments implements CloudApi
                 'label' => $label,
                 'certificate' => $cert,
                 'private_key' => $key,
+                'ca_certificates' => $ca,
+                'csr_id' => $csr,
+                'legacy' => $legacy
             ],
         ];
 
-        if ($ca) {
-            $options['form_params']['ca_certificates'] = $ca;
-        }
-        if ($csr) {
-            $options['form_params']['csr_id'] = $csr;
-        }
-
         return new OperationResponse(
-            $this->client->request('post', "/environments/${environmentUuid}/ssl/certificates", $options)
+            $this->client->request('post', "/environments/${envUuid}/ssl/certificates", $options)
         );
     }
 
@@ -703,6 +701,150 @@ class Environments implements CloudApi
             $this->client->request(
                 'post',
                 "/environments/${environmentUuid}/ssl/certificate/${certificateId}/actions/activate"
+            )
+        );
+    }
+
+   /**
+    * Returns a list of log forwarding destinations.
+    *
+    * @param string $environmentUuid The environment ID
+    * @return LogForwardingDestinationsResponse
+    */
+    public function getLogDestinations($environmentUuid)
+    {
+        return new LogForwardingDestinationsResponse(
+            $this->client->request(
+                'get',
+                "/environments/${environmentUuid}/log-forwarding-destinations"
+            )
+        );
+    }
+
+   /**
+    * Returns a specific log forwarding destination.
+    *
+    * @param string $environmentUuid The environment ID
+    * @param int    $destinationId
+    * @return LogForwardingDestinationResponse
+    */
+    public function getLogDestination($environmentUuid, $destinationId)
+    {
+        return new LogForwardingDestinationResponse(
+            $this->client->request(
+                'get',
+                "/environments/${environmentUuid}/log-forwarding-destinations/${destinationId}"
+            )
+        );
+    }
+
+   /**
+    * Creates a log forwarding destination.
+    *
+    * @param string $environmentUuid
+    * @param string $label
+    * @param array  $sources
+    * @param string $consumer
+    * @param array  $credentials
+    * @param string $address
+    * @return OperationResponse
+    */
+    public function createLogDestination($environmentUuid, $label, $sources, $consumer, $credentials, $address)
+    {
+
+        $options = [
+            'form_params' => [
+                'label' => $label,
+                'sources' => $sources,
+                'consumer' => $consumer,
+                'credentials' => $credentials,
+                'address' => $address
+            ],
+        ];
+
+        return new OperationResponse(
+            $this->client->request('post', "/environments/${environmentUuid}/log-forwarding-destinations", $options)
+        );
+    }
+
+   /**
+    * Delete a specific log forwarding destination.
+    *
+    * @param string $environmentUuid
+    * @param int    $destId
+    * @return OperationResponse
+    */
+    public function deleteLogDestination($environmentUuid, $destId)
+    {
+        return new OperationResponse(
+            $this->client->request('delete', "/environments/${environmentUuid}/log-forwarding-destinations/${destId}")
+        );
+    }
+
+   /**
+    * Disables a log forwarding destination.
+    *
+    * @param string $environmentUuid
+    * @param int    $destId
+    * @return OperationResponse
+    */
+    public function disableLogDestination($environmentUuid, $destId)
+    {
+        return new OperationResponse(
+            $this->client->request(
+                'post',
+                "/environments/${environmentUuid}/log-forwarding-destinations/${destId}/actions/disable"
+            )
+        );
+    }
+
+   /**
+    * Disables a log forwarding destination.
+    *
+    * @param string $environmentUuid
+    * @param int    $destId
+    * @return OperationResponse
+    */
+    public function enableLogDestination($environmentUuid, $destId)
+    {
+        return new OperationResponse(
+            $this->client->request(
+                'post',
+                "/environments/${environmentUuid}/log-forwarding-destinations/${destId}/actions/enable"
+            )
+        );
+    }
+
+   /**
+    * Updates a log forwarding destination.
+    *
+    * @param string $environmentUuid
+    * @param int    $destId
+    * @param string $label
+    * @param array  $sources
+    * @param string $consumer
+    * @param array  $creds
+    * @param string $address
+    * @return OperationResponse
+    */
+    public function updateLogDestination($environmentUuid, $destId, $label, $sources, $consumer, $creds, $address)
+    {
+
+        $options = [
+            'form_params' => [
+                'label' => $label,
+                'sources' => $sources,
+                'consumer' => $consumer,
+                'credentials' => $creds,
+                'address' => $address
+            ],
+        ];
+
+        return new OperationResponse(
+            $this->client->request(
+                'put',
+                "/environments/${environmentUuid}/log-forwarding-destinations/${destId}",
+                $options
             )
         );
     }

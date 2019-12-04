@@ -15,6 +15,7 @@ use AcquiaCloudApi\Response\DomainResponse;
 use AcquiaCloudApi\Response\InsightsResponse;
 use AcquiaCloudApi\Response\ServersResponse;
 use AcquiaCloudApi\Response\OperationResponse;
+use AcquiaCloudApi\Response\LogstreamResponse;
 
 /**
  * Class Client
@@ -573,6 +574,18 @@ class Environments implements CloudApi
     {
         return new InsightsResponse(
             $this->client->request('get', "/environments/${environmentUuid}/insight")
+        );
+    }
+
+    /**
+     * Returns logstream WSS stream information.
+     *
+     * @return LogstreamResponse
+     */
+    public function getLogstream($environmentUuid)
+    {
+        return new LogstreamResponse(
+            $this->client->request('get', "/environments/${environmentUuid}/logstream")
         );
     }
 }

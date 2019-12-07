@@ -11,6 +11,7 @@ use AcquiaCloudApi\Response\EnvironmentsResponse;
 use AcquiaCloudApi\Response\InsightsResponse;
 use AcquiaCloudApi\Response\TasksResponse;
 use AcquiaCloudApi\Response\OperationResponse;
+use AcquiaCloudApi\Response\NotificationsResponse;
 
 /**
  * Class Client
@@ -191,6 +192,23 @@ class Applications implements CloudApi
     {
         return new InsightsResponse(
             $this->client->request('get', "/applications/${applicationUuid}/insight")
+        );
+    }
+
+    /**
+     * Returns a list of notifications.
+     *
+     * @param string $applicationUuid
+     *
+     * @return NotificationsResponse
+     */
+    public function getNotifications($applicationUuid)
+    {
+        return new NotificationsResponse(
+            $this->client->request(
+                'get',
+                "/applications/${applicationUuid}/notifications"
+            )
         );
     }
 }

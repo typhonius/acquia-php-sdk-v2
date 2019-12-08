@@ -38,7 +38,7 @@ class TeamsTest extends CloudApiTestCase
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $team = new Teams($client);
-        $result = $team->getTeams();
+        $result = $team->getAll();
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamsResponse', $result);
@@ -76,8 +76,8 @@ class TeamsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $organization = new Organizations($client);
-        $result = $organization->createTeam('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'Mega Team');
+        $organization = new Teams($client);
+        $result = $organization->create('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'Mega Team');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
@@ -91,7 +91,7 @@ class TeamsTest extends CloudApiTestCase
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $team = new Teams($client);
-        $result = $team->renameTeam('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'My Cool Application');
+        $result = $team->rename('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'My Cool Application');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
@@ -105,34 +105,34 @@ class TeamsTest extends CloudApiTestCase
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $team = new Teams($client);
-        $result = $team->deleteTeam('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
+        $result = $team->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
         $this->assertEquals("Removed team.", $result->message);
     }
 
-    public function testGetOrganizationTeams()
-    {
+    // public function testGetOrganizationTeams()
+    // {
 
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getOrganizationTeams.json');
-        $client = $this->getMockClient($response);
+    //     $response = $this->getPsr7JsonResponseForFixture('Endpoints/getOrganizationTeams.json');
+    //     $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $organization = new Organizations($client);
-        $result = $organization->getTeams('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+    //     /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+    //     $organization = new Teams($client);
+    //     $result = $organization->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
-        $this->assertInstanceOf('\ArrayObject', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamsResponse', $result);
+    //     $this->assertInstanceOf('\ArrayObject', $result);
+    //     $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamsResponse', $result);
 
-        foreach ($result as $record) {
-            $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamResponse', $record);
+    //     foreach ($result as $record) {
+    //         $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamResponse', $record);
 
-            foreach ($this->teamProperties as $property) {
-                $this->assertObjectHasAttribute($property, $record);
-            }
-        }
-    }
+    //         foreach ($this->teamProperties as $property) {
+    //             $this->assertObjectHasAttribute($property, $record);
+    //         }
+    //     }
+    // }
 
     public function testAddApplicationToTeam()
     {
@@ -141,7 +141,7 @@ class TeamsTest extends CloudApiTestCase
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $team = new Teams($client);
-        $result = $team->addApplicationToTeam(
+        $result = $team->addApplication(
             '8ff6c046-ec64-4ce4-bea6-27845ec18600',
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851'
         );

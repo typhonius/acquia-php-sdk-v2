@@ -6,7 +6,7 @@ namespace AcquiaCloudApi\Response;
  * Class CertificateResponse
  * @package AcquiaCloudApi\Response
  */
-class CertificateResponse
+class SslCertificateResponse
 {
 
     public $id;

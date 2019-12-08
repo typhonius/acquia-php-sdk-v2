@@ -42,7 +42,7 @@ class OrganizationsTest extends CloudApiTestCase
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $organization = new Organizations($client);
-        $result = $organization->getOrganizations();
+        $result = $organization->getAll();
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OrganizationsResponse', $result);

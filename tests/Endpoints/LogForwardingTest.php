@@ -3,7 +3,7 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Endpoints\Environments;
+use AcquiaCloudApi\Endpoints\LogForwardingDestinations;
 
 class LogForwardingTest extends CloudApiTestCase
 {
@@ -28,8 +28,8 @@ class LogForwardingTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->getLogDestinations('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
+        $environment = new LogForwardingDestinations($client);
+        $result = $environment->getAll('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\LogForwardingDestinationsResponse', $result);
@@ -49,8 +49,8 @@ class LogForwardingTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->getLogDestination('8ff6c046-ec64-4ce4-bea6-27845ec18600', 3);
+        $environment = new LogForwardingDestinations($client);
+        $result = $environment->get('8ff6c046-ec64-4ce4-bea6-27845ec18600', 3);
 
         $this->assertNotInstanceOf('\AcquiaCloudApi\Response\LogForwardingDestinationsResponse', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\LogForwardingDestinationResponse', $result);
@@ -66,9 +66,9 @@ class LogForwardingTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
+        $environment = new LogForwardingDestinations($client);
 
-        $result = $environment->createLogDestination(
+        $result = $environment->create(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
             'Test destination',
             ["apache-access", "apache-error"],
@@ -88,8 +88,8 @@ class LogForwardingTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->deleteLogDestination('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 14);
+        $environment = new LogForwardingDestinations($client);
+        $result = $environment->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 14);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
@@ -102,8 +102,8 @@ class LogForwardingTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->enableLogDestination('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
+        $environment = new LogForwardingDestinations($client);
+        $result = $environment->enable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
@@ -116,8 +116,8 @@ class LogForwardingTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->disableLogDestination('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
+        $environment = new LogForwardingDestinations($client);
+        $result = $environment->disable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
@@ -130,8 +130,8 @@ class LogForwardingTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->updateLogDestination(
+        $environment = new LogForwardingDestinations($client);
+        $result = $environment->update(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
             12,
             'Test destination',

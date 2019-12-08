@@ -5,7 +5,7 @@ namespace AcquiaCloudApi\Tests\Endpoints;
 use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Connector\Client;
 use AcquiaCloudApi\Connector\Connector;
-use AcquiaCloudApi\Endpoints\Applications;
+use AcquiaCloudApi\Endpoints\Code;
 
 class ClientTest extends CloudApiTestCase
 {
@@ -35,8 +35,8 @@ class ClientTest extends CloudApiTestCase
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $client->addQuery('filter', 'name=@*2014*');
         $client->addQuery('filter', 'type=@*true*');
-        $application = new Applications($client);
-        $result = $application->getBranches('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+        $code = new Code($client);
+        $result = $code->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         foreach ($result as $record) {
             $this->assertContains('2014', $record->name);

@@ -4,7 +4,6 @@ namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Endpoints\Environments;
-use AcquiaCloudApi\Endpoints\Applications;
 
 class EnvironmentsTest extends CloudApiTestCase
 {
@@ -32,8 +31,8 @@ class EnvironmentsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $application = new Applications($client);
-        $result = $application->getEnvironments('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+        $environments = new Environments($client);
+        $result = $environments->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\EnvironmentsResponse', $result);
@@ -55,7 +54,7 @@ class EnvironmentsTest extends CloudApiTestCase
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $environment = new Environments($client);
-        $result = $environment->getEnvironment('24-a47ac10b-58cc-4372-a567-0e02b2c3d470');
+        $result = $environment->get('24-a47ac10b-58cc-4372-a567-0e02b2c3d470');
 
         $this->assertNotInstanceOf('\AcquiaCloudApi\Response\EnvironmentsResponse', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\EnvironmentResponse', $result);
@@ -73,7 +72,7 @@ class EnvironmentsTest extends CloudApiTestCase
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $environment = new Environments($client);
-        $result = $environment->modifyEnvironment('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', ['version' => '7.2']);
+        $result = $environment->update('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', ['version' => '7.2']);
 
          $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
@@ -88,7 +87,7 @@ class EnvironmentsTest extends CloudApiTestCase
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $environment = new Environments($client);
-        $result = $environment->renameEnvironment('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'Alpha');
+        $result = $environment->rename('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'Alpha');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 

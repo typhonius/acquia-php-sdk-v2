@@ -23,7 +23,7 @@ class PermissionsTest extends CloudApiTestCase
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $permissions = new Permissions($client);
-        $result = $permissions->getPermissions();
+        $result = $permissions->get();
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\PermissionsResponse', $result);

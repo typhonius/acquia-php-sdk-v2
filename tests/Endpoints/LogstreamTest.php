@@ -3,7 +3,7 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Endpoints\Environments;
+use AcquiaCloudApi\Endpoints\Logs;
 
 class LogstreamTest extends CloudApiTestCase
 {
@@ -20,8 +20,8 @@ class LogstreamTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->getLogstream('24-a47ac10b-58cc-4372-a567-0e02b2c3d470');
+        $logs = new Logs($client);
+        $result = $logs->stream('24-a47ac10b-58cc-4372-a567-0e02b2c3d470');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\LogstreamResponse', $result);
 

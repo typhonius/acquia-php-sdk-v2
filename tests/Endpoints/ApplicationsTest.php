@@ -27,7 +27,7 @@ class ApplicationsTest extends CloudApiTestCase
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $application = new Applications($client);
-        $result = $application->getApplications();
+        $result = $application->getAll();
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\ApplicationsResponse', $result);
@@ -48,7 +48,7 @@ class ApplicationsTest extends CloudApiTestCase
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $application = new Applications($client);
-        $result = $application->getApplication('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+        $result = $application->get('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertNotInstanceOf('\AcquiaCloudApi\Response\ApplicationsResponse', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\ApplicationResponse', $result);
@@ -65,7 +65,7 @@ class ApplicationsTest extends CloudApiTestCase
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $application = new Applications($client);
-        $result = $application->renameApplication('8ff6c046-ec64-4ce4-bea6-27845ec18600', "My application's new name");
+        $result = $application->rename('8ff6c046-ec64-4ce4-bea6-27845ec18600', "My application's new name");
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 

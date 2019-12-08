@@ -29,11 +29,31 @@ class Teams implements CloudApi
     }
 
     /**
+     * Create a new team.
+     *
+     * @param string $organizationUuid
+     * @param string $name
+     * @return OperationResponse
+     */
+    public function create($organizationUuid, $name)
+    {
+        $options = [
+            'form_params' => [
+                'name' => $name,
+            ],
+        ];
+
+        return new OperationResponse(
+            $this->client->request('post', "/organizations/${organizationUuid}/teams", $options)
+        );
+    }
+
+    /**
      * Show all teams.
      *
      * @return TeamsResponse
      */
-    public function getTeams()
+    public function getAll()
     {
         return new TeamsResponse(
             $this->client->request('get', '/teams')
@@ -47,7 +67,7 @@ class Teams implements CloudApi
      * @param string $name
      * @return OperationResponse
      */
-    public function renameTeam($teamUuid, $name)
+    public function rename($teamUuid, $name)
     {
         $options = [
             'form_params' => [
@@ -67,7 +87,7 @@ class Teams implements CloudApi
      * @param string $teamUuid
      * @return OperationResponse
      */
-    public function deleteTeam($teamUuid)
+    public function delete($teamUuid)
     {
         return new OperationResponse(
             $this->client->request('delete', "/teams/${teamUuid}")
@@ -81,7 +101,7 @@ class Teams implements CloudApi
      * @param string $applicationUuid
      * @return OperationResponse
      */
-    public function addApplicationToTeam($teamUuid, $applicationUuid)
+    public function addApplication($teamUuid, $applicationUuid)
     {
         $options = [
             'form_params' => [

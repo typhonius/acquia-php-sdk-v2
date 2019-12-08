@@ -3,7 +3,7 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Endpoints\Environments;
+use AcquiaCloudApi\Endpoints\Domains;
 
 class DomainsTest extends CloudApiTestCase
 {
@@ -21,8 +21,8 @@ class DomainsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->getDomains('185f07c7-9c4f-407b-8968-67892ebcb38a');
+        $environment = new Domains($client);
+        $result = $environment->getAll('185f07c7-9c4f-407b-8968-67892ebcb38a');
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\DomainsResponse', $result);
@@ -42,8 +42,8 @@ class DomainsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->getDomain('185f07c7-9c4f-407b-8968-67892ebcb38a', 'example.com');
+        $environment = new Domains($client);
+        $result = $environment->get('185f07c7-9c4f-407b-8968-67892ebcb38a', 'example.com');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\DomainResponse', $result);
         $this->assertEquals('example.com', $result->hostname);
@@ -59,8 +59,8 @@ class DomainsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->createDomain('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'new-domain.com');
+        $environment = new Domains($client);
+        $result = $environment->create('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'new-domain.com');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
@@ -73,8 +73,8 @@ class DomainsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->deleteDomain('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'deleted-domain.com');
+        $environment = new Domains($client);
+        $result = $environment->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'deleted-domain.com');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 

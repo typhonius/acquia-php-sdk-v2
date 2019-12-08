@@ -5,13 +5,7 @@ namespace AcquiaCloudApi\Endpoints;
 use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\ApplicationResponse;
 use AcquiaCloudApi\Response\ApplicationsResponse;
-use AcquiaCloudApi\Response\DatabasesResponse;
-use AcquiaCloudApi\Response\BranchesResponse;
-use AcquiaCloudApi\Response\EnvironmentsResponse;
-use AcquiaCloudApi\Response\InsightsResponse;
-use AcquiaCloudApi\Response\TasksResponse;
 use AcquiaCloudApi\Response\OperationResponse;
-use AcquiaCloudApi\Response\NotificationsResponse;
 
 /**
  * Class Client
@@ -38,7 +32,7 @@ class Applications implements CloudApi
      *
      * @return ApplicationsResponse
      */
-    public function getApplications()
+    public function getAll()
     {
         return new ApplicationsResponse($this->client->request('get', '/applications'));
     }
@@ -49,7 +43,7 @@ class Applications implements CloudApi
      * @param string $applicationUuid
      * @return ApplicationResponse
      */
-    public function getApplication($applicationUuid)
+    public function get($applicationUuid)
     {
         return new ApplicationResponse(
             $this->client->request(
@@ -66,7 +60,7 @@ class Applications implements CloudApi
      * @param string $name
      * @return OperationResponse
      */
-    public function renameApplication($applicationUuid, $name)
+    public function rename($applicationUuid, $name)
     {
 
         $options = [
@@ -80,134 +74,6 @@ class Applications implements CloudApi
                 'put',
                 "/applications/${applicationUuid}",
                 $options
-            )
-        );
-    }
-
-    /**
-     * Shows all code branches and tags in an application.
-     *
-     * @param string $applicationUuid
-     * @return BranchesResponse
-     */
-    public function getBranches($applicationUuid)
-    {
-        return new BranchesResponse(
-            $this->client->request(
-                'get',
-                "/applications/${applicationUuid}/code"
-            )
-        );
-    }
-
-    /**
-     * Shows all databases in an application.
-     *
-     * @param string $applicationUuid
-     * @return DatabasesResponse
-     */
-    public function getDatabases($applicationUuid)
-    {
-        return new DatabasesResponse(
-            $this->client->request(
-                'get',
-                "/applications/${applicationUuid}/databases"
-            )
-        );
-    }
-
-    /**
-     * Create a new database.
-     *
-     * @param string $applicationUuid
-     * @param string $name
-     * @return OperationResponse
-     */
-    public function createDatabase($applicationUuid, $name)
-    {
-        $options = [
-            'form_params' => [
-                'name' => $name,
-            ],
-        ];
-
-        return new OperationResponse(
-            $this->client->request('post', "/applications/${applicationUuid}/databases", $options)
-        );
-    }
-
-    /**
-     * Delete a database.
-     *
-     * @param string $applicationUuid
-     * @param string $name
-     * @return OperationResponse
-     */
-    public function deleteDatabase($applicationUuid, $name)
-    {
-        return new OperationResponse(
-            $this->client->request('delete', "/applications/${applicationUuid}/databases/${name}")
-        );
-    }
-
-    /**
-     * Shows all tasks in an application.
-     *
-     * @param string $applicationUuid
-     * @return TasksResponse
-     */
-    public function getTasks($applicationUuid)
-    {
-        return new TasksResponse(
-            $this->client->request(
-                'get',
-                "/applications/${applicationUuid}/tasks"
-            )
-        );
-    }
-
-    /**
-     * Shows all environments in an application.
-     *
-     * @param string $applicationUuid
-     * @return EnvironmentsResponse
-     */
-    public function getEnvironments($applicationUuid)
-    {
-        return new EnvironmentsResponse(
-            $this->client->request(
-                'get',
-                "/applications/${applicationUuid}/environments"
-            )
-        );
-    }
-
-    /**
-     * Show insights data from an application.
-     *
-     * @param string $applicationUuid
-     * @return InsightsResponse
-     */
-    public function getInsights($applicationUuid)
-    {
-        return new InsightsResponse(
-            $this->client->request('get', "/applications/${applicationUuid}/insight")
-        );
-    }
-
-    /**
-     * Returns a list of notifications.
-     *
-     * @param string $applicationUuid
-     *
-     * @return NotificationsResponse
-     */
-    public function getNotifications($applicationUuid)
-    {
-        return new NotificationsResponse(
-            $this->client->request(
-                'get',
-                "/applications/${applicationUuid}/notifications"
             )
         );
     }

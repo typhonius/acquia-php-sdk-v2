@@ -28,7 +28,7 @@ class AccountTest extends CloudApiTestCase
 
       /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $account = new Account($client);
-        $result = $account->getAccount();
+        $result = $account->get();
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\AccountResponse', $result);
 

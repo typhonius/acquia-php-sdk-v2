@@ -3,7 +3,7 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Endpoints\Environments;
+use AcquiaCloudApi\Endpoints\Domains;
 
 class VarnishTest extends CloudApiTestCase
 {
@@ -14,8 +14,8 @@ class VarnishTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->purgeVarnishCache(
+        $domain = new Domains($client);
+        $result = $domain->purge(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
             ['example.com', 'www.example.com']
         );

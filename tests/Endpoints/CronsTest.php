@@ -3,7 +3,7 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Endpoints\Environments;
+use AcquiaCloudApi\Endpoints\Crons;
 
 class CronsTest extends CloudApiTestCase
 {
@@ -23,15 +23,15 @@ class CronsTest extends CloudApiTestCase
     'links'
     ];
 
-    public function testGetCrons()
+    public function testGetAllCrons()
     {
 
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/getCrons.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->getCrons('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
+        $environment = new Crons($client);
+        $result = $environment->getAll('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\CronsResponse', $result);
@@ -51,8 +51,8 @@ class CronsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->getCron('8ff6c046-ec64-4ce4-bea6-27845ec18600', 3);
+        $environment = new Crons($client);
+        $result = $environment->get('8ff6c046-ec64-4ce4-bea6-27845ec18600', 3);
 
         $this->assertNotInstanceOf('\AcquiaCloudApi\Response\CronsResponse', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\CronResponse', $result);
@@ -62,14 +62,14 @@ class CronsTest extends CloudApiTestCase
         }
     }
 
-    public function testCronAdd()
+    public function testCreateCron()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/addCron.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/createCron.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->createCron(
+        $environment = new Crons($client);
+        $result = $environment->create(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
             '/usr/local/bin/drush cc all',
             '*/30 * * * *',
@@ -81,42 +81,62 @@ class CronsTest extends CloudApiTestCase
         $this->assertEquals('Creating a new cron.', $result->message);
     }
 
-    public function testCronDelete()
+    public function testUpdateCron()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/updateCron.json');
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $cron = new Crons($client);
+        $result = $cron->update(
+            '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
+            14,
+            '/usr/local/bin/drush cc all',
+            '*/30 * * * *',
+            'My New Cron'
+        );
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
+        $this->assertEquals('Updating cron.', $result->message);
+    }
+
+    public function testDeleteCron()
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/deleteCron.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->deleteCron('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 14);
+        $environment = new Crons($client);
+        $result = $environment->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 14);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
         $this->assertEquals('Deleting cron.', $result->message);
     }
 
-    public function testCronEnable()
+    public function testEnableCron()
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/enableCron.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->enableCron('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
+        $environment = new Crons($client);
+        $result = $environment->enable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
         $this->assertEquals('The cron is being enabled.', $result->message);
     }
 
-    public function testCronDisable()
+    public function testDisableCron()
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/disableCron.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->disableCron('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
+        $environment = new Crons($client);
+        $result = $environment->disable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 

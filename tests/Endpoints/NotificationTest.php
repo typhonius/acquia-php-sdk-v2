@@ -41,8 +41,8 @@ class NotificationTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $applications = new Applications($client);
-        $result = $applications->getNotifications('f4b37e3c-1g96-4ed4-ad20-3081fe0f9545');
+        $applications = new Notifications($client);
+        $result = $applications->getAll('f4b37e3c-1g96-4ed4-ad20-3081fe0f9545');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\NotificationsResponse', $result);
         $this->assertInstanceOf('\ArrayObject', $result);

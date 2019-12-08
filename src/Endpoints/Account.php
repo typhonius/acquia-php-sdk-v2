@@ -31,7 +31,7 @@ class Account implements CloudApi
      *
      * @return AccountResponse
      */
-    public function getAccount()
+    public function get()
     {
         return new AccountResponse($this->client->request('get', '/account'));
     }

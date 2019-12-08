@@ -1,0 +1,14 @@
+{
+    "message": "Creating a new cron.",
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/environments/286-f027502b-ed6c-448e-97e8-4a0def7d25e1/crons"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/environments/286-f027502b-ed6c-448e-97e8-4a0def7d25e1"
+      },
+      "notification": {
+        "href": "https://cloud.acquia.com/api/notifications/01fde3bb-b65f-4629-b761-9072a35e8e50"
+      }
+    }
+  }

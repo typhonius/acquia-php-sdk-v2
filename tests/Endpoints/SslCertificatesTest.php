@@ -3,9 +3,9 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Endpoints\Environments;
+use AcquiaCloudApi\Endpoints\SslCertificates;
 
-class CertificatesTest extends CloudApiTestCase
+class SslCertificatesTest extends CloudApiTestCase
 {
 
     public $properties = [
@@ -28,14 +28,14 @@ class CertificatesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->getSslCertificates('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
+        $environment = new SslCertificates($client);
+        $result = $environment->getAll('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\ArrayObject', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\CertificatesResponse', $result);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\SslCertificatesResponse', $result);
 
         foreach ($result as $record) {
-            $this->assertInstanceOf('\AcquiaCloudApi\Response\CertificateResponse', $record);
+            $this->assertInstanceOf('\AcquiaCloudApi\Response\SslCertificateResponse', $record);
 
             foreach ($this->properties as $property) {
                 $this->assertObjectHasAttribute($property, $record);
@@ -49,11 +49,11 @@ class CertificatesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->getSslCertificate('8ff6c046-ec64-4ce4-bea6-27845ec18600', 3);
+        $environment = new SslCertificates($client);
+        $result = $environment->get('8ff6c046-ec64-4ce4-bea6-27845ec18600', 3);
 
-        $this->assertNotInstanceOf('\AcquiaCloudApi\Response\CertificatesResponse', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\CertificateResponse', $result);
+        $this->assertNotInstanceOf('\AcquiaCloudApi\Response\SslCertificatesResponse', $result);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\SslCertificateResponse', $result);
 
         foreach ($this->properties as $property) {
               $this->assertObjectHasAttribute($property, $result);
@@ -66,8 +66,8 @@ class CertificatesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->createSslCertificate(
+        $environment = new SslCertificates($client);
+        $result = $environment->create(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
             'My New Cert',
             '-----BEGIN CERTIFICATE-----abc123....-----END CERTIFICATE-----',
@@ -88,8 +88,8 @@ class CertificatesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->deleteSslCertificate('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 14);
+        $environment = new SslCertificates($client);
+        $result = $environment->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 14);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
@@ -102,8 +102,8 @@ class CertificatesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->activateSslCertificate('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
+        $environment = new SslCertificates($client);
+        $result = $environment->enable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
@@ -116,8 +116,8 @@ class CertificatesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Environments($client);
-        $result = $environment->deactivateSslCertificate('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
+        $environment = new SslCertificates($client);
+        $result = $environment->disable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 

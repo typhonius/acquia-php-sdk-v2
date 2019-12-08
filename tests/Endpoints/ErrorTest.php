@@ -23,7 +23,7 @@ class ErrorTest extends CloudApiTestCase
         try {
             /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
             $application = new Applications($client);
-            $application->getApplications();
+            $application->getAll();
         } catch (\Exception $e) {
             $this->assertEquals($e->getMessage(), 'You do not have permission to view applications.');
 
@@ -42,7 +42,7 @@ class ErrorTest extends CloudApiTestCase
         try {
             /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
             $application = new Applications($client);
-            $application->getApplications();
+            $application->getAll();
         } catch (\Exception $e) {
             $this->assertEquals(
                 $e->getMessage(),
@@ -63,7 +63,7 @@ class ErrorTest extends CloudApiTestCase
         try {
             /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
             $application = new Applications($client);
-            $application->getApplications();
+            $application->getAll();
         } catch (\Exception $e) {
             $error = <<< EOM
 The application you are trying to access does not exist, or you do not have permission to access it.

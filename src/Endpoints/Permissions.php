@@ -30,7 +30,7 @@ class Permissions implements CloudApi
      *
      * @return PermissionsResponse
      */
-    public function getPermissions()
+    public function get()
     {
         return new PermissionsResponse($this->client->request('get', '/permissions'));
     }

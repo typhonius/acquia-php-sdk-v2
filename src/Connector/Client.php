@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Connector;
 
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\BadResponseException;
+use AcquiaCloudApi\Exception\ApiErrorException;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -99,28 +100,19 @@ class Client implements ClientInterface
         $body = $response->getBody();
 
         $object = json_decode($body);
-        if (json_last_error() === JSON_ERROR_NONE) {
-            // JSON is valid
-            if (property_exists($object, '_embedded') && property_exists($object->_embedded, 'items')) {
-                $return = $object->_embedded->items;
-            } elseif (property_exists($object, 'error') && property_exists($object, 'message')) {
-                if (is_array($object->message)) {
-                    $output = '';
-                    foreach ($object->message as $message) {
-                        $output .= $message . PHP_EOL;
-                    }
-                    throw new \Exception($output);
-                } else {
-                    throw new \Exception($object->message);
-                }
-            } else {
-                $return = $object;
-            }
-        } else {
-            $return = $body;
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return $body;
         }
 
-        return $return;
+        if (property_exists($object, '_embedded') && property_exists($object->_embedded, 'items')) {
+            return $object->_embedded->items;
+        }
+
+        if (property_exists($object, 'error') && property_exists($object, 'message')) {
+            throw new ApiErrorException($object);
+        }
+
+        return $object;
     }
 
     /**

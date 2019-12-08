@@ -77,22 +77,6 @@ class Databases implements CloudApi
     }
 
     /**
-     * Shows all databases in an environment.
-     *
-     * @param string $environmentUuid
-     * @return DatabasesResponse
-     */
-    // public function getDatabases($environmentUuid)
-    // {
-    //     return new DatabasesResponse(
-    //         $this->client->request(
-    //             'get',
-    //             "/environments/${environmentUuid}/databases"
-    //         )
-    //     );
-    // }
-
-    /**
      * Copies a database from an environment to an environment.
      *
      * @param string $environmentFromUuid

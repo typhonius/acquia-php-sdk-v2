@@ -24,7 +24,8 @@
         "psr-4":{
             "AcquiaCloudApi\\Connector\\":"src/Connector",
             "AcquiaCloudApi\\Endpoints\\":"src/Endpoints",
-            "AcquiaCloudApi\\Response\\":"src/Response"
+            "AcquiaCloudApi\\Response\\":"src/Response",
+            "AcquiaCloudApi\\Exception\\":"src/Exception"
         }
     },
     "autoload-dev": {

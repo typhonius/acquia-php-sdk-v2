@@ -51,8 +51,8 @@ class FiltersTest extends CloudApiTestCase
             'sort' => 'title',
             'filter' => ['name=@"foobar"', 'type=@"baz"']
         ];
-        $object->addQuery('limit', '5');
-        $object->addQuery('offset', '1');
+        $object->addQuery('limit', 5);
+        $object->addQuery('offset', 1);
         $property = $this->getPrivateProperty(get_class($object), 'query');
         $this->assertEquals($property->getValue($object), $expectedValue);
 

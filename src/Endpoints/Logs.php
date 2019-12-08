@@ -48,9 +48,7 @@ class Logs implements CloudApi
      */
     public function download($environmentUuid, $logType)
     {
-        return new LogsResponse(
-            $this->client->request('get', "/environments/${environmentUuid}/logs/${logType}")
-        );
+        return $this->client->request('get', "/environments/${environmentUuid}/logs/${logType}");
     }
 
     /**

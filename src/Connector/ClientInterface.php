@@ -21,7 +21,7 @@ interface ClientInterface
      * @param string $path
      * @param array  $options
      *
-     * @return object|array|StreamInterface
+     * @return object|array
      */
     public function request(string $verb, string $path, array $options = []);
 
@@ -37,7 +37,7 @@ interface ClientInterface
      * Processes the returned response from the API.
      *
      * @param ResponseInterface $response
-     * @return object|array|StreamInterface
+     * @return object|array
      * @throws \Exception
      */
     public function processResponse(ResponseInterface $response);

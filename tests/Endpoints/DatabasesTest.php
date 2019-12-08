@@ -30,8 +30,8 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $application = new Databases($client);
-        $result = $application->getAll('185f07c7-9c4f-407b-8968-67892ebcb38a');
+        $databases = new Databases($client);
+        $result = $databases->getAll('185f07c7-9c4f-407b-8968-67892ebcb38a');
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\DatabasesResponse', $result);
@@ -45,35 +45,14 @@ class DatabasesTest extends CloudApiTestCase
         }
     }
 
-    // public function testGetEnvironmentDatabases()
-    // {
-    //     $response = $this->getPsr7JsonResponseForFixture('Endpoints/getEnvironmentDatabases.json');
-    //     $client = $this->getMockClient($response);
-
-    //     /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-    //     $environment = new Databases($client);
-    //     $result = $environment->getDatabases('24-a47ac10b-58cc-4372-a567-0e02b2c3d470');
-
-    //     $this->assertInstanceOf('\ArrayObject', $result);
-    //     $this->assertInstanceOf('\AcquiaCloudApi\Response\DatabasesResponse', $result);
-
-    //     foreach ($result as $record) {
-    //         $this->assertInstanceOf('\AcquiaCloudApi\Response\DatabaseResponse', $record);
-
-    //         foreach ($this->properties as $property) {
-    //             $this->assertObjectHasAttribute($property, $record);
-    //         }
-    //     }
-    // }
-
     public function testDatabaseCopy()
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/copyDatabases.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new Databases($client);
-        $result = $environment->copy(
+        $databases = new Databases($client);
+        $result = $databases->copy(
             '24-a47ac10b-58cc-4372-a567-0e02b2c3d470',
             'db_name',
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851'
@@ -90,8 +69,8 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $application = new Databases($client);
-        $result = $application->create('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'db_name');
+        $databases = new Databases($client);
+        $result = $databases->create('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'db_name');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
@@ -104,8 +83,8 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $application = new Databases($client);
-        $result = $application->delete('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'db_name');
+        $databases = new Databases($client);
+        $result = $databases->delete('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'db_name');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
@@ -118,8 +97,8 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new DatabaseBackups($client);
-        $result = $environment->create('185f07c7-9c4f-407b-8968-67892ebcb38a', 'db_name');
+        $databaseBackup = new DatabaseBackups($client);
+        $result = $databaseBackup->create('185f07c7-9c4f-407b-8968-67892ebcb38a', 'db_name');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
@@ -132,8 +111,8 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new DatabaseBackups($client);
-        $result = $environment->getAll('185f07c7-9c4f-407b-8968-67892ebcb38a', 'db_name');
+        $databaseBackup = new DatabaseBackups($client);
+        $result = $databaseBackup->getAll('185f07c7-9c4f-407b-8968-67892ebcb38a', 'db_name');
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\BackupsResponse', $result);
@@ -153,8 +132,8 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new DatabaseBackups($client);
-        $result = $environment->get('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'db_name', 12);
+        $databaseBackup = new DatabaseBackups($client);
+        $result = $databaseBackup->get('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'db_name', 12);
 
         $this->assertNotInstanceOf('\AcquiaCloudApi\Response\BackupsResponse', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\BackupResponse', $result);
@@ -170,8 +149,8 @@ class DatabasesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $environment = new DatabaseBackups($client);
-        $result = $environment->restore('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'db_name', 12);
+        $databaseBackup = new DatabaseBackups($client);
+        $result = $databaseBackup->restore('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'db_name', 12);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 

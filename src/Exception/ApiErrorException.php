@@ -31,6 +31,7 @@ class ApiErrorException extends Exception
             }
             $this->message = $output;
         } else {
+            $this->code = $object->error;
             $this->message = $object->message;
         }
     }

@@ -34,6 +34,15 @@ class OrganizationsTest extends CloudApiTestCase
         'links'
     ];
 
+    protected $teamProperties = [
+        'uuid',
+        'name',
+        'created_at',
+        'updated_at',
+        'organization',
+        'links'
+    ];
+
     public function testGetOrganizations()
     {
 
@@ -86,6 +95,27 @@ class OrganizationsTest extends CloudApiTestCase
             $this->assertInstanceOf('\AcquiaCloudApi\Response\ApplicationResponse', $record);
 
             foreach ($this->applicationProperties as $property) {
+                $this->assertObjectHasAttribute($property, $record);
+            }
+        }
+    }
+
+    public function testGetOrganizationTeams()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getOrganizationTeams.json');
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $organization = new Organizations($client);
+        $result = $organization->getTeams('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
+
+        $this->assertInstanceOf('\ArrayObject', $result);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamsResponse', $result);
+
+        foreach ($result as $record) {
+            $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamResponse', $record);
+
+            foreach ($this->teamProperties as $property) {
                 $this->assertObjectHasAttribute($property, $record);
             }
         }

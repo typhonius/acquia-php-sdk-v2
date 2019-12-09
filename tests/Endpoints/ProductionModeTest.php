@@ -10,7 +10,7 @@ class ProductionModeTest extends CloudApiTestCase
 
     public function testProductionModeEnable()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/enableProductionMode.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/enableProductionMode.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -24,7 +24,7 @@ class ProductionModeTest extends CloudApiTestCase
 
     public function testProductionModeDisable()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/disableProductionMode.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/disableProductionMode.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

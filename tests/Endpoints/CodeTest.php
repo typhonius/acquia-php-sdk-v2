@@ -15,7 +15,7 @@ class CodeTest extends CloudApiTestCase
 
     public function testGetBranches()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getCode.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Code/getAllCode.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -36,7 +36,7 @@ class CodeTest extends CloudApiTestCase
 
     public function testCodeSwitch()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/switchCode.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Code/switchCode.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -50,7 +50,7 @@ class CodeTest extends CloudApiTestCase
 
     public function testCodeDeploy()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/deployCode.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Code/deployCode.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

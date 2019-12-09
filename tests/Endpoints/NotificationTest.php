@@ -23,7 +23,7 @@ class NotificationTest extends CloudApiTestCase
     ];
     public function testGetNotification()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getNotification.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Notifications/getNotification.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -37,7 +37,7 @@ class NotificationTest extends CloudApiTestCase
     }
     public function testGetNotifications()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getNotifications.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Notifications/getAllNotifications.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

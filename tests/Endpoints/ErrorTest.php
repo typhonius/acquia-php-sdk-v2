@@ -17,7 +17,7 @@ class ErrorTest extends CloudApiTestCase
 
     public function testError403()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/error403.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Error/error403.json');
         $client = $this->getMockClient($response);
         $this->expectException(ApiErrorException::class);
         $this->expectExceptionMessage('You do not have permission to view applications.');
@@ -29,7 +29,7 @@ class ErrorTest extends CloudApiTestCase
 
     public function testError404()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/error404.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Error/error404.json');
         $client = $this->getMockClient($response);
         $this->expectException(ApiErrorException::class);
         $this->expectExceptionMessage(
@@ -42,7 +42,7 @@ class ErrorTest extends CloudApiTestCase
 
     public function testMultipleErrors()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/multipleErrors.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Error/multipleErrors.json');
         $client = $this->getMockClient($response);
         $this->expectException(ApiErrorException::class);
         $errorMessage = <<< EOM
@@ -79,7 +79,7 @@ EOM;
 
     public function testApiErrorException()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/error403.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Error/error403.json');
         $body = $response->getBody();
         $object = json_decode($body);
 

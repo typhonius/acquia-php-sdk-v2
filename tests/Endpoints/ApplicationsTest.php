@@ -22,7 +22,7 @@ class ApplicationsTest extends CloudApiTestCase
 
     public function testGetApplications()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getApplications.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/getAllApplications.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -43,7 +43,7 @@ class ApplicationsTest extends CloudApiTestCase
 
     public function testGetApplication()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getApplication.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/getApplication.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -60,7 +60,7 @@ class ApplicationsTest extends CloudApiTestCase
 
     public function testRenameApplication()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/renameApplication.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/renameApplication.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

@@ -27,7 +27,7 @@ class EnvironmentsTest extends CloudApiTestCase
     public function testGetEnvironments()
     {
 
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getEnvironments.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/getAllEnvironments.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -48,7 +48,7 @@ class EnvironmentsTest extends CloudApiTestCase
 
     public function testGetEnvironment()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getEnvironment.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/getEnvironment.json');
 
         $client = $this->getMockClient($response);
 
@@ -66,7 +66,7 @@ class EnvironmentsTest extends CloudApiTestCase
 
     public function testModifyEnvironment()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/modifyEnvironment.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/updateEnvironment.json');
 
         $client = $this->getMockClient($response);
 
@@ -81,7 +81,7 @@ class EnvironmentsTest extends CloudApiTestCase
 
     public function testRenameEnvironment()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/renameEnvironment.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/renameEnvironment.json');
 
         $client = $this->getMockClient($response);
 

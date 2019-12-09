@@ -33,7 +33,7 @@ class TeamsTest extends CloudApiTestCase
     public function testGetTeams()
     {
 
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getTeams.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/getAllTeams.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -54,12 +54,12 @@ class TeamsTest extends CloudApiTestCase
 
     public function testCreateTeamInvite()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/createTeamInvite.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/invite.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $team = new Teams($client);
-        $result = $team->createTeamInvite(
+        $result = $team->invite(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
             'hello@example.com',
             ['access permissions', 'access servers']
@@ -72,7 +72,7 @@ class TeamsTest extends CloudApiTestCase
 
     public function testCreateTeam()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/createTeam.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/createTeam.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -86,7 +86,7 @@ class TeamsTest extends CloudApiTestCase
 
     public function testRenameTeam()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/RenameTeam.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/renameTeam.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -100,7 +100,7 @@ class TeamsTest extends CloudApiTestCase
 
     public function testDeleteTeam()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/DeleteTeam.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/deleteTeam.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -112,31 +112,9 @@ class TeamsTest extends CloudApiTestCase
         $this->assertEquals("Removed team.", $result->message);
     }
 
-    // public function testGetOrganizationTeams()
-    // {
-
-    //     $response = $this->getPsr7JsonResponseForFixture('Endpoints/getOrganizationTeams.json');
-    //     $client = $this->getMockClient($response);
-
-    //     /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-    //     $organization = new Teams($client);
-    //     $result = $organization->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
-
-    //     $this->assertInstanceOf('\ArrayObject', $result);
-    //     $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamsResponse', $result);
-
-    //     foreach ($result as $record) {
-    //         $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamResponse', $record);
-
-    //         foreach ($this->teamProperties as $property) {
-    //             $this->assertObjectHasAttribute($property, $record);
-    //         }
-    //     }
-    // }
-
     public function testAddApplicationToTeam()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/addApplicationToTeam.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/addApplication.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -153,7 +131,7 @@ class TeamsTest extends CloudApiTestCase
 
     public function testGetTeamApplications()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getTeamApplications.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/getApplications.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

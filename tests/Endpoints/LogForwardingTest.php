@@ -24,7 +24,7 @@ class LogForwardingTest extends CloudApiTestCase
     public function testGetLogForwardingDestinations()
     {
 
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getLogForwardingDestinations.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/getAllLogForwarding.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -45,7 +45,7 @@ class LogForwardingTest extends CloudApiTestCase
 
     public function testGetLogForwardingDestination()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getLogForwardingDestination.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/getLogForwarding.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -62,7 +62,7 @@ class LogForwardingTest extends CloudApiTestCase
 
     public function testCreateLogForwardingDestination()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/createLogForwardingDestination.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/createLogForwarding.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -84,7 +84,7 @@ class LogForwardingTest extends CloudApiTestCase
 
     public function testDeleteLogForwardingDestination()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/deleteLogForwardingDestination.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/deleteLogForwarding.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -98,7 +98,7 @@ class LogForwardingTest extends CloudApiTestCase
 
     public function testEnableLogForwardingDestination()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/enableLogForwardingDestination.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/enableLogForwarding.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -112,7 +112,7 @@ class LogForwardingTest extends CloudApiTestCase
 
     public function testDisableLogForwardingDestination()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/disableLogForwardingDestination.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/disableLogForwarding.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -126,7 +126,7 @@ class LogForwardingTest extends CloudApiTestCase
 
     public function testUpdateLogForwardingDestination()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/updateLogForwardingDestination.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/updateLogForwarding.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

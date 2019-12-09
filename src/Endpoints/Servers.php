@@ -31,6 +31,7 @@ class Servers implements CloudApi
      * Gets information about a single server.
      *
      * @param string $environmentUuid
+     * @param string $serverId
      * @return ServerResponse
      */
     public function get($environmentUuid, $serverId)
@@ -47,7 +48,8 @@ class Servers implements CloudApi
      * Modifies configuration settings for a server.
      *
      * @param string $environmentUuid
-     * @param array $config
+     * @param string $serverId
+     * @param array  $config
      * @return OperationResponse
      */
     public function update($environmentUuid, $serverId, array $config)

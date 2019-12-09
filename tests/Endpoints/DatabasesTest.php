@@ -13,20 +13,9 @@ class DatabasesTest extends CloudApiTestCase
         'name',
     ];
 
-    public $backupProperties = [
-        'id',
-        'database',
-        'type',
-        'startedAt',
-        'completedAt',
-        'flags',
-        'environment',
-        'links',
-    ];
-
     public function testGetApplicationDatabases()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getDatabases.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Databases/getAllDatabases.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -47,7 +36,7 @@ class DatabasesTest extends CloudApiTestCase
 
     public function testDatabaseCopy()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/copyDatabases.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Databases/copyDatabases.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -65,7 +54,7 @@ class DatabasesTest extends CloudApiTestCase
 
     public function testDatabaseCreate()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/createDatabases.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Databases/createDatabases.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -79,7 +68,7 @@ class DatabasesTest extends CloudApiTestCase
 
     public function testDatabaseDelete()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/deleteDatabases.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Databases/deleteDatabases.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -89,71 +78,5 @@ class DatabasesTest extends CloudApiTestCase
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
         $this->assertEquals('The database is being deleted.', $result->message);
-    }
-
-    public function testDatabaseBackup()
-    {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/backupDatabases.json');
-        $client = $this->getMockClient($response);
-
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $databaseBackup = new DatabaseBackups($client);
-        $result = $databaseBackup->create('185f07c7-9c4f-407b-8968-67892ebcb38a', 'db_name');
-
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
-        $this->assertEquals('The database is being backed up.', $result->message);
-    }
-
-    public function testGetDatabaseBackups()
-    {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getDatabaseBackups.json');
-        $client = $this->getMockClient($response);
-
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $databaseBackup = new DatabaseBackups($client);
-        $result = $databaseBackup->getAll('185f07c7-9c4f-407b-8968-67892ebcb38a', 'db_name');
-
-        $this->assertInstanceOf('\ArrayObject', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\BackupsResponse', $result);
-
-        foreach ($result as $record) {
-            $this->assertInstanceOf('\AcquiaCloudApi\Response\BackupResponse', $record);
-
-            foreach ($this->backupProperties as $property) {
-                $this->assertObjectHasAttribute($property, $record);
-            }
-        }
-    }
-
-    public function testGetDatabaseBackup()
-    {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getDatabaseBackup.json');
-        $client = $this->getMockClient($response);
-
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $databaseBackup = new DatabaseBackups($client);
-        $result = $databaseBackup->get('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'db_name', 12);
-
-        $this->assertNotInstanceOf('\AcquiaCloudApi\Response\BackupsResponse', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\BackupResponse', $result);
-
-        foreach ($this->backupProperties as $property) {
-            $this->assertObjectHasAttribute($property, $result);
-        }
-    }
-
-    public function testRestoreDatabaseBackup()
-    {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/restoreDatabaseBackup.json');
-        $client = $this->getMockClient($response);
-
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $databaseBackup = new DatabaseBackups($client);
-        $result = $databaseBackup->restore('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'db_name', 12);
-
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
-        $this->assertEquals('The backup is being restored.', $result->message);
     }
 }

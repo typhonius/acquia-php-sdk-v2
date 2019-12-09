@@ -29,7 +29,7 @@ class ClientTest extends CloudApiTestCase
 
     public function testFilteredQuery()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getFilteredCode.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Client/getFilteredCode.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

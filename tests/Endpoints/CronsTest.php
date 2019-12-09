@@ -26,7 +26,7 @@ class CronsTest extends CloudApiTestCase
     public function testGetAllCrons()
     {
 
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getCrons.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Crons/getAllCrons.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -47,7 +47,7 @@ class CronsTest extends CloudApiTestCase
 
     public function testGetCron()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getCron.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Crons/getCron.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -64,7 +64,7 @@ class CronsTest extends CloudApiTestCase
 
     public function testCreateCron()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/createCron.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Crons/createCron.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -83,7 +83,7 @@ class CronsTest extends CloudApiTestCase
 
     public function testUpdateCron()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/updateCron.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Crons/updateCron.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -103,7 +103,7 @@ class CronsTest extends CloudApiTestCase
 
     public function testDeleteCron()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/deleteCron.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Crons/deleteCron.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -117,7 +117,7 @@ class CronsTest extends CloudApiTestCase
 
     public function testEnableCron()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/enableCron.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Crons/enableCron.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -131,7 +131,7 @@ class CronsTest extends CloudApiTestCase
 
     public function testDisableCron()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/disableCron.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Crons/disableCron.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

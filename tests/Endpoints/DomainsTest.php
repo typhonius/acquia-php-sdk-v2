@@ -17,7 +17,7 @@ class DomainsTest extends CloudApiTestCase
     public function testGetDomains()
     {
 
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getDomains.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Domains/getAllDomains.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -38,7 +38,7 @@ class DomainsTest extends CloudApiTestCase
 
     public function testGetDomain()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getDomain.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Domains/getDomain.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -55,7 +55,7 @@ class DomainsTest extends CloudApiTestCase
 
     public function testDomainAdd()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/addDomain.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Domains/createDomain.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -69,7 +69,7 @@ class DomainsTest extends CloudApiTestCase
 
     public function testDomainDelete()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/deleteDomain.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Domains/deleteDomain.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

@@ -23,7 +23,7 @@ class LogsTest extends CloudApiTestCase
     public function testGetLogs()
     {
 
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getLogs.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Logs/getAllLogs.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -44,7 +44,7 @@ class LogsTest extends CloudApiTestCase
 
     public function testLogSnapshot()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/createLogSnapshot.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Logs/createLogSnapshot.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -57,7 +57,7 @@ class LogsTest extends CloudApiTestCase
 
     public function testDownloadLog()
     {
-        $response = $this->getPsr7GzipResponseForFixture('Endpoints/downloadLog.json');
+        $response = $this->getPsr7GzipResponseForFixture('Endpoints/Logs/downloadLog.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -74,7 +74,7 @@ class LogsTest extends CloudApiTestCase
 
     public function testGetLogstream()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getLogstream.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Logs/getLogstream.json');
 
         $client = $this->getMockClient($response);
 

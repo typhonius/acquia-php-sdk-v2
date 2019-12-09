@@ -73,7 +73,7 @@ class Organizations implements CloudApi
      * @param string $organizationUuid
      * @return InvitationsResponse
      */
-    public function getInvitees($organizationUuid)
+    public function getMemberInvitations($organizationUuid)
     {
         return new InvitationsResponse(
             $this->client->request('get', "/organizations/${organizationUuid}/team-invites")
@@ -107,6 +107,26 @@ class Organizations implements CloudApi
     {
         return new TeamsResponse(
             $this->client->request('get', "/organizations/${organizationUuid}/teams")
+        );
+    }
+
+    /**
+     * Invites a user to become admin of an organization.
+     *
+     * @param string $organizationUuid
+     * @param string $email
+     * @return OperationResponse
+     */
+    public function inviteAdmin($organizationUuid, $email)
+    {
+        $options = [
+            'form_params' => [
+                'email' => $email,
+            ],
+        ];
+
+        return new OperationResponse(
+            $this->client->request('post', "/teams/${organizationUuid}/invites", $options)
         );
     }
 }

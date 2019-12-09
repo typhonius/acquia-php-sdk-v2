@@ -19,7 +19,7 @@ class RolesTest extends CloudApiTestCase
 
     public function testGetRole()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getRole.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Roles/getRole.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -36,7 +36,7 @@ class RolesTest extends CloudApiTestCase
 
     public function testGetRoles()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getOrganizationRoles.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Roles/getAllRoles.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -57,7 +57,7 @@ class RolesTest extends CloudApiTestCase
 
     public function testCreateRole()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/addRole.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Roles/createRole.json');
         $client = $this->getMockClient($response);
 
       /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -75,7 +75,7 @@ class RolesTest extends CloudApiTestCase
 
     public function testDeleteRole()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/deleteRole.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Roles/deleteRole.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -88,7 +88,7 @@ class RolesTest extends CloudApiTestCase
 
     public function testUpdateRole()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/updateRole.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Roles/updateRole.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

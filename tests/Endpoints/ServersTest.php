@@ -24,7 +24,7 @@ class ServersTest extends CloudApiTestCase
     public function testGetServers()
     {
 
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getServers.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Servers/getAllServers.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -45,12 +45,12 @@ class ServersTest extends CloudApiTestCase
 
     public function testGetServer()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getServer.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Servers/getServer.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $server = new Servers($client);
-        $result = $server->get('8ff6c046-ec64-4ce4-bea6-27845ec18600', 3);
+        $result = $server->get('8ff6c046-ec64-4ce4-bea6-27845ec18600', '3');
 
         $this->assertNotInstanceOf('\AcquiaCloudApi\Response\ServersResponse', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\ServerResponse', $result);
@@ -62,14 +62,14 @@ class ServersTest extends CloudApiTestCase
 
     public function testUpdateServer()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/updateServer.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Servers/updateServer.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $server = new Servers($client);
         $result = $server->update(
             '8ff6c046-ec64-4ce4-bea6-27845ec18600',
-            3,
+            '3',
             ['memcache' => 128]
         );
 

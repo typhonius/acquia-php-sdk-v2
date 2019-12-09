@@ -21,7 +21,7 @@ class InsightsTest extends CloudApiTestCase
     public function testGetInsights()
     {
 
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getInsights.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getAllInsights.json');
         $client = $this->getMockClient($response);
 
       /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -42,7 +42,7 @@ class InsightsTest extends CloudApiTestCase
 
     public function testGetInsight()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getInsight.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getInsight.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

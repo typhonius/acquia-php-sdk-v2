@@ -10,7 +10,7 @@ class LiveDevTest extends CloudApiTestCase
 
     public function testLiveDevEnable()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/enableLiveDev.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/enableLiveDev.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -24,7 +24,7 @@ class LiveDevTest extends CloudApiTestCase
 
     public function testLiveDevDisable()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/disableLiveDev.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/disableLiveDev.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

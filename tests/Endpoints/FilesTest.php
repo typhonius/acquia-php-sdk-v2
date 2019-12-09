@@ -10,7 +10,7 @@ class FilesTest extends CloudApiTestCase
 
     public function testFilesCopy()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/copyFiles.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/copyFiles.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

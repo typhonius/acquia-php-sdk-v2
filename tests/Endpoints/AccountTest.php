@@ -23,7 +23,7 @@ class AccountTest extends CloudApiTestCase
 
     public function testGetAccount()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getAccount.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Account/getAccount.json');
         $client = $this->getMockClient($response);
 
       /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

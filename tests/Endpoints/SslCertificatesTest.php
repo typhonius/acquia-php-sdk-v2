@@ -24,7 +24,7 @@ class SslCertificatesTest extends CloudApiTestCase
     public function testGetCertificates()
     {
 
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getSslCertificates.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/SslCertificates/getAllSslCertificates.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -45,7 +45,7 @@ class SslCertificatesTest extends CloudApiTestCase
 
     public function testGetCertificate()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getSslCertificate.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/SslCertificates/getSslCertificate.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -62,7 +62,7 @@ class SslCertificatesTest extends CloudApiTestCase
 
     public function testCreateSslCertificate()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/createSslCertificate.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/SslCertificates/createSslCertificate.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -84,7 +84,7 @@ class SslCertificatesTest extends CloudApiTestCase
 
     public function testDeleteSslCertificate()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/deleteSslCertificate.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/SslCertificates/deleteSslCertificate.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -98,7 +98,7 @@ class SslCertificatesTest extends CloudApiTestCase
 
     public function testActivateSslCertificate()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/activateSslCertificate.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/SslCertificates/activateSslCertificate.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -112,7 +112,7 @@ class SslCertificatesTest extends CloudApiTestCase
 
     public function testDeactivateSslCertificate()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/deactivateSslCertificate.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/SslCertificates/deactivateSslCertificate.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

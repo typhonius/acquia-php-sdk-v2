@@ -10,7 +10,7 @@ class VarnishTest extends CloudApiTestCase
 
     public function testPurgeVarnish()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/purgeVarnish.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Domains/purgeVarnish.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

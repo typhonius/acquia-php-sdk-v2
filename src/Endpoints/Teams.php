@@ -122,7 +122,7 @@ class Teams implements CloudApi
      * @param array  $roles
      * @return OperationResponse
      */
-    public function createTeamInvite($teamUuid, $email, $roles)
+    public function invite($teamUuid, $email, $roles)
     {
         $options = [
             'form_params' => [
@@ -133,26 +133,6 @@ class Teams implements CloudApi
 
         return new OperationResponse(
             $this->client->request('post', "/teams/${teamUuid}/invites", $options)
-        );
-    }
-
-    /**
-     * Invites a user to become admin of an organization.
-     *
-     * @param string $organizationUuid
-     * @param string $email
-     * @return OperationResponse
-     */
-    public function createOrganizationAdminInvite($organizationUuid, $email)
-    {
-        $options = [
-            'form_params' => [
-                'email' => $email,
-            ],
-        ];
-
-        return new OperationResponse(
-            $this->client->request('post', "/teams/${organizationUuid}/invites", $options)
         );
     }
 

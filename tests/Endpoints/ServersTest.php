@@ -42,4 +42,39 @@ class ServersTest extends CloudApiTestCase
             }
         }
     }
+
+    public function testGetServer()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getServer.json');
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $server = new Servers($client);
+        $result = $server->get('8ff6c046-ec64-4ce4-bea6-27845ec18600', 3);
+
+        $this->assertNotInstanceOf('\AcquiaCloudApi\Response\ServersResponse', $result);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\ServerResponse', $result);
+
+        foreach ($this->properties as $property) {
+              $this->assertObjectHasAttribute($property, $result);
+        }
+    }
+
+    public function testUpdateServer()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/updateServer.json');
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $server = new Servers($client);
+        $result = $server->update(
+            '8ff6c046-ec64-4ce4-bea6-27845ec18600',
+            3,
+            ['memcache' => 128]
+        );
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
+        $this->assertEquals('The server configuration is being updated.', $result->message);
+    }
 }

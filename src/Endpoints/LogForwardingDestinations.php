@@ -27,12 +27,12 @@ class LogForwardingDestinations implements CloudApi
         $this->client = $client;
     }
 
-   /**
-    * Returns a list of log forwarding destinations.
-    *
-    * @param string $environmentUuid The environment ID
-    * @return LogForwardingDestinationsResponse
-    */
+    /**
+     * Returns a list of log forwarding destinations.
+     *
+     * @param string $environmentUuid The environment ID
+     * @return LogForwardingDestinationsResponse
+     */
     public function getAll($environmentUuid)
     {
         return new LogForwardingDestinationsResponse(
@@ -43,13 +43,13 @@ class LogForwardingDestinations implements CloudApi
         );
     }
 
-   /**
-    * Returns a specific log forwarding destination.
-    *
-    * @param string $environmentUuid The environment ID
-    * @param int    $destinationId
-    * @return LogForwardingDestinationResponse
-    */
+    /**
+     * Returns a specific log forwarding destination.
+     *
+     * @param string $environmentUuid The environment ID
+     * @param int    $destinationId
+     * @return LogForwardingDestinationResponse
+     */
     public function get($environmentUuid, $destinationId)
     {
         return new LogForwardingDestinationResponse(
@@ -60,17 +60,17 @@ class LogForwardingDestinations implements CloudApi
         );
     }
 
-   /**
-    * Creates a log forwarding destination.
-    *
-    * @param string $environmentUuid
-    * @param string $label
-    * @param array  $sources
-    * @param string $consumer
-    * @param array  $credentials
-    * @param string $address
-    * @return OperationResponse
-    */
+    /**
+     * Creates a log forwarding destination.
+     *
+     * @param string $environmentUuid
+     * @param string $label
+     * @param array  $sources
+     * @param string $consumer
+     * @param array  $credentials
+     * @param string $address
+     * @return OperationResponse
+     */
     public function create($environmentUuid, $label, $sources, $consumer, $credentials, $address)
     {
 
@@ -89,13 +89,13 @@ class LogForwardingDestinations implements CloudApi
         );
     }
 
-   /**
-    * Delete a specific log forwarding destination.
-    *
-    * @param string $environmentUuid
-    * @param int    $destId
-    * @return OperationResponse
-    */
+    /**
+     * Delete a specific log forwarding destination.
+     *
+     * @param string $environmentUuid
+     * @param int    $destId
+     * @return OperationResponse
+     */
     public function delete($environmentUuid, $destId)
     {
         return new OperationResponse(
@@ -103,13 +103,13 @@ class LogForwardingDestinations implements CloudApi
         );
     }
 
-   /**
-    * Disables a log forwarding destination.
-    *
-    * @param string $environmentUuid
-    * @param int    $destId
-    * @return OperationResponse
-    */
+    /**
+     * Disables a log forwarding destination.
+     *
+     * @param string $environmentUuid
+     * @param int    $destId
+     * @return OperationResponse
+     */
     public function disable($environmentUuid, $destId)
     {
         return new OperationResponse(
@@ -120,13 +120,13 @@ class LogForwardingDestinations implements CloudApi
         );
     }
 
-   /**
-    * Disables a log forwarding destination.
-    *
-    * @param string $environmentUuid
-    * @param int    $destId
-    * @return OperationResponse
-    */
+    /**
+     * Disables a log forwarding destination.
+     *
+     * @param string $environmentUuid
+     * @param int    $destId
+     * @return OperationResponse
+     */
     public function enable($environmentUuid, $destId)
     {
         return new OperationResponse(
@@ -137,18 +137,18 @@ class LogForwardingDestinations implements CloudApi
         );
     }
 
-   /**
-    * Updates a log forwarding destination.
-    *
-    * @param string $environmentUuid
-    * @param int    $destId
-    * @param string $label
-    * @param array  $sources
-    * @param string $consumer
-    * @param array  $creds
-    * @param string $address
-    * @return OperationResponse
-    */
+    /**
+     * Updates a log forwarding destination.
+     *
+     * @param string $environmentUuid
+     * @param int    $destId
+     * @param string $label
+     * @param array  $sources
+     * @param string $consumer
+     * @param array  $creds
+     * @param string $address
+     * @return OperationResponse
+     */
     public function update($environmentUuid, $destId, $label, $sources, $consumer, $creds, $address)
     {
 

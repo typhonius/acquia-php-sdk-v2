@@ -89,8 +89,8 @@ class Environments implements CloudApi
     public function update($environmentUuid, array $config)
     {
 
-        $options  = [
-          'form_params' => $config,
+        $options = [
+            'form_params' => $config,
         ];
 
         return new OperationResponse(

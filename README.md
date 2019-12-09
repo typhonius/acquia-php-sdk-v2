@@ -61,15 +61,20 @@ $client = Client::factory($connector);
 
 $application = new Applications($client);
 $environment = new Environments($client);
+$server      = new Servers($client);
+$backup      = new DatabaseBackups($client);
 
 // Get all applications.
-$applications = $application->getApplications();
+$applications = $application->getAll();
 
 // Get all environments of an application.
-$environments = $application->getEnvironments($application->uuid);
+$environments = $environment->getAll($applicationUuid);
 
 // Get all servers in an environment.
-$servers = $environment->servers($environment->uuid);
+$servers = $server->getAll($environmentUuid);
+
+// Create DB backup
+$backup->create($environmentUuid, $dbName);
 
 ```
 

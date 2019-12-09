@@ -86,7 +86,7 @@ class TeamsTest extends CloudApiTestCase
 
     public function testRenameTeam()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/renameTeam.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/rename.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */

@@ -6,6 +6,7 @@ use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\DomainsResponse;
 use AcquiaCloudApi\Response\DomainResponse;
 use AcquiaCloudApi\Response\OperationResponse;
+use AcquiaCloudApi\Response\MetricsResponse;
 
 /**
  * Class Client
@@ -116,6 +117,40 @@ class Domains implements CloudApi
                 'post',
                 "/environments/${environmentUuid}/domains/actions/clear-varnish",
                 $options
+            )
+        );
+    }
+
+    /**
+     * Retrieves the scan data for a domain name that is part of this environment.
+     *
+     * @param string $environmentUuid
+     * @param string $domain
+     * @return MetricsResponse
+     */
+    public function metrics($environmentUuid, $domain)
+    {
+        return new MetricsResponse(
+            $this->client->request(
+                'get',
+                "/environments/${environmentUuid}/domains/${domain}/metrics/uptime"
+            )
+        );
+    }
+
+    /**
+     * Returns details about the domain.
+     *
+     * @param string $environmentUuid
+     * @param string $domain
+     * @return DomainResponse
+     */
+    public function status($environmentUuid, $domain)
+    {
+        return new DomainResponse(
+            $this->client->request(
+                'get',
+                "/environments/${environmentUuid}/domains/${domain}/status"
             )
         );
     }

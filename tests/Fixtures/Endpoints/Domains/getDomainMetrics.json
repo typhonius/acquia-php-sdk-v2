@@ -1,0 +1,49 @@
+{
+    "total": 2,
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/environments/399-b48d4745-ee0c-102e-8305-1231390f2cc1/domains/example.com/metrics/uptime"
+      },
+      "domain": {
+        "href": "https://cloud.acquia.com/api/environments/399-b48d4745-ee0c-102e-8305-1231390f2cc1/domains/example.com"
+      }
+    },
+    "_embedded": {
+      "items": [
+        {
+          "metric": "timeout_partial_scans",
+          "datapoints": [
+            [
+              1,
+              1449679507
+            ],
+            [
+              1,
+              1449686707
+            ]
+          ],
+          "last_data_at": null,
+          "metadata": {
+            "host": "example.com"
+          }
+        },
+        {
+          "metric": "ok_scans",
+          "datapoints": [
+            [
+              123.1,
+              1449678507
+            ],
+            [
+              134.2,
+              1449688707
+            ]
+          ],
+          "last_data_at": null,
+          "metadata": {
+            "host": "example.com"
+          }
+        }
+      ]
+    }
+}

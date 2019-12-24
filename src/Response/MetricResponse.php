@@ -24,6 +24,8 @@ class MetricResponse
         $this->datapoints = $metric->datapoints;
         $this->last_data_at = $metric->last_data_at;
         $this->metadata = $metric->metadata;
-        $this->links = $metric->_links;
+        if (property_exists($metric, '_links')) {
+            $this->links = $metric->_links;
+        }
     }
 }

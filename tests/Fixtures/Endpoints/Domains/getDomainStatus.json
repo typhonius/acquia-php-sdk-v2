@@ -1,0 +1,27 @@
+{
+    "hostname": "example.com",
+    "flags": {
+      "default": false,
+      "active": true,
+      "dns_resolves": true,
+      "acquia_hosted": true
+    },
+    "ip_addresses": [
+      "12.23.34.45"
+    ],
+    "cnames": [
+      "another.example.com"
+    ],
+    "environment": {
+      "id": "24-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+      "name": "dev"
+    },
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/domains/example.com/status"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/domains/example.com"
+      }
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "uuid": "215824ff-272a-4a8c-9027-df32ed1d68a9",
+    "label": "Example IDE",
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/ides/215824ff-272a-4a8c-9027-df32ed1d68a9"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/ides"
+      },
+      "application": {
+        "href": "https://cloud.acquia.com/api/applications/461fe350-7988-42b3-a73e-cffcdbb94199"
+      },
+      "web": {
+        "href": "https://ide-215824ff-272a-4a8c-9027-df32ed1d68a9.prod.acquia-sites.com"
+      },
+      "ide": {
+        "href": "https://215824ff-272a-4a8c-9027-df32ed1d68a9.ides.acquia.com"
+      }
+    }
+}

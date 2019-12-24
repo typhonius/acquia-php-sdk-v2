@@ -1,0 +1,14 @@
+{
+    "message": "The remote IDE is being created.",
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/ides/1792767d-1ee3-4b5f-83a8-334dfdc2b8a3"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/ides"
+      },
+      "notification": {
+        "href": "https://cloud.acquia.com/api/notifications/e47da6d7-371e-4bb9-a7fe-d9ab8aa899c3"
+      }
+    }
+}

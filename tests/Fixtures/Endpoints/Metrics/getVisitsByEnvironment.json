@@ -1,0 +1,131 @@
+{
+  "total": 3,
+  "pagination": {
+    "total": 3,
+    "limit": 3,
+    "offset": 0
+  },
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage/visits-by-environment"
+    },
+    "parent": {
+      "href": "https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage"
+    },
+    "limit": {
+      "href": "https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage/visits-by-environment{?limit}",
+      "templated": true
+    },
+    "offset": {
+      "href": "https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage/visits-by-environment{?offset}",
+      "templated": true
+    },
+    "filter": {
+      "href": "https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage/visits-by-environment{?filter}",
+      "templated": true
+    }
+  },
+  "_embedded": {
+    "items": [
+      {
+        "metric": "visits",
+        "datapoints": [],
+        "last_data_at": null,
+        "metadata": {
+          "subscription": {
+            "uuids": [
+              "9567a611-4cdd-4586-8b3f-f3980a87e471"
+            ]
+          },
+          "application": {
+            "uuids": [
+              "1df8bff7-ffda-4571-b64a-f90f60f4dbf8"
+            ]
+          },
+          "environment": {
+            "ids": [
+              "123-1df8bff7-ffda-4571-b64a-f90f60f4dbf8"
+            ]
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/environments/123-1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage/visits"
+          },
+          "parent": {
+            "href": "https://cloud.acquia.com/api/environments/123-1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage"
+          }
+        }
+      },
+      {
+        "metric": "visits",
+        "datapoints": [
+          [
+            "2019-03-13T00:00:00+00:00",
+            "3"
+          ],
+          [
+            "2019-03-14T00:00:00+00:00",
+            "1"
+          ]
+        ],
+        "last_data_at": "2019-03-14T00:00:00+00:00",
+        "metadata": {
+          "subscription": {
+            "uuids": [
+              "9567a611-4cdd-4586-8b3f-f3980a87e471"
+            ]
+          },
+          "application": {
+            "uuids": [
+              "1df8bff7-ffda-4571-b64a-f90f60f4dbf8"
+            ]
+          },
+          "environment": {
+            "ids": [
+              "124-1df8bff7-ffda-4571-b64a-f90f60f4dbf8"
+            ]
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/environments/124-1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage/visits"
+          },
+          "parent": {
+            "href": "https://cloud.acquia.com/api/environments/124-1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage"
+          }
+        }
+      },
+      {
+        "metric": "visits",
+        "datapoints": [],
+        "last_data_at": null,
+        "metadata": {
+          "subscription": {
+            "uuids": [
+              "9567a611-4cdd-4586-8b3f-f3980a87e471"
+            ]
+          },
+          "application": {
+            "uuids": [
+              "1df8bff7-ffda-4571-b64a-f90f60f4dbf8"
+            ]
+          },
+          "environment": {
+            "ids": [
+              "125-1df8bff7-ffda-4571-b64a-f90f60f4dbf8"
+            ]
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/environments/125-1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage/visits"
+          },
+          "parent": {
+            "href": "https://cloud.acquia.com/api/environments/125-1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage"
+          }
+        }
+      }
+    ]
+  }
+}

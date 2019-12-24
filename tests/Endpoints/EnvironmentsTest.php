@@ -93,4 +93,42 @@ class EnvironmentsTest extends CloudApiTestCase
 
         $this->assertEquals('Changing environment label.', $result->message);
     }
+
+    public function testCreateCDEnvironment()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/createCDEnvironment.json');
+
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $environment = new Environments($client);
+        $result = $environment->create(
+            '24-a47ac10b-58cc-4372-a567-0e02b2c3d470',
+            'CD label',
+            'my-feature-branch',
+            [
+                "database1",
+                "database2"
+            ]
+        );
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
+        $this->assertEquals('Adding an environment.', $result->message);
+    }
+
+    public function testDeleteCDEnvironment()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/deleteCDEnvironment.json');
+
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $environment = new Environments($client);
+        $result = $environment->delete('24-a47ac10b-58cc-4372-a567-0e02b2c3d470');
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
+        $this->assertEquals('The environment is being deleted.', $result->message);
+    }
 }

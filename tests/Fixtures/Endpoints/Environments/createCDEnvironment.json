@@ -1,0 +1,14 @@
+{
+    "message": "Adding an environment.",
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/applications/896f142a-2c14-45ff-9b1f-41bcb2b5de8d/environments"
+      },
+      "notification": {
+        "href": "https://cloud.acquia.com/api/notifications/23d9184d-40b8-4f21-a3d5-416aef9bcd39"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/applications/896f142a-2c14-45ff-9b1f-41bcb2b5de8d/environments"
+      }
+    }
+}

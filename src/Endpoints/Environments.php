@@ -195,4 +195,48 @@ class Environments implements CloudApi
             )
         );
     }
+
+    /**
+     * Add a new continuous delivery environment to an application.
+     *
+     * @param string $applicationUuid
+     * @param string $label
+     * @param string $branch
+     * @param array  $databases
+     * @return OperationResponse
+     */
+    public function create($applicationUuid, $label, $branch, array $databases)
+    {
+        $options = [
+            'form_params' => [
+                'label' => $label,
+                'branch' => $branch,
+                'databases' => $databases,
+            ],
+        ];
+
+        return new OperationResponse(
+            $this->client->request(
+                'post',
+                "/applications/${applicationUuid}/environments",
+                $options
+            )
+        );
+    }
+
+    /**
+     * Deletes a CD environment.
+     *
+     * @param string $environmentUuid
+     * @return OperationResponse
+     */
+    public function delete($environmentUuid)
+    {
+        return new OperationResponse(
+            $this->client->request(
+                'delete',
+                "/environments/${environmentUuid}"
+            )
+        );
+    }
 }

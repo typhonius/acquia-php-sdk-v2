@@ -21,7 +21,7 @@ library as a dependency to your composer.json file.
 ```json
 {
     "require": {
-        "typhonius/acquia-php-sdk-v2": "^1.0.0"
+        "typhonius/acquia-php-sdk-v2": "^2.0.0"
     }
 }
 ```
@@ -47,6 +47,8 @@ use AcquiaCloudApi\Connector\Client;
 use AcquiaCloudApi\Connector\Connector;
 use AcquiaCloudApi\Endpoints\Applications;
 use AcquiaCloudApi\Endpoints\Environments;
+use AcquiaCloudApi\Endpoints\Servers;
+use AcquiaCloudApi\Endpoints\DatabaseBackups;
 
 $key = 'd0697bfc-7f56-4942-9205-b5686bf5b3f5';
 $secret = 'D5UfO/4FfNBWn4+0cUwpLOoFzfP7Qqib4AoY+wYGsKE=';

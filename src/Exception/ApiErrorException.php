@@ -24,7 +24,7 @@ class ApiErrorException extends Exception
 
     public function setError($object)
     {
-        if (is_array($object->message)) {
+        if (is_array($object->message) || is_object($object->message)) {
             $output = '';
             foreach ($object->message as $message) {
                 $output .= $message . PHP_EOL;

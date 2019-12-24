@@ -5,6 +5,8 @@ namespace AcquiaCloudApi\Endpoints;
 use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\ApplicationResponse;
 use AcquiaCloudApi\Response\ApplicationsResponse;
+use AcquiaCloudApi\Response\TagResponse;
+use AcquiaCloudApi\Response\TagsResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
@@ -74,6 +76,68 @@ class Applications implements CloudApi
                 'put',
                 "/applications/${applicationUuid}",
                 $options
+            )
+        );
+    }
+
+    /**
+     * Returns a list of application tags associated with this application.
+     *
+     * @param string $applicationUuid
+     * @return TagsResponse
+     */
+    public function getAllTags($applicationUuid)
+    {
+
+        return new TagsResponse(
+            $this->client->request(
+                'get',
+                "/applications/${applicationUuid}/tags"
+            )
+        );
+    }
+
+    /**
+     * Creates a new application tag.
+     *
+     * @param string $applicationUuid
+     * @param string $name
+     * @param string $color
+     * @return OperationResponse
+     */
+    public function createTag($applicationUuid, $name, $color)
+    {
+
+        $options = [
+            'form_params' => [
+                'name' => $name,
+                'color' => $color,
+            ],
+        ];
+
+        return new OperationResponse(
+            $this->client->request(
+                'post',
+                "/applications/${applicationUuid}/tags",
+                $options
+            )
+        );
+    }
+
+    /**
+     * Deletes an application tag.
+     *
+     * @param string $applicationUuid
+     * @param string $tagName
+     * @return OperationResponse
+     */
+    public function deleteTag($applicationUuid, $tagName)
+    {
+
+        return new OperationResponse(
+            $this->client->request(
+                'delete',
+                "/applications/${applicationUuid}/tags/${tagName}"
             )
         );
     }

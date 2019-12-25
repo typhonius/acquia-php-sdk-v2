@@ -1,0 +1,76 @@
+{
+  "total": 2,
+  "pagination": {
+    "total": 2,
+    "limit": 2,
+    "offset": 0
+  },
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/identity-providers"
+    },
+    "parent": {
+      "href": "https://cloud.acquia.com/api/"
+    },
+    "filter": {
+      "href": "https://cloud.acquia.com/api/identity-providers{?filter}",
+      "templated": true
+    },
+    "sort": {
+      "href": "https://cloud.acquia.com/api/identity-providers{?sort}",
+      "templated": true
+    },
+    "limit": {
+      "href": "https://cloud.acquia.com/api/identity-providers{?limit}",
+      "templated": true
+    },
+    "offset": {
+      "href": "https://cloud.acquia.com/api/identity-providers{?offset}",
+      "templated": true
+    }
+  },
+  "_embedded": {
+    "items": [
+      {
+        "uuid": "5fa84b25-a269-44bd-a2ae-e76d08ac8245",
+        "label": "Identity provider label",
+        "idp_entity_id": "https://idp.example.com/saml",
+        "sp_entity_id": "https://sp.example.com/saml",
+        "sso_url": "https://example.com/sso",
+        "certificate": "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----",
+        "status": "enabled",
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/identity-providers/5fa84b25-a269-44bd-a2ae-e76d08ac8245"
+          },
+          "parent": {
+            "href": "https://cloud.acquia.com/api/identity-providers"
+          },
+          "acs": {
+            "href": "https://accounts.acquia.com/api/auth/saml/acs/5fa84b25-a269-44bd-a2ae-e76d08ac8245"
+          }
+        }
+      },
+      {
+        "uuid": "908914ec-2354-4fb1-9298-637247eccc3a",
+        "label": "Identity provider label 2",
+        "idp_entity_id": "https://idp2.example.com/saml",
+        "sp_entity_id": "https://sp2.example.com/saml",
+        "sso_url": "https://example.com/sso",
+        "certificate": "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----",
+        "status": "enabled",
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/identity-providers/908914ec-2354-4fb1-9298-637247eccc3a"
+          },
+          "parent": {
+            "href": "https://cloud.acquia.com/api/identity-providers"
+          },
+          "acs": {
+            "href": "https://accounts.acquia.com/api/auth/saml/acs/908914ec-2354-4fb1-9298-637247eccc3a"
+          }
+        }
+      }
+    ]
+  }
+}

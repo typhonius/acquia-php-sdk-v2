@@ -121,7 +121,7 @@ class LogForwardingDestinations implements CloudApi
     }
 
     /**
-     * Disables a log forwarding destination.
+     * Enables a log forwarding destination.
      *
      * @param string $environmentUuid
      * @param int    $destId

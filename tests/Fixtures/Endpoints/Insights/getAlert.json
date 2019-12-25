@@ -1,0 +1,30 @@
+{
+    "alert_id": 40,
+    "uuid": "a47ac10b-58cc-4372-a567-0e02b2c3d470",
+    "name": "PHP errors visible",
+    "message": "<p>Your website is configured to display PHP error messages to users. These error messages can reveal sensitive information about your website and its server to site visitors.</p>",
+    "article_link": "https://docs.acquia.com/acquia-cloud/insight/alerts/",
+    "severity": 8,
+    "severity_label": "WARNING",
+    "failed_value": "display_errors",
+    "fix_details": "<p>To suppress the error messages, edit your settings.php file.</p>",
+    "categories": [
+      "insight",
+      "security"
+    ],
+    "flags": {
+      "ignored": false,
+      "cleared": false,
+      "resolved": false,
+      "pass_hide": false,
+      "free_tier_hide": true
+    },
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/insight/d97bd970-3c0f-102f-a581-1231390f9c94/alerts/a47ac10b-58cc-4372-a567-0e02b2c3d470"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/insight/d97bd970-3c0f-102f-a581-1231390f9c94/alerts"
+      }
+    }
+}

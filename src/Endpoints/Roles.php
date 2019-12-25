@@ -8,24 +8,11 @@ use AcquiaCloudApi\Response\RoleResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
- * Class Client
+ * Class Roles
  * @package AcquiaCloudApi\CloudApi
  */
-class Roles implements CloudApi
+class Roles extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Show all roles in an organization.

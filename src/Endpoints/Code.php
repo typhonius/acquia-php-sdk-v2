@@ -7,24 +7,11 @@ use AcquiaCloudApi\Response\BranchesResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
- * Class Client
+ * Class Code
  * @package AcquiaCloudApi\CloudApi
  */
-class Code implements CloudApi
+class Code extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Shows all code branches and tags in an application.

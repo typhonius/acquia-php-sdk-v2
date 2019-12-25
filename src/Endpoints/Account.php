@@ -7,24 +7,11 @@ use AcquiaCloudApi\Response\AccountResponse;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * Class Client
+ * Class Account
  * @package AcquiaCloudApi\CloudApi
  */
-class Account implements CloudApi
+class Account extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Returns details about your account.

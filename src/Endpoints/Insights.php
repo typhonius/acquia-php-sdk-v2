@@ -11,24 +11,11 @@ use AcquiaCloudApi\Response\InsightModulesResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
- * Class Client
+ * Class Insights
  * @package AcquiaCloudApi\CloudApi
  */
-class Insights implements CloudApi
+class Insights extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Returns Insight data for all sites associated with the application by its UUID.

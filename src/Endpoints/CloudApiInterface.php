@@ -4,7 +4,7 @@ namespace AcquiaCloudApi\Endpoints;
 
 use AcquiaCloudApi\Connector\ClientInterface;
 
-interface CloudApi
+interface CloudApiInterface
 {
     public function __construct(ClientInterface $client);
 }

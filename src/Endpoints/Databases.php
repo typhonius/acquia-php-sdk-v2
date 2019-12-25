@@ -7,24 +7,11 @@ use AcquiaCloudApi\Response\DatabasesResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
- * Class Client
+ * Class Databases
  * @package AcquiaCloudApi\CloudApi
  */
-class Databases implements CloudApi
+class Databases extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Shows all databases in an application.

@@ -6,24 +6,11 @@ use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\PermissionsResponse;
 
 /**
- * Class Client
+ * Class Permissions
  * @package AcquiaCloudApi\CloudApi
  */
-class Permissions implements CloudApi
+class Permissions extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Show all available permissions.

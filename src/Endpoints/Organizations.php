@@ -11,24 +11,11 @@ use AcquiaCloudApi\Response\TeamsResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
- * Class Client
+ * Class Organizations
  * @package AcquiaCloudApi\CloudApi
  */
-class Organizations implements CloudApi
+class Organizations extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Show all organizations.

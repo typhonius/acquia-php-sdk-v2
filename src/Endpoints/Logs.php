@@ -10,24 +10,11 @@ use AcquiaCloudApi\Response\LogsResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
- * Class Client
+ * Class Logs
  * @package AcquiaCloudApi\CloudApi
  */
-class Logs implements CloudApi
+class Logs extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Returns a list of log files available for download.

@@ -8,24 +8,11 @@ use AcquiaCloudApi\Response\LogForwardingDestinationsResponse;
 use AcquiaCloudApi\Response\LogForwardingDestinationResponse;
 
 /**
- * Class Client
+ * Class LogForwardingDestinations
  * @package AcquiaCloudApi\CloudApi
  */
-class LogForwardingDestinations implements CloudApi
+class LogForwardingDestinations extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Returns a list of log forwarding destinations.

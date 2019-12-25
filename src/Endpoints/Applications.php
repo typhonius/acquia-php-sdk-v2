@@ -10,24 +10,11 @@ use AcquiaCloudApi\Response\TagsResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
- * Class Client
+ * Class Applications
  * @package AcquiaCloudApi\CloudApi
  */
-class Applications implements CloudApi
+class Applications extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Shows all applications.

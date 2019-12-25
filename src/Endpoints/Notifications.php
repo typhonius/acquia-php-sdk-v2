@@ -7,24 +7,12 @@ use AcquiaCloudApi\Response\NotificationResponse;
 use AcquiaCloudApi\Response\NotificationsResponse;
 
 /**
- * Class Client
+ * Class Notifications
  * @package AcquiaCloudApi\CloudApi
  */
-class Notifications implements CloudApi
+class Notifications extends CloudApiBase implements CloudApiInterface
 {
 
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
     /**
      * Returns details about a notification.
      *

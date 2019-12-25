@@ -8,24 +8,11 @@ use AcquiaCloudApi\Response\CronResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
- * Class Client
+ * Class Crons
  * @package AcquiaCloudApi\CloudApi
  */
-class Crons implements CloudApi
+class Crons extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Show all cron tasks for an environment.

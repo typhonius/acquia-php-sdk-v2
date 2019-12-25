@@ -8,24 +8,11 @@ use AcquiaCloudApi\Response\ServersResponse;
 use AcquiaCloudApi\Response\ServerResponse;
 
 /**
- * Class Client
+ * Class Servers
  * @package AcquiaCloudApi\CloudApi
  */
-class Servers implements CloudApi
+class Servers extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Gets information about a single server.

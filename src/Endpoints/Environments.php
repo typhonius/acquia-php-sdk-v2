@@ -8,24 +8,11 @@ use AcquiaCloudApi\Response\EnvironmentsResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
- * Class Client
+ * Class Environments
  * @package AcquiaCloudApi\CloudApi
  */
-class Environments implements CloudApi
+class Environments extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Copies files from an environment to another environment.

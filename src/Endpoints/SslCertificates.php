@@ -8,24 +8,11 @@ use AcquiaCloudApi\Response\SslCertificateResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
- * Class Client
+ * Class SslCertificates
  * @package AcquiaCloudApi\CloudApi
  */
-class SslCertificates implements CloudApi
+class SslCertificates extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Returns a list of SSL certificates.

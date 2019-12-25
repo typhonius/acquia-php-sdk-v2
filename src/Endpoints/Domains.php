@@ -9,24 +9,11 @@ use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\MetricsResponse;
 
 /**
- * Class Client
+ * Class Domains
  * @package AcquiaCloudApi\CloudApi
  */
-class Domains implements CloudApi
+class Domains extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Shows all domains on an environment.

@@ -8,24 +8,11 @@ use AcquiaCloudApi\Response\IdeResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
- * Class Client
+ * Class Ides
  * @package AcquiaCloudApi\CloudApi
  */
-class Ides implements CloudApi
+class Ides extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Returns a list of remote IDEs.

@@ -8,24 +8,11 @@ use AcquiaCloudApi\Response\BackupResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
- * Class Client
+ * Class DatabaseBackups
  * @package AcquiaCloudApi\CloudApi
  */
-class DatabaseBackups implements CloudApi
+class DatabaseBackups extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Backup a database.

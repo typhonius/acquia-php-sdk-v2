@@ -7,24 +7,11 @@ use AcquiaCloudApi\Response\MetricsResponse;
 use AcquiaCloudApi\Response\MetricResponse;
 
 /**
- * Class Client
+ * Class Metrics
  * @package AcquiaCloudApi\CloudApi
  */
-class Metrics implements CloudApi
+class Metrics extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Retrieves aggregate usage data for an application.

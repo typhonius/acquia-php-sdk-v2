@@ -8,24 +8,11 @@ use AcquiaCloudApi\Response\IdentityProvidersResponse;
 use AcquiaCloudApi\Response\IdentityProviderResponse;
 
 /**
- * Class Client
+ * Class IdentityProviders
  * @package AcquiaCloudApi\CloudApi
  */
-class IdentityProviders implements CloudApi
+class IdentityProviders extends CloudApiBase implements CloudApiInterface
 {
-
-    /** @var ClientInterface The API client. */
-    protected $client;
-
-    /**
-     * Client constructor.
-     *
-     * @param ClientInterface $client
-     */
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * Returns a list of identity providers for the user.

@@ -33,6 +33,21 @@ class InsightsTest extends CloudApiTestCase
         'links'
     ];
 
+    public $moduleProperties = [
+        'module_id',
+        'name',
+        'filename',
+        'version',
+        'supported_majors',
+        'recommended_major',
+        'package',
+        'core',
+        'project',
+        'release_date',
+        'flags',
+        'tags'
+    ];
+
     public function testGetInsights()
     {
 
@@ -170,5 +185,27 @@ class InsightsTest extends CloudApiTestCase
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
         $this->assertEquals('Site un-revoked.', $result->message);
+    }
+
+    public function testGetModules()
+    {
+
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getModules.json');
+        $client = $this->getMockClient($response);
+
+      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $insights = new Insights($client);
+        $result = $insights->getModules('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+
+        $this->assertInstanceOf('\ArrayObject', $result);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightModulesResponse', $result);
+
+        foreach ($result as $record) {
+            $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightModuleResponse', $record);
+
+            foreach ($this->moduleProperties as $property) {
+                $this->assertObjectHasAttribute($property, $record);
+            }
+        }
     }
 }

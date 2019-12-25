@@ -7,6 +7,7 @@ use AcquiaCloudApi\Response\InsightsResponse;
 use AcquiaCloudApi\Response\InsightResponse;
 use AcquiaCloudApi\Response\InsightAlertsResponse;
 use AcquiaCloudApi\Response\InsightAlertResponse;
+use AcquiaCloudApi\Response\InsightModulesResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
@@ -157,6 +158,22 @@ class Insights implements CloudApi
             $this->client->request(
                 'post',
                 "/insight/${siteId}/actions/unrevoke"
+            )
+        );
+    }
+
+    /**
+     * Returns a list of Drupal modules for this site.
+     *
+     * @param string $siteId
+     * @return InsightModulesResponse
+     */
+    public function getModules($siteId)
+    {
+        return new InsightModulesResponse(
+            $this->client->request(
+                'get',
+                "/insight/${siteId}/modules"
             )
         );
     }

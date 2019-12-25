@@ -1,0 +1,112 @@
+{
+    "total": 4,
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/metrics/stackmetrics/data?filter=metric=db_cpu,metric=web_cpu&from=2019-06-20"
+      }
+    },
+    "_embedded": {
+      "items": [
+        {
+          "metric": "db-cpu",
+          "datapoints": [
+            [
+              2.5395360194838,
+              1447876380
+            ],
+            [
+              3.3012513318685,
+              1447876680
+            ],
+            [
+              4.568567607842,
+              1447876980
+            ]
+          ],
+          "metadata": {
+            "host": "fsdb-1.prod.hosting.acquia.com"
+          },
+          "_links": {
+            "self": {
+              "href": "https://cloud.acquia.com/api/environments/18-185f07c7-9c4f-407b-8968-67892ebcb38a/metrics/stackmetrics/db-cpu"
+            }
+          }
+        },
+        {
+          "metric": "db-cpu",
+          "datapoints": [
+            [
+              22.1395360194838,
+              1447876380
+            ],
+            [
+              23.7012513318685,
+              1447876680
+            ],
+            [
+              24.168567607842,
+              1447876980
+            ]
+          ],
+          "metadata": {
+            "host": "fsdb-2.prod.hosting.acquia.com"
+          },
+          "_links": {
+            "self": {
+              "href": "https://cloud.acquia.com/api/environments/18-185f07c7-9c4f-407b-8968-67892ebcb38a/metrics/stackmetrics/db-cpu"
+            }
+          }
+        },
+        {
+          "metric": "web-cpu",
+          "datapoints": [
+            [
+              12.1395360194838,
+              1447876380
+            ],
+            [
+              12.7012513318685,
+              1447876680
+            ],
+            [
+              12.168567607842,
+              1447876980
+            ]
+          ],
+          "metadata": {
+            "host": "web-1.prod.hosting.acquia.com"
+          },
+          "_links": {
+            "self": {
+              "href": "https://cloud.acquia.com/api/environments/18-185f07c7-9c4f-407b-8968-67892ebcb38a/metrics/stackmetrics/web-cpu"
+            }
+          }
+        },
+        {
+          "metric": "web-cpu",
+          "datapoints": [
+            [
+              2.1395360194838,
+              1447876380
+            ],
+            [
+              2.7012513318685,
+              1447876680
+            ],
+            [
+              2.168567607842,
+              1447876980
+            ]
+          ],
+          "metadata": {
+            "host": "web-2.prod.hosting.acquia.com"
+          },
+          "_links": {
+            "self": {
+              "href": "https://cloud.acquia.com/api/environments/18-185f07c7-9c4f-407b-8968-67892ebcb38a/metrics/stackmetrics/web-cpu"
+            }
+          }
+        }
+      ]
+    }
+  }

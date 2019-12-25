@@ -96,4 +96,35 @@ class Metrics implements CloudApi
             "/applications/${applicationUuid}/metrics/usage/visits-by-environment"
         ));
     }
+
+    /**
+     * Returns StackMetrics data for the metrics specified in the filter paramater
+     * (e.g., apache-access, web-cpu).
+     *
+     * @return MetricsResponse
+     * @param string $environmentUuid
+     */
+    public function getStackMetricsData($environmentUuid)
+    {
+        return new MetricsResponse($this->client->request(
+            'get',
+            "/environments/${environmentUuid}/metrics/stackmetrics/data"
+        ));
+    }
+
+    /**
+     * Returns StackMetrics data for the metric (e.g., apache-access).
+     *
+     * @return MetricResponse
+     * @param string $environmentUuid
+     * @param string $metricType
+     *
+     */
+    public function getStackMetricsDataByMetric($environmentUuid, $metricType)
+    {
+        return new MetricResponse($this->client->request(
+            'get',
+            "/environments/${environmentUuid}/metrics/stackmetrics/${metricType}"
+        ));
+    }
 }

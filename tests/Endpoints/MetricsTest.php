@@ -108,4 +108,38 @@ class MetricsTest extends CloudApiTestCase
             }
         }
     }
+    public function testGetStackMetricsData()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Metrics/getStackMetricsData.json');
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $account = new Metrics($client);
+        $result = $account->getStackMetricsData('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+
+        $this->assertInstanceOf('\ArrayObject', $result);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\MetricsResponse', $result);
+
+        foreach ($result as $record) {
+            $this->assertInstanceOf('\AcquiaCloudApi\Response\MetricResponse', $record);
+            foreach ($this->properties as $property) {
+                $this->assertObjectHasAttribute($property, $record);
+            }
+        }
+    }
+    public function testGetStackMetricsDataByMetric()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Metrics/getStackMetricsDataByMetric.json');
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $account = new Metrics($client);
+        $result = $account->getStackMetricsDataByMetric('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'web-cpu');
+
+        $this->assertNotInstanceOf('\AcquiaCloudApi\Response\MetricsResponse', $result);
+
+        foreach ($this->properties as $property) {
+            $this->assertObjectHasAttribute($property, $result);
+        }
+    }
 }

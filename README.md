@@ -11,7 +11,7 @@ Acquia PHP SDK for CloudAPI v2
 [![Latest Stable Version](https://poser.pugx.org/typhonius/acquia-php-sdk-v2/v/stable.png)](https://packagist.org/packages/typhonius/acquia-php-sdk-v2)
 [![Latest Unstable Version](https://poser.pugx.org/typhonius/acquia-php-sdk-v2/v/unstable.png)](https://packagist.org/packages/typhonius/acquia-php-sdk-v2)
 
-This library provides the capability to develop tooling which integrates with the[new version (2.0) of Cloud API](https://cloud.acquia.com/api-docs/).
+This library provides the capability to develop tooling which integrates with the [new version (2.0) of Cloud API](https://cloud.acquia.com/api-docs/).
 
 The [original Acquia Cloud SDK](https://github.com/acquia/acquia-sdk-php) has been deprecated so build tools requiring modern PHP versions and packages should use this library.
 

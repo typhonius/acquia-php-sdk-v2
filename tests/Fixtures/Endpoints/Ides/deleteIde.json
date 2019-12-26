@@ -1,0 +1,14 @@
+{
+    "message": "The remote IDE is being deleted.",
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/ides/215824ff-272a-4a8c-9027-df32ed1d68a9"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/ides"
+      },
+      "notification": {
+        "href": "https://cloud.acquia.com/api/notifications/e98577df-840a-4fef-8775-66cf90b3530e"
+      }
+    }
+}

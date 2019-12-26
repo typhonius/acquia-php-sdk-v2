@@ -1,0 +1,45 @@
+{
+    "id": "6",
+    "name": "ded-6",
+    "hostname": "ded-6.servers.acquia.com",
+    "ssh_user": "user.dev",
+    "ip": "10.0.0.1",
+    "status": "normal",
+    "region": "us-west-1",
+    "roles": [
+      "web",
+      "db"
+    ],
+    "ami_type": "c1.medium",
+    "operating_system": "xenial",
+    "configuration": {
+      "memcache": 64,
+      "ecu": 5,
+      "memory": 1.7
+    },
+    "flags": {
+      "elastic_ip": false,
+      "active_web": true,
+      "active_bal": false,
+      "primary_db": true,
+      "web": true,
+      "database": true,
+      "balancer": false,
+      "fs": false,
+      "memcache": true,
+      "dedicated": false,
+      "self_service": false
+    },
+    "environment": {
+      "id": "24-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+      "name": "dev"
+    },
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470/servers/6"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470"
+      }
+    }
+  }

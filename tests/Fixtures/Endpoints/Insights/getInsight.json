@@ -1,0 +1,56 @@
+{
+    "uuid": "abcdefgh-1234-ijkl-5678-mnopqrstuvwx",
+    "label": "Test Site: prod",
+    "hostname": "test.example.com",
+    "status": "ok",
+    "updated_at": "2011-03-28T13:28:00-05:00",
+    "last_connected_at": "2011-03-28T13:11:00-05:00",
+    "scores": {
+      "insight": "62",
+      "seo": "15"
+    },
+    "counts": {
+      "best_practices": {
+        "pass": 5,
+        "fail": 1,
+        "ignored": 0,
+        "total": 6,
+        "percent": 83
+      },
+      "performance": {
+        "pass": 9,
+        "fail": 10,
+        "ignored": 0,
+        "total": 19,
+        "percent": 47
+      },
+      "security": {
+        "pass": 10,
+        "fail": 10,
+        "ignored": 0,
+        "total": 20,
+        "percent": 50
+      }
+    },
+    "flags": {
+      "acquia_hosted": true,
+      "revoked": true
+    },
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/insight/site_id"
+      },
+      "alerts": {
+        "href": "https://cloud.acquia.com/api/insight/site_id/alerts"
+      },
+      "connection-history": {
+        "href": "https://cloud.acquia.com/api/insight/site_id/connection-history"
+      },
+      "modules": {
+        "href": "https://cloud.acquia.com/api/insight/site_id/modules"
+      },
+      "score-history": {
+        "href": "https://cloud.acquia.com/api/insight/site_id/score-history"
+      }
+    }
+  }

@@ -1,0 +1,54 @@
+{
+    "total": 0,
+    "_links": [
+      {
+        "href": "string"
+      }
+    ],
+    "_embedded": {
+      "items": [
+        {
+          "alert_id": 0,
+          "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "name": "string",
+          "message": "string",
+          "article_link": "string",
+          "severity": 0,
+          "severity_label": "string",
+          "failed_value": "string",
+          "fix_details": "string",
+          "categories": {
+            "value": "insight"
+          },
+          "flags": {
+            "additionalProp1": {
+              "ignored": true,
+              "cleared": true,
+              "resolved": true,
+              "pass_hide": true,
+              "free_tier_hide": true
+            },
+            "additionalProp2": {
+              "ignored": true,
+              "cleared": true,
+              "resolved": true,
+              "pass_hide": true,
+              "free_tier_hide": true
+            },
+            "additionalProp3": {
+              "ignored": true,
+              "cleared": true,
+              "resolved": true,
+              "pass_hide": true,
+              "free_tier_hide": true
+            }
+          },
+          "_links": [
+            {
+              "href": "string"
+            }
+          ]
+        }
+      ]
+    }
+}

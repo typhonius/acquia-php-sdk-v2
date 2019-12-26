@@ -1,0 +1,87 @@
+{
+  "total": 6,
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/environments/24-0c7e79ab-1c4a-424e-8446-76ae8be7e851/logs"
+    },
+    "parent": {
+      "href": "https://cloud.acquia.com/api/environments/24-0c7e79ab-1c4a-424e-8446-76ae8be7e851"
+    }
+  },
+  "_embedded": {
+    "items": [
+      {
+        "type": "apache-access",
+        "label": "Apache access",
+        "flags": {
+          "available": false
+        },
+        "_links": {
+          "download": {
+            "href": "https://cloud.acquia.com/api/environments/24-0c7e79ab-1c4a-424e-8446-76ae8be7e851/logs/apache-access"
+          }
+        }
+      },
+      {
+        "type": "apache-error",
+        "label": "Apache error",
+        "flags": {
+          "available": false
+        },
+        "_links": {
+          "download": {
+            "href": "https://cloud.acquia.com/api/environments/24-0c7e79ab-1c4a-424e-8446-76ae8be7e851/logs/apache-error"
+          }
+        }
+      },
+      {
+        "type": "drupal-request",
+        "label": "Drupal request",
+        "flags": {
+          "available": false
+        },
+        "_links": {
+          "download": {
+            "href": "https://cloud.acquia.com/api/environments/24-0c7e79ab-1c4a-424e-8446-76ae8be7e851/logs/drupal-request"
+          }
+        }
+      },
+      {
+        "type": "drupal-watchdog",
+        "label": "Drupal watchdog",
+        "flags": {
+          "available": false
+        },
+        "_links": {
+          "download": {
+            "href": "https://cloud.acquia.com/api/environments/24-0c7e79ab-1c4a-424e-8446-76ae8be7e851/logs/drupal-watchdog"
+          }
+        }
+      },
+      {
+        "type": "php-error",
+        "label": "PHP error",
+        "flags": {
+          "available": false
+        },
+        "_links": {
+          "download": {
+            "href": "https://cloud.acquia.com/api/environments/24-0c7e79ab-1c4a-424e-8446-76ae8be7e851/logs/php-error"
+          }
+        }
+      },
+      {
+        "type": "mysql-slow-query",
+        "label": "MySQL slow query",
+        "flags": {
+          "available": true
+        },
+        "_links": {
+          "download": {
+            "href": "https://cloud.acquia.com/api/environments/24-0c7e79ab-1c4a-424e-8446-76ae8be7e851/logs/mysql-slow-query"
+          }
+        }
+      }
+    ]
+  }
+}

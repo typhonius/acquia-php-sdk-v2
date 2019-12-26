@@ -3,6 +3,7 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
+use AcquiaCloudApi\Endpoints\Permissions;
 
 class PermissionsTest extends CloudApiTestCase
 {
@@ -17,11 +18,12 @@ class PermissionsTest extends CloudApiTestCase
     public function testGetAllPermissions()
     {
 
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getPermissions.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Permissions/getPermissions.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->permissions();
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $permissions = new Permissions($client);
+        $result = $permissions->get();
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\PermissionsResponse', $result);

@@ -1,0 +1,14 @@
+{
+    "message": "Updating cron.",
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/environments/286-f027502b-ed6c-448e-97e8-4a0def7d25e1/crons/2582"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/environments/286-f027502b-ed6c-448e-97e8-4a0def7d25e1/crons"
+      },
+      "notification": {
+        "href": "https://cloud.acquia.com/api/notifications/ba232d96-dfe7-4850-9ca7-02e01a04f58d"
+      }
+    }
+  }

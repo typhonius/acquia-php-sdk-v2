@@ -1,0 +1,71 @@
+{
+    "total": 3,
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/insight/site_id/modules"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/insight/site_id"
+      }
+    },
+    "_embedded": {
+      "items": [
+        {
+          "module_id": 2,
+          "name": "Acquia agent",
+          "filename": "sites/all/modules/acquia_connector/acquia_agent/acquia_agent.module",
+          "version": "7.x-3.0-alpha1",
+          "supported_majors": "2,1",
+          "recommended_major": "2",
+          "package": "Acquia Connector",
+          "core": "7.x",
+          "project": "acquia_connector",
+          "release_date": "2015-11-17T14:08:59-0500",
+          "flags": {
+            "enabled": true
+          },
+          "tags": [
+            "contrib",
+            "upgradeable",
+            "bugfix"
+          ]
+        },
+        {
+          "module_id": 7,
+          "name": "Aggregator",
+          "filename": "modules/aggregator/aggregator.module",
+          "version": "7.50",
+          "supported_majors": null,
+          "recommended_major": null,
+          "package": "Core",
+          "core": "7.x",
+          "project": "drupal",
+          "release_date": null,
+          "flags": {
+            "enabled": false
+          },
+          "tags": [
+            "core"
+          ]
+        },
+        {
+          "module_id": 141,
+          "name": "A Custom Module",
+          "filename": "sites/all/modules/custom_module/custom_module.module",
+          "version": "",
+          "supported_majors": null,
+          "recommended_major": null,
+          "package": "Custom Module",
+          "core": "7.x",
+          "project": "",
+          "release_date": null,
+          "flags": {
+            "enabled": false
+          },
+          "tags": [
+            "custom"
+          ]
+        }
+      ]
+    }
+}

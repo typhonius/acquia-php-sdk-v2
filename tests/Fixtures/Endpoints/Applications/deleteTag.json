@@ -1,0 +1,14 @@
+{
+    "message": "The tag has been removed from the application.",
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/applications/0d9fc48f-9871-41d9-8b41-0f815e6039eb/tags/test_tag"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/applications/0d9fc48f-9871-41d9-8b41-0f815e6039eb/tags"
+      },
+      "notification": {
+        "href": "https://cloud.acquia.com/api/notifications/37cdf705-9774-4526-9bf0-9feb279630ee"
+      }
+    }
+}

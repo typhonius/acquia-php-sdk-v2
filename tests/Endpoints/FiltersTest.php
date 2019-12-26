@@ -10,7 +10,6 @@ class FiltersTest extends CloudApiTestCase
     public function testAddFilter()
     {
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $object */
         $object = $this->getMockClient();
 
         $expectedValue = ['filter' => 'name=@"foobar"'];

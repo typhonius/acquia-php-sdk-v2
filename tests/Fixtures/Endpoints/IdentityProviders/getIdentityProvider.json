@@ -1,0 +1,20 @@
+{
+  "uuid": "1bc5dbb4-6d59-403b-afc7-777e520aaa40",
+  "label": "Test identity provider",
+  "idp_entity_id": "https://idp.example.com/saml",
+  "sp_entity_id": "https://sp.example.com/saml",
+  "sso_url": "https://example.com/sso",
+  "certificate": "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----",
+  "status": "enabled",
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/identity-providers/1bc5dbb4-6d59-403b-afc7-777e520aaa40"
+    },
+    "parent": {
+      "href": "https://cloud.acquia.com/api/identity-providers"
+    },
+    "acs": {
+      "href": "https://accounts.acquia.com/api/auth/saml/acs/1bc5dbb4-6d59-403b-afc7-777e520aaa40"
+    }
+  }
+}

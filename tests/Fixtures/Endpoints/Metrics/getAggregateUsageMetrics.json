@@ -1,0 +1,41 @@
+{
+    "metric": "views",
+    "datapoints": [
+      [
+        "2019-03-13T00:00:00+00:00",
+        "9"
+      ],
+      [
+        "2019-03-14T00:00:00+00:00",
+        "1"
+      ]
+    ],
+    "last_data_at": "2019-03-14T00:00:00+00:00",
+    "metadata": {
+      "subscription": {
+        "uuids": [
+          "9567a611-4cdd-4586-8b3f-f3980a87e471"
+        ]
+      },
+      "application": {
+        "uuids": [
+          "1df8bff7-ffda-4571-b64a-f90f60f4dbf8"
+        ]
+      },
+      "environment": {
+        "ids": [
+          "123-1df8bff7-ffda-4571-b64a-f90f60f4dbf8",
+          "124-1df8bff7-ffda-4571-b64a-f90f60f4dbf8",
+          "125-1df8bff7-ffda-4571-b64a-f90f60f4dbf8"
+        ]
+      }
+    },
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage/views"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/applications/1df8bff7-ffda-4571-b64a-f90f60f4dbf8/metrics/usage"
+      }
+    }
+}

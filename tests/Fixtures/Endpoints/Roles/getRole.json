@@ -1,0 +1,49 @@
+{
+    "uuid": "c885728d-cbbe-4e54-bf09-19b751b6d0c7",
+    "name": "My Custom Role",
+    "description": "Some details about my custom role.",
+    "permissions": [
+      {
+        "name": "deploy to non-prod",
+        "label": "Pull and deploy code, files, or databases to non-production environments",
+        "description": "Grants the ability to enable or disable live development and non-production work.",
+        "group_label": "Workflow"
+      },
+      {
+        "name": "configure non-prod env",
+        "label": "Configure non-production environments",
+        "description": null,
+        "group_label": "Workflow"
+      },
+      {
+        "name": "download logs non-prod",
+        "label": "Download logs for non-production environments",
+        "description": null,
+        "group_label": "Logs"
+      },
+      {
+        "name": "view database connection",
+        "label": "View database connection details (username, password, or hostname)",
+        "description": null,
+        "group_label": "Databases"
+      }
+    ],
+    "organization": {
+      "uuid": "d122cc06-35bd-41bf-9baa-5b770c8ca0f1",
+      "name": "My Organization"
+    },
+    "last_edited": {
+      "edited_at": "2011-03-28T13:09:41-04:00",
+      "user": {
+        "uuid": "590909a0-e819-43e6-a8e3-212dc3e35852",
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "mail": "jane.doe@example.com",
+        "picture_url": "https://accounts.acquia.com/sites/default/files/avatars/123abc?mail=jane.doe@example.com",
+        "username": "jane.doe"
+      }
+    },
+    "flags": {
+      "default": false
+    }
+  }

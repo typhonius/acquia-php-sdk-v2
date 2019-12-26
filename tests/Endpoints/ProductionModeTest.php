@@ -3,17 +3,19 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
+use AcquiaCloudApi\Endpoints\Environments;
 
 class ProductionModeTest extends CloudApiTestCase
 {
 
     public function testProductionModeEnable()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/enableProductionMode.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/enableProductionMode.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->enableProductionMode('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $environment = new Environments($client);
+        $result = $environment->enableProductionMode('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
@@ -22,11 +24,12 @@ class ProductionModeTest extends CloudApiTestCase
 
     public function testProductionModeDisable()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/disableProductionMode.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/disableProductionMode.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->disableProductionMode('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $environment = new Environments($client);
+        $result = $environment->disableProductionMode('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 

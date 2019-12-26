@@ -1,0 +1,32 @@
+{
+  "uuid": "df4c5428-8d2e-453d-9edf-e412647449b1",
+  "label": "Test destination",
+  "address": "example.com:1234",
+  "consumer": "syslog",
+  "credentials": {
+    "certificate": {
+      "certificate": "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----",
+      "expires_at": "2018-07-16T16:15:33+00:00"
+    },
+    "key": "1d0789d519c0b943cf38f401d30ffbdcd2e0c4cfb7c32ebc0c872bce62aadd4d",
+    "token": "204d892b449026f6e4ded264c8891c400df8fc8905f07beb5f70d706f6d4d5e5"
+  },
+  "sources": [
+    "apache-access",
+    "apache-error"
+  ],
+  "status": "active",
+  "flags": {
+    "enabled": true,
+    "certificate_expiring": false
+  },
+  "health": {
+    "code": "200",
+    "details": "Destination OK",
+    "summary": "OK"
+  },
+  "environment": {
+    "id": "123-ea9060c5-1ed8-46ec-87d5-2ce2a0861577",
+    "name": "Test"
+  }
+}

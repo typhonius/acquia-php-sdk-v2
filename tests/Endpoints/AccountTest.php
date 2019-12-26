@@ -3,6 +3,7 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
+use AcquiaCloudApi\Endpoints\Account;
 
 class AccountTest extends CloudApiTestCase
 {
@@ -22,11 +23,12 @@ class AccountTest extends CloudApiTestCase
 
     public function testGetAccount()
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/getAccount.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Account/getAccount.json');
         $client = $this->getMockClient($response);
 
       /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
-        $result = $client->account();
+        $account = new Account($client);
+        $result = $account->get();
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\AccountResponse', $result);
 

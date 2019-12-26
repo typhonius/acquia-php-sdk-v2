@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Tests;
 
-use AcquiaCloudApi\CloudApi\Client;
+use AcquiaCloudApi\Connector\Client;
 use GuzzleHttp\Psr7;
 use PHPUnit\Framework\TestCase;
 
@@ -12,19 +12,6 @@ use PHPUnit\Framework\TestCase;
 abstract class CloudApiTestCase extends TestCase
 {
 
-    /**
-     * Tests that Response classes have correct parameters.
-     * 
-     * @param 
-     * @throws AssertionFailedError
-     * 
-     */
-    public function assertOperationResponse($operationResponse)
-    {
-        $this->assertNotEmpty($operationResponse->links);
-        $this->assertNotEmpty($operationResponse->links->notification);
-        $this->assertNotEmpty($operationResponse->links->notification->href);
-    }
     /**
      * Returns a PSR7 Stream for a given fixture.
      *
@@ -75,24 +62,25 @@ abstract class CloudApiTestCase extends TestCase
     /**
      * Mock client class.
      *
-     * @param $response
-     * @return static
+     * @param  mixed  $response
+     * @return Client
      */
     protected function getMockClient($response = '')
     {
         if ($response) {
             $connector = $this
-                ->getMockBuilder('AcquiaCloudApi\CloudApi\Connector')
+                ->getMockBuilder('AcquiaCloudApi\Connector\Connector')
                 ->disableOriginalConstructor()
-                ->setMethods(['makeRequest'])
+                ->setMethods(['sendRequest'])
                 ->getMock();
+
             $connector
                 ->expects($this->atLeastOnce())
-                ->method('makeRequest')
+                ->method('sendRequest')
                 ->willReturn($response);
         } else {
             $connector = $this
-                ->getMockBuilder('AcquiaCloudApi\CloudApi\Connector')
+                ->getMockBuilder('AcquiaCloudApi\Connector\Connector')
                 ->disableOriginalConstructor()
                 ->getMock();
         }

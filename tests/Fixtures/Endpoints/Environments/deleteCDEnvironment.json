@@ -1,0 +1,11 @@
+{
+    "message": "The environment is being deleted.",
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/environments/123-f027502b-ed6c-448e-97e8-4a0def7d25e1"
+      },
+      "notification": {
+        "href": "https://cloud.acquia.com/api/notifications/6992a41d-a953-4ded-ae99-41d2f4d62f69"
+      }
+    }
+}

@@ -19,7 +19,6 @@ class NotificationResponse
     public $context;
     public $links;
 
-
     /**
      * MemberResponse constructor.
      * @param object $notification

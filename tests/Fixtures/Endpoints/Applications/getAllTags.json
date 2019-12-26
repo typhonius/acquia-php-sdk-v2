@@ -1,0 +1,60 @@
+{
+  "total": 1,
+  "pagination": {
+    "total": 1,
+    "limit": 1,
+    "offset": 0
+  },
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/tags"
+    },
+    "parent": {
+      "href": "https://cloud.acquia.com/api/applications/185f07c7-9c4f-407b-8968-67892ebcb38a"
+    },
+    "limit": {
+      "href": "https://cloud.acquia.com/api/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/tags{?limit}",
+      "templated": true
+    },
+    "offset": {
+      "href": "https://cloud.acquia.com/api/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/tags{?offset}",
+      "templated": true
+    },
+    "sort": {
+      "href": "https://cloud.acquia.com/api/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/tags{?sort}",
+      "templated": true
+    },
+    "filter": {
+      "href": "https://cloud.acquia.com/api/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/tags{?filter}",
+      "templated": true
+    }
+  },
+  "_embedded": {
+    "items": [
+      {
+        "name": "Dev",
+        "color": "orange",
+        "context": {
+          "organization": {
+            "uuids": [
+              "2375e327-3fff-11e3-9170-12313920a02c"
+            ]
+          },
+          "application": {
+            "uuids": [
+              "185f07c7-9c4f-407b-8968-67892ebcb38a"
+            ]
+          }
+        },
+        "_links": {
+            "self": {
+                "href": "https://cloud.acquia.com/api/applications/2375e327-3fff-11e3-9170-12313920a02c/tags/dev"
+            },
+            "parent": {
+                "href": "https://cloud.acquia.com/api/applications/2375e327-3fff-11e3-9170-12313920a02c/tags"
+            }
+        }
+      }
+    ]
+  }
+}

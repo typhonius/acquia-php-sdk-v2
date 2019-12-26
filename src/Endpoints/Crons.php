@@ -54,6 +54,7 @@ class Crons extends CloudApiBase implements CloudApiInterface
      * @param string $command
      * @param string $frequency
      * @param string $label
+     * @param string $serverId
      * @return OperationResponse
      */
     public function create($environmentUuid, $command, $frequency, $label, $serverId = null)
@@ -77,9 +78,11 @@ class Crons extends CloudApiBase implements CloudApiInterface
      * Update a cron task.
      *
      * @param string $environmentUuid
+     * @param string $cronId
      * @param string $command
      * @param string $frequency
      * @param string $label
+     * @param string $serverId
      * @return OperationResponse
      */
     public function update($environmentUuid, $cronId, $command, $frequency, $label, $serverId = null)

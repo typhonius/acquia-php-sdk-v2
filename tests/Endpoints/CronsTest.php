@@ -89,7 +89,7 @@ class CronsTest extends CloudApiTestCase
         $cron = new Crons($client);
         $result = $cron->update(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
-            14,
+            '14',
             '/usr/local/bin/drush cc all',
             '*/30 * * * *',
             'My New Cron'

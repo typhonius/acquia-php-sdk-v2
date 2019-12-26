@@ -19,6 +19,7 @@ class Logs extends CloudApiBase implements CloudApiInterface
     /**
      * Returns a list of log files available for download.
      *
+     * @param string $environmentUuid
      * @return LogsResponse
      */
     public function getAll($environmentUuid)
@@ -31,6 +32,8 @@ class Logs extends CloudApiBase implements CloudApiInterface
     /**
      * Downloads a log file.
      *
+     * @param string $environmentUuid
+     * @param string $logType
      * @return object
      */
     public function download($environmentUuid, $logType)
@@ -41,6 +44,8 @@ class Logs extends CloudApiBase implements CloudApiInterface
     /**
      * Creates a log file snapshot.
      *
+     * @param string $environmentUuid
+     * @param string $logType
      * @return OperationResponse
      */
     public function snapshot($environmentUuid, $logType)
@@ -53,6 +58,7 @@ class Logs extends CloudApiBase implements CloudApiInterface
     /**
      * Returns logstream WSS stream information.
      *
+     * @param string $environmentUuid
      * @return LogstreamResponse
      */
     public function stream($environmentUuid)

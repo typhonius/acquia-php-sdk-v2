@@ -34,6 +34,22 @@ class Insights extends CloudApiBase implements CloudApiInterface
     }
 
     /**
+     * Returns Insight data for all sites associated with the environment by its UUID.
+     *
+     * @param string $environmentUuid
+     * @return InsightsResponse
+     */
+    public function getEnvironment($environmentUuid)
+    {
+        return new InsightsResponse(
+            $this->client->request(
+                'get',
+                "/environment/${environmentUuid}/insight"
+            )
+        );
+    }
+
+    /**
      * Returns insight data for a particular site.
      *
      * @param string $siteId

@@ -1,0 +1,127 @@
+{
+    "total": 2,
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/environments/363261e6-2a53-11e9-b210-d663bd873d93/insight"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/environments/363261e6-2a53-11e9-b210-d663bd873d93"
+      }
+    },
+    "_embedded": {
+      "items": [
+        {
+          "uuid": "50227ff0-2a53-11e9-b210-d663bd873d93",
+          "label": "Example local development",
+          "hostname": "local.example.com:8443",
+          "status": "ok",
+          "updated_at": "2011-03-28T13:28:00-05:00",
+          "last_connected_at": "2011-03-28T13:11:00-05:00",
+          "scores": {
+            "insight": "62",
+            "seo": "15"
+          },
+          "counts": {
+            "best_practices": {
+              "pass": 5,
+              "fail": 1,
+              "ignored": 0,
+              "total": 6,
+              "percent": 83
+            },
+            "performance": {
+              "pass": 9,
+              "fail": 10,
+              "ignored": 0,
+              "total": 19,
+              "percent": 47
+            },
+            "security": {
+              "pass": 10,
+              "fail": 10,
+              "ignored": 0,
+              "total": 20,
+              "percent": 50
+            }
+          },
+          "flags": {
+            "acquia_hosted": false,
+            "revoked": true
+          },
+          "_links": {
+            "self": {
+              "href": "https://cloud.acquia.com/api/insight/50227ff0-2a53-11e9-b210-d663bd873d93"
+            },
+            "alerts": {
+              "href": "https://cloud.acquia.com/api/insight/50227ff0-2a53-11e9-b210-d663bd873d93/alerts"
+            },
+            "connection-history": {
+              "href": "https://cloud.acquia.com/api/insight/50227ff0-2a53-11e9-b210-d663bd873d93/connection-history"
+            },
+            "modules": {
+              "href": "https://cloud.acquia.com/api/insight/50227ff0-2a53-11e9-b210-d663bd873d93/modules"
+            },
+            "score-history": {
+              "href": "https://cloud.acquia.com/api/insight/50227ff0-2a53-11e9-b210-d663bd873d93/score-history"
+            }
+          }
+        },
+        {
+          "uuid": "50227ff0-2a53-11e9-b210-d663bd873d93",
+          "label": "Test Site: prod",
+          "hostname": "test.example.com",
+          "status": "ok",
+          "updated_at": "2017-03-28T13:28:00-05:00",
+          "last_connected_at": "2017-03-28T13:11:00-05:00",
+          "scores": {
+            "insight": "62",
+            "seo": "15"
+          },
+          "counts": {
+            "best_practices": {
+              "pass": 5,
+              "fail": 1,
+              "ignored": 0,
+              "total": 6,
+              "percent": 83
+            },
+            "performance": {
+              "pass": 10,
+              "fail": 9,
+              "ignored": 0,
+              "total": 19,
+              "percent": 53
+            },
+            "security": {
+              "pass": 11,
+              "fail": 9,
+              "ignored": 0,
+              "total": 20,
+              "percent": 55
+            }
+          },
+          "flags": {
+            "acquia_hosted": true,
+            "revoked": true
+          },
+          "_links": {
+            "self": {
+              "href": "https://cloud.acquia.com/api/insight/69b1269c-2a53-11e9-b210-d663bd873d93"
+            },
+            "alerts": {
+              "href": "https://cloud.acquia.com/api/insight/50227ff0-2a53-11e9-b210-d663bd873d93/alerts"
+            },
+            "connection-history": {
+              "href": "https://cloud.acquia.com/api/insight/50227ff0-2a53-11e9-b210-d663bd873d93/connection-history"
+            },
+            "modules": {
+              "href": "https://cloud.acquia.com/api/insight/50227ff0-2a53-11e9-b210-d663bd873d93/modules"
+            },
+            "score-history": {
+              "href": "https://cloud.acquia.com/api/insight/50227ff0-2a53-11e9-b210-d663bd873d93/score-history"
+            }
+          }
+        }
+      ]
+    }
+}

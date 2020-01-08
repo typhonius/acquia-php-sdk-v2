@@ -6,6 +6,7 @@ use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\BackupsResponse;
 use AcquiaCloudApi\Response\BackupResponse;
 use AcquiaCloudApi\Response\OperationResponse;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Class DatabaseBackups
@@ -81,6 +82,22 @@ class DatabaseBackups extends CloudApiBase implements CloudApiInterface
                 'post',
                 "/environments/${environmentUuid}/databases/${dbName}/backups/${backupId}/actions/restore"
             )
+        );
+    }
+
+    /**
+     * Downloads a database backup.
+     *
+     * @param string $environmentUuid
+     * @param string $dbName
+     * @param int    $backupId
+     * @return StreamInterface
+     */
+    public function download($environmentUuid, $dbName, $backupId)
+    {
+        return $this->client->request(
+            'get',
+            "/environments/${environmentUuid}/databases/${dbName}/backups/${backupId}/actions/download"
         );
     }
 }

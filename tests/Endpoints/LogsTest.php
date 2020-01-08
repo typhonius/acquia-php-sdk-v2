@@ -57,7 +57,7 @@ class LogsTest extends CloudApiTestCase
 
     public function testDownloadLog()
     {
-        $response = $this->getPsr7GzipResponseForFixture('Endpoints/Logs/downloadLog.json');
+        $response = $this->getPsr7GzipResponseForFixture('Endpoints/Logs/downloadLog.dat');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
@@ -65,7 +65,7 @@ class LogsTest extends CloudApiTestCase
         $result = $logs->download('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'php-error');
 
         $headers = $response->getHeader('Content-Type');
-        $this->assertEquals('application/gzip', reset($headers));
+        $this->assertEquals('application/octet-stream', reset($headers));
 
         $this->assertNotInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('GuzzleHttp\Psr7\Stream', $result);

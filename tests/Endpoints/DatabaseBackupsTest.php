@@ -85,4 +85,20 @@ class DatabaseBackupsTest extends CloudApiTestCase
 
         $this->assertEquals('Restoring the database backup.', $result->message);
     }
+
+    public function testDownloadDatabaseBackup()
+    {
+        $response = $this->getPsr7GzipResponseForFixture('Endpoints/DatabaseBackups/downloadDatabaseBackup.dat');
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $databaseBackup = new DatabaseBackups($client);
+        $result = $databaseBackup->download('12-d314739e-296f-11e9-b210-d663bd873d93', 'my_db', 1);
+
+        $headers = $response->getHeader('Content-Type');
+        $this->assertEquals('application/octet-stream', reset($headers));
+
+        $this->assertNotInstanceOf('\ArrayObject', $result);
+        $this->assertInstanceOf('GuzzleHttp\Psr7\Stream', $result);
+    }
 }

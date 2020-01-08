@@ -26,7 +26,7 @@ class Account extends CloudApiBase implements CloudApiInterface
     /**
      * Provides an archived set of files for Acquia Drush aliases.
      *
-     * @return object
+     * @return StreamInterface
      */
     public function getDrushAliases()
     {

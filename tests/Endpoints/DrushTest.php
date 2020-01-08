@@ -8,17 +8,17 @@ use AcquiaCloudApi\Endpoints\Account;
 class DrushTest extends CloudApiTestCase
 {
 
-    public function testGetApplications()
+    public function testGetDrushAliases()
     {
-        $response = $this->getPsr7GzipResponseForFixture('Endpoints/Account/getDrushAliases.json');
+        $response = $this->getPsr7GzipResponseForFixture('Endpoints/Account/getDrushAliases.dat');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $account = new Account($client);
         $result = $account->getDrushAliases();
 
         $headers = $response->getHeader('Content-Type');
-        $this->assertEquals('application/gzip', reset($headers));
+        $this->assertEquals('application/octet-stream', reset($headers));
 
         $this->assertNotInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('GuzzleHttp\Psr7\Stream', $result);

@@ -9,15 +9,15 @@ class LogsTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'type',
-    'label',
-    'flags',
-    'links'
+        'type',
+        'label',
+        'flags',
+        'links'
     ];
 
     public $logstreamProperties = [
-    'logstream',
-    'links'
+        'logstream',
+        'links'
     ];
 
     public function testGetLogs()
@@ -26,7 +26,7 @@ class LogsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Logs/getAllLogs.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logs = new Logs($client);
         $result = $logs->getAll('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
@@ -47,7 +47,7 @@ class LogsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Logs/createLogSnapshot.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logs = new Logs($client);
         $result = $logs->snapshot('r47ac10b-58cc-4372-a567-0e02b2c3d470', 'php-error');
 
@@ -60,7 +60,7 @@ class LogsTest extends CloudApiTestCase
         $response = $this->getPsr7GzipResponseForFixture('Endpoints/Logs/downloadLog.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logs = new Logs($client);
         $result = $logs->download('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'php-error');
 
@@ -78,7 +78,7 @@ class LogsTest extends CloudApiTestCase
 
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logs = new Logs($client);
         $result = $logs->stream('24-a47ac10b-58cc-4372-a567-0e02b2c3d470');
 

@@ -9,10 +9,10 @@ class PermissionsTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'name',
-    'label',
-    'description',
-    'group_label',
+        'name',
+        'label',
+        'description',
+        'group_label',
     ];
 
     public function testGetAllPermissions()
@@ -21,7 +21,7 @@ class PermissionsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Permissions/getPermissions.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $permissions = new Permissions($client);
         $result = $permissions->get();
 

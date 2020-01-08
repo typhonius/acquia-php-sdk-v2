@@ -9,15 +9,15 @@ class ApplicationsTest extends CloudApiTestCase
 {
 
     protected $properties = [
-    'uuid',
-    'name',
-    'hosting',
-    'subscription',
-    'organization',
-    'type',
-    'flags',
-    'status',
-    'links'
+        'uuid',
+        'name',
+        'hosting',
+        'subscription',
+        'organization',
+        'type',
+        'flags',
+        'status',
+        'links'
     ];
 
     protected $tagProperties = [
@@ -32,7 +32,7 @@ class ApplicationsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/getAllApplications.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $application = new Applications($client);
         $result = $application->getAll();
 
@@ -53,7 +53,7 @@ class ApplicationsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/getApplication.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $application = new Applications($client);
         $result = $application->get('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
@@ -70,7 +70,7 @@ class ApplicationsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/renameApplication.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $application = new Applications($client);
         $result = $application->rename('8ff6c046-ec64-4ce4-bea6-27845ec18600', "My application's new name");
 
@@ -84,7 +84,7 @@ class ApplicationsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/getAllTags.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $application = new Applications($client);
         $result = $application->getAllTags('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
@@ -105,7 +105,7 @@ class ApplicationsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/createTag.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $application = new Applications($client);
         $result = $application->createTag('8ff6c046-ec64-4ce4-bea6-27845ec18600', "deloitte", "orange");
 
@@ -119,7 +119,7 @@ class ApplicationsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/deleteTag.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $application = new Applications($client);
         $result = $application->deleteTag('8ff6c046-ec64-4ce4-bea6-27845ec18600', "deloitte");
 

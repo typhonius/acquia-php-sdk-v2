@@ -9,16 +9,16 @@ class LogForwardingTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'uuid',
-    'label',
-    'address',
-    'consumer',
-    'credentials',
-    'sources',
-    'status',
-    'flags',
-    'health',
-    'environment'
+        'uuid',
+        'label',
+        'address',
+        'consumer',
+        'credentials',
+        'sources',
+        'status',
+        'flags',
+        'health',
+        'environment'
     ];
 
     public function testGetLogForwardingDestinations()
@@ -27,7 +27,7 @@ class LogForwardingTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/getAllLogForwarding.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logForwarding = new LogForwardingDestinations($client);
         $result = $logForwarding->getAll('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
@@ -48,7 +48,7 @@ class LogForwardingTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/getLogForwarding.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logForwarding = new LogForwardingDestinations($client);
         $result = $logForwarding->get('8ff6c046-ec64-4ce4-bea6-27845ec18600', 3);
 
@@ -65,7 +65,7 @@ class LogForwardingTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/createLogForwarding.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logForwarding = new LogForwardingDestinations($client);
 
         $result = $logForwarding->create(
@@ -87,7 +87,7 @@ class LogForwardingTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/deleteLogForwarding.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logForwarding = new LogForwardingDestinations($client);
         $result = $logForwarding->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 14);
 
@@ -101,7 +101,7 @@ class LogForwardingTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/enableLogForwarding.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logForwarding = new LogForwardingDestinations($client);
         $result = $logForwarding->enable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
@@ -115,7 +115,7 @@ class LogForwardingTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/disableLogForwarding.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logForwarding = new LogForwardingDestinations($client);
         $result = $logForwarding->disable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
@@ -129,7 +129,7 @@ class LogForwardingTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/updateLogForwarding.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logForwarding = new LogForwardingDestinations($client);
         $result = $logForwarding->update(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',

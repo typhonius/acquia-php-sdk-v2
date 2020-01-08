@@ -24,7 +24,7 @@ class MembersTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/getMembers.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->getMembers('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
@@ -45,7 +45,7 @@ class MembersTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/deleteMember.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->deleteMember(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',

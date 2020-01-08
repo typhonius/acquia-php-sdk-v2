@@ -62,7 +62,7 @@ class OrganizationsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/getAllOrganizations.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->getAll();
 
@@ -83,7 +83,7 @@ class OrganizationsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/inviteAdmin.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->inviteAdmin('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'user@example.com');
 
@@ -97,7 +97,7 @@ class OrganizationsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/getApplications.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->getApplications('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
@@ -118,7 +118,7 @@ class OrganizationsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/getTeams.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->getTeams('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
@@ -140,7 +140,7 @@ class OrganizationsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/getMemberInvites.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->getMemberInvitations('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 

@@ -18,7 +18,7 @@ class DatabasesTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Databases/getAllDatabases.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $databases = new Databases($client);
         $result = $databases->getAll('185f07c7-9c4f-407b-8968-67892ebcb38a');
 
@@ -39,7 +39,7 @@ class DatabasesTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Databases/copyDatabases.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $databases = new Databases($client);
         $result = $databases->copy(
             '24-a47ac10b-58cc-4372-a567-0e02b2c3d470',
@@ -56,7 +56,7 @@ class DatabasesTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Databases/createDatabases.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $databases = new Databases($client);
         $result = $databases->create('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'db_name');
 
@@ -69,7 +69,7 @@ class DatabasesTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Databases/deleteDatabases.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $databases = new Databases($client);
         $result = $databases->delete('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'db_name');
 

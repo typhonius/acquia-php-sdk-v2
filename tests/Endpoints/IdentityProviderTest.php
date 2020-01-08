@@ -9,13 +9,13 @@ class IdentityProviderTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'uuid',
-    'label',
-    'idp_entity_id',
-    'sso_url',
-    'certificate',
-    'status',
-    'links',
+        'uuid',
+        'label',
+        'idp_entity_id',
+        'sso_url',
+        'certificate',
+        'status',
+        'links',
     ];
 
     public function testGetLogForwardingDestinations()
@@ -24,7 +24,7 @@ class IdentityProviderTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/IdentityProviders/getAllIdentityProviders.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $idp = new IdentityProviders($client);
         $result = $idp->getAll();
 
@@ -45,7 +45,7 @@ class IdentityProviderTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/IdentityProviders/getIdentityProvider.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $idp = new IdentityProviders($client);
         $result = $idp->get('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
@@ -62,7 +62,7 @@ class IdentityProviderTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/IdentityProviders/deleteIdentityProvider.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $idp = new IdentityProviders($client);
         $result = $idp->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
@@ -76,7 +76,7 @@ class IdentityProviderTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/IdentityProviders/enableIdentityProvider.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $idp = new IdentityProviders($client);
         $result = $idp->enable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
@@ -90,7 +90,7 @@ class IdentityProviderTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/IdentityProviders/disableIdentityProvider.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $idp = new IdentityProviders($client);
         $result = $idp->disable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
@@ -104,7 +104,7 @@ class IdentityProviderTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/IdentityProviders/updateIdentityProvider.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $idp = new IdentityProviders($client);
         $result = $idp->update(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',

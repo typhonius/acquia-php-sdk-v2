@@ -25,7 +25,7 @@ class DatabaseBackupsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/DatabaseBackups/createDatabaseBackup.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $databaseBackup = new DatabaseBackups($client);
         $result = $databaseBackup->create('185f07c7-9c4f-407b-8968-67892ebcb38a', 'db_name');
 
@@ -39,7 +39,7 @@ class DatabaseBackupsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/DatabaseBackups/getAllDatabaseBackups.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $databaseBackup = new DatabaseBackups($client);
         $result = $databaseBackup->getAll('185f07c7-9c4f-407b-8968-67892ebcb38a', 'db_name');
 
@@ -60,7 +60,7 @@ class DatabaseBackupsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/DatabaseBackups/getDatabaseBackup.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $databaseBackup = new DatabaseBackups($client);
         $result = $databaseBackup->get('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'db_name', 12);
 
@@ -77,7 +77,7 @@ class DatabaseBackupsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/DatabaseBackups/restoreDatabaseBackup.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $databaseBackup = new DatabaseBackups($client);
         $result = $databaseBackup->restore('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'db_name', 12);
 

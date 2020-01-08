@@ -10,16 +10,16 @@ use AcquiaCloudApi\Endpoints\Applications;
 class NotificationTest extends CloudApiTestCase
 {
     protected $properties = [
-    'uuid',
-    'event',
-    'label',
-    'description',
-    'created_at',
-    'completed_at',
-    'status',
-    'progress',
-    'context',
-    'links'
+        'uuid',
+        'event',
+        'label',
+        'description',
+        'created_at',
+        'completed_at',
+        'status',
+        'progress',
+        'context',
+        'links'
     ];
 
     public function testGetNotification()
@@ -27,7 +27,7 @@ class NotificationTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Notifications/getNotification.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $notifications = new Notifications($client);
 
         $result = $notifications->get('f4b37e3c-1g96-4ed4-ad20-3081fe0f9545');
@@ -42,7 +42,7 @@ class NotificationTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Notifications/getAllNotifications.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $notifications = new Notifications($client);
         $result = $notifications->getAll('f4b37e3c-1g96-4ed4-ad20-3081fe0f9545');
 

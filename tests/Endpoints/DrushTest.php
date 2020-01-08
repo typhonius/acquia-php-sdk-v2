@@ -13,7 +13,7 @@ class DrushTest extends CloudApiTestCase
         $response = $this->getPsr7GzipResponseForFixture('Endpoints/Account/getDrushAliases.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $account = new Account($client);
         $result = $account->getDrushAliases();
 

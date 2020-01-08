@@ -153,4 +153,35 @@ EOM;
         $client = Client::factory($connector);
         $client->processResponse($response);
     }
+
+    public function testThrownApiErrorException()
+    {
+
+        $request = new Request('PUT', '/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Error/error403.json');
+
+        $connector = $this
+            ->getMockBuilder('AcquiaCloudApi\Connector\Connector')
+            ->disableOriginalConstructor()
+            ->setMethods(['sendRequest', 'getRequest'])
+            ->getMock();
+
+        $connector
+            ->expects($this->atLeastOnce())
+            ->method('sendRequest')
+            ->willReturn($response);
+
+        $connector
+            ->expects($this->atLeastOnce())
+            ->method('getRequest')
+            ->willReturn($request);
+
+        $client = Client::factory($connector);
+
+        $this->expectException(ApiErrorException::class);
+        $this->expectExceptionMessage('You do not have permission to modify this application.');
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $account = new Applications($client);
+        $account->rename('a47ac10b-58cc-4372-a567-0e02b2c3d470', 'bananas');
+    }
 }

@@ -64,11 +64,7 @@ class Client implements ClientInterface
         }
         $response = $this->makeRequest($verb, $path, $options);
 
-        try {
-            return $this->processResponse($response);
-        } catch (ApiErrorException $e) {
-            exit($e->getErrorType() . ' error: ' .  $e->getMessage());
-        }
+        return $this->processResponse($response);
     }
 
     /**

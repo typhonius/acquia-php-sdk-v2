@@ -37,6 +37,11 @@ class Connector implements ConnectorInterface
     protected $accessToken;
 
     /**
+     * The authenticated request.
+     */
+    public $request;
+
+    /**
      * Connector constructor.
      *
      * @param array $config
@@ -57,8 +62,6 @@ class Connector implements ConnectorInterface
      *
      * @param string $verb
      * @param string $path
-     *
-     * @return RequestInterface
      */
     public function createRequest($verb, $path)
     {
@@ -66,7 +69,7 @@ class Connector implements ConnectorInterface
             $this->accessToken = $this->provider->getAccessToken('client_credentials');
         }
 
-        return $this->provider->getAuthenticatedRequest(
+        $this->request = $this->provider->getAuthenticatedRequest(
             $verb,
             self::BASE_URI . $path,
             $this->accessToken
@@ -84,8 +87,17 @@ class Connector implements ConnectorInterface
      */
     public function sendRequest($verb, $path, $options)
     {
-        $request = $this->createRequest($verb, $path);
+        $this->createRequest($verb, $path);
         $client = new GuzzleClient();
-        return $client->send($request, $options);
+        return $client->send($this->request, $options);
+    }
+
+    /**
+     * Gets the request.
+     * @return RequestInterface
+     */
+    public function getRequest()
+    {
+        return $this->request;
     }
 }

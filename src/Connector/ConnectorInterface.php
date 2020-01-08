@@ -26,8 +26,6 @@ interface ConnectorInterface
      *
      * @param string $verb
      * @param string $path
-     *
-     * @return RequestInterface
      */
     public function createRequest($verb, $path);
 
@@ -41,4 +39,10 @@ interface ConnectorInterface
      * @return ResponseInterface
      */
     public function sendRequest($verb, $path, $options);
+
+    /**
+     * Gets the request.
+     * @return RequestInterface
+     */
+    public function getRequest();
 }

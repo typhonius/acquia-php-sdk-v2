@@ -2,28 +2,29 @@
 
 namespace AcquiaCloudApi\Exception;
 
-use \Exception;
+use GuzzleHttp\Exception\BadResponseException;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Represents an error returned from the API.
  */
-class ApiErrorException extends Exception
+class ApiErrorException extends BadResponseException
 {
     public $errorType;
 
     /**
-     * ApiErrorException Constructor.
-     *
-     * @param object    $object
-     * @param string    $message
-     * @param int       $code
-     * @param Exception $previous
+     * @inheritdoc
      */
-    public function __construct($object, $message = "", $code = 0, Exception $previous = null)
-    {
-        parent::__construct($message, $code, $previous);
-
+    public function __construct(
+        $object,
+        RequestInterface $request,
+        ResponseInterface $response = null,
+        \Exception $previous = null,
+        array $handlerContext = []
+    ) {
         $this->setError($object);
+        parent::__construct($this->message, $request, $response, $previous, $handlerContext);
     }
 
     /**

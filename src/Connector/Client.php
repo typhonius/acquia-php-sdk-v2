@@ -113,7 +113,7 @@ class Client implements ClientInterface
         }
 
         if (property_exists($object, 'error') && property_exists($object, 'message')) {
-            throw new ApiErrorException($object);
+            throw new ApiErrorException($object, $this->connector->getRequest(), $response);
         }
 
         return $object;

@@ -17,12 +17,13 @@ class ErrorTest extends CloudApiTestCase
 
     public function testError403()
     {
+        $request = new Request('PUT', '/applications/a47ac10b-58cc-4372-a567-0e02b2c3d471');
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Error/error403.json');
         $body = $response->getBody();
         $object = json_decode($body);
 
-        $request = new Request('PUT', '/applications/a47ac10b-58cc-4372-a567-0e02b2c3d471');
-        $exception = new ApiErrorException($object);
+        $exception = new ApiErrorException($object, $request, $response);
+        $this->assertEquals($exception->getErrorType(), 'forbidden');
 
         $client = $this
             ->getMockBuilder('AcquiaCloudApi\Connector\Client')
@@ -39,12 +40,13 @@ class ErrorTest extends CloudApiTestCase
 
     public function testError404()
     {
+        $request = new Request('PUT', '/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470');
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Error/error404.json');
         $body = $response->getBody();
         $object = json_decode($body);
 
-        $request = new Request('PUT', '/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470');
-        $exception = new ApiErrorException($object);
+        $exception = new ApiErrorException($object, $request, $response);
+        $this->assertEquals($exception->getErrorType(), 'not_found');
 
         $client = $this
             ->getMockBuilder('AcquiaCloudApi\Connector\Client')
@@ -61,12 +63,13 @@ class ErrorTest extends CloudApiTestCase
 
     public function testError503()
     {
+        $request = new Request('PUT', '/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470');
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Error/error503.json');
         $body = $response->getBody();
         $object = json_decode($body);
 
-        $request = new Request('PUT', '/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470');
-        $exception = new ApiErrorException($object);
+        $exception = new ApiErrorException($object, $request, $response);
+        $this->assertEquals($exception->getErrorType(), 'system');
 
         $client = $this
             ->getMockBuilder('AcquiaCloudApi\Connector\Client')
@@ -84,12 +87,13 @@ class ErrorTest extends CloudApiTestCase
     public function testMultipleErrors()
     {
 
+        $request = new Request('PUT', '/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470');
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Error/multipleErrors.json');
         $body = $response->getBody();
         $object = json_decode($body);
 
-        $request = new Request('PUT', '/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470');
-        $exception = new ApiErrorException($object);
+        $exception = new ApiErrorException($object, $request, $response);
+        $this->assertEquals($exception->getErrorType(), 'multiple_errors');
 
         $client = $this
             ->getMockBuilder('AcquiaCloudApi\Connector\Client')
@@ -132,24 +136,21 @@ EOM;
     public function testApiErrorException()
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Error/error403.json');
-        $body = $response->getBody();
-        $object = json_decode($body);
-
-        $request = new Request('GET', '/test');
-        $exception = new ApiErrorException($object, 'Internal Server Error');
 
         $connector = $this
             ->getMockBuilder('AcquiaCloudApi\Connector\Connector')
             ->disableOriginalConstructor()
-            ->setMethods(['processResponse'])
+            ->setMethods(['getRequest'])
             ->getMock();
 
-        $connector->method('processResponse')->willThrowException($exception);
+        $request = new Request('GET', '/test');
+        $connector->method('getRequest')->willReturn($request);
 
-        $exception = new ApiErrorException($object);
-        $errorMessage = <<< EOM
-AcquiaCloudApi\Exception\ApiErrorException: [forbidden]: You do not have permission to modify this application.\n
-EOM;
-        $this->assertEquals($exception->__toString(), $errorMessage);
+        $this->expectException(ApiErrorException::class);
+        $this->expectExceptionMessage('You do not have permission to modify this application.');
+
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
+        $client = Client::factory($connector);
+        $client->processResponse($response);
     }
 }

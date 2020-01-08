@@ -1,4 +1,4 @@
 {
     "error": "not_found",
-    "message": "The application you are trying to access does not exist, or you do not have permission to access it."
+    "message": "The application with UUID a47ac10b-58cc-4372-a567-0e02b2c3d470 does not exist."
 }

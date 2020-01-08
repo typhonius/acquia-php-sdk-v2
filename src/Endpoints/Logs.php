@@ -8,6 +8,7 @@ use AcquiaCloudApi\Response\EnvironmentsResponse;
 use AcquiaCloudApi\Response\LogstreamResponse;
 use AcquiaCloudApi\Response\LogsResponse;
 use AcquiaCloudApi\Response\OperationResponse;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Class Logs
@@ -34,7 +35,7 @@ class Logs extends CloudApiBase implements CloudApiInterface
      *
      * @param string $environmentUuid
      * @param string $logType
-     * @return object
+     * @return StreamInterface
      */
     public function download($environmentUuid, $logType)
     {

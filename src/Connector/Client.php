@@ -52,7 +52,7 @@ class Client implements ClientInterface
      * @param string $path
      * @param array  $options
      *
-     * @return object|array
+     * @return mixed|StreamInterface
      */
     public function request(string $verb, string $path, array $options = [])
     {
@@ -91,7 +91,7 @@ class Client implements ClientInterface
      * Processes the returned response from the API.
      *
      * @param ResponseInterface $response
-     * @return object|array
+     * @return mixed|StreamInterface
      * @throws ApiErrorException
      */
     public function processResponse(ResponseInterface $response)

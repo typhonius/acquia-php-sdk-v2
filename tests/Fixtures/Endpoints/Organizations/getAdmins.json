@@ -1,0 +1,66 @@
+{
+    "total": 3,
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/organizations/3c9ea553-3216-11e3-9170-12313920a23a/admins"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/organizations/3c9ea553-3216-11e3-9170-12313920a23a"
+      }
+    },
+    "_embedded": {
+      "items": [
+        {
+          "uuid": "5aa902c5-f1c1-6c94-edfa-86bc58d0dce3",
+          "first_name": "James",
+          "last_name": "Kirk",
+          "last_login_at": "2017-03-28T13:07:54-0500",
+          "mail": "james.kirk@example.com",
+          "picture_url": "https://accounts.acquia.com/images/users/5aa902c5-f1c1-6c94-edfa-86bc58d0dce3/style/avatar",
+          "username": "james.kirk",
+          "flags": {
+            "owner": true
+          },
+          "_links": {
+            "self": {
+              "href": "https://cloud.acquia.com/api/organizations/3c9ea553-3216-11e3-9170-12313920a23a/admins/5aa902c5-f1c1-6c94-edfa-86bc58d0dce3"
+            }
+          }
+        },
+        {
+          "uuid": "30dacb5e-4122-11e1-9eb5-12313928d3c2",
+          "first_name": "Christopher",
+          "last_name": "Pike",
+          "last_login_at": "2016-03-28T13:07:54-0500",
+          "mail": "chris.pike@example.com",
+          "picture_url": "https://accounts.acquia.com/images/users/30dacb5e-4122-11e1-9eb5-12313928d3c2/style/avatar",
+          "username": "chris.pike",
+          "flags": {
+            "owner": false
+          },
+          "_links": {
+            "self": {
+              "href": "https://cloud.acquia.com/api/organizations/3c9ea553-3216-11e3-9170-12313920a23a/admins/30dacb5e-4122-11e1-9eb5-12313928d3c2"
+            }
+          }
+        },
+        {
+          "uuid": "3bcddc3a-52ba-4cce-aaa3-9adf721c1b52",
+          "first_name": "Jonathan",
+          "last_name": "Archer",
+          "last_login_at": null,
+          "mail": "jonathan.archer@example.com",
+          "picture_url": "https://accounts.acquia.com/images/users/3bcddc3a-52ba-4cce-aaa3-9adf721c1b52/style/avatar",
+          "username": "jonathan.archer",
+          "flags": {
+            "owner": false
+          },
+          "_links": {
+            "self": {
+              "href": "https://cloud.acquia.com/api/organizations/3c9ea553-3216-11e3-9170-12313920a23a/admins/3bcddc3a-52ba-4cce-aaa3-9adf721c1b52"
+            }
+          }
+        }
+      ]
+    }
+  }

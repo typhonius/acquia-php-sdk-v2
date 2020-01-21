@@ -55,6 +55,19 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     }
 
     /**
+     * Show all admins of an organisation.
+     *
+     * @param string $organizationUuid
+     * @return MembersResponse
+     */
+    public function getAdmins($organizationUuid)
+    {
+        return new MembersResponse(
+            $this->client->request('get', "/organizations/${organizationUuid}/admins")
+        );
+    }
+
+    /**
      * Show all members invited to an organisation.
      *
      * @param string $organizationUuid
@@ -113,7 +126,7 @@ class Organizations extends CloudApiBase implements CloudApiInterface
         ];
 
         return new OperationResponse(
-            $this->client->request('post', "/teams/${organizationUuid}/invites", $options)
+            $this->client->request('post', "/organizations/${organizationUuid}/admin-invites", $options)
         );
     }
 }

@@ -1,0 +1,20 @@
+{
+    "uuid": "5aa902c5-f1c1-6c94-edfa-86bc58d0dce3",
+    "first_name": "James",
+    "last_name": "Kirk",
+    "last_login_at": "2017-03-28T13:07:54-0500",
+    "mail": "james.kirk@example.com",
+    "picture_url": "https://accounts.acquia.com/images/users/5aa902c5-f1c1-6c94-edfa-86bc58d0dce3/style/avatar",
+    "username": "james.kirk",
+    "flags": {
+      "owner": true
+    },
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/organizations/2375e327-3fff-11e3-9170-12313920a02c/admins/5aa902c5-f1c1-6c94-edfa-86bc58d0dce3"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/organizations/2375e327-3fff-11e3-9170-12313920a02c/admins"
+      }
+    }
+  }

@@ -6,6 +6,7 @@ use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\ApplicationsResponse;
 use AcquiaCloudApi\Response\InvitationsResponse;
 use AcquiaCloudApi\Response\MembersResponse;
+use AcquiaCloudApi\Response\MemberResponse;
 use AcquiaCloudApi\Response\OrganizationsResponse;
 use AcquiaCloudApi\Response\TeamsResponse;
 use AcquiaCloudApi\Response\OperationResponse;
@@ -55,6 +56,20 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     }
 
     /**
+     * Returns the user profile of this organization member.
+     *
+     * @param string $organizationUuid
+     * @param string $memberUuid
+     * @return MemberResponse
+     */
+    public function getMember($organizationUuid, $memberUuid)
+    {
+        return new MemberResponse(
+            $this->client->request('get', "/organizations/${organizationUuid}/members/${memberUuid}")
+        );
+    }
+
+    /**
      * Show all admins of an organisation.
      *
      * @param string $organizationUuid
@@ -64,6 +79,20 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     {
         return new MembersResponse(
             $this->client->request('get', "/organizations/${organizationUuid}/admins")
+        );
+    }
+
+    /**
+     * Returns the user profile of this organization administrator.
+     *
+     * @param string $organizationUuid
+     * @param string $memberUuid
+     * @return MemberResponse
+     */
+    public function getAdmin($organizationUuid, $memberUuid)
+    {
+        return new MemberResponse(
+            $this->client->request('get', "/organizations/${organizationUuid}/admins/${memberUuid}")
         );
     }
 

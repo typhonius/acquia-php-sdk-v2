@@ -1,0 +1,42 @@
+{
+    "uuid": "3bcddc3a-52ba-4cce-aaa3-9adf721c1b52",
+    "first_name": "Jonathan",
+    "last_name": "Archer",
+    "last_login_at": "2017-03-28T13:07:54-0500",
+    "mail": "jonathan.archer@example.com",
+    "picture_url": "https://accounts.acquia.com/images/users/3bcddc3a-52ba-4cce-aaa3-9adf721c1b52/style/avatar",
+    "username": "jonathan.archer",
+    "teams": [
+      {
+        "name": "Team Name 1",
+        "uuid": "7325ba1a-5bfd-4341-9b23-55ffada3c131",
+        "roles": [
+          {
+            "uuid": "312c0121-906b-4498-8402-7b479172768c",
+            "name": "Team Lead"
+          }
+        ]
+      },
+      {
+        "name": "Team Name 2",
+        "uuid": "bca134fb-55d4-41ec-9558-d14531fa9899",
+        "roles": [
+          {
+            "uuid": "d33cd9ff-281d-4bcf-9f89-b10b249caa35",
+            "name": "Developer"
+          }
+        ]
+      }
+    ],
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/organizations/2375e327-3fff-11e3-9170-12313920a02c/members/3bcddc3a-52ba-4cce-aaa3-9adf721c1b52"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/organizations/2375e327-3fff-11e3-9170-12313920a02c/members"
+      },
+      "applications": {
+        "href": "https://cloud.acquia.com/api/organizations/2375e327-3fff-11e3-9170-12313920a02c/members/3bcddc3a-52ba-4cce-aaa3-9adf721c1b52/applications"
+      }
+    }
+  }

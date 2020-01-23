@@ -44,7 +44,7 @@ class Insights extends CloudApiBase implements CloudApiInterface
         return new InsightsResponse(
             $this->client->request(
                 'get',
-                "/environment/${environmentUuid}/insight"
+                "/environments/${environmentUuid}/insight"
             )
         );
     }

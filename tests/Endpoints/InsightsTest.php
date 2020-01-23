@@ -9,9 +9,12 @@ class InsightsTest extends CloudApiTestCase
 {
 
     public $properties = [
+    'uuid',
     'label',
     'hostname',
     'status',
+    'updatedAt',
+    'lastConnectedAt',
     'scores',
     'counts',
     'flags',

@@ -1,0 +1,14 @@
+{
+  "message": "The environment variable is being added.",
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/environments/123-c7056b9e-0fb7-44e9-a434-426a404211c1/variables"
+    },
+    "notification": {
+      "href": "https://cloud.acquia.com/api/notifications/f3c2bdc1-60c1-48af-8777-996477f901d5"
+    },
+    "parent": {
+      "href": "https://cloud.acquia.com/api/environments/123-c7056b9e-0fb7-44e9-a434-426a404211c1"
+    }
+  }
+}

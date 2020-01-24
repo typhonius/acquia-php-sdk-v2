@@ -1,0 +1,54 @@
+{
+  "total": 3,
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/environment/24-569086da-2b1f-11e9-b210-d663bd873d93/variables"
+    },
+    "sort": {
+      "href": "https://cloud.acquia.com/api/environments/24-569086da-2b1f-11e9-b210-d663bd873d93/variables{?sort}",
+      "templated": true
+    },
+    "filter": {
+      "href": "https://cloud.acquia.com/api/environments/24-569086da-2b1f-11e9-b210-d663bd873d93/variables{?filter}",
+      "templated": true
+    },
+    "limit": {
+      "href": "https://cloud.acquia.com/api/environments/24-569086da-2b1f-11e9-b210-d663bd873d93/variables{?limit}",
+      "templated": true
+    },
+    "parent": {
+      "href": "https://cloud.acquia.com/api/environments/24-569086da-2b1f-11e9-b210-d663bd873d93"
+    }
+  },
+  "_embedded": {
+    "items": [
+      {
+        "name": "variable_one",
+        "value": "Sample Value One",
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/environments/24-569086da-2b1f-11e9-b210-d663bd873d93/variables/variable_one"
+          }
+        }
+      },
+      {
+        "name": "variable_two",
+        "value": "Sample Value Two",
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/environments/24-569086da-2b1f-11e9-b210-d663bd873d93/variables/variable_two"
+          }
+        }
+      },
+      {
+        "name": "variable_three",
+        "value": "Sample Value Three",
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/environments/24-569086da-2b1f-11e9-b210-d663bd873d93/variables/variable_three"
+          }
+        }
+      }
+    ]
+  }
+}

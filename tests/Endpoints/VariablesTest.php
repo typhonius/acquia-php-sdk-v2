@@ -11,6 +11,7 @@ class VariablesTest extends CloudApiTestCase
     public $properties = [
         'name',
         'value',
+        'links',
     ];
 
     public function testGetVariables()

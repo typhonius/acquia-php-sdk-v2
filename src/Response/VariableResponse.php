@@ -10,6 +10,7 @@ class VariableResponse
 {
     public $name;
     public $value;
+    public $links;
 
     /**
      * VariableResponse constructor.
@@ -19,5 +20,6 @@ class VariableResponse
     {
         $this->name = $variable->name;
         $this->value = $variable->value;
+        $this->links = $variable->_links;
     }
 }

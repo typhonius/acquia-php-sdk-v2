@@ -1,0 +1,14 @@
+{
+  "message": "The environment variable is being updated.",
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/environments/24-734b7960-2b1f-11e9-b210-d663bd873d93/variables/name"
+    },
+    "notification": {
+      "href": "https://cloud.acquia.com/api/notifications/37c8646c-bbe8-423a-970b-cbeb530b981d"
+    },
+    "parent": {
+      "href": "https://cloud.acquia.com/api/environments/24-734b7960-2b1f-11e9-b210-d663bd873d93/variables"
+    }
+  }
+}

@@ -77,4 +77,18 @@ class DatabasesTest extends CloudApiTestCase
 
         $this->assertEquals('The database is being deleted.', $result->message);
     }
+
+    public function testDatabasesTruncate()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Databases/truncateDatabases.json');
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $databases = new Databases($client);
+        $result = $databases->truncate('da1c0a8e-ff69-45db-88fc-acd6d2affbb7', 'drupal8');
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
+        $this->assertEquals('The database is being erased.', $result->message);
+    }
 }

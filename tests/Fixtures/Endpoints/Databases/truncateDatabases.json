@@ -1,0 +1,14 @@
+{
+    "message": "The database is being erased.",
+    "_links": {
+      "self": {
+        "href": "https://cloud.acquia.com/api/applications/da1c0a8e-ff69-45db-88fc-acd6d2affbb7/databases/test_database/actions/erase"
+      },
+      "notification": {
+        "href": "https://cloud.acquia.com/api/notifications/a90295b6-f50f-4670-8ca4-bb936a55c3a3"
+      },
+      "parent": {
+        "href": "https://cloud.acquia.com/api/applications/da1c0a8e-ff69-45db-88fc-acd6d2affbb7/databases/test_database/actions"
+      }
+    }
+  }

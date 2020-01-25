@@ -64,6 +64,26 @@ class Databases extends CloudApiBase implements CloudApiInterface
     }
 
     /**
+     * Erases (truncates) a database.
+     *
+     * This action will delete all tables of the database in ALL environments
+     * within this application.
+     *
+     * @param string $applicationUuid
+     * @param string $name
+     * @return OperationResponse
+     */
+    public function truncate($applicationUuid, $name)
+    {
+        return new OperationResponse(
+            $this->client->request(
+                'post',
+                "/applications/${applicationUuid}/databases/${name}/actions​/erase"
+            )
+        );
+    }
+
+    /**
      * Copies a database from an environment to an environment.
      *
      * @param string $environmentFromUuid

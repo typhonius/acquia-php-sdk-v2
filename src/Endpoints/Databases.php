@@ -78,7 +78,7 @@ class Databases extends CloudApiBase implements CloudApiInterface
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/applications/${applicationUuid}/databases/${name}/actions​/erase"
+                "/applications/${applicationUuid}/databases/${name}/actions/erase"
             )
         );
     }

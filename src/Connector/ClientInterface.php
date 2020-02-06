@@ -61,4 +61,24 @@ interface ClientInterface
      * @param string|int $value
      */
     public function addQuery($name, $value);
+
+    /**
+     * Get options from Client.
+     *
+     * @return array
+     */
+    public function getOptions();
+
+    /**
+     * Clear options.
+     */
+    public function clearOptions();
+
+    /**
+     * Add an option to the Guzzle request object.
+     *
+     * @param string           $name
+     * @param string|int|array $value
+     */
+    public function addOption($name, $value);
 }

@@ -19,6 +19,9 @@ class Client implements ClientInterface
     /** @var array Query strings to be applied to the request. */
     protected $query = [];
 
+    /** @var array Guzzle options to be applied to the request. */
+    protected $options = [];
+
     /**
      * Client constructor.
      *
@@ -56,6 +59,7 @@ class Client implements ClientInterface
      */
     public function request(string $verb, string $path, array $options = [])
     {
+        $options = $this->options;
         $options['query'] = $this->query;
 
         if (!empty($options['query']['filter']) && is_array($options['query']['filter'])) {
@@ -142,5 +146,34 @@ class Client implements ClientInterface
     public function addQuery($name, $value)
     {
         $this->query = array_merge_recursive($this->query, [$name => $value]);
+    }
+
+    /**
+     * Get options from Client.
+     *
+     * @return array
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
+     * Clear options.
+     */
+    public function clearOptions()
+    {
+        $this->options = [];
+    }
+
+    /**
+     * Add an option to the Guzzle request object.
+     *
+     * @param string           $name
+     * @param string|int|array $value
+     */
+    public function addOption($name, $value)
+    {
+        $this->options = array_merge_recursive($this->options, [$name => $value]);
     }
 }

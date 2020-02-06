@@ -53,4 +53,26 @@ class ClientTest extends CloudApiTestCase
         $client->clearQuery();
         $this->assertTrue(empty($client->getQuery()));
     }
+
+    public function testOptions()
+    {
+        $client = $this->getMockClient();
+
+        $client->addOption('verify', 'false');
+        $client->addOption('curl.options', ['CURLOPT_RETURNTRANSFER' => true]);
+        $client->addOption('curl.options', ['CURLOPT_FILE' => '/tmp/foo']);
+
+        $expectedOptions = [
+            'verify' => 'false',
+            'curl.options' => [
+                'CURLOPT_RETURNTRANSFER' => true,
+                'CURLOPT_FILE' => '/tmp/foo',
+            ],
+        ];
+
+        $this->assertEquals($expectedOptions, $client->getOptions());
+
+        $client->clearOptions();
+        $this->assertTrue(empty($client->getOptions()));
+    }
 }

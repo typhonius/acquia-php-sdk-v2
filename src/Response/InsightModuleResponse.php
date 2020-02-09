@@ -38,6 +38,7 @@ class InsightModuleResponse
         $this->core = $module->core;
         $this->project = $module->project;
         $this->release_date = $module->release_date;
-        $this->flags = $module->tags;
+        $this->flags = $module->flags;
+        $this->tags = $module->tags;
     }
 }

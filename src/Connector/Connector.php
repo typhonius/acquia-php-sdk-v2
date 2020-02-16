@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Connector;
 
 use League\OAuth2\Client\Provider\GenericProvider;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
+use League\OAuth2\Client\Token\AccessTokenInterface;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\BadResponseException;
 use Psr\Http\Message\ResponseInterface;
@@ -32,7 +33,7 @@ class Connector implements ConnectorInterface
     protected $provider;
 
     /**
-     * @var string The generated OAuth 2.0 access token.
+     * @var AccessTokenInterface|string The generated OAuth 2.0 access token.
      */
     protected $accessToken;
 
@@ -62,7 +63,7 @@ class Connector implements ConnectorInterface
      */
     public function createRequest($verb, $path)
     {
-        if (!isset($this->accessToken)) {
+        if (!isset($this->accessToken) || $this->accessToken->hasExpired()) {
             $this->accessToken = $this->provider->getAccessToken('client_credentials');
         }
 

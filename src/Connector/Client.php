@@ -49,13 +49,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Takes parameters passed in, makes a request to the API, and processes the response.
-     *
-     * @param string $verb
-     * @param string $path
-     * @param array  $options
-     *
-     * @return mixed|StreamInterface
+     * @inheritdoc
      */
     public function request(string $verb, string $path, array $options = [])
     {
@@ -72,13 +66,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Makes a request to the API.
-     *
-     * @param string $verb
-     * @param string $path
-     * @param array  $options
-     *
-     * @return ResponseInterface
+     * @inheritdoc
      */
     public function makeRequest(string $verb, string $path, array $options = [])
     {
@@ -92,11 +80,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Processes the returned response from the API.
-     *
-     * @param ResponseInterface $response
-     * @return mixed|StreamInterface
-     * @throws ApiErrorException
+     * @inheritdoc
      */
     public function processResponse(ResponseInterface $response)
     {
@@ -120,9 +104,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Get query from Client.
-     *
-     * @return array
+     * @inheritdoc
      */
     public function getQuery()
     {
@@ -130,7 +112,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Clear query.
+     * @inheritdoc
      */
     public function clearQuery()
     {
@@ -138,10 +120,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Add a query parameter to filter results.
-     *
-     * @param string     $name
-     * @param string|int $value
+     * @inheritdoc
      */
     public function addQuery($name, $value)
     {
@@ -149,9 +128,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Get options from Client.
-     *
-     * @return array
+     * @inheritdoc
      */
     public function getOptions()
     {
@@ -159,7 +136,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Clear options.
+     * @inheritdoc
      */
     public function clearOptions()
     {
@@ -167,10 +144,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Add an option to the Guzzle request object.
-     *
-     * @param string           $name
-     * @param string|int|array $value
+     * @inheritdoc
      */
     public function addOption($name, $value)
     {

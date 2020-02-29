@@ -38,9 +38,7 @@ class Connector implements ConnectorInterface
     protected $accessToken;
 
     /**
-     * Connector constructor.
-     *
-     * @param array $config
+     * @inheritdoc
      */
     public function __construct(array $config)
     {
@@ -54,12 +52,7 @@ class Connector implements ConnectorInterface
     }
 
     /**
-     * Creates an authenticated Request instance.
-     *
-     * @param string $verb
-     * @param string $path
-     *
-     * @return RequestInterface
+     * @inheritdoc
      */
     public function createRequest($verb, $path)
     {
@@ -75,13 +68,7 @@ class Connector implements ConnectorInterface
     }
 
     /**
-     * Sends the request to the API using Guzzle.
-     *
-     * @param string $verb
-     * @param string $path
-     * @param array $options
-     *
-     * @return ResponseInterface
+     * @inheritdoc
      */
     public function sendRequest($verb, $path, $options)
     {

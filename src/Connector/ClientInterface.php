@@ -15,7 +15,7 @@ interface ClientInterface
 {
 
     /**
-     * Makes a request to the API.
+     * Takes parameters passed in, makes a request to the API, and processes the response.
      *
      * @param string $verb
      * @param string $path
@@ -77,8 +77,8 @@ interface ClientInterface
     /**
      * Add an option to the Guzzle request object.
      *
-     * @param string           $name
-     * @param string|int|array $value
+     * @param string $name
+     * @param mixed  $value
      */
     public function addOption($name, $value);
 }

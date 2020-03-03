@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class MetricResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class MetricResponse
@@ -16,6 +17,7 @@ class MetricResponse
 
     /**
      * MetricResponse constructor.
+     *
      * @param object $metric
      */
     public function __construct($metric)

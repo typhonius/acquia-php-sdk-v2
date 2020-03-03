@@ -2,7 +2,6 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\EnvironmentResponse;
 use AcquiaCloudApi\Response\EnvironmentsResponse;
 use AcquiaCloudApi\Response\LogstreamResponse;
@@ -12,6 +11,7 @@ use Psr\Http\Message\StreamInterface;
 
 /**
  * Class Logs
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Logs extends CloudApiBase implements CloudApiInterface
@@ -20,7 +20,7 @@ class Logs extends CloudApiBase implements CloudApiInterface
     /**
      * Returns a list of log files available for download.
      *
-     * @param string $environmentUuid
+     * @param  string $environmentUuid
      * @return LogsResponse
      */
     public function getAll($environmentUuid)
@@ -33,8 +33,8 @@ class Logs extends CloudApiBase implements CloudApiInterface
     /**
      * Downloads a log file.
      *
-     * @param string $environmentUuid
-     * @param string $logType
+     * @param  string $environmentUuid
+     * @param  string $logType
      * @return StreamInterface
      */
     public function download($environmentUuid, $logType)
@@ -45,8 +45,8 @@ class Logs extends CloudApiBase implements CloudApiInterface
     /**
      * Creates a log file snapshot.
      *
-     * @param string $environmentUuid
-     * @param string $logType
+     * @param  string $environmentUuid
+     * @param  string $logType
      * @return OperationResponse
      */
     public function snapshot($environmentUuid, $logType)
@@ -59,7 +59,7 @@ class Logs extends CloudApiBase implements CloudApiInterface
     /**
      * Returns logstream WSS stream information.
      *
-     * @param string $environmentUuid
+     * @param  string $environmentUuid
      * @return LogstreamResponse
      */
     public function stream($environmentUuid)

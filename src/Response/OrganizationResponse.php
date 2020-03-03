@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class OrganizationResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class OrganizationResponse
@@ -21,6 +22,7 @@ class OrganizationResponse
 
     /**
      * OrganizationResponse constructor.
+     *
      * @param object $organization
      */
     public function __construct($organization)

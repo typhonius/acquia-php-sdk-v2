@@ -3,16 +3,14 @@
 namespace AcquiaCloudApi\Connector;
 
 use League\OAuth2\Client\Provider\GenericProvider;
-use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Token\AccessTokenInterface;
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Exception\BadResponseException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\StreamInterface;
 
 /**
  * Class Connector
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Connector implements ConnectorInterface
@@ -42,13 +40,15 @@ class Connector implements ConnectorInterface
      */
     public function __construct(array $config)
     {
-        $this->provider = new GenericProvider([
+        $this->provider = new GenericProvider(
+            [
             'clientId'                => $config['key'],
             'clientSecret'            => $config['secret'],
             'urlAuthorize'            => '',
             'urlAccessToken'          => self::URL_ACCESS_TOKEN,
             'urlResourceOwnerDetails' => '',
-        ]);
+            ]
+        );
     }
 
     /**

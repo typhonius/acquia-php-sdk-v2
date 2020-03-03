@@ -2,13 +2,13 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\RolesResponse;
 use AcquiaCloudApi\Response\RoleResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
  * Class Roles
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Roles extends CloudApiBase implements CloudApiInterface
@@ -17,7 +17,7 @@ class Roles extends CloudApiBase implements CloudApiInterface
     /**
      * Show all roles in an organization.
      *
-     * @param string $organizationUuid
+     * @param  string $organizationUuid
      * @return RolesResponse
      */
     public function getAll($organizationUuid)
@@ -30,7 +30,7 @@ class Roles extends CloudApiBase implements CloudApiInterface
     /**
      * Return details about a specific role.
      *
-     * @param string $roleUuid
+     * @param  string $roleUuid
      * @return RoleResponse
      */
     public function get($roleUuid)
@@ -43,10 +43,10 @@ class Roles extends CloudApiBase implements CloudApiInterface
     /**
      * Create a new role.
      *
-     * @param string      $organizationUuid
-     * @param string      $name
-     * @param array       $permissions
-     * @param null|string $description
+     * @param  string      $organizationUuid
+     * @param  string      $name
+     * @param  array       $permissions
+     * @param  null|string $description
      * @return OperationResponse
      */
     public function create($organizationUuid, $name, array $permissions, $description = null)
@@ -67,8 +67,8 @@ class Roles extends CloudApiBase implements CloudApiInterface
     /**
      * Update the permissions associated with a role.
      *
-     * @param string $roleUuid
-     * @param array  $permissions
+     * @param  string $roleUuid
+     * @param  array  $permissions
      * @return OperationResponse
      */
     public function update($roleUuid, array $permissions)
@@ -87,7 +87,7 @@ class Roles extends CloudApiBase implements CloudApiInterface
     /**
      * Delete a role.
      *
-     * @param string $roleUuid
+     * @param  string $roleUuid
      * @return OperationResponse
      */
     public function delete($roleUuid)

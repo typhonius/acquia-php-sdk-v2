@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class MemberResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class MemberResponse
@@ -19,6 +20,7 @@ class MemberResponse
 
     /**
      * MemberResponse constructor.
+     *
      * @param object $member
      */
     public function __construct($member)

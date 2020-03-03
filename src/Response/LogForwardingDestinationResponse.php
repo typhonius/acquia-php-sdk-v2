@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class LogForwardingDestinationResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class LogForwardingDestinationResponse
@@ -22,6 +23,7 @@ class LogForwardingDestinationResponse
 
     /**
      * LogForwardingDestinationResponse constructor.
+     *
      * @param object $destination
      */
     public function __construct($destination)

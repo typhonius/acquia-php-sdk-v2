@@ -2,13 +2,13 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\IdesResponse;
 use AcquiaCloudApi\Response\IdeResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
  * Class Ides
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Ides extends CloudApiBase implements CloudApiInterface
@@ -17,7 +17,7 @@ class Ides extends CloudApiBase implements CloudApiInterface
     /**
      * Returns a list of remote IDEs.
      *
-     * @param string $applicationUuid The application ID
+     * @param  string $applicationUuid The application ID
      * @return IdesResponse
      */
     public function getAll($applicationUuid)
@@ -33,7 +33,7 @@ class Ides extends CloudApiBase implements CloudApiInterface
     /**
      * Get remote IDE info.
      *
-     * @param string $ideUuid The Remote IDE universally unique identifier.
+     * @param  string $ideUuid The Remote IDE universally unique identifier.
      * @return IdeResponse
      */
     public function get($ideUuid)
@@ -49,8 +49,8 @@ class Ides extends CloudApiBase implements CloudApiInterface
     /**
      * Creates a new remote IDE.
      *
-     * @param string $applicationUuid
-     * @param string $name
+     * @param  string $applicationUuid
+     * @param  string $name
      * @return OperationResponse
      */
     public function create($applicationUuid, $name)
@@ -70,13 +70,13 @@ class Ides extends CloudApiBase implements CloudApiInterface
     /**
      * De-provisions a specific Remote IDE.
      *
-     * @param string $ideUuid
+     * @param  string $ideUuid
      * @return OperationResponse
      */
     public function delete($ideUuid)
     {
         return new OperationResponse(
-            $this->client->request('delete', "/ides/{ideUuid}")
+            $this->client->request('delete', "/ides/${ideUuid}")
         );
     }
 }

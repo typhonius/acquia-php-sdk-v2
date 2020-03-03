@@ -2,13 +2,13 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\IdentityProvidersResponse;
 use AcquiaCloudApi\Response\IdentityProviderResponse;
 
 /**
  * Class IdentityProviders
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class IdentityProviders extends CloudApiBase implements CloudApiInterface
@@ -32,7 +32,7 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
     /**
      * Returns a specific identity provider by UUID.
      *
-     * @param string $idpUuid The identity provider ID
+     * @param  string $idpUuid The identity provider ID
      * @return IdentityProviderResponse
      */
     public function get($idpUuid)
@@ -48,7 +48,7 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
     /**
      * Delete a specific identity provider by UUID.
      *
-     * @param string $idpUuid
+     * @param  string $idpUuid
      * @return OperationResponse
      */
     public function delete($idpUuid)
@@ -64,7 +64,7 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
     /**
      * Disables an identity provider by UUID.
      *
-     * @param string $idpUuid
+     * @param  string $idpUuid
      * @return OperationResponse
      */
     public function disable($idpUuid)
@@ -80,7 +80,7 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
     /**
      * Enables an identity provider by UUID.
      *
-     * @param string $idpUuid
+     * @param  string $idpUuid
      * @return OperationResponse
      */
     public function enable($idpUuid)
@@ -96,11 +96,11 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
     /**
      * Updates a identity provider by UUID.
      *
-     * @param string $idpUuid
-     * @param string $label
-     * @param string $entityId
-     * @param string $ssoUrl
-     * @param string $certificate
+     * @param  string $idpUuid
+     * @param  string $label
+     * @param  string $entityId
+     * @param  string $ssoUrl
+     * @param  string $certificate
      * @return OperationResponse
      */
     public function update($idpUuid, $label, $entityId, $ssoUrl, $certificate)

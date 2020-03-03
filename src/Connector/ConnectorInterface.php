@@ -2,9 +2,11 @@
 
 namespace AcquiaCloudApi\Connector;
 
+use League\OAuth2\Client\Provider\GenericProvider;
+use League\OAuth2\Client\Token\AccessTokenInterface;
+use GuzzleHttp\Client as GuzzleClient;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\StreamInterface;
 
 /**
  * Interface ConnectorInterface
@@ -36,7 +38,7 @@ interface ConnectorInterface
      *
      * @param string $verb
      * @param string $path
-     * @param array $options
+     * @param array  $options
      *
      * @return ResponseInterface
      */

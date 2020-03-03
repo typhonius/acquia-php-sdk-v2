@@ -2,12 +2,12 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\AccountResponse;
 use Psr\Http\Message\StreamInterface;
 
 /**
  * Class Account
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Account extends CloudApiBase implements CloudApiInterface

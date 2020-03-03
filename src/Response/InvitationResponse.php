@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class InvitationResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class InvitationResponse
@@ -22,6 +23,7 @@ class InvitationResponse
 
     /**
      * MemberResponse constructor.
+     *
      * @param object $invitation
      */
     public function __construct($invitation)

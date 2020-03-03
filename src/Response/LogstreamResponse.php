@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class LogstreamResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class LogstreamResponse
@@ -14,6 +15,7 @@ class LogstreamResponse
 
     /**
      * LogstreamResponse constructor.
+     *
      * @param object $logstream
      */
     public function __construct($logstream)

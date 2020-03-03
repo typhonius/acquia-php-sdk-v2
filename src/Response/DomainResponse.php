@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class DomainResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class DomainResponse
@@ -18,6 +19,7 @@ class DomainResponse
 
     /**
      * DomainResponse constructor.
+     *
      * @param object $domain
      */
     public function __construct($domain)

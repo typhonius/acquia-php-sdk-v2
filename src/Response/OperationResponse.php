@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class OperationResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class OperationResponse
@@ -14,6 +15,7 @@ class OperationResponse
 
     /**
      * ApplicationResponse constructor.
+     *
      * @param object $operation
      */
     public function __construct($operation)

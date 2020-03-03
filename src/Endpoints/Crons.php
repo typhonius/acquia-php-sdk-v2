@@ -2,13 +2,13 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\CronsResponse;
 use AcquiaCloudApi\Response\CronResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
  * Class Crons
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Crons extends CloudApiBase implements CloudApiInterface
@@ -17,7 +17,7 @@ class Crons extends CloudApiBase implements CloudApiInterface
     /**
      * Show all cron tasks for an environment.
      *
-     * @param string $environmentUuid The environment ID
+     * @param  string $environmentUuid The environment ID
      * @return CronsResponse
      */
     public function getAll($environmentUuid)
@@ -33,8 +33,8 @@ class Crons extends CloudApiBase implements CloudApiInterface
     /**
      * Get information about a cron task.
      *
-     * @param string $environmentUuid The environment ID
-     * @param int    $cronId
+     * @param  string $environmentUuid The environment ID
+     * @param  int    $cronId
      * @return CronResponse
      */
     public function get($environmentUuid, $cronId)
@@ -50,11 +50,11 @@ class Crons extends CloudApiBase implements CloudApiInterface
     /**
      * Add a cron task.
      *
-     * @param string $environmentUuid
-     * @param string $command
-     * @param string $frequency
-     * @param string $label
-     * @param string $serverId
+     * @param  string $environmentUuid
+     * @param  string $command
+     * @param  string $frequency
+     * @param  string $label
+     * @param  string $serverId
      * @return OperationResponse
      */
     public function create($environmentUuid, $command, $frequency, $label, $serverId = null)
@@ -77,12 +77,12 @@ class Crons extends CloudApiBase implements CloudApiInterface
     /**
      * Update a cron task.
      *
-     * @param string $environmentUuid
-     * @param string $cronId
-     * @param string $command
-     * @param string $frequency
-     * @param string $label
-     * @param string $serverId
+     * @param  string $environmentUuid
+     * @param  string $cronId
+     * @param  string $command
+     * @param  string $frequency
+     * @param  string $label
+     * @param  string $serverId
      * @return OperationResponse
      */
     public function update($environmentUuid, $cronId, $command, $frequency, $label, $serverId = null)
@@ -105,8 +105,8 @@ class Crons extends CloudApiBase implements CloudApiInterface
     /**
      * Delete a cron task.
      *
-     * @param string $environmentUuid
-     * @param int    $cronId
+     * @param  string $environmentUuid
+     * @param  int    $cronId
      * @return OperationResponse
      */
     public function delete($environmentUuid, $cronId)
@@ -119,8 +119,8 @@ class Crons extends CloudApiBase implements CloudApiInterface
     /**
      * Disable a cron task.
      *
-     * @param string $environmentUuid
-     * @param int    $cronId
+     * @param  string $environmentUuid
+     * @param  int    $cronId
      * @return OperationResponse
      */
     public function disable($environmentUuid, $cronId)
@@ -136,8 +136,8 @@ class Crons extends CloudApiBase implements CloudApiInterface
     /**
      * Enable a cron task.
      *
-     * @param string $environmentUuid
-     * @param int    $cronId
+     * @param  string $environmentUuid
+     * @param  int    $cronId
      * @return OperationResponse
      */
     public function enable($environmentUuid, $cronId)

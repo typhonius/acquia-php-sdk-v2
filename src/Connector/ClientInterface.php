@@ -4,7 +4,7 @@ namespace AcquiaCloudApi\Connector;
 
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\BadResponseException;
-use Psr\Http\Message\StreamInterface;
+use AcquiaCloudApi\Exception\ApiErrorException;
 
 /**
  * Interface ClientInterface
@@ -26,9 +26,9 @@ interface ClientInterface
     public function request(string $verb, string $path, array $options = []);
 
     /**
-     * @param string $verb
-     * @param string $path
-     * @param array  $options
+     * @param  string $verb
+     * @param  string $path
+     * @param  array  $options
      * @return ResponseInterface
      */
     public function makeRequest(string $verb, string $path, array $options = []);
@@ -36,7 +36,7 @@ interface ClientInterface
     /**
      * Processes the returned response from the API.
      *
-     * @param ResponseInterface $response
+     * @param  ResponseInterface $response
      * @return mixed|StreamInterface
      * @throws \Exception
      */

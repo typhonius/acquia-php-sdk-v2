@@ -8,6 +8,7 @@ use AcquiaCloudApi\Response\VariablesResponse;
 
 /**
  * Class Variables
+ *
  * @package AcquiaCloudApi\Endpoints
  */
 class Variables extends CloudApiBase implements CloudApiInterface
@@ -16,7 +17,7 @@ class Variables extends CloudApiBase implements CloudApiInterface
     /**
      * Fetches all environment variables.
      *
-     * @param string $environmentUuid
+     * @param  string $environmentUuid
      * @return VariablesResponse
      */
     public function getAll($environmentUuid)
@@ -32,8 +33,8 @@ class Variables extends CloudApiBase implements CloudApiInterface
     /**
      * Returns details about an environment variable.
      *
-     * @param string $environmentUuid
-     * @param string $name
+     * @param  string $environmentUuid
+     * @param  string $name
      * @return VariableResponse
      */
     public function get($environmentUuid, $name)
@@ -49,9 +50,9 @@ class Variables extends CloudApiBase implements CloudApiInterface
     /**
      * Adds an environment variable.
      *
-     * @param string $environmentUuid
-     * @param string $name
-     * @param string $value
+     * @param  string $environmentUuid
+     * @param  string $name
+     * @param  string $value
      * @return OperationResponse
      */
     public function create($environmentUuid, $name, $value)
@@ -71,9 +72,9 @@ class Variables extends CloudApiBase implements CloudApiInterface
     /**
      * Updates an environment variable.
      *
-     * @param string $environmentUuid
-     * @param string $name
-     * @param string $value
+     * @param  string $environmentUuid
+     * @param  string $name
+     * @param  string $value
      * @return OperationResponse
      */
     public function update($environmentUuid, $name, $value)
@@ -93,8 +94,8 @@ class Variables extends CloudApiBase implements CloudApiInterface
     /**
      * Deletes an environment variable.
      *
-     * @param string $environmentUuid
-     * @param string $name
+     * @param  string $environmentUuid
+     * @param  string $name
      * @return OperationResponse
      */
     public function delete($environmentUuid, $name)

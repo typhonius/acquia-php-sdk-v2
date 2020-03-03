@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class NotificationResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class NotificationResponse
@@ -21,6 +22,7 @@ class NotificationResponse
 
     /**
      * MemberResponse constructor.
+     *
      * @param object $notification
      */
     public function __construct($notification)

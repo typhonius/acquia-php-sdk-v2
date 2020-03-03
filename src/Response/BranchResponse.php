@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class BranchResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class BranchResponse
@@ -14,6 +15,7 @@ class BranchResponse
 
     /**
      * BranchResponse constructor.
+     *
      * @param object $branch
      */
     public function __construct($branch)

@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class ServerResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class ServerResponse
@@ -22,6 +23,7 @@ class ServerResponse
 
     /**
      * ServerResponse constructor.
+     *
      * @param object $server
      */
     public function __construct($server)

@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class VariableResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class VariableResponse
@@ -14,6 +15,7 @@ class VariableResponse
 
     /**
      * VariableResponse constructor.
+     *
      * @param object $variable
      */
     public function __construct($variable)

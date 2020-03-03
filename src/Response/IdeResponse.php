@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class IdeResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class IdeResponse
@@ -14,6 +15,7 @@ class IdeResponse
 
     /**
      * IdeResponse constructor.
+     *
      * @param object $ide
      */
     public function __construct($ide)

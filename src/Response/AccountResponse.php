@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class AccountResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class AccountResponse
@@ -22,6 +23,7 @@ class AccountResponse
 
     /**
      * AccountResponse constructor.
+     *
      * @param object $account
      */
     public function __construct($account)

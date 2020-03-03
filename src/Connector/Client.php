@@ -53,7 +53,10 @@ class Client implements ClientInterface
      */
     public function request(string $verb, string $path, array $options = [])
     {
-        $options = $this->options;
+        // @TODO follow this up by removing $options from the parameters able
+        // to be passed into this function and instead solely relying on the
+        // addOption() method as this can then be tested.
+        $options = $this->options + $options;
         $options['query'] = $this->query;
 
         if (!empty($options['query']['filter']) && is_array($options['query']['filter'])) {

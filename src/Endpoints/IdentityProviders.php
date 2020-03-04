@@ -106,18 +106,20 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
     public function update($idpUuid, $label, $entityId, $ssoUrl, $certificate)
     {
 
-        $params = [
-            'label' => $label,
-            'entity_id' => $entityId,
-            'sso_url' => $ssoUrl,
-            'certificate' => $certificate,
+        $options = [
+            'form_params' => [
+                'label' => $label,
+                'entity_id' => $entityId,
+                'sso_url' => $ssoUrl,
+                'certificate' => $certificate,
+            ],
         ];
-        $this->client->addOption('form_params', $params);
 
         return new OperationResponse(
             $this->client->request(
                 'put',
-                "/identity-providers/${idpUuid}"
+                "/identity-providers/${idpUuid}",
+                $options
             )
         );
     }

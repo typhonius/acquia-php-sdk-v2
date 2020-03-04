@@ -74,14 +74,8 @@ class ApplicationsTest extends CloudApiTestCase
         $application = new Applications($client);
         $result = $application->rename('8ff6c046-ec64-4ce4-bea6-27845ec18600', "My application's new name");
 
-        $params = [
-            'form_params' => [
-                'name' => "My application's new name"
-            ],
-        ];
-        $this->assertEquals($params, $client->getOptions());
-
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals('Application renamed.', $result->message);
     }
 
@@ -115,15 +109,8 @@ class ApplicationsTest extends CloudApiTestCase
         $application = new Applications($client);
         $result = $application->createTag('8ff6c046-ec64-4ce4-bea6-27845ec18600', "deloitte", "orange");
 
-        $params = [
-            'form_params' => [
-                'name' => 'deloitte',
-                'color' => 'orange'
-            ],
-        ];
-        $this->assertEquals($params, $client->getOptions());
-
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals('The tag has been added to the application.', $result->message);
     }
 

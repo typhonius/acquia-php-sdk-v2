@@ -56,14 +56,15 @@ class Variables extends CloudApiBase implements CloudApiInterface
      */
     public function create($environmentUuid, $name, $value)
     {
-        $params = [
-            'name' => $name,
-            'value' => $value,
+        $options = [
+            'form_params' => [
+                'name' => $name,
+                'value' => $value,
+            ],
         ];
-        $this->client->addOption('form_params', $params);
 
         return new OperationResponse(
-            $this->client->request('post', "/environments/${environmentUuid}/variables")
+            $this->client->request('post', "/environments/${environmentUuid}/variables", $options)
         );
     }
 
@@ -77,14 +78,15 @@ class Variables extends CloudApiBase implements CloudApiInterface
      */
     public function update($environmentUuid, $name, $value)
     {
-        $params = [
-            'name' => $name,
-            'value' => $value,
+        $options = [
+            'form_params' => [
+                'name' => $name,
+                'value' => $value,
+            ],
         ];
-        $this->client->addOption('form_params', $params);
 
         return new OperationResponse(
-            $this->client->request('put', "/environments/${environmentUuid}/variables/${name}")
+            $this->client->request('put', "/environments/${environmentUuid}/variables/${name}", $options)
         );
     }
 

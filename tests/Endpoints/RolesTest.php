@@ -69,18 +69,6 @@ class RolesTest extends CloudApiTestCase
             'My new role description'
         );
 
-        $params = [
-            'form_params' => [
-                'name' => 'My new role',
-                'permissions' => [
-                    0 => 'access cloud api',
-                    1 => 'pull from prod'
-                ],
-                'description' => 'My new role description'
-            ],
-        ];
-        $this->assertEquals($params, $client->getOptions());
-
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Role created.', $result->message);
     }
@@ -106,15 +94,6 @@ class RolesTest extends CloudApiTestCase
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $role = new Roles($client);
         $result = $role->update('r47ac10b-58cc-4372-a567-0e02b2c3d470', ['pull from prod']);
-
-        $params = [
-            'form_params' => [
-                'permissions' => [
-                    0 => 'pull from prod'
-                ],
-            ],
-        ];
-        $this->assertEquals($params, $client->getOptions());
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Updating role.', $result->message);

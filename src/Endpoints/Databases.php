@@ -38,11 +38,14 @@ class Databases extends CloudApiBase implements CloudApiInterface
      */
     public function create($applicationUuid, $name)
     {
-
-        $this->client->addOption('form_params', ['name' => $name]);
+        $options = [
+            'form_params' => [
+                'name' => $name,
+            ],
+        ];
 
         return new OperationResponse(
-            $this->client->request('post', "/applications/${applicationUuid}/databases")
+            $this->client->request('post', "/applications/${applicationUuid}/databases", $options)
         );
     }
 
@@ -90,14 +93,15 @@ class Databases extends CloudApiBase implements CloudApiInterface
      */
     public function copy($environmentFromUuid, $dbName, $environmentToUuid)
     {
-        $params = [
-            'name' => $dbName,
-            'source' => $environmentFromUuid,
+        $options = [
+            'form_params' => [
+                'name' => $dbName,
+                'source' => $environmentFromUuid,
+            ],
         ];
-        $this->client->addOption('form_params', $params);
 
         return new OperationResponse(
-            $this->client->request('post', "/environments/${environmentToUuid}/databases")
+            $this->client->request('post', "/environments/${environmentToUuid}/databases", $options)
         );
     }
 }

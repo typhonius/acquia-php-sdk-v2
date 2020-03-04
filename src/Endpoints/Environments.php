@@ -23,11 +23,14 @@ class Environments extends CloudApiBase implements CloudApiInterface
      */
     public function copyFiles($environmentUuidFrom, $environmentUuidTo)
     {
-
-        $this->client->addOption('form_params', ['source' => $environmentUuidFrom]);
+        $options = [
+            'form_params' => [
+                'source' => $environmentUuidFrom,
+            ],
+        ];
 
         return new OperationResponse(
-            $this->client->request('post', "/environments/${environmentUuidTo}/files")
+            $this->client->request('post', "/environments/${environmentUuidTo}/files", $options)
         );
     }
 
@@ -73,12 +76,15 @@ class Environments extends CloudApiBase implements CloudApiInterface
     public function update($environmentUuid, array $config)
     {
 
-        $this->client->addOption('form_params', $config);
+        $options = [
+            'form_params' => $config,
+        ];
 
         return new OperationResponse(
             $this->client->request(
                 'put',
-                "/environments/${environmentUuid}"
+                "/environments/${environmentUuid}",
+                $options
             )
         );
     }
@@ -93,12 +99,17 @@ class Environments extends CloudApiBase implements CloudApiInterface
     public function rename($environmentUuid, $label)
     {
 
-        $this->client->addOption('form_params', ['label' => $label]);
+        $options = [
+            'form_params' => [
+                'label' => $label,
+            ],
+        ];
 
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/environments/${environmentUuid}/actions/change-label"
+                "/environments/${environmentUuid}/actions/change-label",
+                $options
             )
         );
     }
@@ -125,12 +136,17 @@ class Environments extends CloudApiBase implements CloudApiInterface
     public function disableLiveDev($environmentUuid)
     {
 
-        $this->client->addOption('form_params', ['discard' => 1]);
+        $options = [
+            'form_params' => [
+                'discard' => 1,
+            ],
+        ];
 
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/environments/${environmentUuid}/livedev/actions/disable"
+                "/environments/${environmentUuid}/livedev/actions/disable",
+                $options
             )
         );
     }
@@ -178,17 +194,19 @@ class Environments extends CloudApiBase implements CloudApiInterface
      */
     public function create($applicationUuid, $label, $branch, array $databases)
     {
-        $params = [
-            'label' => $label,
-            'branch' => $branch,
-            'databases' => $databases,
+        $options = [
+            'form_params' => [
+                'label' => $label,
+                'branch' => $branch,
+                'databases' => $databases,
+            ],
         ];
-        $this->client->addOption('form_params', $params);
 
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/applications/${applicationUuid}/environments"
+                "/applications/${applicationUuid}/environments",
+                $options
             )
         );
     }

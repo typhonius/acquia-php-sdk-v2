@@ -42,12 +42,11 @@ class Servers extends CloudApiBase implements CloudApiInterface
     public function update($environmentUuid, $serverId, array $config)
     {
 
-        $this->client->addOption('form_params', $config);
-
         return new OperationResponse(
             $this->client->request(
                 'put',
-                "/environments/${environmentUuid}/servers/${serverId}"
+                "/environments/${environmentUuid}/servers/${serverId}",
+                $config
             )
         );
     }

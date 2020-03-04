@@ -73,14 +73,8 @@ class ServersTest extends CloudApiTestCase
             ['memcache' => 128]
         );
 
-        $params = [
-            'form_params' => [
-                'memcache' => 128
-            ],
-        ];
-        $this->assertEquals($params, $client->getOptions());
-
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals('The server configuration is being updated.', $result->message);
     }
 }

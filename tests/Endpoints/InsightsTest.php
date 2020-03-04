@@ -163,6 +163,7 @@ class InsightsTest extends CloudApiTestCase
         );
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals('Alert ignored.', $result->message);
     }
 
@@ -179,6 +180,7 @@ class InsightsTest extends CloudApiTestCase
         );
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals('Alert restored.', $result->message);
     }
 
@@ -192,6 +194,7 @@ class InsightsTest extends CloudApiTestCase
         $result = $insights->revoke('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals('Site revoked from submitting Insight score data.', $result->message);
     }
 
@@ -205,6 +208,7 @@ class InsightsTest extends CloudApiTestCase
         $result = $insights->unrevoke('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals('Site un-revoked.', $result->message);
     }
 

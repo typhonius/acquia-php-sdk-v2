@@ -39,12 +39,17 @@ class Code extends CloudApiBase implements CloudApiInterface
     public function switch($environmentUuid, $branch)
     {
 
-        $this->client->addOption('form_params', ['branch' => $branch]);
+        $options = [
+            'form_params' => [
+                'branch' => $branch,
+            ],
+        ];
 
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/environments/${environmentUuid}/code/actions/switch"
+                "/environments/${environmentUuid}/code/actions/switch",
+                $options
             )
         );
     }
@@ -59,16 +64,18 @@ class Code extends CloudApiBase implements CloudApiInterface
     public function deploy($environmentFromUuid, $environmentToUuid, $commitMessage = null)
     {
 
-        $params = [
-            'source' => $environmentFromUuid,
-            'message' => $commitMessage,
+        $options = [
+            'form_params' => [
+                'source' => $environmentFromUuid,
+                'message' => $commitMessage,
+            ],
         ];
-        $this->client->addOption('form_params', $params);
 
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/environments/${environmentToUuid}/code"
+                "/environments/${environmentToUuid}/code",
+                $options
             )
         );
     }

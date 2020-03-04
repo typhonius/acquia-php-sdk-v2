@@ -65,18 +65,8 @@ class TeamsTest extends CloudApiTestCase
             ['access permissions', 'access servers']
         );
 
-        $params = [
-            'form_params' => [
-                'email' => 'hello@example.com',
-                'roles' => [
-                    0 => 'access permissions',
-                    1 => 'access servers'
-                ]
-            ],
-        ];
-        $this->assertEquals($params, $client->getOptions());
-
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals("Invited team member.", $result->message);
     }
 
@@ -89,14 +79,8 @@ class TeamsTest extends CloudApiTestCase
         $organization = new Teams($client);
         $result = $organization->create('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'Mega Team');
 
-        $params = [
-            'form_params' => [
-                'name' => 'Mega Team'
-            ],
-        ];
-        $this->assertEquals($params, $client->getOptions());
-
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals("Team created.", $result->message);
     }
 
@@ -109,14 +93,8 @@ class TeamsTest extends CloudApiTestCase
         $team = new Teams($client);
         $result = $team->rename('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'My Cool Application');
 
-        $params = [
-            'form_params' => [
-                'name' => 'My Cool Application'
-            ],
-        ];
-        $this->assertEquals($params, $client->getOptions());
-
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals("Team renamed.", $result->message);
     }
 
@@ -130,6 +108,7 @@ class TeamsTest extends CloudApiTestCase
         $result = $team->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals("Removed team.", $result->message);
     }
 
@@ -145,14 +124,8 @@ class TeamsTest extends CloudApiTestCase
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851'
         );
 
-        $params = [
-            'form_params' => [
-                'uuid' => '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851'
-            ],
-        ];
-        $this->assertEquals($params, $client->getOptions());
-
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals('Added application to team.', $result->message);
     }
 

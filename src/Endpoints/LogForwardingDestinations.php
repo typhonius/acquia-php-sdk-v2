@@ -61,17 +61,18 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
     public function create($environmentUuid, $label, $sources, $consumer, $credentials, $address)
     {
 
-        $params = [
-            'label' => $label,
-            'sources' => $sources,
-            'consumer' => $consumer,
-            'credentials' => $credentials,
-            'address' => $address
+        $options = [
+            'form_params' => [
+                'label' => $label,
+                'sources' => $sources,
+                'consumer' => $consumer,
+                'credentials' => $credentials,
+                'address' => $address
+            ],
         ];
-        $this->client->addOption('form_params', $params);
 
         return new OperationResponse(
-            $this->client->request('post', "/environments/${environmentUuid}/log-forwarding-destinations")
+            $this->client->request('post', "/environments/${environmentUuid}/log-forwarding-destinations", $options)
         );
     }
 
@@ -138,19 +139,21 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
     public function update($environmentUuid, $destId, $label, $sources, $consumer, $creds, $address)
     {
 
-        $params = [
-            'label' => $label,
-            'sources' => $sources,
-            'consumer' => $consumer,
-            'credentials' => $creds,
-            'address' => $address
+        $options = [
+            'form_params' => [
+                'label' => $label,
+                'sources' => $sources,
+                'consumer' => $consumer,
+                'credentials' => $creds,
+                'address' => $address
+            ],
         ];
-        $this->client->addOption('form_params', $params);
 
         return new OperationResponse(
             $this->client->request(
                 'put',
-                "/environments/${environmentUuid}/log-forwarding-destinations/${destId}"
+                "/environments/${environmentUuid}/log-forwarding-destinations/${destId}",
+                $options
             )
         );
     }

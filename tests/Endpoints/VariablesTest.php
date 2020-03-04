@@ -59,14 +59,6 @@ class VariablesTest extends CloudApiTestCase
         $variable = new Variables($client);
         $result = $variable->create('123-c7056b9e-0fb7-44e9-a434-426a404211c1', 'test_variable', 'test_value');
 
-        $params = [
-            'form_params' => [
-                'name' => 'test_variable',
-                'value' => 'test_value'
-            ],
-        ];
-        $this->assertEquals($params, $client->getOptions());
-
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals("The environment variable is being added.", $result->message);
     }
@@ -83,15 +75,8 @@ class VariablesTest extends CloudApiTestCase
             'value'
         );
 
-        $params = [
-            'form_params' => [
-                'name' => 'name',
-                'value' => 'value'
-            ],
-        ];
-        $this->assertEquals($params, $client->getOptions());
-
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals('The environment variable is being updated.', $result->message);
     }
 

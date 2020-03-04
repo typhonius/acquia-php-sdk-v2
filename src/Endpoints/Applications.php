@@ -52,12 +52,17 @@ class Applications extends CloudApiBase implements CloudApiInterface
     public function rename($applicationUuid, $name)
     {
 
-        $this->client->addOption('form_params', ['name' => $name]);
+        $options = [
+            'form_params' => [
+                'name' => $name,
+            ],
+        ];
 
         return new OperationResponse(
             $this->client->request(
                 'put',
-                "/applications/${applicationUuid}"
+                "/applications/${applicationUuid}",
+                $options
             )
         );
     }
@@ -90,16 +95,18 @@ class Applications extends CloudApiBase implements CloudApiInterface
     public function createTag($applicationUuid, $name, $color)
     {
 
-        $params = [
-            'name' => $name,
-            'color' => $color,
+        $options = [
+            'form_params' => [
+                'name' => $name,
+                'color' => $color,
+            ],
         ];
-        $this->client->addOption('form_params', $params);
 
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/applications/${applicationUuid}/tags"
+                "/applications/${applicationUuid}/tags",
+                $options
             )
         );
     }

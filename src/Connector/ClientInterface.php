@@ -19,10 +19,11 @@ interface ClientInterface
      *
      * @param string $verb
      * @param string $path
+     * @param array  $options
      *
      * @return mixed|StreamInterface
      */
-    public function request(string $verb, string $path);
+    public function request(string $verb, string $path, array $options = []);
 
     /**
      * @param string $verb

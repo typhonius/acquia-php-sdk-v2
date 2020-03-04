@@ -67,6 +67,7 @@ class IdentityProviderTest extends CloudApiTestCase
         $result = $idp->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals('Identity provider has been deleted.', $result->message);
     }
 
@@ -80,6 +81,7 @@ class IdentityProviderTest extends CloudApiTestCase
         $result = $idp->enable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals('Identity Provider has been enabled.', $result->message);
     }
 
@@ -93,6 +95,7 @@ class IdentityProviderTest extends CloudApiTestCase
         $result = $idp->disable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals('Identity Provider has been disabled.', $result->message);
     }
 
@@ -111,17 +114,8 @@ class IdentityProviderTest extends CloudApiTestCase
             "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----"
         );
 
-        $params = [
-            'form_params' => [
-                'label' => 'Test IDP',
-                'entity_id' => 'entity-id',
-                'sso_url' => 'https://idp.example.com',
-                'certificate' => '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
-            ],
-        ];
-        $this->assertEquals($params, $client->getOptions());
-
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
         $this->assertEquals('Identity Provider has been updated.', $result->message);
     }
 }

@@ -62,18 +62,19 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
     public function create($envUuid, $label, $cert, $key, $ca = null, $csr = null, $legacy = false)
     {
 
-        $params = [
-            'label' => $label,
-            'certificate' => $cert,
-            'private_key' => $key,
-            'ca_certificates' => $ca,
-            'csr_id' => $csr,
-            'legacy' => $legacy
+        $options = [
+            'form_params' => [
+                'label' => $label,
+                'certificate' => $cert,
+                'private_key' => $key,
+                'ca_certificates' => $ca,
+                'csr_id' => $csr,
+                'legacy' => $legacy
+            ],
         ];
-        $this->client->addOption('form_params', $params);
 
         return new OperationResponse(
-            $this->client->request('post', "/environments/${envUuid}/ssl/certificates")
+            $this->client->request('post', "/environments/${envUuid}/ssl/certificates", $options)
         );
     }
 

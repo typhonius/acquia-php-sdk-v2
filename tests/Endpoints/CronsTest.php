@@ -76,6 +76,16 @@ class CronsTest extends CloudApiTestCase
             'My New Cron'
         );
 
+        $params = [
+            'form_params' => [
+                'command' => '/usr/local/bin/drush cc all',
+                'frequency' => '*/30 * * * *',
+                'label' => 'My New Cron',
+                'server_id' => null
+            ],
+        ];
+        $this->assertEquals($params, $client->getOptions());
+
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Creating a new cron.', $result->message);
     }
@@ -94,6 +104,16 @@ class CronsTest extends CloudApiTestCase
             '*/30 * * * *',
             'My New Cron'
         );
+
+        $params = [
+            'form_params' => [
+                'command' => '/usr/local/bin/drush cc all',
+                'frequency' => '*/30 * * * *',
+                'label' => 'My New Cron',
+                'server_id' => null
+            ],
+        ];
+        $this->assertEquals($params, $client->getOptions());
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Updating cron.', $result->message);

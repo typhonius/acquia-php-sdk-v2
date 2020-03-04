@@ -56,14 +56,10 @@ class Ides extends CloudApiBase implements CloudApiInterface
     public function create($applicationUuid, $name)
     {
 
-        $options = [
-            'form_params' => [
-                'name' => $name,
-            ],
-        ];
+        $this->client->addOption('form_params', ['name' => $name]);
 
         return new OperationResponse(
-            $this->client->request('post', "/applications/${applicationUuid}/ides", $options)
+            $this->client->request('post', "/applications/${applicationUuid}/ides")
         );
     }
 

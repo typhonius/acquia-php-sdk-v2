@@ -77,8 +77,23 @@ class LogForwardingTest extends CloudApiTestCase
             'example.com:1234'
         );
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $params = [
+            'form_params' => [
+                'label' => 'Test destination',
+                'sources' => [
+                    0 => 'apache-access',
+                    1 => 'apache-error'
+                ],
+                'consumer' => 'syslog',
+                'credentials' => [
+                    "certificate" => "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----"
+                ],
+                'address' => 'example.com:1234'
+            ],
+        ];
+        $this->assertEquals($params, $client->getOptions());
 
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Log forwarding destination for the environment has been created.', $result->message);
     }
 
@@ -106,7 +121,6 @@ class LogForwardingTest extends CloudApiTestCase
         $result = $logForwarding->enable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Log forwarding destination has been enabled.', $result->message);
     }
 
@@ -120,7 +134,6 @@ class LogForwardingTest extends CloudApiTestCase
         $result = $logForwarding->disable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Log forwarding destination has been disabled.', $result->message);
     }
 
@@ -141,8 +154,23 @@ class LogForwardingTest extends CloudApiTestCase
             'example.com:1234'
         );
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $params = [
+            'form_params' => [
+                'label' => 'Test destination',
+                'sources' => [
+                    0 => 'apache-access',
+                    1 => 'apache-error'
+                ],
+                'consumer' => 'syslog',
+                'credentials' => [
+                    "certificate" => "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----"
+                ],
+                'address' => 'example.com:1234'
+            ],
+        ];
+        $this->assertEquals($params, $client->getOptions());
 
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Log forwarding destination has been updated.', $result->message);
     }
 }

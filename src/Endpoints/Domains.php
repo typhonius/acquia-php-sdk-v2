@@ -58,14 +58,10 @@ class Domains extends CloudApiBase implements CloudApiInterface
     public function create($environmentUuid, $hostname)
     {
 
-        $options = [
-            'form_params' => [
-                'hostname' => $hostname,
-            ],
-        ];
+        $this->client->addOption('form_params', ['hostname' => $hostname]);
 
         return new OperationResponse(
-            $this->client->request('post', "/environments/${environmentUuid}/domains", $options)
+            $this->client->request('post', "/environments/${environmentUuid}/domains")
         );
     }
 
@@ -93,17 +89,12 @@ class Domains extends CloudApiBase implements CloudApiInterface
     public function purge($environmentUuid, array $domains)
     {
 
-        $options = [
-            'form_params' => [
-                'domains' => $domains,
-            ],
-        ];
+        $this->client->addOption('form_params', ['domains' => $domains]);
 
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/environments/${environmentUuid}/domains/actions/clear-varnish",
-                $options
+                "/environments/${environmentUuid}/domains/actions/clear-varnish"
             )
         );
     }

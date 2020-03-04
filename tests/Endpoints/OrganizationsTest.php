@@ -87,8 +87,14 @@ class OrganizationsTest extends CloudApiTestCase
         $organization = new Organizations($client);
         $result = $organization->inviteAdmin('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'user@example.com');
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $params = [
+            'form_params' => [
+                'email' => 'user@example.com'
+            ],
+        ];
+        $this->assertEquals($params, $client->getOptions());
 
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Invited organization administrator.', $result->message);
     }
 

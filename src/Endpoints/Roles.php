@@ -51,16 +51,15 @@ class Roles extends CloudApiBase implements CloudApiInterface
      */
     public function create($organizationUuid, $name, array $permissions, $description = null)
     {
-        $options = [
-            'form_params' => [
-                'name' => $name,
-                'permissions' => $permissions,
-                'description' => $description,
-            ],
+        $params = [
+            'name' => $name,
+            'permissions' => $permissions,
+            'description' => $description,
         ];
+        $this->client->addOption('form_params', $params);
 
         return new OperationResponse(
-            $this->client->request('post', "/organizations/${organizationUuid}/roles", $options)
+            $this->client->request('post', "/organizations/${organizationUuid}/roles")
         );
     }
 
@@ -73,14 +72,11 @@ class Roles extends CloudApiBase implements CloudApiInterface
      */
     public function update($roleUuid, array $permissions)
     {
-        $options = [
-            'form_params' => [
-                'permissions' => $permissions,
-            ],
-        ];
+
+        $this->client->addOption('form_params', ['permissions' => $permissions]);
 
         return new OperationResponse(
-            $this->client->request('put', "/roles/${roleUuid}", $options)
+            $this->client->request('put', "/roles/${roleUuid}")
         );
     }
 

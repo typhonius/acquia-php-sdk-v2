@@ -51,12 +51,9 @@ class Client implements ClientInterface
     /**
      * @inheritdoc
      */
-    public function request(string $verb, string $path, array $options = [])
+    public function request(string $verb, string $path)
     {
-        // @TODO follow this up by removing $options from the parameters able
-        // to be passed into this function and instead solely relying on the
-        // addOption() method as this can then be tested.
-        $options = $this->options + $options;
+        $options = $this->options;
         $options['query'] = $this->query;
 
         if (!empty($options['query']['filter']) && is_array($options['query']['filter'])) {

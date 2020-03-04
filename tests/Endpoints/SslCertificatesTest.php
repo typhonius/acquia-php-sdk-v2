@@ -77,8 +77,19 @@ class SslCertificatesTest extends CloudApiTestCase
             false
         );
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $params = [
+            'form_params' => [
+                'label' => 'My New Cert',
+                'certificate' => '-----BEGIN CERTIFICATE-----abc123....-----END CERTIFICATE-----',
+                'private_key' => '-----BEGIN RSA PRIVATE KEY-----secret....-----END RSA PRIVATE KEY-----',
+                'ca_certificates' => '-----BEGIN CERTIFICATE-----123abc....-----END CERTIFICATE-----',
+                'csr_id' => 123,
+                'legacy' => false
+            ],
+        ];
+        $this->assertEquals($params, $client->getOptions());
 
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Installing the certificate.', $result->message);
     }
 
@@ -92,7 +103,6 @@ class SslCertificatesTest extends CloudApiTestCase
         $result = $certificate->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 14);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Deleting the certificate.', $result->message);
     }
 
@@ -106,7 +116,6 @@ class SslCertificatesTest extends CloudApiTestCase
         $result = $certificate->enable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Activating the certificate.', $result->message);
     }
 
@@ -120,7 +129,6 @@ class SslCertificatesTest extends CloudApiTestCase
         $result = $certificate->disable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Deactivating the certificate.', $result->message);
     }
 }

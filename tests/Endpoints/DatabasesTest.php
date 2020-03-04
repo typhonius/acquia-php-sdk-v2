@@ -47,6 +47,14 @@ class DatabasesTest extends CloudApiTestCase
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851'
         );
 
+        $params = [
+            'form_params' => [
+                'name' => 'db_name',
+                'source' => '24-a47ac10b-58cc-4372-a567-0e02b2c3d470'
+            ],
+        ];
+        $this->assertEquals($params, $client->getOptions());
+
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('The database is being copied', $result->message);
     }
@@ -59,6 +67,13 @@ class DatabasesTest extends CloudApiTestCase
         /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $databases = new Databases($client);
         $result = $databases->create('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'db_name');
+
+        $params = [
+            'form_params' => [
+                'name' => 'db_name'
+            ],
+        ];
+        $this->assertEquals($params, $client->getOptions());
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('The database is being created.', $result->message);
@@ -74,7 +89,6 @@ class DatabasesTest extends CloudApiTestCase
         $result = $databases->delete('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'db_name');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('The database is being deleted.', $result->message);
     }
 
@@ -88,7 +102,6 @@ class DatabasesTest extends CloudApiTestCase
         $result = $databases->truncate('da1c0a8e-ff69-45db-88fc-acd6d2affbb7', 'drupal8');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('The database is being erased.', $result->message);
     }
 }

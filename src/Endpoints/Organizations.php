@@ -148,14 +148,11 @@ class Organizations extends CloudApiBase implements CloudApiInterface
      */
     public function inviteAdmin($organizationUuid, $email)
     {
-        $options = [
-            'form_params' => [
-                'email' => $email,
-            ],
-        ];
+
+        $this->client->addOption('form_params', ['email' => $email]);
 
         return new OperationResponse(
-            $this->client->request('post', "/organizations/${organizationUuid}/admin-invites", $options)
+            $this->client->request('post', "/organizations/${organizationUuid}/admin-invites")
         );
     }
 }

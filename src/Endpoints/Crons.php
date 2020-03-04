@@ -60,17 +60,16 @@ class Crons extends CloudApiBase implements CloudApiInterface
     public function create($environmentUuid, $command, $frequency, $label, $serverId = null)
     {
 
-        $options = [
-            'form_params' => [
-                'command' => $command,
-                'frequency' => $frequency,
-                'label' => $label,
-                'server_id' => $serverId
-            ],
+        $params = [
+            'command' => $command,
+            'frequency' => $frequency,
+            'label' => $label,
+            'server_id' => $serverId
         ];
+        $this->client->addOption('form_params', $params);
 
         return new OperationResponse(
-            $this->client->request('post', "/environments/${environmentUuid}/crons", $options)
+            $this->client->request('post', "/environments/${environmentUuid}/crons")
         );
     }
 
@@ -88,17 +87,16 @@ class Crons extends CloudApiBase implements CloudApiInterface
     public function update($environmentUuid, $cronId, $command, $frequency, $label, $serverId = null)
     {
 
-        $options = [
-            'form_params' => [
-                'command' => $command,
-                'frequency' => $frequency,
-                'label' => $label,
-                'server_id' => $serverId
-            ],
+        $params = [
+            'command' => $command,
+            'frequency' => $frequency,
+            'label' => $label,
+            'server_id' => $serverId
         ];
+        $this->client->addOption('form_params', $params);
 
         return new OperationResponse(
-            $this->client->request('post', "/environments/${environmentUuid}/crons/${cronId}", $options)
+            $this->client->request('post', "/environments/${environmentUuid}/crons/${cronId}")
         );
     }
 

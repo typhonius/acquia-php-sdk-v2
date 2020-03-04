@@ -43,6 +43,13 @@ class CodeTest extends CloudApiTestCase
         $code = new Code($client);
         $result = $code->switch('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'my-feature-branch');
 
+        $params = [
+            'form_params' => [
+                'branch' => 'my-feature-branch'
+            ],
+        ];
+        $this->assertEquals($params, $client->getOptions());
+
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Switching code.', $result->message);
     }
@@ -59,6 +66,14 @@ class CodeTest extends CloudApiTestCase
             'f9ef59eb-13ee-4050-8120-5524d8ce9821',
             'Commit message'
         );
+
+        $params = [
+            'form_params' => [
+                'source' => '8ff6c046-ec64-4ce4-bea6-27845ec18600',
+                'message' => 'Commit message'
+            ],
+        ];
+        $this->assertEquals($params, $client->getOptions());
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Deploying code.', $result->message);

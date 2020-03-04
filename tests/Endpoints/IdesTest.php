@@ -65,8 +65,14 @@ class IdesTest extends CloudApiTestCase
             'My new IDE'
         );
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $params = [
+            'form_params' => [
+                'name' => 'My new IDE'
+            ],
+        ];
+        $this->assertEquals($params, $client->getOptions());
 
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('The remote IDE is being created.', $result->message);
     }
 

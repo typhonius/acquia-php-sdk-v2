@@ -74,9 +74,15 @@ class EnvironmentsTest extends CloudApiTestCase
         $environment = new Environments($client);
         $result = $environment->update('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', ['version' => '7.2']);
 
-         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $params = [
+            'form_params' => [
+                'version' => '7.2'
+            ],
+        ];
+        $this->assertEquals($params, $client->getOptions());
 
-         $this->assertEquals('The environment configuration is being updated.', $result->message);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $this->assertEquals('The environment configuration is being updated.', $result->message);
     }
 
     public function testRenameEnvironment()
@@ -89,8 +95,14 @@ class EnvironmentsTest extends CloudApiTestCase
         $environment = new Environments($client);
         $result = $environment->rename('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'Alpha');
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $params = [
+            'form_params' => [
+                'label' => 'Alpha'
+            ],
+        ];
+        $this->assertEquals($params, $client->getOptions());
 
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Changing environment label.', $result->message);
     }
 
@@ -112,8 +124,19 @@ class EnvironmentsTest extends CloudApiTestCase
             ]
         );
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $params = [
+            'form_params' => [
+                'label' => 'CD label',
+                'branch' => 'my-feature-branch',
+                'databases' => [
+                    0 => 'database1',
+                    1 => 'database2'
+                ]
+            ],
+        ];
+        $this->assertEquals($params, $client->getOptions());
 
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Adding an environment.', $result->message);
     }
 
@@ -128,7 +151,6 @@ class EnvironmentsTest extends CloudApiTestCase
         $result = $environment->delete('24-a47ac10b-58cc-4372-a567-0e02b2c3d470');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('The environment is being deleted.', $result->message);
     }
 }

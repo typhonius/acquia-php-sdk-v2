@@ -61,18 +61,17 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
     public function create($environmentUuid, $label, $sources, $consumer, $credentials, $address)
     {
 
-        $options = [
-            'form_params' => [
-                'label' => $label,
-                'sources' => $sources,
-                'consumer' => $consumer,
-                'credentials' => $credentials,
-                'address' => $address
-            ],
+        $params = [
+            'label' => $label,
+            'sources' => $sources,
+            'consumer' => $consumer,
+            'credentials' => $credentials,
+            'address' => $address
         ];
+        $this->client->addOption('form_params', $params);
 
         return new OperationResponse(
-            $this->client->request('post', "/environments/${environmentUuid}/log-forwarding-destinations", $options)
+            $this->client->request('post', "/environments/${environmentUuid}/log-forwarding-destinations")
         );
     }
 
@@ -139,21 +138,19 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
     public function update($environmentUuid, $destId, $label, $sources, $consumer, $creds, $address)
     {
 
-        $options = [
-            'form_params' => [
-                'label' => $label,
-                'sources' => $sources,
-                'consumer' => $consumer,
-                'credentials' => $creds,
-                'address' => $address
-            ],
+        $params = [
+            'label' => $label,
+            'sources' => $sources,
+            'consumer' => $consumer,
+            'credentials' => $creds,
+            'address' => $address
         ];
+        $this->client->addOption('form_params', $params);
 
         return new OperationResponse(
             $this->client->request(
                 'put',
-                "/environments/${environmentUuid}/log-forwarding-destinations/${destId}",
-                $options
+                "/environments/${environmentUuid}/log-forwarding-destinations/${destId}"
             )
         );
     }

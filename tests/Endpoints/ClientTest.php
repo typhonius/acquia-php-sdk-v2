@@ -75,4 +75,38 @@ class ClientTest extends CloudApiTestCase
         $client->clearOptions();
         $this->assertTrue(empty($client->getOptions()));
     }
+
+    public function testOptionsAndPost()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Code/deployCode.json');
+        $client = $this->getMockClient($response);
+
+        $client->addOption('max', 5);
+        $client->addOption('curl.options', ['CURLOPT_RETURNTRANSFER' => true]);
+        $client->addOption('referer', true);
+        $client->addOption('connect_timeout', 100);
+
+        $expectedOptions = [
+            'max' => 5,
+            'curl.options' => [
+                'CURLOPT_RETURNTRANSFER' => true,
+            ],
+            'connect_timeout' => 100,
+            'referer' => true,
+            'form_params' => [
+                'source' => '8ff6c046-ec64-4ce4-bea6-27845ec18600',
+                'message' => 'Commit message'
+            ],
+        ];
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $code = new Code($client);
+        $result = $code->deploy(
+            '8ff6c046-ec64-4ce4-bea6-27845ec18600',
+            'f9ef59eb-13ee-4050-8120-5524d8ce9821',
+            'Commit message'
+        );
+
+        $this->assertEquals($expectedOptions, $client->getOptions());
+    }
 }

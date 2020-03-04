@@ -70,6 +70,13 @@ class DomainsTest extends CloudApiTestCase
         $domain = new Domains($client);
         $result = $domain->create('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'new-domain.com');
 
+        $params = [
+            'form_params' => [
+                'hostname' => 'new-domain.com'
+            ],
+        ];
+        $this->assertEquals($params, $client->getOptions());
+
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals("Adding domain example.com", $result->message);
     }

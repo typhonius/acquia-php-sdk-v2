@@ -24,14 +24,11 @@ class Teams extends CloudApiBase implements CloudApiInterface
      */
     public function create($organizationUuid, $name)
     {
-        $options = [
-            'form_params' => [
-                'name' => $name,
-            ],
-        ];
+
+        $this->client->addOption('form_params', ['name' => $name]);
 
         return new OperationResponse(
-            $this->client->request('post', "/organizations/${organizationUuid}/teams", $options)
+            $this->client->request('post', "/organizations/${organizationUuid}/teams")
         );
     }
 
@@ -56,14 +53,11 @@ class Teams extends CloudApiBase implements CloudApiInterface
      */
     public function rename($teamUuid, $name)
     {
-        $options = [
-            'form_params' => [
-                'name' => $name,
-            ],
-        ];
+
+        $this->client->addOption('form_params', ['name' => $name]);
 
         return new OperationResponse(
-            $this->client->request('put', "/teams/${teamUuid}", $options)
+            $this->client->request('put', "/teams/${teamUuid}")
         );
     }
 
@@ -90,14 +84,11 @@ class Teams extends CloudApiBase implements CloudApiInterface
      */
     public function addApplication($teamUuid, $applicationUuid)
     {
-        $options = [
-            'form_params' => [
-                'uuid' => $applicationUuid,
-            ],
-        ];
+
+        $this->client->addOption('form_params', ['uuid' => $applicationUuid]);
 
         return new OperationResponse(
-            $this->client->request('post', "/teams/${teamUuid}/applications", $options)
+            $this->client->request('post', "/teams/${teamUuid}/applications")
         );
     }
 
@@ -111,15 +102,14 @@ class Teams extends CloudApiBase implements CloudApiInterface
      */
     public function invite($teamUuid, $email, $roles)
     {
-        $options = [
-            'form_params' => [
-                'email' => $email,
-                'roles' => $roles
-            ],
+        $params = [
+            'email' => $email,
+            'roles' => $roles
         ];
+        $this->client->addOption('form_params', $params);
 
         return new OperationResponse(
-            $this->client->request('post', "/teams/${teamUuid}/invites", $options)
+            $this->client->request('post', "/teams/${teamUuid}/invites")
         );
     }
 

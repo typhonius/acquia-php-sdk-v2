@@ -1,54 +1,95 @@
 {
-    "total": 0,
-    "_links": [
-      {
-        "href": "string"
-      }
-    ],
-    "_embedded": {
-      "items": [
-        {
-          "alert_id": 0,
-          "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "name": "string",
-          "message": "string",
-          "article_link": "string",
-          "severity": 0,
-          "severity_label": "string",
-          "failed_value": "string",
-          "fix_details": "string",
-          "categories": {
-            "value": "insight"
-          },
-          "flags": {
-            "additionalProp1": {
-              "ignored": true,
-              "cleared": true,
-              "resolved": true,
-              "pass_hide": true,
-              "free_tier_hide": true
-            },
-            "additionalProp2": {
-              "ignored": true,
-              "cleared": true,
-              "resolved": true,
-              "pass_hide": true,
-              "free_tier_hide": true
-            },
-            "additionalProp3": {
-              "ignored": true,
-              "cleared": true,
-              "resolved": true,
-              "pass_hide": true,
-              "free_tier_hide": true
-            }
-          },
-          "_links": [
-            {
-              "href": "string"
-            }
-          ]
-        }
-      ]
+  "total": 3,
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/insight/site_id/alerts"
+    },
+    "parent": {
+      "href": "https://cloud.acquia.com/api/insight/site_id"
     }
+  },
+  "_embedded": {
+    "items": [
+      {
+        "alert_id": 40,
+        "uuid": "a47ac10b-58cc-4372-a567-0e02b2c3d470",
+        "name": "PHP errors visible",
+        "message": "<p>Your website is configured to display PHP error messages to users. These error messages can reveal sensitive information about your website and its server to site visitors.</p>",
+        "article_link": "https://docs.acquia.com/acquia-cloud/insight/alerts/",
+        "severity": 8,
+        "severity_label": "WARNING",
+        "failed_value": "display_errors",
+        "fix_details": "<p>To suppress the error messages, edit your settings.php file.</p>",
+        "categories": [
+          "insight",
+          "security"
+        ],
+        "flags": {
+          "ignored": false,
+          "cleared": false,
+          "resolved": false,
+          "pass_hide": false,
+          "free_tier_hide": true
+        },
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/insight/d97bd970-3c0f-102f-a581-1231390f9c94/alerts/a47ac10b-58cc-4372-a567-0e02b2c3d470"
+          }
+        }
+      },
+      {
+        "alert_id": 43,
+        "uuid": "f938d912-a6a0-11e2-b0d3-12313931d529",
+        "name": "Scheduler module not enabled",
+        "message": "<p>Writing content and scheduling its publishing is an easy way to keep your site current and appealing to site visitors. The Scheduler module makes it easy to release content over a period of time, and thus maintain freshness.</p>",
+        "article_link": "https://docs.acquia.com/acquia-cloud/insight/alerts/",
+        "severity": 0,
+        "severity_label": "DEBUG",
+        "failed_value": "scheduler",
+        "fix_details": "<p>Enable the Scheduler module for your website.</p>",
+        "categories": [
+          "seo"
+        ],
+        "flags": {
+          "ignored": false,
+          "cleared": false,
+          "resolved": false,
+          "pass_hide": false,
+          "free_tier_hide": false
+        },
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/insight/d97bd970-3c0f-102f-a581-1231390f9c94/alerts/f938d912-a6a0-11e2-b0d3-12313931d529"
+          }
+        }
+      },
+      {
+        "alert_id": 82,
+        "uuid": "f93dbb1f-a6a0-11e2-b0d3-12313931d529",
+        "name": "CSS optimization disabled",
+        "message": "<p>With CSS optimization disabled, your website visitors are experiencing slower page performance and the server load is increased.</p>",
+        "article_link": "https://docs.acquia.com/acquia-cloud/performance/#sts=CSS%20and%20JavaScript%20aggregation%C2%B6",
+        "severity": 16,
+        "severity_label": "ERROR",
+        "failed_value": "preprocess_css",
+        "fix_details": "<p>To enable CSS optimization, on your website, open the Performance page at <code>/admin/config/development/performance</code>, and then select <strong>Aggregate and compress CSS files</strong>.</p>",
+        "categories": [
+          "insight",
+          "performance"
+        ],
+        "flags": {
+          "ignored": false,
+          "cleared": true,
+          "resolved": true,
+          "pass_hide": false,
+          "free_tier_hide": true
+        },
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/insight/d97bd970-3c0f-102f-a581-1231390f9c94/alerts/f93dbb1f-a6a0-11e2-b0d3-12313931d529"
+          }
+        }
+      }
+    ]
+  }
 }

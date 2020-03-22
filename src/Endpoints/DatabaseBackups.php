@@ -2,7 +2,6 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\BackupsResponse;
 use AcquiaCloudApi\Response\BackupResponse;
 use AcquiaCloudApi\Response\OperationResponse;
@@ -10,6 +9,7 @@ use Psr\Http\Message\StreamInterface;
 
 /**
  * Class DatabaseBackups
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class DatabaseBackups extends CloudApiBase implements CloudApiInterface
@@ -18,8 +18,8 @@ class DatabaseBackups extends CloudApiBase implements CloudApiInterface
     /**
      * Backup a database.
      *
-     * @param string $environmentUuid
-     * @param string $dbName
+     * @param  string $environmentUuid
+     * @param  string $dbName
      * @return OperationResponse
      */
     public function create($environmentUuid, $dbName)
@@ -35,8 +35,8 @@ class DatabaseBackups extends CloudApiBase implements CloudApiInterface
     /**
      * Shows all database backups in an environment.
      *
-     * @param string $environmentUuid
-     * @param string $dbName
+     * @param  string $environmentUuid
+     * @param  string $dbName
      * @return BackupsResponse
      */
     public function getAll($environmentUuid, $dbName)
@@ -52,9 +52,9 @@ class DatabaseBackups extends CloudApiBase implements CloudApiInterface
     /**
      * Gets information about a database backup.
      *
-     * @param string $environmentUuid
-     * @param string $dbName
-     * @param int    $backupId
+     * @param  string $environmentUuid
+     * @param  string $dbName
+     * @param  int    $backupId
      * @return BackupResponse
      */
     public function get($environmentUuid, $dbName, $backupId)
@@ -70,9 +70,9 @@ class DatabaseBackups extends CloudApiBase implements CloudApiInterface
     /**
      * Restores a database backup to a database in an environment.
      *
-     * @param string $environmentUuid
-     * @param string $dbName
-     * @param int    $backupId
+     * @param  string $environmentUuid
+     * @param  string $dbName
+     * @param  int    $backupId
      * @return OperationResponse
      */
     public function restore($environmentUuid, $dbName, $backupId)
@@ -88,9 +88,9 @@ class DatabaseBackups extends CloudApiBase implements CloudApiInterface
     /**
      * Downloads a database backup.
      *
-     * @param string $environmentUuid
-     * @param string $dbName
-     * @param int    $backupId
+     * @param  string $environmentUuid
+     * @param  string $dbName
+     * @param  int    $backupId
      * @return StreamInterface
      */
     public function download($environmentUuid, $dbName, $backupId)

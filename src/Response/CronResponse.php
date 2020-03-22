@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class CronResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class CronResponse
@@ -24,6 +25,7 @@ class CronResponse
 
     /**
      * CronResponse constructor.
+     *
      * @param object $cron
      */
     public function __construct($cron)

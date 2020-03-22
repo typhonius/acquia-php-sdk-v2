@@ -2,11 +2,11 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\PermissionsResponse;
 
 /**
  * Class Permissions
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Permissions extends CloudApiBase implements CloudApiInterface

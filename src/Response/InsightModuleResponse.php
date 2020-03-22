@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class InsightModuleResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class InsightModuleResponse
@@ -24,6 +25,7 @@ class InsightModuleResponse
 
     /**
      * InsightModuleResponse constructor.
+     *
      * @param object $module
      */
     public function __construct($module)

@@ -2,7 +2,6 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\InsightsResponse;
 use AcquiaCloudApi\Response\InsightResponse;
 use AcquiaCloudApi\Response\InsightAlertsResponse;
@@ -12,6 +11,7 @@ use AcquiaCloudApi\Response\OperationResponse;
 
 /**
  * Class Insights
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Insights extends CloudApiBase implements CloudApiInterface
@@ -20,7 +20,7 @@ class Insights extends CloudApiBase implements CloudApiInterface
     /**
      * Returns Insight data for all sites associated with the application by its UUID.
      *
-     * @param string $applicationUuid
+     * @param  string $applicationUuid
      * @return InsightsResponse
      */
     public function getAll($applicationUuid)
@@ -36,7 +36,7 @@ class Insights extends CloudApiBase implements CloudApiInterface
     /**
      * Returns Insight data for all sites associated with the environment by its UUID.
      *
-     * @param string $environmentUuid
+     * @param  string $environmentUuid
      * @return InsightsResponse
      */
     public function getEnvironment($environmentUuid)
@@ -52,7 +52,7 @@ class Insights extends CloudApiBase implements CloudApiInterface
     /**
      * Returns insight data for a particular site.
      *
-     * @param string $siteId
+     * @param  string $siteId
      * @return InsightResponse
      */
     public function get($siteId)
@@ -68,7 +68,7 @@ class Insights extends CloudApiBase implements CloudApiInterface
     /**
      * Returns a list of Insight alerts for this site.
      *
-     * @param string $siteId
+     * @param  string $siteId
      * @return InsightAlertsResponse
      */
     public function getAllAlerts($siteId)
@@ -84,8 +84,8 @@ class Insights extends CloudApiBase implements CloudApiInterface
     /**
      * Returns a specific Insight alert for this site.
      *
-     * @param string $siteId
-     * @param string $alertUuid
+     * @param  string $siteId
+     * @param  string $alertUuid
      * @return InsightAlertResponse
      */
     public function getAlert($siteId, $alertUuid)
@@ -101,8 +101,8 @@ class Insights extends CloudApiBase implements CloudApiInterface
     /**
      * Ignores an alert. An ignored alert will be included will not be counted in the Insight score calculation.
      *
-     * @param string $siteId
-     * @param string $alertUuid
+     * @param  string $siteId
+     * @param  string $alertUuid
      * @return OperationResponse
      */
     public function ignoreAlert($siteId, $alertUuid)
@@ -118,8 +118,8 @@ class Insights extends CloudApiBase implements CloudApiInterface
     /**
      * Restores an alert. A restored alert will be included in the calculation of the Insight score.
      *
-     * @param string $siteId
-     * @param string $alertUuid
+     * @param  string $siteId
+     * @param  string $alertUuid
      * @return OperationResponse
      */
     public function restoreAlert($siteId, $alertUuid)
@@ -135,7 +135,7 @@ class Insights extends CloudApiBase implements CloudApiInterface
     /**
      * Revokes an Insight install so it can no longer submit data using the Acquia Connector module.
      *
-     * @param string $siteId
+     * @param  string $siteId
      * @return OperationResponse
      */
     public function revoke($siteId)
@@ -152,7 +152,7 @@ class Insights extends CloudApiBase implements CloudApiInterface
      * Un-revokes an Insight site so it can once again submit data using the Acquia Connector module.
      * Note that the site must also be unblocked using the Acquia Connector module.
      *
-     * @param string $siteId
+     * @param  string $siteId
      * @return OperationResponse
      */
     public function unrevoke($siteId)
@@ -168,7 +168,7 @@ class Insights extends CloudApiBase implements CloudApiInterface
     /**
      * Returns a list of Drupal modules for this site.
      *
-     * @param string $siteId
+     * @param  string $siteId
      * @return InsightModulesResponse
      */
     public function getModules($siteId)

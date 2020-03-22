@@ -2,7 +2,6 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\ApplicationResponse;
 use AcquiaCloudApi\Response\ApplicationsResponse;
 use AcquiaCloudApi\Response\TeamsResponse;
@@ -10,6 +9,7 @@ use AcquiaCloudApi\Response\OperationResponse;
 
 /**
  * Class Teams
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Teams extends CloudApiBase implements CloudApiInterface
@@ -18,8 +18,8 @@ class Teams extends CloudApiBase implements CloudApiInterface
     /**
      * Create a new team.
      *
-     * @param string $organizationUuid
-     * @param string $name
+     * @param  string $organizationUuid
+     * @param  string $name
      * @return OperationResponse
      */
     public function create($organizationUuid, $name)
@@ -50,8 +50,8 @@ class Teams extends CloudApiBase implements CloudApiInterface
     /**
      * Rename an existing team.
      *
-     * @param string $teamUuid
-     * @param string $name
+     * @param  string $teamUuid
+     * @param  string $name
      * @return OperationResponse
      */
     public function rename($teamUuid, $name)
@@ -71,7 +71,7 @@ class Teams extends CloudApiBase implements CloudApiInterface
     /**
      * Delete a team.
      *
-     * @param string $teamUuid
+     * @param  string $teamUuid
      * @return OperationResponse
      */
     public function delete($teamUuid)
@@ -84,8 +84,8 @@ class Teams extends CloudApiBase implements CloudApiInterface
     /**
      * Add an application to a team.
      *
-     * @param string $teamUuid
-     * @param string $applicationUuid
+     * @param  string $teamUuid
+     * @param  string $applicationUuid
      * @return OperationResponse
      */
     public function addApplication($teamUuid, $applicationUuid)
@@ -104,9 +104,9 @@ class Teams extends CloudApiBase implements CloudApiInterface
     /**
      * Invites a user to join a team.
      *
-     * @param string $teamUuid
-     * @param string $email
-     * @param array  $roles
+     * @param  string $teamUuid
+     * @param  string $email
+     * @param  array  $roles
      * @return OperationResponse
      */
     public function invite($teamUuid, $email, $roles)
@@ -126,7 +126,7 @@ class Teams extends CloudApiBase implements CloudApiInterface
     /**
      * Show all applications associated with a team.
      *
-     * @param string $teamUuid
+     * @param  string $teamUuid
      * @return ApplicationsResponse
      */
     public function getApplications($teamUuid)

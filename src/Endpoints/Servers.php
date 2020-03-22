@@ -2,13 +2,13 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\ServersResponse;
 use AcquiaCloudApi\Response\ServerResponse;
 
 /**
  * Class Servers
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Servers extends CloudApiBase implements CloudApiInterface
@@ -17,8 +17,8 @@ class Servers extends CloudApiBase implements CloudApiInterface
     /**
      * Gets information about a single server.
      *
-     * @param string $environmentUuid
-     * @param string $serverId
+     * @param  string $environmentUuid
+     * @param  string $serverId
      * @return ServerResponse
      */
     public function get($environmentUuid, $serverId)
@@ -34,9 +34,9 @@ class Servers extends CloudApiBase implements CloudApiInterface
     /**
      * Modifies configuration settings for a server.
      *
-     * @param string $environmentUuid
-     * @param string $serverId
-     * @param array  $config
+     * @param  string $environmentUuid
+     * @param  string $serverId
+     * @param  array  $config
      * @return OperationResponse
      */
     public function update($environmentUuid, $serverId, array $config)
@@ -54,7 +54,7 @@ class Servers extends CloudApiBase implements CloudApiInterface
     /**
      * Show all servers associated with an environment.
      *
-     * @param string $environmentUuid
+     * @param  string $environmentUuid
      * @return ServersResponse
      */
     public function getAll($environmentUuid)

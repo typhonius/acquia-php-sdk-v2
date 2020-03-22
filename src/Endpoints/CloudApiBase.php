@@ -6,12 +6,15 @@ use AcquiaCloudApi\Connector\ClientInterface;
 
 /**
  * Class CloudApiBase
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 abstract class CloudApiBase implements CloudApiInterface
 {
 
-    /** @var ClientInterface The API client. */
+    /**
+     * @var ClientInterface The API client.
+     */
     protected $client;
 
     /**

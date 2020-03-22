@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class BackupResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class BackupResponse
@@ -20,6 +21,7 @@ class BackupResponse
 
     /**
      * BackupResponse constructor.
+     *
      * @param object $backup
      */
     public function __construct($backup)

@@ -2,8 +2,11 @@
 
 namespace AcquiaCloudApi\Response;
 
+use stdClass;
+
 /**
  * Class InsightResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class InsightResponse
@@ -22,6 +25,7 @@ class InsightResponse
 
     /**
      * InsightResponse constructor.
+     *
      * @param object $insight
      */
     public function __construct($insight)
@@ -36,7 +40,7 @@ class InsightResponse
         $this->flags = $insight->flags;
         $this->links = $insight->_links;
 
-        $scores = new \stdClass();
+        $scores = new stdClass();
         foreach ($insight->counts as $name => $counts) {
             $scores->$name = new InsightCountResponse($name, $counts);
         }

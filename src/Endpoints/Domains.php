@@ -2,7 +2,6 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\DomainsResponse;
 use AcquiaCloudApi\Response\DomainResponse;
 use AcquiaCloudApi\Response\OperationResponse;
@@ -10,6 +9,7 @@ use AcquiaCloudApi\Response\MetricsResponse;
 
 /**
  * Class Domains
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Domains extends CloudApiBase implements CloudApiInterface
@@ -18,7 +18,7 @@ class Domains extends CloudApiBase implements CloudApiInterface
     /**
      * Shows all domains on an environment.
      *
-     * @param string $environmentUuid
+     * @param  string $environmentUuid
      * @return DomainsResponse
      */
     public function getAll($environmentUuid)
@@ -34,8 +34,8 @@ class Domains extends CloudApiBase implements CloudApiInterface
     /**
      * Return details about a domain.
      *
-     * @param string $environmentUuid
-     * @param string $domain
+     * @param  string $environmentUuid
+     * @param  string $domain
      * @return DomainResponse
      */
     public function get($environmentUuid, $domain)
@@ -51,8 +51,8 @@ class Domains extends CloudApiBase implements CloudApiInterface
     /**
      * Adds a domain to an environment.
      *
-     * @param string $environmentUuid
-     * @param string $hostname
+     * @param  string $environmentUuid
+     * @param  string $hostname
      * @return OperationResponse
      */
     public function create($environmentUuid, $hostname)
@@ -72,8 +72,8 @@ class Domains extends CloudApiBase implements CloudApiInterface
     /**
      * Deletes a domain from an environment.
      *
-     * @param string $environmentUuid
-     * @param string $domain
+     * @param  string $environmentUuid
+     * @param  string $domain
      * @return OperationResponse
      */
     public function delete($environmentUuid, $domain)
@@ -86,8 +86,8 @@ class Domains extends CloudApiBase implements CloudApiInterface
     /**
      * Purges varnish for selected domains in an environment.
      *
-     * @param string $environmentUuid
-     * @param array  $domains
+     * @param  string $environmentUuid
+     * @param  array  $domains
      * @return OperationResponse
      */
     public function purge($environmentUuid, array $domains)
@@ -111,8 +111,8 @@ class Domains extends CloudApiBase implements CloudApiInterface
     /**
      * Retrieves the scan data for a domain name that is part of this environment.
      *
-     * @param string $environmentUuid
-     * @param string $domain
+     * @param  string $environmentUuid
+     * @param  string $domain
      * @return MetricsResponse
      */
     public function metrics($environmentUuid, $domain)
@@ -128,8 +128,8 @@ class Domains extends CloudApiBase implements CloudApiInterface
     /**
      * Returns details about the domain.
      *
-     * @param string $environmentUuid
-     * @param string $domain
+     * @param  string $environmentUuid
+     * @param  string $domain
      * @return DomainResponse
      */
     public function status($environmentUuid, $domain)

@@ -2,7 +2,6 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\ApplicationResponse;
 use AcquiaCloudApi\Response\ApplicationsResponse;
 use AcquiaCloudApi\Response\TagResponse;
@@ -11,6 +10,7 @@ use AcquiaCloudApi\Response\OperationResponse;
 
 /**
  * Class Applications
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Applications extends CloudApiBase implements CloudApiInterface
@@ -29,7 +29,7 @@ class Applications extends CloudApiBase implements CloudApiInterface
     /**
      * Shows information about an application.
      *
-     * @param string $applicationUuid
+     * @param  string $applicationUuid
      * @return ApplicationResponse
      */
     public function get($applicationUuid)
@@ -45,8 +45,8 @@ class Applications extends CloudApiBase implements CloudApiInterface
     /**
      * Renames an application.
      *
-     * @param string $applicationUuid
-     * @param string $name
+     * @param  string $applicationUuid
+     * @param  string $name
      * @return OperationResponse
      */
     public function rename($applicationUuid, $name)
@@ -70,7 +70,7 @@ class Applications extends CloudApiBase implements CloudApiInterface
     /**
      * Returns a list of application tags associated with this application.
      *
-     * @param string $applicationUuid
+     * @param  string $applicationUuid
      * @return TagsResponse
      */
     public function getAllTags($applicationUuid)
@@ -87,9 +87,9 @@ class Applications extends CloudApiBase implements CloudApiInterface
     /**
      * Creates a new application tag.
      *
-     * @param string $applicationUuid
-     * @param string $name
-     * @param string $color
+     * @param  string $applicationUuid
+     * @param  string $name
+     * @param  string $color
      * @return OperationResponse
      */
     public function createTag($applicationUuid, $name, $color)
@@ -114,8 +114,8 @@ class Applications extends CloudApiBase implements CloudApiInterface
     /**
      * Deletes an application tag.
      *
-     * @param string $applicationUuid
-     * @param string $tagName
+     * @param  string $applicationUuid
+     * @param  string $tagName
      * @return OperationResponse
      */
     public function deleteTag($applicationUuid, $tagName)

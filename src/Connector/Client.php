@@ -9,17 +9,24 @@ use Psr\Http\Message\StreamInterface;
 
 /**
  * Class Client
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Client implements ClientInterface
 {
-    /** @var ConnectorInterface The API connector. */
+    /**
+     * @var ConnectorInterface The API connector.
+     */
     protected $connector;
 
-    /** @var array Query strings to be applied to the request. */
+    /**
+     * @var array Query strings to be applied to the request.
+     */
     protected $query = [];
 
-    /** @var array Guzzle options to be applied to the request. */
+    /**
+     * @var array Guzzle options to be applied to the request.
+     */
     protected $options = [];
 
     /**

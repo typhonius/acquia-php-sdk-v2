@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class InsightCountResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class InsightCountResponse
@@ -18,6 +19,7 @@ class InsightCountResponse
 
     /**
      * InsightCountResponse constructor.
+     *
      * @param string $name
      * @param object $insightCount
      */

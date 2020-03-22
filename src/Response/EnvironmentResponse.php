@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class EnvironmentResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class EnvironmentResponse
@@ -24,6 +25,7 @@ class EnvironmentResponse
 
     /**
      * EnvironmentResponse constructor.
+     *
      * @param object $environment
      */
     public function __construct($environment)

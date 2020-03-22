@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class RoleResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class RoleResponse
@@ -16,6 +17,7 @@ class RoleResponse
 
     /**
      * RoleResponse constructor.
+     *
      * @param object $role
      */
     public function __construct($role)

@@ -2,13 +2,13 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\EnvironmentResponse;
 use AcquiaCloudApi\Response\EnvironmentsResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
  * Class Environments
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Environments extends CloudApiBase implements CloudApiInterface
@@ -17,8 +17,8 @@ class Environments extends CloudApiBase implements CloudApiInterface
     /**
      * Copies files from an environment to another environment.
      *
-     * @param string $environmentUuidFrom
-     * @param string $environmentUuidTo
+     * @param  string $environmentUuidFrom
+     * @param  string $environmentUuidTo
      * @return OperationResponse
      */
     public function copyFiles($environmentUuidFrom, $environmentUuidTo)
@@ -37,7 +37,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
     /**
      * Gets information about an environment.
      *
-     * @param string $environmentUuid
+     * @param  string $environmentUuid
      * @return EnvironmentResponse
      */
     public function get($environmentUuid)
@@ -53,7 +53,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
     /**
      * Shows all environments in an application.
      *
-     * @param string $applicationUuid
+     * @param  string $applicationUuid
      * @return EnvironmentsResponse
      */
     public function getAll($applicationUuid)
@@ -69,8 +69,8 @@ class Environments extends CloudApiBase implements CloudApiInterface
     /**
      * Modifies configuration settings for an environment.
      *
-     * @param string $environmentUuid
-     * @param array $config
+     * @param  string $environmentUuid
+     * @param  array  $config
      * @return OperationResponse
      */
     public function update($environmentUuid, array $config)
@@ -92,8 +92,8 @@ class Environments extends CloudApiBase implements CloudApiInterface
     /**
      * Renames an environment.
      *
-     * @param string $environmentUuid
-     * @param string $label
+     * @param  string $environmentUuid
+     * @param  string $label
      * @return OperationResponse
      */
     public function rename($environmentUuid, $label)
@@ -117,7 +117,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
     /**
      * Enable livedev mode for an environment.
      *
-     * @param string $environmentUuid
+     * @param  string $environmentUuid
      * @return OperationResponse
      */
     public function enableLiveDev($environmentUuid)
@@ -130,7 +130,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
     /**
      * Disable livedev mode for an environment.
      *
-     * @param string $environmentUuid
+     * @param  string $environmentUuid
      * @return OperationResponse
      */
     public function disableLiveDev($environmentUuid)
@@ -154,7 +154,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
     /**
      * Enable production mode for an environment.
      *
-     * @param string $environmentUuid
+     * @param  string $environmentUuid
      * @return OperationResponse
      */
     public function enableProductionMode($environmentUuid)
@@ -170,7 +170,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
     /**
      * Disable production mode for an environment.
      *
-     * @param string $environmentUuid
+     * @param  string $environmentUuid
      * @return OperationResponse
      */
     public function disableProductionMode($environmentUuid)
@@ -186,10 +186,10 @@ class Environments extends CloudApiBase implements CloudApiInterface
     /**
      * Add a new continuous delivery environment to an application.
      *
-     * @param string $applicationUuid
-     * @param string $label
-     * @param string $branch
-     * @param array  $databases
+     * @param  string $applicationUuid
+     * @param  string $label
+     * @param  string $branch
+     * @param  array  $databases
      * @return OperationResponse
      */
     public function create($applicationUuid, $label, $branch, array $databases)
@@ -214,7 +214,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
     /**
      * Deletes a CD environment.
      *
-     * @param string $environmentUuid
+     * @param  string $environmentUuid
      * @return OperationResponse
      */
     public function delete($environmentUuid)

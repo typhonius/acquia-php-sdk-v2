@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class TagResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class TagResponse
@@ -16,6 +17,7 @@ class TagResponse
 
     /**
      * TagResponse constructor.
+     *
      * @param object $tag
      */
     public function __construct($tag)

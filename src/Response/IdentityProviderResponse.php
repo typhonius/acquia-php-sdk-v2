@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class IdentityProviderResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class IdentityProviderResponse
@@ -20,6 +21,7 @@ class IdentityProviderResponse
 
     /**
      * IdentityProviderResponse constructor.
+     *
      * @param object $idp
      */
     public function __construct($idp)

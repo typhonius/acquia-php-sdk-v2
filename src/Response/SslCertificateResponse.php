@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class CertificateResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class SslCertificateResponse
@@ -22,6 +23,7 @@ class SslCertificateResponse
 
     /**
      * CertificateResponse constructor.
+     *
      * @param object $certificate
      */
     public function __construct($certificate)

@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class TeamResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class TeamResponse
@@ -17,6 +18,7 @@ class TeamResponse
 
     /**
      * TeamResponse constructor.
+     *
      * @param object $team
      */
     public function __construct($team)

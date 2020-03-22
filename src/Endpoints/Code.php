@@ -2,12 +2,12 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\BranchesResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
  * Class Code
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Code extends CloudApiBase implements CloudApiInterface
@@ -16,7 +16,7 @@ class Code extends CloudApiBase implements CloudApiInterface
     /**
      * Shows all code branches and tags in an application.
      *
-     * @param string $applicationUuid
+     * @param  string $applicationUuid
      * @return BranchesResponse
      */
     public function getAll($applicationUuid)
@@ -32,8 +32,8 @@ class Code extends CloudApiBase implements CloudApiInterface
     /**
      * Deploys a code branch/tag to an environment.
      *
-     * @param string $environmentUuid
-     * @param string $branch
+     * @param  string $environmentUuid
+     * @param  string $branch
      * @return OperationResponse
      */
     public function switch($environmentUuid, $branch)

@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class InsightAlertResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class InsightAlertResponse
@@ -24,6 +25,7 @@ class InsightAlertResponse
 
     /**
      * InsightAlertResponse constructor.
+     *
      * @param object $alert
      */
     public function __construct($alert)

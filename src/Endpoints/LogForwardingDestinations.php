@@ -2,13 +2,13 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\LogForwardingDestinationsResponse;
 use AcquiaCloudApi\Response\LogForwardingDestinationResponse;
 
 /**
  * Class LogForwardingDestinations
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class LogForwardingDestinations extends CloudApiBase implements CloudApiInterface
@@ -17,7 +17,7 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
     /**
      * Returns a list of log forwarding destinations.
      *
-     * @param string $environmentUuid The environment ID
+     * @param  string $environmentUuid The environment ID
      * @return LogForwardingDestinationsResponse
      */
     public function getAll($environmentUuid)
@@ -33,8 +33,8 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
     /**
      * Returns a specific log forwarding destination.
      *
-     * @param string $environmentUuid The environment ID
-     * @param int    $destinationId
+     * @param  string $environmentUuid The environment ID
+     * @param  int    $destinationId
      * @return LogForwardingDestinationResponse
      */
     public function get($environmentUuid, $destinationId)
@@ -50,12 +50,12 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
     /**
      * Creates a log forwarding destination.
      *
-     * @param string $environmentUuid
-     * @param string $label
-     * @param array  $sources
-     * @param string $consumer
-     * @param array  $credentials
-     * @param string $address
+     * @param  string $environmentUuid
+     * @param  string $label
+     * @param  array  $sources
+     * @param  string $consumer
+     * @param  array  $credentials
+     * @param  string $address
      * @return OperationResponse
      */
     public function create($environmentUuid, $label, $sources, $consumer, $credentials, $address)
@@ -79,8 +79,8 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
     /**
      * Delete a specific log forwarding destination.
      *
-     * @param string $environmentUuid
-     * @param int    $destId
+     * @param  string $environmentUuid
+     * @param  int    $destId
      * @return OperationResponse
      */
     public function delete($environmentUuid, $destId)
@@ -93,8 +93,8 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
     /**
      * Disables a log forwarding destination.
      *
-     * @param string $environmentUuid
-     * @param int    $destId
+     * @param  string $environmentUuid
+     * @param  int    $destId
      * @return OperationResponse
      */
     public function disable($environmentUuid, $destId)
@@ -110,8 +110,8 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
     /**
      * Enables a log forwarding destination.
      *
-     * @param string $environmentUuid
-     * @param int    $destId
+     * @param  string $environmentUuid
+     * @param  int    $destId
      * @return OperationResponse
      */
     public function enable($environmentUuid, $destId)
@@ -127,13 +127,13 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
     /**
      * Updates a log forwarding destination.
      *
-     * @param string $environmentUuid
-     * @param int    $destId
-     * @param string $label
-     * @param array  $sources
-     * @param string $consumer
-     * @param array  $creds
-     * @param string $address
+     * @param  string $environmentUuid
+     * @param  int    $destId
+     * @param  string $label
+     * @param  array  $sources
+     * @param  string $consumer
+     * @param  array  $creds
+     * @param  string $address
      * @return OperationResponse
      */
     public function update($environmentUuid, $destId, $label, $sources, $consumer, $creds, $address)

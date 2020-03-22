@@ -2,7 +2,6 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\ApplicationsResponse;
 use AcquiaCloudApi\Response\InvitationsResponse;
 use AcquiaCloudApi\Response\MembersResponse;
@@ -13,6 +12,7 @@ use AcquiaCloudApi\Response\OperationResponse;
 
 /**
  * Class Organizations
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Organizations extends CloudApiBase implements CloudApiInterface
@@ -45,7 +45,7 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     /**
      * Show all members of an organisation.
      *
-     * @param string $organizationUuid
+     * @param  string $organizationUuid
      * @return MembersResponse
      */
     public function getMembers($organizationUuid)
@@ -58,8 +58,8 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     /**
      * Returns the user profile of this organization member.
      *
-     * @param string $organizationUuid
-     * @param string $memberUuid
+     * @param  string $organizationUuid
+     * @param  string $memberUuid
      * @return MemberResponse
      */
     public function getMember($organizationUuid, $memberUuid)
@@ -72,7 +72,7 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     /**
      * Show all admins of an organisation.
      *
-     * @param string $organizationUuid
+     * @param  string $organizationUuid
      * @return MembersResponse
      */
     public function getAdmins($organizationUuid)
@@ -85,8 +85,8 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     /**
      * Returns the user profile of this organization administrator.
      *
-     * @param string $organizationUuid
-     * @param string $memberUuid
+     * @param  string $organizationUuid
+     * @param  string $memberUuid
      * @return MemberResponse
      */
     public function getAdmin($organizationUuid, $memberUuid)
@@ -99,7 +99,7 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     /**
      * Show all members invited to an organisation.
      *
-     * @param string $organizationUuid
+     * @param  string $organizationUuid
      * @return InvitationsResponse
      */
     public function getMemberInvitations($organizationUuid)
@@ -112,8 +112,8 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     /**
      * Delete a member from an organisation.
      *
-     * @param string $organizationUuid
-     * @param string $memberUuid
+     * @param  string $organizationUuid
+     * @param  string $memberUuid
      * @return OperationResponse
      */
     public function deleteMember($organizationUuid, $memberUuid)
@@ -129,7 +129,7 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     /**
      * Show all teams in an organization.
      *
-     * @param string $organizationUuid
+     * @param  string $organizationUuid
      * @return TeamsResponse
      */
     public function getTeams($organizationUuid)
@@ -142,8 +142,8 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     /**
      * Invites a user to become admin of an organization.
      *
-     * @param string $organizationUuid
-     * @param string $email
+     * @param  string $organizationUuid
+     * @param  string $email
      * @return OperationResponse
      */
     public function inviteAdmin($organizationUuid, $email)

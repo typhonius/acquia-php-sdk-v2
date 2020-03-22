@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 /**
  * Class PermissionResponse
+ *
  * @package AcquiaCloudApi\Response
  */
 class PermissionResponse
@@ -15,6 +16,7 @@ class PermissionResponse
 
     /**
      * PermissionResponse constructor.
+     *
      * @param object $permission
      */
     public function __construct($permission)

@@ -2,13 +2,13 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\SslCertificatesResponse;
 use AcquiaCloudApi\Response\SslCertificateResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
  * Class SslCertificates
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class SslCertificates extends CloudApiBase implements CloudApiInterface
@@ -17,7 +17,7 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
     /**
      * Returns a list of SSL certificates.
      *
-     * @param string $environmentUuid The environment ID
+     * @param  string $environmentUuid The environment ID
      * @return SslCertificatesResponse
      */
     public function getAll($environmentUuid)
@@ -33,8 +33,8 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
     /**
      * Returns a specific certificate by certificate ID.
      *
-     * @param string $environmentUuid The environment ID
-     * @param int    $certificateId
+     * @param  string $environmentUuid The environment ID
+     * @param  int    $certificateId
      * @return SslCertificateResponse
      */
     public function get($environmentUuid, $certificateId)
@@ -50,13 +50,13 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
     /**
      * Install an SSL certificate.
      *
-     * @param string $envUuid
-     * @param string $label
-     * @param string $cert
-     * @param string $key
-     * @param string $ca
-     * @param int    $csr
-     * @param bool   $legacy
+     * @param  string $envUuid
+     * @param  string $label
+     * @param  string $cert
+     * @param  string $key
+     * @param  string $ca
+     * @param  int    $csr
+     * @param  bool   $legacy
      * @return OperationResponse
      */
     public function create($envUuid, $label, $cert, $key, $ca = null, $csr = null, $legacy = false)
@@ -81,8 +81,8 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
     /**
      * Delete a specific certificate by ID.
      *
-     * @param string $environmentUuid
-     * @param int    $certificateId
+     * @param  string $environmentUuid
+     * @param  int    $certificateId
      * @return OperationResponse
      */
     public function delete($environmentUuid, $certificateId)
@@ -95,8 +95,8 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
     /**
      * Deactivates an active SSL certificate.
      *
-     * @param string $environmentUuid
-     * @param int    $certificateId
+     * @param  string $environmentUuid
+     * @param  int    $certificateId
      * @return OperationResponse
      */
     public function disable($environmentUuid, $certificateId)
@@ -112,8 +112,8 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
     /**
      * Activates an SSL certificate.
      *
-     * @param string $environmentUuid
-     * @param int    $certificateId
+     * @param  string $environmentUuid
+     * @param  int    $certificateId
      * @return OperationResponse
      */
     public function enable($environmentUuid, $certificateId)

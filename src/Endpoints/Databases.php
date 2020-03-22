@@ -2,12 +2,12 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Response\DatabasesResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
  * Class Databases
+ *
  * @package AcquiaCloudApi\CloudApi
  */
 class Databases extends CloudApiBase implements CloudApiInterface
@@ -16,7 +16,7 @@ class Databases extends CloudApiBase implements CloudApiInterface
     /**
      * Shows all databases in an application.
      *
-     * @param string $applicationUuid
+     * @param  string $applicationUuid
      * @return DatabasesResponse
      */
     public function getAll($applicationUuid)
@@ -32,8 +32,8 @@ class Databases extends CloudApiBase implements CloudApiInterface
     /**
      * Create a new database.
      *
-     * @param string $applicationUuid
-     * @param string $name
+     * @param  string $applicationUuid
+     * @param  string $name
      * @return OperationResponse
      */
     public function create($applicationUuid, $name)
@@ -52,8 +52,8 @@ class Databases extends CloudApiBase implements CloudApiInterface
     /**
      * Delete a database.
      *
-     * @param string $applicationUuid
-     * @param string $name
+     * @param  string $applicationUuid
+     * @param  string $name
      * @return OperationResponse
      */
     public function delete($applicationUuid, $name)
@@ -69,8 +69,8 @@ class Databases extends CloudApiBase implements CloudApiInterface
      * This action will delete all tables of the database in ALL environments
      * within this application.
      *
-     * @param string $applicationUuid
-     * @param string $name
+     * @param  string $applicationUuid
+     * @param  string $name
      * @return OperationResponse
      */
     public function truncate($applicationUuid, $name)
@@ -86,9 +86,9 @@ class Databases extends CloudApiBase implements CloudApiInterface
     /**
      * Copies a database from an environment to an environment.
      *
-     * @param string $environmentFromUuid
-     * @param string $dbName
-     * @param string $environmentToUuid
+     * @param  string $environmentFromUuid
+     * @param  string $dbName
+     * @param  string $environmentToUuid
      * @return OperationResponse
      */
     public function copy($environmentFromUuid, $dbName, $environmentToUuid)

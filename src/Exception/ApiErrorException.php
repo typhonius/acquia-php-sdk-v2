@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Exception;
 
-use \Exception;
+use Exception;
 
 /**
  * Represents an error returned from the API.

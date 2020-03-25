@@ -18,12 +18,12 @@ class Connector implements ConnectorInterface
     /**
      * @var string BASE_URI
      */
-    const BASE_URI = 'https://cloud.acquia.com/api';
+    public const BASE_URI = 'https://cloud.acquia.com/api';
 
     /**
      * @var string URL_ACCESS_TOKEN
      */
-    const URL_ACCESS_TOKEN = 'https://accounts.acquia.com/api/auth/oauth/token';
+    public const URL_ACCESS_TOKEN = 'https://accounts.acquia.com/api/auth/oauth/token';
 
     /**
      * @var GenericProvider The OAuth 2.0 provider to use in communication.

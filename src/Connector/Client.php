@@ -74,24 +74,10 @@ class Client implements ClientInterface
             $request = $this->connector->createRequest($verb, $path);
             $response = $this->connector->sendRequest($request, $options);
         } catch (BadResponseException $e) {
-            $response = $e->getResponse();
+            return $e->getResponse();
         }
         return $this->processResponse($response);
     }
-
-    // /**
-    //  * @inheritdoc
-    //  */
-    // public function makeRequest(string $verb, string $path, array $options = [])
-    // {
-    //     try {
-    //         $response = $this->connector->sendRequest($verb, $path, $options);
-    //     } catch (BadResponseException $e) {
-    //         $response = $e->getResponse();
-    //     }
-
-    //     return $response;
-    // }
 
     /**
      * @inheritdoc

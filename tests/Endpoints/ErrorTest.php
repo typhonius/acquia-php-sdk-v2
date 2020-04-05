@@ -56,26 +56,26 @@ EOM;
         $application->getAll();
     }
 
-    // public function testErrorException()
-    // {
+    public function testErrorException()
+    {
 
-    //     $request = new Request('GET', '/test');
-    //     $response = new Response(500);
-    //     $exception = new BadResponseException('Internal Server Error', $request, $response);
+        $request = new Request('GET', '/test');
+        $response = new Response(500);
+        $exception = new BadResponseException('Internal Server Error', $request, $response);
 
-    //     $connector = $this
-    //         ->getMockBuilder('AcquiaCloudApi\Connector\Connector')
-    //         ->disableOriginalConstructor()
-    //         ->setMethods(['sendRequest'])
-    //         ->getMock();
+        $connector = $this
+            ->getMockBuilder('AcquiaCloudApi\Connector\Connector')
+            ->disableOriginalConstructor()
+            ->setMethods(['sendRequest', 'createRequest'])
+            ->getMock();
         
-    //     $connector->method('sendRequest')->willThrowException($exception);
-    //     $client = Client::factory($connector);
-    //     $response = $client->makeRequest('GET', '/test');
+        $connector->method('sendRequest')->willThrowException($exception);
+        $client = Client::factory($connector);
+        $response = $client->request('GET', '/test');
 
-    //     $this->assertEquals($response->getStatusCode(), 500);
-    //     $this->assertEquals($response->getReasonPhrase(), 'Internal Server Error');
-    // }
+        $this->assertEquals($response->getStatusCode(), 500);
+        $this->assertEquals($response->getReasonPhrase(), 'Internal Server Error');
+    }
 
     public function testApiErrorException()
     {

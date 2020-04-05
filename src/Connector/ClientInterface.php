@@ -26,14 +26,6 @@ interface ClientInterface
     public function request(string $verb, string $path, array $options = []);
 
     /**
-     * @param  string $verb
-     * @param  string $path
-     * @param  array  $options
-     * @return ResponseInterface
-     */
-    public function makeRequest(string $verb, string $path, array $options = []);
-
-    /**
      * Processes the returned response from the API.
      *
      * @param  ResponseInterface $response

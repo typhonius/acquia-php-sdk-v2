@@ -70,9 +70,8 @@ class Connector implements ConnectorInterface
     /**
      * @inheritdoc
      */
-    public function sendRequest($verb, $path, $options)
+    public function sendRequest($request, $options)
     {
-        $request = $this->createRequest($verb, $path);
         $client = new GuzzleClient();
         return $client->send($request, $options);
     }

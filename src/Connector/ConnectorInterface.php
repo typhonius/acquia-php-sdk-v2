@@ -36,11 +36,10 @@ interface ConnectorInterface
     /**
      * Sends the request to the API using Guzzle.
      *
-     * @param string $verb
-     * @param string $path
-     * @param array  $options
+     * @param RequestInterface $request
+     * @param array            $options
      *
      * @return ResponseInterface
      */
-    public function sendRequest($verb, $path, $options);
+    public function sendRequest($request, $options);
 }

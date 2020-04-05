@@ -70,24 +70,28 @@ class Client implements ClientInterface
             // Default to an AND filter.
             $options['query']['filter'] = implode(',', $options['query']['filter']);
         }
-        $response = $this->makeRequest($verb, $path, $options);
-
-        return $this->processResponse($response);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function makeRequest(string $verb, string $path, array $options = [])
-    {
         try {
-            $response = $this->connector->sendRequest($verb, $path, $options);
+            $request = $this->connector->createRequest($verb, $path);
+            $response = $this->connector->sendRequest($request, $options);
         } catch (BadResponseException $e) {
             $response = $e->getResponse();
         }
-
-        return $response;
+        return $this->processResponse($response);
     }
+
+    // /**
+    //  * @inheritdoc
+    //  */
+    // public function makeRequest(string $verb, string $path, array $options = [])
+    // {
+    //     try {
+    //         $response = $this->connector->sendRequest($verb, $path, $options);
+    //     } catch (BadResponseException $e) {
+    //         $response = $e->getResponse();
+    //     }
+
+    //     return $response;
+    // }
 
     /**
      * @inheritdoc

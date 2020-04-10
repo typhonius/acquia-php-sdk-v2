@@ -50,15 +50,15 @@ class Ides extends CloudApiBase implements CloudApiInterface
      * Creates a new remote IDE.
      *
      * @param  string $applicationUuid
-     * @param  string $name
+     * @param  string $label
      * @return OperationResponse
      */
-    public function create($applicationUuid, $name)
+    public function create($applicationUuid, $label)
     {
 
         $options = [
             'form_params' => [
-                'name' => $name,
+                'label' => $label,
             ],
         ];
 

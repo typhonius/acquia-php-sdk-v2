@@ -34,10 +34,20 @@
         }
     },
     "scripts": {
-        "lint": "php -l ./src/",
-        "sniff": "./vendor/bin/phpcs -s --standard=PSR12 ./src/ ./tests/",
-        "test": "./vendor/bin/phpunit --coverage-clover ./tests/logs/clover.xml",
-        "stan": "./vendor/bin/phpstan analyse --level 5 src tests",
+        "lint": [
+            "find src -name '*.php' -print0 | xargs -0 -n1 php -l",
+            "find tests -name '*.php' -print0 | xargs -0 -n1 php -l"
+        ],
+        "cs": "phpcs --standard=PSR12 -n src tests",
+        "cbf": "phpcbf --standard=PSR2 -n src tests",
+        "unit": "phpunit --colors=always  --coverage-clover ./tests/logs/clover.xml",
+        "stan": "phpstan analyse --level 5 src tests",
+        "test": [
+            "@lint",
+            "@unit",
+            "@cs",
+            "@stan"
+        ],
         "coveralls": "php ./vendor/bin/php-coveralls -v"
     }
 }

@@ -101,4 +101,18 @@ class DatabaseBackupsTest extends CloudApiTestCase
         $this->assertNotInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('GuzzleHttp\Psr7\Stream', $result);
     }
+
+    public function testDeleteDatabaseBackup()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/DatabaseBackups/deleteDatabaseBackup.json');
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $databaseBackup = new DatabaseBackups($client);
+        $result = $databaseBackup->delete('185f07c7-9c4f-407b-8968-67892ebcb38a', 'db_name', 1234);
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+
+        $this->assertEquals('Deleting the database backup.', $result->message);
+    }
 }

@@ -100,4 +100,22 @@ class DatabaseBackups extends CloudApiBase implements CloudApiInterface
             "/environments/${environmentUuid}/databases/${dbName}/backups/${backupId}/actions/download"
         );
     }
+
+    /**
+     * Deletes a database backup.
+     *
+     * @param  string $environmentUuid
+     * @param  string $dbName
+     * @param  int    $backupId
+     * @return OperationResponse
+     */
+    public function delete($environmentUuid, $dbName, $backupId)
+    {
+        return new OperationResponse(
+            $this->client->request(
+                'delete',
+                "/environments/${environmentUuid}/databases/${dbName}/backups/${backupId}"
+            )
+        );
+    }
 }

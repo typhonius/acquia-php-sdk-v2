@@ -1,0 +1,14 @@
+{
+  "message": "Deleting the database backup.",
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/environments/12-d314739e-296f-11e9-b210-d663bd873d93/databases/my_db/backups/1"
+    },
+    "notification": {
+      "href": "https://cloud.acquia.com/api/notifications/42b56cff-0b55-4bdf-a949-1fd0fca61c6c"
+    },
+    "parent": {
+      "href": "https://cloud.acquia.com/api/environments/12-d314739e-296f-11e9-b210-d663bd873d93/databases/my_db/backups"
+    }
+  }
+}

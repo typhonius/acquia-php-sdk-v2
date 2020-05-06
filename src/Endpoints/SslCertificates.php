@@ -104,7 +104,7 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/environments/${environmentUuid}/ssl/certificate/${certificateId}/actions/deactivate"
+                "/environments/${environmentUuid}/ssl/certificates/${certificateId}/actions/deactivate"
             )
         );
     }
@@ -121,7 +121,7 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/environments/${environmentUuid}/ssl/certificate/${certificateId}/actions/activate"
+                "/environments/${environmentUuid}/ssl/certificates/${certificateId}/actions/activate"
             )
         );
     }

@@ -90,7 +90,7 @@ class Connector implements ConnectorInterface
      */
     public function makeRequest(string $verb, string $path, array $query = [], array $options = [])
     {
-        if (! isset($this->accessToken)) {
+        if (! isset($this->accessToken) || $this->accessToken->hasExpired()) {
             $this->accessToken = $this->provider->getAccessToken('client_credentials');
         }
 

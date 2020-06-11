@@ -114,4 +114,31 @@ class ClientTest extends CloudApiTestCase
 
         $this->assertEquals($expectedOptions, $actualOptions);
     }
+
+    public function testVersion()
+    {
+        $versionFile = sprintf('%s/VERSION', dirname(dirname(__DIR__)));
+        $version = trim(file_get_contents($versionFile));
+
+        $client = $this->getMockClient();
+        $actualValue = $client->getVersion();
+
+        $this->assertEquals($version, $actualValue);
+    }
+
+    public function testMissingVersion()
+    {
+        $versionFile = sprintf('%s/VERSION', dirname(dirname(__DIR__)));
+        $versionFileBak = sprintf('%s.bak', $versionFile);
+        rename($versionFile, $versionFileBak);
+
+        try {
+            $client = $this->getMockClient();
+            $version = $client->getVersion();
+        } catch (\Exception $e) {
+            $this->assertEquals('Exception', get_class($e));
+            $this->assertEquals('No VERSION file', $e->getMessage());
+        }
+        rename($versionFileBak, $versionFile);
+    }
 }

@@ -86,7 +86,6 @@ class Client implements ClientInterface
 
         // Combine options set globally e.g. headers with options set by individual API calls e.g. form_params.
         $options = $this->options + $options;
-        $options['query'] = $this->query;
 
         // This library can be standalone or as a dependency. Dependent libraries may also set their own user agent
         // which will make $options['headers']['User-Agent'] an array.
@@ -96,6 +95,7 @@ class Client implements ClientInterface
             $options['headers']['User-Agent'] = implode(' ', array_reverse($options['headers']['User-Agent']));
         }
 
+        $options['query'] = $this->query;
         if (!empty($options['query']['filter']) && is_array($options['query']['filter'])) {
             // Default to an AND filter.
             $options['query']['filter'] = implode(',', $options['query']['filter']);

@@ -48,6 +48,9 @@
             "@cs",
             "@stan"
         ],
+        "release": [
+            "release VERSION"
+        ],
         "coveralls": "php ./vendor/bin/php-coveralls -v"
     }
 }

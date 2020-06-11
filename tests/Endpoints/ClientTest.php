@@ -75,4 +75,43 @@ class ClientTest extends CloudApiTestCase
         $client->clearOptions();
         $this->assertTrue(empty($client->getOptions()));
     }
+
+    public function testModifyOptions()
+    {
+        $client = $this->getMockClient();
+
+        // Set a number of options and queries as a dependent library would.
+        $client->addOption('headers', ['User-Agent' => 'AcquiaCli/4.20']);
+        $client->addQuery('filter', 'name=@*2014*');
+        $client->addQuery('filter', 'type=@*true*');
+        $client->addQuery('limit', '1');
+
+        // Set options as an endpoint call would.
+        $options = [
+            'form_params' => [
+                'source' => 'source',
+                'message' => 'message',
+            ],
+        ];
+
+        // Modify the request to ensure that all of the above get merged correctly.
+        $actualOptions = $client->modifyOptions($options);
+
+        $version = $client->getVersion();
+        $expectedOptions = [
+            'headers' => [
+                'User-Agent' => sprintf('acquia-php-sdk-v2/%s (https://github.com/typhonius/acquia-php-sdk-v2) AcquiaCli/4.20', $version)
+            ],
+            'form_params' => [
+                'source' => 'source',
+                'message' => 'message'
+            ],
+            'query' => [
+                'filter' => 'name=@*2014*,type=@*true*',
+                'limit' => '1'
+            ]
+        ];
+
+        $this->assertEquals($expectedOptions, $actualOptions);
+    }
 }

@@ -71,13 +71,11 @@ class Client implements ClientInterface
     }
 
     /**
-     * @inheritdoc
+     * Allows the library to modify the request prior to making the call to the API.
      */
-    public function request(string $verb, string $path, array $options = [])
+    public function modifyOptions($options = []): array
     {
-        // @TODO follow this up by removing $options from the parameters able
-        // to be passed into this function and instead solely relying on the
-        // addOption() method as this can then be tested.
+        // Add the user agent header here so it can't be removed by other libraries.
         $this->addOption('headers', [
             'User-Agent' => sprintf(
                 "%s/%s (https://github.com/typhonius/acquia-php-sdk-v2)",
@@ -102,6 +100,20 @@ class Client implements ClientInterface
             // Default to an AND filter.
             $options['query']['filter'] = implode(',', $options['query']['filter']);
         }
+
+        return $options;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function request(string $verb, string $path, array $options = [])
+    {
+        // @TODO follow this up by removing $options from the parameters able
+        // to be passed into this function and instead solely relying on the
+        // addOption() method as this can then be tested.
+        $options = $this->modifyOptions($options);
+
         $response = $this->makeRequest($verb, $path, $options);
 
         return $this->processResponse($response);
@@ -110,7 +122,7 @@ class Client implements ClientInterface
     /**
      * @inheritdoc
      */
-    public function makeRequest(string $verb, string $path, array $options = [])
+    public function makeRequest(string $verb, string $path, array $options = []): ResponseInterface
     {
         try {
             $response = $this->connector->sendRequest($verb, $path, $options);
@@ -148,7 +160,7 @@ class Client implements ClientInterface
     /**
      * @inheritdoc
      */
-    public function getQuery()
+    public function getQuery(): array
     {
         return $this->query;
     }
@@ -156,7 +168,7 @@ class Client implements ClientInterface
     /**
      * @inheritdoc
      */
-    public function clearQuery()
+    public function clearQuery(): void
     {
         $this->query = [];
     }
@@ -164,7 +176,7 @@ class Client implements ClientInterface
     /**
      * @inheritdoc
      */
-    public function addQuery($name, $value)
+    public function addQuery($name, $value): void
     {
         $this->query = array_merge_recursive($this->query, [$name => $value]);
     }
@@ -172,7 +184,7 @@ class Client implements ClientInterface
     /**
      * @inheritdoc
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return $this->options;
     }
@@ -180,7 +192,7 @@ class Client implements ClientInterface
     /**
      * @inheritdoc
      */
-    public function clearOptions()
+    public function clearOptions(): void
     {
         $this->options = [];
     }
@@ -188,7 +200,7 @@ class Client implements ClientInterface
     /**
      * @inheritdoc
      */
-    public function addOption($name, $value)
+    public function addOption($name, $value): void
     {
         $this->options = array_merge_recursive($this->options, [$name => $value]);
     }

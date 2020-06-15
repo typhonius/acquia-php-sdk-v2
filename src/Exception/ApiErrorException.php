@@ -13,7 +13,7 @@ class ApiErrorException extends Exception
   /**
    * @var object
    */
-    private $response_body;
+    private $responseBody;
 
     /**
      * ApiErrorException Constructor.
@@ -62,13 +62,13 @@ class ApiErrorException extends Exception
    * @return object
    */
   public function getResponseBody() {
-    return $this->response_body;
+    return $this->responseBody;
   }
 
   /**
    * @param object $response_body
    */
   private function setResponseBody($response_body) {
-    $this->response_body = $response_body;
+    $this->responseBody = $response_body;
   }
 }

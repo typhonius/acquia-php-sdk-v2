@@ -9,19 +9,26 @@ use Exception;
  */
 class ApiErrorException extends Exception
 {
+
+  /**
+   * @var object
+   */
+    private $response_body;
+
     /**
      * ApiErrorException Constructor.
      *
-     * @param object    $object
+     * @param object    $response_body
      * @param string    $message
      * @param int       $code
      * @param Exception $previous
      */
-    public function __construct($object, $message = "", $code = 0, Exception $previous = null)
+    public function __construct($response_body, $message = "", $code = 0, Exception $previous = null)
     {
         parent::__construct($message, $code, $previous);
 
-        $this->setError($object);
+        $this->setResponseBody($response_body);
+        $this->setError($response_body);
     }
 
     /**
@@ -33,21 +40,35 @@ class ApiErrorException extends Exception
     }
 
     /**
-     * Sets the error.
+     * Sets message and code properties.
      *
-     * @param object $object
+     * @param object $response_body
      */
-    public function setError($object)
+    public function setError($response_body)
     {
-        if (is_array($object->message) || is_object($object->message)) {
+        if (is_array($response_body->message) || is_object($response_body->message)) {
             $output = '';
-            foreach ($object->message as $message) {
+            foreach ($response_body->message as $message) {
                 $output .= $message . PHP_EOL;
             }
             $this->message = $output;
         } else {
-            $this->code = $object->error;
-            $this->message = $object->message;
+            $this->code = $response_body->error;
+            $this->message = $response_body->message;
         }
     }
+
+  /**
+   * @return object
+   */
+  public function getResponseBody() {
+    return $this->response_body;
+  }
+
+  /**
+   * @param object $response_body
+   */
+  private function setResponseBody($response_body) {
+    $this->response_body = $response_body;
+  }
 }

@@ -139,22 +139,21 @@ class Client implements ClientInterface
     public function processResponse(ResponseInterface $response)
     {
 
-        $body = $response->getBody();
-
-        $object = json_decode($body);
+        $body_json = $response->getBody();
+        $body = json_decode($body_json);
         if (json_last_error() !== JSON_ERROR_NONE) {
-            return $body;
+            return $body_json;
         }
 
-        if (property_exists($object, '_embedded') && property_exists($object->_embedded, 'items')) {
-            return $object->_embedded->items;
+        if (property_exists($body, '_embedded') && property_exists($body->_embedded, 'items')) {
+            return $body->_embedded->items;
         }
 
-        if (property_exists($object, 'error') && property_exists($object, 'message')) {
-            throw new ApiErrorException($object);
+        if (property_exists($body, 'error') && property_exists($body, 'message')) {
+            throw new ApiErrorException($body);
         }
 
-        return $object;
+        return $body;
     }
 
     /**

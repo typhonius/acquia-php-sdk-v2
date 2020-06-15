@@ -88,6 +88,6 @@ EOM;
 AcquiaCloudApi\Exception\ApiErrorException: [forbidden]: You do not have permission to view applications.\n
 EOM;
         $this->assertEquals($exception->__toString(), $errorMessage);
-        $this->assertEquals( $object, $exception->getResponseBody());
+        $this->assertEquals($object, $exception->getResponseBody());
     }
 }

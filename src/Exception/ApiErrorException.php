@@ -61,14 +61,16 @@ class ApiErrorException extends Exception
   /**
    * @return object
    */
-  public function getResponseBody() {
-    return $this->responseBody;
-  }
+    public function getResponseBody()
+    {
+        return $this->responseBody;
+    }
 
   /**
    * @param object $response_body
    */
-  private function setResponseBody($response_body) {
-    $this->responseBody = $response_body;
-  }
+    private function setResponseBody($response_body)
+    {
+        $this->responseBody = $response_body;
+    }
 }

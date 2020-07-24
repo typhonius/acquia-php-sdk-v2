@@ -11,7 +11,8 @@ class IdesTest extends CloudApiTestCase
     public $properties = [
     'uuid',
     'label',
-    'links'
+    'links',
+    'owner',
     ];
 
     public function testGetAllIdes()

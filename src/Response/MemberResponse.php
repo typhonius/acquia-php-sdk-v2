@@ -30,10 +30,9 @@ class MemberResponse
         $this->last_name = $member->last_name;
 
         if (property_exists($member, 'mail')) {
-          $this->mail = $member->mail;
-        }
-        elseif (property_exists($member, 'email')) {
-          $this->mail = $member->email;
+            $this->mail = $member->mail;
+        } elseif (property_exists($member, 'email')) {
+            $this->mail = $member->email;
         }
         $this->picture_url = $member->picture_url;
         $this->username = $member->username;

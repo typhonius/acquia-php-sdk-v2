@@ -24,6 +24,6 @@ class IdeResponse
         $this->uuid = $ide->uuid;
         $this->label = $ide->label;
         $this->links = $ide->_links;
-        $this->owner = $ide->_embedded->owner;
+        $this->owner = new MemberResponse($ide->_embedded->owner);
     }
 }

@@ -16,18 +16,18 @@
       },
       "ide": {
         "href": "https://215824ff-272a-4a8c-9027-df32ed1d68a9.ides.acquia.com"
-      },
-      "_embedded": {
-        "owner": {
-          "uuid": "10be1d3e-f2b4-4d34-855d-321df3938ffd",
-          "first_name": "First",
-          "last_name": "Last",
-          "last_login_at": "2019-01-31T10:53:11-05:00",
-          "created_at": "2016-08-14T17:38:59-04:00",
-          "email": "user.name@example.com",
-          "picture_url": "https://accounts.acquia.com/path/to/image.png",
-          "username": "user.name"
-        }
+      }
+    },
+    "_embedded": {
+      "owner": {
+        "uuid": "10be1d3e-f2b4-4d34-855d-321df3938ffd",
+        "first_name": "First",
+        "last_name": "Last",
+        "last_login_at": "2019-01-31T10:53:11-05:00",
+        "created_at": "2016-08-14T17:38:59-04:00",
+        "email": "user.name@example.com",
+        "picture_url": "https://accounts.acquia.com/path/to/image.png",
+        "username": "user.name"
       }
     }
 }

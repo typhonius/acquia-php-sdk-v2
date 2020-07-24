@@ -28,7 +28,12 @@ class MemberResponse
         $this->uuid = $member->uuid;
         $this->first_name = $member->first_name;
         $this->last_name = $member->last_name;
-        $this->mail = $member->mail;
+
+        if (property_exists($member, 'mail')) {
+            $this->mail = $member->mail;
+        } elseif (property_exists($member, 'email')) {
+            $this->mail = $member->email;
+        }
         $this->picture_url = $member->picture_url;
         $this->username = $member->username;
 

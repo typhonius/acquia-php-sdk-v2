@@ -12,6 +12,7 @@ class IdeResponse
     public $uuid;
     public $label;
     public $links;
+    public $owner;
 
     /**
      * IdeResponse constructor.
@@ -23,5 +24,6 @@ class IdeResponse
         $this->uuid = $ide->uuid;
         $this->label = $ide->label;
         $this->links = $ide->_links;
+        $this->owner = new MemberResponse($ide->_embedded->owner);
     }
 }

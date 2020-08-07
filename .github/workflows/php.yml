@@ -33,6 +33,11 @@ jobs:
     - name: Run test suite
       run: composer run-script test
 
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
   finish:
     needs: build
     runs-on: ubuntu-latest

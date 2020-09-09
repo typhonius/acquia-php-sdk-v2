@@ -107,7 +107,7 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
     {
 
         $options = [
-            'form_params' => [
+            'json' => [
                 'label' => $label,
                 'entity_id' => $entityId,
                 'sso_url' => $ssoUrl,

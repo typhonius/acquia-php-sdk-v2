@@ -40,7 +40,7 @@ class Code extends CloudApiBase implements CloudApiInterface
     {
 
         $options = [
-            'form_params' => [
+            'json' => [
                 'branch' => $branch,
             ],
         ];
@@ -65,7 +65,7 @@ class Code extends CloudApiBase implements CloudApiInterface
     {
 
         $options = [
-            'form_params' => [
+            'json' => [
                 'source' => $environmentFromUuid,
                 'message' => $commitMessage,
             ],

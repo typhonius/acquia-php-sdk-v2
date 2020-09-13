@@ -155,4 +155,20 @@ class OrganizationsTest extends CloudApiTestCase
             }
         }
     }
+
+    public function testChangeOwner()
+    {
+        $response = $this->getPsr7GzipResponseForFixture('Endpoints/Organizations/changeOwner.json');
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $organization = new Organizations($client);
+        $result  = $organization->changeOwner(
+            '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
+            '82cff7ec-2f09-11e9-b210-d663bd873d93'
+        );
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $this->assertEquals("Changed organization owner.", $result->message);
+    }
 }

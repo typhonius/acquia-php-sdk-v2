@@ -29,10 +29,9 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     }
 
     /**
-     * Show all applications in an organisation.
+     * Show all applications in an organization.
      *
      * @param string $organizationUuid
-     *
      * @return ApplicationsResponse
      */
     public function getApplications($organizationUuid)
@@ -43,7 +42,7 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     }
 
     /**
-     * Show all members of an organisation.
+     * Show all members of an organization.
      *
      * @param  string $organizationUuid
      * @return MembersResponse
@@ -70,7 +69,7 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     }
 
     /**
-     * Show all admins of an organisation.
+     * Show all admins of an organization.
      *
      * @param  string $organizationUuid
      * @return MembersResponse
@@ -97,7 +96,7 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     }
 
     /**
-     * Show all members invited to an organisation.
+     * Show all members invited to an organization.
      *
      * @param  string $organizationUuid
      * @return InvitationsResponse
@@ -110,7 +109,7 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     }
 
     /**
-     * Delete a member from an organisation.
+     * Delete a member from an organization.
      *
      * @param  string $organizationUuid
      * @param  string $memberUuid
@@ -122,6 +121,45 @@ class Organizations extends CloudApiBase implements CloudApiInterface
             $this->client->request(
                 'delete',
                 "/organizations/${organizationUuid}/members/${memberUuid}"
+            )
+        );
+    }
+
+    /**
+     * Leave an organization.
+     *
+     * @param string $organizationUuid
+     * @return OperationResponse
+     */
+    public function leaveOrganization($organizationUuid)
+    {
+        return new OperationResponse(
+            $this->client->request(
+                'post',
+                "/organizations/${organizationUuid}/actions/leave"
+            )
+        );
+    }
+
+    /**
+     * Change the owner of an organization.
+     *
+     * @param string $organizationUuid
+     * @param string $newOwnerUuid
+     * @return OperationResponse
+     */
+    public function changeOwner($organizationUuid, $newOwnerUuid)
+    {
+        $options = [
+            'json' => [
+                'user_uuid' => $newOwnerUuid,
+            ],
+        ];
+        return new OperationResponse(
+            $this->client->request(
+                'post',
+                "/organizations/${organizationUuid}/actions/change-owner",
+                $options
             )
         );
     }

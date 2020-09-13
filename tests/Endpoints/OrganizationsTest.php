@@ -156,6 +156,19 @@ class OrganizationsTest extends CloudApiTestCase
         }
     }
 
+    public function testLeaveOrganization()
+    {
+        $response = $this->getPsr7GzipResponseForFixture('Endpoints/Organizations/leaveOrganization.json');
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        $organization = new Organizations($client);
+        $result  = $organization->leaveOrganization('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $this->assertEquals('Left organization.', $result->message);
+    }
+
     public function testChangeOwner()
     {
         $response = $this->getPsr7GzipResponseForFixture('Endpoints/Organizations/changeOwner.json');

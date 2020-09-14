@@ -187,7 +187,7 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     public function inviteAdmin($organizationUuid, $email)
     {
         $options = [
-            'form_params' => [
+            'json' => [
                 'email' => $email,
             ],
         ];

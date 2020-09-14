@@ -39,7 +39,7 @@ class Databases extends CloudApiBase implements CloudApiInterface
     public function create($applicationUuid, $name)
     {
         $options = [
-            'form_params' => [
+            'json' => [
                 'name' => $name,
             ],
         ];
@@ -94,7 +94,7 @@ class Databases extends CloudApiBase implements CloudApiInterface
     public function copy($environmentFromUuid, $dbName, $environmentToUuid)
     {
         $options = [
-            'form_params' => [
+            'json' => [
                 'name' => $dbName,
                 'source' => $environmentFromUuid,
             ],

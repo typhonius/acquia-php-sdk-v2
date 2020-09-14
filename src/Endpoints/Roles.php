@@ -52,7 +52,7 @@ class Roles extends CloudApiBase implements CloudApiInterface
     public function create($organizationUuid, $name, array $permissions, $description = null)
     {
         $options = [
-            'form_params' => [
+            'json' => [
                 'name' => $name,
                 'permissions' => $permissions,
                 'description' => $description,
@@ -74,7 +74,7 @@ class Roles extends CloudApiBase implements CloudApiInterface
     public function update($roleUuid, array $permissions)
     {
         $options = [
-            'form_params' => [
+            'json' => [
                 'permissions' => $permissions,
             ],
         ];

@@ -63,7 +63,7 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
     {
 
         $options = [
-            'form_params' => [
+            'json' => [
                 'label' => $label,
                 'certificate' => $cert,
                 'private_key' => $key,

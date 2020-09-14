@@ -58,7 +58,7 @@ class Variables extends CloudApiBase implements CloudApiInterface
     public function create($environmentUuid, $name, $value)
     {
         $options = [
-            'form_params' => [
+            'json' => [
                 'name' => $name,
                 'value' => $value,
             ],
@@ -80,7 +80,7 @@ class Variables extends CloudApiBase implements CloudApiInterface
     public function update($environmentUuid, $name, $value)
     {
         $options = [
-            'form_params' => [
+            'json' => [
                 'name' => $name,
                 'value' => $value,
             ],

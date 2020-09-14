@@ -24,7 +24,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
     public function copyFiles($environmentUuidFrom, $environmentUuidTo)
     {
         $options = [
-            'form_params' => [
+            'json' => [
                 'source' => $environmentUuidFrom,
             ],
         ];
@@ -77,7 +77,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
     {
 
         $options = [
-            'form_params' => $config,
+            'json' => $config,
         ];
 
         return new OperationResponse(
@@ -100,7 +100,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
     {
 
         $options = [
-            'form_params' => [
+            'json' => [
                 'label' => $label,
             ],
         ];
@@ -137,7 +137,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
     {
 
         $options = [
-            'form_params' => [
+            'json' => [
                 'discard' => 1,
             ],
         ];
@@ -195,7 +195,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
     public function create($applicationUuid, $label, $branch, array $databases)
     {
         $options = [
-            'form_params' => [
+            'json' => [
                 'label' => $label,
                 'branch' => $branch,
                 'databases' => $databases,

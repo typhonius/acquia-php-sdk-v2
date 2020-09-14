@@ -57,7 +57,7 @@ class Ides extends CloudApiBase implements CloudApiInterface
     {
 
         $options = [
-            'form_params' => [
+            'json' => [
                 'label' => $label,
             ],
         ];

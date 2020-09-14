@@ -25,7 +25,7 @@ class Teams extends CloudApiBase implements CloudApiInterface
     public function create($organizationUuid, $name)
     {
         $options = [
-            'form_params' => [
+            'json' => [
                 'name' => $name,
             ],
         ];
@@ -57,7 +57,7 @@ class Teams extends CloudApiBase implements CloudApiInterface
     public function rename($teamUuid, $name)
     {
         $options = [
-            'form_params' => [
+            'json' => [
                 'name' => $name,
             ],
         ];
@@ -91,7 +91,7 @@ class Teams extends CloudApiBase implements CloudApiInterface
     public function addApplication($teamUuid, $applicationUuid)
     {
         $options = [
-            'form_params' => [
+            'json' => [
                 'uuid' => $applicationUuid,
             ],
         ];
@@ -112,7 +112,7 @@ class Teams extends CloudApiBase implements CloudApiInterface
     public function invite($teamUuid, $email, $roles)
     {
         $options = [
-            'form_params' => [
+            'json' => [
                 'email' => $email,
                 'roles' => $roles
             ],

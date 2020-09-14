@@ -62,7 +62,7 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
     {
 
         $options = [
-            'form_params' => [
+            'json' => [
                 'label' => $label,
                 'sources' => $sources,
                 'consumer' => $consumer,
@@ -140,7 +140,7 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
     {
 
         $options = [
-            'form_params' => [
+            'json' => [
                 'label' => $label,
                 'sources' => $sources,
                 'consumer' => $consumer,

@@ -61,7 +61,7 @@ class Crons extends CloudApiBase implements CloudApiInterface
     {
 
         $options = [
-            'form_params' => [
+            'json' => [
                 'command' => $command,
                 'frequency' => $frequency,
                 'label' => $label,
@@ -89,7 +89,7 @@ class Crons extends CloudApiBase implements CloudApiInterface
     {
 
         $options = [
-            'form_params' => [
+            'json' => [
                 'command' => $command,
                 'frequency' => $frequency,
                 'label' => $label,

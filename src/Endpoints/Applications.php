@@ -53,7 +53,7 @@ class Applications extends CloudApiBase implements CloudApiInterface
     {
 
         $options = [
-            'form_params' => [
+            'json' => [
                 'name' => $name,
             ],
         ];
@@ -96,7 +96,7 @@ class Applications extends CloudApiBase implements CloudApiInterface
     {
 
         $options = [
-            'form_params' => [
+            'json' => [
                 'name' => $name,
                 'color' => $color,
             ],

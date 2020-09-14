@@ -88,7 +88,7 @@ class ClientTest extends CloudApiTestCase
 
         // Set options as an endpoint call would.
         $options = [
-            'form_params' => [
+            'json' => [
                 'source' => 'source',
                 'message' => 'message',
             ],
@@ -102,7 +102,7 @@ class ClientTest extends CloudApiTestCase
             'headers' => [
                 'User-Agent' => sprintf('acquia-php-sdk-v2/%s (https://github.com/typhonius/acquia-php-sdk-v2) AcquiaCli/4.20', $version)
             ],
-            'form_params' => [
+            'json' => [
                 'source' => 'source',
                 'message' => 'message'
             ],

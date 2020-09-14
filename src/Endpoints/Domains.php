@@ -59,7 +59,7 @@ class Domains extends CloudApiBase implements CloudApiInterface
     {
 
         $options = [
-            'form_params' => [
+            'json' => [
                 'hostname' => $hostname,
             ],
         ];
@@ -94,7 +94,7 @@ class Domains extends CloudApiBase implements CloudApiInterface
     {
 
         $options = [
-            'form_params' => [
+            'json' => [
                 'domains' => $domains,
             ],
         ];

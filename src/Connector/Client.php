@@ -75,29 +75,29 @@ class Client implements ClientInterface
      */
     public function modifyOptions($options = []): array
     {
-        // Add the user agent header here so it can't be removed by other libraries.
-        $this->addOption('headers', [
-            'User-Agent' => sprintf(
-                "%s/%s (https://github.com/typhonius/acquia-php-sdk-v2)",
-                'acquia-php-sdk-v2',
-                $this->getVersion()
-            )
-        ]);
-
         // Combine options set globally e.g. headers with options set by individual API calls e.g. form_params.
         $options = $this->options + $options;
 
         // This library can be standalone or as a dependency. Dependent libraries may also set their own user agent
         // which will make $options['headers']['User-Agent'] an array.
-        // We need to reverse the array of User-Agent headers to order this library's header first in log files.
+        // We need to array_unique() the array of User-Agent headers as multiple calls may include multiple of the same header.
+        // We also use array_unshift() to place this library's user agent first to order to have it appear at the beginning of log files.
         // As Guzzle joins arrays with a comma, we must implode with a space here to pass Guzzle a string.
-        if (is_array($options['headers']['User-Agent'])) {
-            $options['headers']['User-Agent'] = implode(' ', array_reverse($options['headers']['User-Agent']));
+        $userAgent = sprintf(
+            "%s/%s (https://github.com/typhonius/acquia-php-sdk-v2)",
+            'acquia-php-sdk-v2',
+            $this->getVersion()
+        );
+        if (isset($options['headers']['User-Agent']) && is_array($options['headers']['User-Agent'])) {
+            array_unshift($options['headers']['User-Agent'], $userAgent);
+            $options['headers']['User-Agent'] = implode(' ', array_unique($options['headers']['User-Agent']));
+        } else {
+            $options['headers']['User-Agent'] = $userAgent;
         }
 
         $options['query'] = $this->query;
         if (!empty($options['query']['filter']) && is_array($options['query']['filter'])) {
-            // Default to an AND filter.
+            // Default to an OR filter to increase returned responses.
             $options['query']['filter'] = implode(',', $options['query']['filter']);
         }
 

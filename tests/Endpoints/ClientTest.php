@@ -82,6 +82,10 @@ class ClientTest extends CloudApiTestCase
 
         // Set a number of options and queries as a dependent library would.
         $client->addOption('headers', ['User-Agent' => 'AcquiaCli/4.20']);
+        // Add a user agent twice to ensure that we only see it once in the request.
+        $client->addOption('headers', ['User-Agent' => 'AcquiaCli/4.20']);
+        $client->addOption('headers', ['User-Agent' => 'ZCli/1.1.1']);
+        $client->addOption('headers', ['User-Agent' => 'AaahCli/0.1']);
         $client->addQuery('filter', 'name=@*2014*');
         $client->addQuery('filter', 'type=@*true*');
         $client->addQuery('limit', '1');
@@ -95,12 +99,16 @@ class ClientTest extends CloudApiTestCase
         ];
 
         // Modify the request to ensure that all of the above get merged correctly.
+        // Run modifyOptions twice to ensure that multiple uses of it do not change
+        // the end result.
+        // @see https://github.com/typhonius/acquia-php-sdk-v2/issues/87
+        $client->modifyOptions($options);
         $actualOptions = $client->modifyOptions($options);
 
         $version = $client->getVersion();
         $expectedOptions = [
             'headers' => [
-                'User-Agent' => sprintf('acquia-php-sdk-v2/%s (https://github.com/typhonius/acquia-php-sdk-v2) AcquiaCli/4.20', $version)
+                'User-Agent' => sprintf('acquia-php-sdk-v2/%s (https://github.com/typhonius/acquia-php-sdk-v2) AcquiaCli/4.20 ZCli/1.1.1 AaahCli/0.1', $version)
             ],
             'json' => [
                 'source' => 'source',

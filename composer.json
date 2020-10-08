@@ -38,7 +38,7 @@
             "find src -name '*.php' -print0 | xargs -0 -n1 php -l",
             "find tests -name '*.php' -print0 | xargs -0 -n1 php -l"
         ],
-        "cs": "phpcs --standard=PSR12 -n src tests",
+        "cs": "phpcs --standard=PSR12 -n src tests --ignore=./tests/logs/*",
         "cbf": "phpcbf --standard=PSR2 -n src tests",
         "unit": "phpunit --colors=always  --coverage-clover ./tests/logs/clover.xml",
         "ci-unit": "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --configuration=phpunit.ci.xml --testdox",

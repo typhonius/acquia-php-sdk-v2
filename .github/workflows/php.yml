@@ -47,7 +47,7 @@ jobs:
 
     - name: Install dependencies
       if: steps.composer-cache.outputs.cache-hit != 'true'
-      run: composer install --prefer-dist --no-progress --no-suggest
+      run: composer install --prefer-source --no-progress --no-suggest --no-interaction
 
     - name: Setup PCOV
       run: |
@@ -55,5 +55,5 @@ jobs:
         vendor/bin/pcov clobber
 
     - name: Run test suite
-      run: composer run-script ci-test
+      run: composer run-script test
 

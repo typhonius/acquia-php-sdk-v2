@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
-        operating-system: [ubuntu-latest, windows-latest, macos-latest]
+        operating-system: [ubuntu-latest, macos-latest]
         php-versions: ['7.3', '7.4']
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     steps:
@@ -32,12 +32,6 @@ jobs:
         php-version: ${{ matrix.php-versions }}
         tools: pecl
         extensions: pcov
-
-    - name: Convert Windows CRLF to LF.
-      if: runner.os == 'Windows'
-      run: |
-        dir ".\src" -recurse -include *.php | %{ & perl -i -p -e "s/\r//" $_.FullName}
-        dir ".\tests" -recurse -include *.php | %{ & perl -i -p -e "s/\r//" $_.FullName}
 
     - name: Validate composer.json and composer.lock
       run: composer validate

@@ -41,10 +41,17 @@
         "cs": "phpcs --standard=PSR12 -n src tests",
         "cbf": "phpcbf --standard=PSR2 -n src tests",
         "unit": "phpunit --colors=always  --coverage-clover ./tests/logs/clover.xml",
+        "ci-unit": "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --configuration=phpunit.ci.xml --testdox",
         "stan": "phpstan analyse --level 5 src tests",
         "test": [
             "@lint",
             "@unit",
+            "@cs",
+            "@stan"
+        ],
+        "ci-test": [
+            "@lint",
+            "@ci-unit",
             "@cs",
             "@stan"
         ],

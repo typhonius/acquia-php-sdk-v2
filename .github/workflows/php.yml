@@ -34,7 +34,7 @@ jobs:
         extensions: pcov
 
     - name: Convert Windows CRLF to LF.
-      if: ${{ matrix.operating-system }} == 'windows-latest'
+      if: ${{ runner.os }} == 'windows-latest'
       run: |
         find ./src -type f -print0 | xargs -0 dos2unix
         find ./tests -type f -print0 | xargs -0 dos2unix

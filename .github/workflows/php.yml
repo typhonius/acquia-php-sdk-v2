@@ -36,8 +36,8 @@ jobs:
     - name: Convert Windows CRLF to LF.
       if: runner.os == 'Windows'
       run: |
-        dir ".\src" -recurse -include *.php | %{"C:\Program Files\unix2dos.exe" $_.FullName}
-        dir ".\tests" -recurse -include *.php | %{"C:\Program Files\unix2dos.exe" $_.FullName}
+        dir ".\src" -recurse -include *.php | %{ & 'C:\Program Files\unix2dos.exe' $_.FullName}
+        dir ".\tests" -recurse -include *.php | %{ & 'C:\Program Files\unix2dos.exe' $_.FullName}
 
     - name: Validate composer.json and composer.lock
       run: composer validate

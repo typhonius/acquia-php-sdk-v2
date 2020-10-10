@@ -10,7 +10,7 @@
     "license": "MIT",
     "require": {
         "guzzlehttp/guzzle": "^6.3",
-        "php": ">=7.1",
+        "php": ">=7.3",
         "league/oauth2-client": "^2.4"
     },
     "require-dev": {

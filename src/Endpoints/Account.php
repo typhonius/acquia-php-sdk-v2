@@ -30,6 +30,7 @@ class Account extends CloudApiBase implements CloudApiInterface
      */
     public function getDrushAliases()
     {
-        return $this->client->request('get', '/account/drush-aliases/download', ['query' => ['version' => '9']]);
+      $this->client->addQuery('version', '9');
+      return $this->client->request('get', '/account/drush-aliases/download');
     }
 }

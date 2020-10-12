@@ -7,6 +7,8 @@ use League\OAuth2\Client\Token\AccessTokenInterface;
 use GuzzleHttp\Client as GuzzleClient;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\RequestInterface;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Contracts\Cache\ItemInterface;
 
 /**
  * Class Connector
@@ -64,7 +66,13 @@ class Connector implements ConnectorInterface
     public function createRequest($verb, $path)
     {
         if (!isset($this->accessToken) || $this->accessToken->hasExpired()) {
-            $this->accessToken = $this->provider->getAccessToken('client_credentials');
+            $cache = new FilesystemAdapter();
+            $accessToken = $cache->get('cloudapi-token', function (ItemInterface $item) {
+                $item->expiresAfter(300);
+                return $this->provider->getAccessToken('client_credentials');
+            });
+
+            $this->accessToken = $accessToken;
         }
 
         return $this->provider->getAuthenticatedRequest(

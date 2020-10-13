@@ -52,6 +52,7 @@ use AcquiaCloudApi\Endpoints\Environments;
 use AcquiaCloudApi\Endpoints\Servers;
 use AcquiaCloudApi\Endpoints\DatabaseBackups;
 use AcquiaCloudApi\Endpoints\Variables;
+use AcquiaCloudApi\Endpoints\Account;
 
 $key = 'd0697bfc-7f56-4942-9205-b5686bf5b3f5';
 $secret = 'D5UfO/4FfNBWn4+0cUwpLOoFzfP7Qqib4AoY+wYGsKE=';
@@ -69,6 +70,7 @@ $environment = new Environments($client);
 $server      = new Servers($client);
 $backup      = new DatabaseBackups($client);
 $variable    = new Variables($client);
+$account     = new Account($client);
 
 // Get all applications.
 $applications = $application->getAll();
@@ -85,6 +87,11 @@ $backup->create($environmentUuid, $dbName);
 // Set an environment varible
 $variable->create($environmentUuid, 'test_variable', 'test_value');
 
+// Download Drush 9 aliases to a temp directory
+$client->addQuery('version', '9');
+$result = $account->getDrushAliases();
+$drushArchive = tempnam(sys_get_temp_dir(), 'AcquiaDrushAliases') . '.tar.gz';
+file_put_contents($drushArchive, $aliases, LOCK_EX);
 ```
 
 ## Documentation

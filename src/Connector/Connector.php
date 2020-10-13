@@ -31,6 +31,11 @@ class Connector implements ConnectorInterface
     protected $provider;
 
     /**
+     * @var GuzzleClient The client used to make HTTP requests to the API.
+     */
+    protected $client;
+
+    /**
      * @var AccessTokenInterface|string The generated OAuth 2.0 access token.
      */
     protected $accessToken;
@@ -49,6 +54,8 @@ class Connector implements ConnectorInterface
             'urlResourceOwnerDetails' => '',
             ]
         );
+
+        $this->client = new GuzzleClient();
     }
 
     /**
@@ -73,7 +80,6 @@ class Connector implements ConnectorInterface
     public function sendRequest($verb, $path, $options)
     {
         $request = $this->createRequest($verb, $path);
-        $client = new GuzzleClient();
-        return $client->send($request, $options);
+        return $this->client->send($request, $options);
     }
 }

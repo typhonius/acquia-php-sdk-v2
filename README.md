@@ -51,6 +51,7 @@ use AcquiaCloudApi\Endpoints\Applications;
 use AcquiaCloudApi\Endpoints\Environments;
 use AcquiaCloudApi\Endpoints\Servers;
 use AcquiaCloudApi\Endpoints\DatabaseBackups;
+use AcquiaCloudApi\Endpoints\Variables;
 
 $key = 'd0697bfc-7f56-4942-9205-b5686bf5b3f5';
 $secret = 'D5UfO/4FfNBWn4+0cUwpLOoFzfP7Qqib4AoY+wYGsKE=';
@@ -67,6 +68,7 @@ $application = new Applications($client);
 $environment = new Environments($client);
 $server      = new Servers($client);
 $backup      = new DatabaseBackups($client);
+$variable    = new Variables($client);
 
 // Get all applications.
 $applications = $application->getAll();
@@ -79,6 +81,9 @@ $servers = $server->getAll($environmentUuid);
 
 // Create DB backup
 $backup->create($environmentUuid, $dbName);
+
+// Set an environment varible
+$variable->create($environmentUuid, 'test_variable', 'test_value');
 
 ```
 

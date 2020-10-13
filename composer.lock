@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd1213ed46c1063e592570f03b09fedd",
+    "content-hash": "b6edc2be2ea14d9f6ca258d9e47f4bfe",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -720,6 +720,136 @@
                 "instantiate"
             ],
             "time": "2019-10-21T16:45:58+00:00"
+        },
+        {
+            "name": "eloquent/phony",
+            "version": "3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eloquent/phony.git",
+                "reference": "18576af37922f797f18fd813152dd3135e09902b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eloquent/phony/zipball/18576af37922f797f18fd813152dd3135e09902b",
+                "reference": "18576af37922f797f18fd813152dd3135e09902b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "errors/exceptions": "^0.2",
+                "ext-pdo": "*",
+                "friendsofphp/php-cs-fixer": "^2",
+                "hamcrest/hamcrest-php": "^2",
+                "icecave/semver": "^3",
+                "phpunit/phpunit": "^7 || ^8 <8.3.0 || ^8.3.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Eloquent\\Phony\\": "src"
+                },
+                "files": [
+                    "src/initialize.php",
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Erin Millard",
+                    "email": "ezzatron@gmail.com",
+                    "homepage": "http://ezzatron.com/"
+                }
+            ],
+            "description": "Mocks, stubs, and spies for PHP.",
+            "homepage": "http://eloquent-software.com/phony/",
+            "keywords": [
+                "Double",
+                "Dummy",
+                "fake",
+                "mock",
+                "mocking",
+                "spy",
+                "stub",
+                "stubbing",
+                "test"
+            ],
+            "time": "2019-10-30T00:45:28+00:00"
+        },
+        {
+            "name": "eloquent/phony-phpunit",
+            "version": "4.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eloquent/phony-phpunit.git",
+                "reference": "01ad308fd4b49654eec024833c2fbb7464df212f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eloquent/phony-phpunit/zipball/01ad308fd4b49654eec024833c2fbb7464df212f",
+                "reference": "01ad308fd4b49654eec024833c2fbb7464df212f",
+                "shasum": ""
+            },
+            "require": {
+                "eloquent/phony": "^3",
+                "php": ">=7.1",
+                "phpunit/phpunit": "^7.0.3"
+            },
+            "require-dev": {
+                "errors/exceptions": "^0.2",
+                "friendsofphp/php-cs-fixer": "^2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Eloquent\\Phony\\Phpunit\\": "src"
+                },
+                "files": [
+                    "src/initialize.php",
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Erin Millard",
+                    "email": "ezzatron@gmail.com",
+                    "homepage": "http://ezzatron.com/"
+                }
+            ],
+            "description": "Phony for PHPUnit.",
+            "homepage": "http://eloquent-software.com/phony/",
+            "keywords": [
+                "Double",
+                "Dummy",
+                "fake",
+                "mock",
+                "mocking",
+                "spy",
+                "stub",
+                "stubbing",
+                "test"
+            ],
+            "time": "2018-04-05T00:51:47+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",
@@ -2273,6 +2403,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {

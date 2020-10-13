@@ -30,7 +30,8 @@
     },
     "autoload-dev": {
         "psr-4":{
-            "AcquiaCloudApi\\Tests\\": "tests/"
+            "AcquiaCloudApi\\Tests\\": "tests/",
+            "League\\OAuth2\\Client\\Test\\": "vendor/league/oauth2-client/test/src/"
         }
     },
     "scripts": {

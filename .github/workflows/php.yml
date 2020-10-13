@@ -63,3 +63,10 @@ jobs:
         name: ${{ runner.os }}-php-${{ matrix.php-versions }}-phpunit.html
         path: ./tests/logs/phpunit.html
         if-no-files-found: error
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        file: ./tests/logs/clover.xml
+        name: acquia-php-sdk-v2-codecov
+        fail_ci_if_error: true

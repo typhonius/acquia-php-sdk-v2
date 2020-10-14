@@ -174,8 +174,8 @@ class ConnectorTest extends CloudApiTestCase
     public function testGetAuthenticatedRequest()
     {
         // Clear the cache to make sure we get fresh results during testing.
-        $cache = new FilesystemAdapter();
-        $foo = $cache->deleteItem('cloudapi-token');
+        $cache = new FilesystemAdapter('acquia-php-sdk-v2');
+        $cache->deleteItem('cloudapi-token');
 
         $config = [
             'key' => 'key',
@@ -236,7 +236,6 @@ class ConnectorTest extends CloudApiTestCase
         $this->assertAttributeSame($expectedHeaderNames, 'headerNames', $request);
 
         // Check the cache to make sure that the token has been cached successfully.
-        $cache = new FilesystemAdapter();
         $accessToken = $cache->getItem('cloudapi-token')->get();
 
         // Ensure that the cached item is an AccessToken and that it contains the values we set above.

@@ -22,38 +22,63 @@ use GuzzleHttp\Psr7\Request;
 class ConnectorTest extends CloudApiTestCase
 {
 
-    public function testConnector()
+    public $connector;
+
+    public $cache;
+
+    public function setUp()
     {
         $config = [
             'key' => 'key',
             'secret' => 'secret'
         ];
-        
-        $connector = new Connector($config);
 
+        $this->connector = new Connector($config);
+
+        // Clear the cache to make sure we get fresh results during testing.
+        $this->cache = new FilesystemAdapter('acquia-php-sdk-v2');
+        $this->cache->deleteItem('cloudapi-token');
+    }
+
+    public function tearDown()
+    {
+        // Delete the cached token again to clean up.
+        $delete = $this->cache->deleteItem('cloudapi-token');
+        $this->assertTrue($delete);
+    }
+
+    public function testConnector()
+    {
         $this->assertEquals(
-            $connector::BASE_URI,
+            $this->connector::BASE_URI,
             'https://cloud.acquia.com/api'
         );
         $this->assertEquals(
-            $connector::URL_ACCESS_TOKEN,
+            $this->connector::URL_ACCESS_TOKEN,
             'https://accounts.acquia.com/api/auth/oauth/token'
         );
+
+        $connectorReflectionClass = new \ReflectionClass('AcquiaCloudApi\Connector\Connector');
+        $providerProperty = $connectorReflectionClass->getProperty('provider');
+        $providerProperty->setAccessible(true);
+        $provider = $providerProperty->getValue($this->connector);
+
+        $this->assertInstanceOf('League\OAuth2\Client\Provider\GenericProvider', $provider);
+
+        $providerReflectionClass = new \ReflectionClass('League\OAuth2\Client\Provider\GenericProvider');
+        $clientId = $providerReflectionClass->getProperty('clientId');
+        $clientId->setAccessible(true);
+
+        $clientSecret = $providerReflectionClass->getProperty('clientSecret');
+        $clientSecret->setAccessible(true);
+
+        $this->assertEquals('key', $clientId->getValue($provider));
+        $this->assertEquals('secret', $clientSecret->getValue($provider));
     }
 
     public function testGetAuthenticatedRequest()
     {
-        // Clear the cache to make sure we get fresh results during testing.
-        $cache = new FilesystemAdapter('acquia-php-sdk-v2');
-        $cache->deleteItem('cloudapi-token');
-
-        $config = [
-            'key' => 'key',
-            'secret' => 'secret'
-        ];
-
-        // Create a new Connector and override the provider property set in the constructor.
-        $connector = new Connector($config);
+        // Override the provider property set in the constructor.
         $reflectionClass = new \ReflectionClass('AcquiaCloudApi\Connector\Connector');
 
         $provider = new MockProvider([
@@ -64,7 +89,7 @@ class ConnectorTest extends CloudApiTestCase
 
         $providerProperty = $reflectionClass->getProperty('provider');
         $providerProperty->setAccessible(true);
-        $providerProperty->setValue($connector, $provider);
+        $providerProperty->setValue($this->connector, $provider);
 
         // Create the mock response from the call to get the access token.
         $expires = time() + 300;
@@ -86,7 +111,7 @@ class ConnectorTest extends CloudApiTestCase
         $provider->setHttpClient($client->get());
 
         // Create the request and check it matches our expectations.
-        $request = $connector->createRequest('get', '/account');
+        $request = $this->connector->createRequest('get', '/account');
         $this->assertInstanceOf('GuzzleHttp\Psr7\Request', $request);
 
         $expectedHeaders = [
@@ -106,7 +131,7 @@ class ConnectorTest extends CloudApiTestCase
         $this->assertAttributeSame($expectedHeaderNames, 'headerNames', $request);
 
         // Check the cache to make sure that the token has been cached successfully.
-        $accessToken = $cache->getItem('cloudapi-token')->get();
+        $accessToken = $this->cache->getItem('cloudapi-token')->get();
 
         // Ensure that the cached item is an AccessToken and that it contains the values we set above.
         $this->assertInstanceOf('League\OAuth2\Client\Token\AccessToken', $accessToken);
@@ -115,28 +140,25 @@ class ConnectorTest extends CloudApiTestCase
         $this->assertAttributeSame($expires, 'expires', $accessToken);
 
         // Delete the cached token again to clean up.
-        $delete = $cache->deleteItem('cloudapi-token');
+        $delete = $this->cache->deleteItem('cloudapi-token');
         $this->assertTrue($delete);
     }
 
     public function testGuzzleRequest()
     {
-        // Clear the cache to make sure we get fresh results during testing.
-        $cache = new FilesystemAdapter('acquia-php-sdk-v2');
-        $cache->deleteItem('cloudapi-token');
-
         // Fake a Guzzle client for the request and response.
         $client = new GuzzleClient(['handler' => new MockHandler([new Response()])]);
 
         // Mock the connector.
         $request = new Request('GET', 'https://cloud.acquia.com/api/account');
-        $connector = $this
+
+        $this->connector = $this
             ->getMockBuilder('AcquiaCloudApi\Connector\Connector')
             ->disableOriginalConstructor()
             ->setMethods(['createRequest'])
             ->getMock();
 
-        $connector
+        $this->connector
             ->expects($this->atLeastOnce())
             ->method('createRequest')
             ->willReturn($request);
@@ -145,17 +167,13 @@ class ConnectorTest extends CloudApiTestCase
         $reflectionClass = new \ReflectionClass('AcquiaCloudApi\Connector\Connector');
         $providerProperty = $reflectionClass->getProperty('client');
         $providerProperty->setAccessible(true);
-        $providerProperty->setValue($connector, $client);
+        $providerProperty->setValue($this->connector, $client);
 
         // Create the request and check it matches our expectations.
-        $return = $connector->sendRequest('get', '/account', []);
+        $return = $this->connector->sendRequest('get', '/account', []);
 
         // Basic checks to make sure that we get a return code.
         $this->assertEquals(200, $return->getStatusCode());
         $this->assertEquals('OK', $return->getReasonPhrase());
-
-        // Delete the cached token again to clean up.
-        $delete = $cache->deleteItem('cloudapi-token');
-        $this->assertTrue($delete);
     }
 }

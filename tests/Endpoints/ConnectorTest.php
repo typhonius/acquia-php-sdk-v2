@@ -157,8 +157,5 @@ class ConnectorTest extends CloudApiTestCase
         // Delete the cached token again to clean up.
         $delete = $cache->deleteItem('cloudapi-token');
         $this->assertTrue($delete);
-
     }
-
-
 }

@@ -3,21 +3,19 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Connector\Client;
 use AcquiaCloudApi\Connector\Connector;
-use AcquiaCloudApi\Endpoints\Applications;
 use League\OAuth2\Client\Test\Provider\Fake as MockProvider;
 use League\OAuth2\Client\Token\AccessToken;
-use League\OAuth2\Client\Grant\AbstractGrant;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\ResponseInterface;
 use Eloquent\Phony\Phpunit\Phony;
 use GuzzleHttp\ClientInterface;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request;
+
+// use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 class ConnectorTest extends CloudApiTestCase
 {
@@ -36,15 +34,15 @@ class ConnectorTest extends CloudApiTestCase
         $this->connector = new Connector($config);
 
         // Clear the cache to make sure we get fresh results during testing.
-        $this->cache = new FilesystemAdapter('acquia-php-sdk-v2');
-        $this->cache->deleteItem('cloudapi-token');
+        // $this->cache = new FilesystemAdapter('acquia-php-sdk-v2');
+        // $this->cache->deleteItem('cloudapi-token');
     }
 
     public function tearDown()
     {
         // Delete the cached token again to clean up.
-        $delete = $this->cache->deleteItem('cloudapi-token');
-        $this->assertTrue($delete);
+        // $delete = $this->cache->deleteItem('cloudapi-token');
+        // $this->assertTrue($delete);
     }
 
     public function testConnector()
@@ -95,9 +93,6 @@ class ConnectorTest extends CloudApiTestCase
         $expires = time() + 300;
         $raw_response = ['access_token' => 'acquia-token', 'expires' => $expires, 'resource_owner_id' => 3];
 
-        $grant = Phony::mock(AbstractGrant::class);
-        $grant->prepareRequestParameters->returns([]);
-
         $stream = Phony::mock(StreamInterface::class);
         $stream->__toString->returns(json_encode($raw_response));
 
@@ -131,17 +126,17 @@ class ConnectorTest extends CloudApiTestCase
         $this->assertAttributeSame($expectedHeaderNames, 'headerNames', $request);
 
         // Check the cache to make sure that the token has been cached successfully.
-        $accessToken = $this->cache->getItem('cloudapi-token')->get();
+        // $accessToken = $this->cache->getItem('cloudapi-token')->get();
 
         // Ensure that the cached item is an AccessToken and that it contains the values we set above.
-        $this->assertInstanceOf('League\OAuth2\Client\Token\AccessToken', $accessToken);
-        $this->assertAttributeSame('acquia-token', 'accessToken', $accessToken);
-        $this->assertAttributeSame(3, 'resourceOwnerId', $accessToken);
-        $this->assertAttributeSame($expires, 'expires', $accessToken);
+        // $this->assertInstanceOf('League\OAuth2\Client\Token\AccessToken', $accessToken);
+        // $this->assertAttributeSame('acquia-token', 'accessToken', $accessToken);
+        // $this->assertAttributeSame(3, 'resourceOwnerId', $accessToken);
+        // $this->assertAttributeSame($expires, 'expires', $accessToken);
 
         // Delete the cached token again to clean up.
-        $delete = $this->cache->deleteItem('cloudapi-token');
-        $this->assertTrue($delete);
+        // $delete = $this->cache->deleteItem('cloudapi-token');
+        // $this->assertTrue($delete);
     }
 
     public function testGuzzleRequest()

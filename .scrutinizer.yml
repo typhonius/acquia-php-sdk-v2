@@ -1,5 +1,4 @@
 build:
-    tests: false
     nodes:
         analysis:
             project_setup:
@@ -7,17 +6,17 @@ build:
                     - 'true'
             tests:
                 override:
-                    - phpcs-run --standard=PSR12
                     - php-scrutinizer-run
-
+                    -
+                        command: phpcs-run
+                        use_website_config: true
+    tests:
+        override:
+            command: "php -v"
+filter:
+    excluded_paths:
+        - 'tests/*'
 checks:
     php: true
 coding_style:
     php: {  }
-filter:
-    excluded_paths:
-        - '/tests/logs/*'
-tools:
-    php_code_sniffer:
-        config:
-            standard: "PSR12"

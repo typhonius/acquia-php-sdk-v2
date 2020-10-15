@@ -14,6 +14,10 @@ use Psr\Http\Message\ResponseInterface;
 use Eloquent\Phony\Phpunit\Phony;
 use GuzzleHttp\ClientInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Request;
 
 class ConnectorTest extends CloudApiTestCase
 {
@@ -114,4 +118,47 @@ class ConnectorTest extends CloudApiTestCase
         $delete = $cache->deleteItem('cloudapi-token');
         $this->assertTrue($delete);
     }
+
+    public function testGuzzleRequest()
+    {
+        // Clear the cache to make sure we get fresh results during testing.
+        $cache = new FilesystemAdapter('acquia-php-sdk-v2');
+        $cache->deleteItem('cloudapi-token');
+
+        // Fake a Guzzle client for the request and response.
+        $client = new GuzzleClient(['handler' => new MockHandler([new Response()])]);
+
+        // Mock the connector.
+        $request = new Request('GET', 'https://cloud.acquia.com/api/account');
+        $connector = $this
+            ->getMockBuilder('AcquiaCloudApi\Connector\Connector')
+            ->disableOriginalConstructor()
+            ->setMethods(['createRequest'])
+            ->getMock();
+
+        $connector
+            ->expects($this->atLeastOnce())
+            ->method('createRequest')
+            ->willReturn($request);
+
+        // Add our fake Guzzle client to the Connector class.
+        $reflectionClass = new \ReflectionClass('AcquiaCloudApi\Connector\Connector');
+        $providerProperty = $reflectionClass->getProperty('client');
+        $providerProperty->setAccessible(true);
+        $providerProperty->setValue($connector, $client);
+
+        // Create the request and check it matches our expectations.
+        $return = $connector->sendRequest('get', '/account', []);
+
+        // Basic checks to make sure that we get a return code.
+        $this->assertEquals(200, $return->getStatusCode());
+        $this->assertEquals('OK', $return->getReasonPhrase());
+
+        // Delete the cached token again to clean up.
+        $delete = $cache->deleteItem('cloudapi-token');
+        $this->assertTrue($delete);
+
+    }
+
+
 }

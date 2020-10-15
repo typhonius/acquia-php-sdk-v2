@@ -1,4 +1,5 @@
 build:
+    tests: false
     nodes:
         analysis:
             project_setup:
@@ -9,18 +10,14 @@ build:
                     - phpcs-run --standard=PSR12
                     - php-scrutinizer-run
 
-        tests: false
 checks:
     php: true
 coding_style:
     php: {  }
-    
 filter:
     excluded_paths:
         - '/tests/logs/*'
-
 tools:
     php_code_sniffer:
         config:
             standard: "PSR12"
-                    

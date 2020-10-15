@@ -6,3 +6,11 @@ tools:
     php_code_sniffer:
         config:
             standard: "PSR12"
+
+build:
+    nodes:
+        acsi:
+            tests:
+                override:
+                    - phpcs-run --standard=PSR12
+                    - php-scrutinizer-run

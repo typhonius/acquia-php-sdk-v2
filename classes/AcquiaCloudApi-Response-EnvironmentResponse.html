@@ -1,829 +1,474 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <meta charset="utf-8"/>
-    <title>my-doc</title>
-    <meta name="author" content=""/>
-    <meta name="description" content=""/>
-
-    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/prism.css" rel="stylesheet" media="all"/>
-    <link href="../css/template.css" rel="stylesheet" media="all"/>
-    
-    <!--[if lt IE 9]>
-    <script src="../js/html5.js"></script>
-    <![endif]-->
-    <script src="../js/jquery-1.11.0.min.js"></script>
-    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.smooth-scroll.js"></script>
-    <script src="../js/prism.min.js"></script>
-    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-    <script type="text/javascript">
-    function loadExternalCodeSnippets() {
-        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-            var src = pre.getAttribute('data-src').replace( /\\/g, '/');
-            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-            var language = 'php';
-
-            var code = document.createElement('code');
-            code.className = 'language-' + language;
-
-            pre.textContent = '';
-
-            code.textContent = 'Loading…';
-
-            pre.appendChild(code);
-
-            var xhr = new XMLHttpRequest();
-
-            xhr.open('GET', src, true);
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
-
-                    if (xhr.status < 400 && xhr.responseText) {
-                        code.textContent = xhr.responseText;
-
-                        Prism.highlightElement(code);
-                    }
-                    else if (xhr.status >= 400) {
-                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                    }
-                    else {
-                        code.textContent = '✖ Error: File does not exist, is empty or trying to view from localhost';
-                    }
-                }
-            };
-
-            xhr.send(null);
-        });
-    }
-
-    $(document).ready(function(){
-        loadExternalCodeSnippets();
-    });
-    $('#source-view').on('shown', function () {
-        loadExternalCodeSnippets();
-    })
-</script>
-
-    <link rel="shortcut icon" href="../images/favicon.ico"/>
-    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
-</head>
+    <meta charset="utf-8">
+    <title>Documentation</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/template.css">
+    <link rel="icon" href="../images/favicon.ico"/>
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.4.6/fuse.min.js"></script>
+    <script src="../js/search.js"></script>
+    <script defer src="../js/searchIndex.js"></script>
+    </head>
 <body>
+<header class="phpdocumentor-top-header"></header>
+<header class="phpdocumentor-header">
+    <section class="phpdocumentor-section">
+        <h1 class="phpdocumentor-title">Documentation</h1>
+    </section>
+</header>
+<main class="phpdocumentor">
+    <div class="phpdocumentor-section">
+        <aside class="three phpdocumentor-columns phpdocumentor-sidebar">
+    <section data-search-form class="phpdocumentor-search">
+        <h1 class="phpdocumentor-sidebar__category-header">Search</h1>
+        <label class="phpdocumentor-label">
+            <span class="visually-hidden">Search for</span>
+            <input type="search" class="phpdocumentor-field phpdocumentor-search__field" placeholder="Loading .." disabled />
+        </label>
+    </section>
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <i class="icon-ellipsis-vertical"></i>
-            </a>
-            <a class="brand" href="../index.html">my-doc</a>
+    
+    <h1 class="phpdocumentor-sidebar__category-header">Namespaces</h1>
+            <h2 class="phpdocumentor-sidebar__root-namespace"><a href="../namespaces/default.html"><abbr title="\">Global</abbr></a></h2>
+                    <h3 class="phpdocumentor-sidebar__root-namespace"><a href="../namespaces/acquiacloudapi.html"><abbr title="\AcquiaCloudApi">AcquiaCloudApi</abbr></a></h3>
+            <ul class="phpdocumentor-list">
+                                    <li><a href="../namespaces/acquiacloudapi-connector.html"><abbr title="\AcquiaCloudApi\Connector">Connector</abbr></a></li>
+                                    <li><a href="../namespaces/acquiacloudapi-endpoints.html"><abbr title="\AcquiaCloudApi\Endpoints">Endpoints</abbr></a></li>
+                                    <li><a href="../namespaces/acquiacloudapi-exception.html"><abbr title="\AcquiaCloudApi\Exception">Exception</abbr></a></li>
+                                    <li><a href="../namespaces/acquiacloudapi-response.html"><abbr title="\AcquiaCloudApi\Response">Response</abbr></a></li>
+                                    <li><a href="../namespaces/acquiacloudapi-tests.html"><abbr title="\AcquiaCloudApi\Tests">Tests</abbr></a></li>
+                            </ul>
+            
+        <h1 class="phpdocumentor-sidebar__category-header">Packages</h1>
+            <h2 class="phpdocumentor-sidebar__root-package"><a href="../packages/Default.html"><abbr title="\Default">Default</abbr></a></h2>
+        <ul class="phpdocumentor-list">
+                    </ul>
+            <h2 class="phpdocumentor-sidebar__root-package"><a href="../packages/AcquiaCloudApi.html"><abbr title="\AcquiaCloudApi">AcquiaCloudApi</abbr></a></h2>
+        <ul class="phpdocumentor-list">
+                            <li><a href="../packages/AcquiaCloudApi-CloudApi.html"><abbr title="\AcquiaCloudApi\CloudApi">CloudApi</abbr></a></li>
+                            <li><a href="../packages/AcquiaCloudApi-Endpoints.html"><abbr title="\AcquiaCloudApi\Endpoints">Endpoints</abbr></a></li>
+                            <li><a href="../packages/AcquiaCloudApi-Response.html"><abbr title="\AcquiaCloudApi\Response">Response</abbr></a></li>
+                    </ul>
+        
+    <h1 class="phpdocumentor-sidebar__category-header">Reports</h1>
+        <h2 class="phpdocumentor-sidebar__root-package"><a href="../reports/deprecated.html">Deprecated</a></h2>
+    <h2 class="phpdocumentor-sidebar__root-package"><a href="../reports/errors.html">Errors</a></h2>
+    <h2 class="phpdocumentor-sidebar__root-package"><a href="../reports/markers.html">Markers</a></h2>
+</aside>
 
-            <div class="nav-collapse">
-                <ul class="nav pull-right">
-                                        <li class="dropdown">
-                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
-                            API Documentation <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                                                        <li><a href="../namespaces/acquiacloudapi.html">\AcquiaCloudApi</a></li>
-                                                    </ul>
-                    </li>
-                                        <li class="dropdown" id="charts-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Charts <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../graphs/class.html">
-                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" id="reports-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Reports <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/deprecated.html">
-                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+        <div class="nine phpdocumentor-columns phpdocumentor-content">
+            <ul class="phpdocumentor-breadcrumbs">
+    <li><a href="../index.html">Home</a></li>
+                        <li><a href="../namespaces/acquiacloudapi.html">AcquiaCloudApi</a></li>
+                    <li><a href="../namespaces/acquiacloudapi-response.html">Response</a></li>
+            </ul>
+
+    <article class="phpdocumentor-element phpdocumentor-class">
+        <h2 class="phpdocumentor-content__title">
+            EnvironmentResponse
+                                        <div class="phpdocumentor-element__package">
+                    in
+                    <ul class="phpdocumentor-breadcrumbs">
+                                                    <li><a href="../packages/AcquiaCloudApi.html">AcquiaCloudApi</a></li>
+                                                    <li><a href="../packages/AcquiaCloudApi-Response.html">Response</a></li>
+                                            </ul>
+                </div>
+                                            </h2>
+        <aside class="phpdocumentor-element-found-in">
+            <abbr class="phpdocumentor-element-found-in__file" title="src/Response/EnvironmentResponse.php"><a href="../files/src-response-environmentresponse.html"><abbr title="src/Response/EnvironmentResponse.php">EnvironmentResponse.php</abbr></a></abbr>
+            :
+            <span class="phpdocumentor-element-found-in__line">10</span>
+        </aside>
+
+        <p class="phpdocumentor-class__summary">Class EnvironmentResponse</p>
+        <section class="phpdocumentor-class__description"></section>
+
+        <h3>Table of Contents</h3>
+        <table class="phpdocumentor-table_of_contents">
+                                        <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_uuid">$uuid</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell"><a href=""><abbr title=""></abbr></a></td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_label">$label</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell"><a href=""><abbr title=""></abbr></a></td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_name">$name</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell"><a href=""><abbr title=""></abbr></a></td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_domains">$domains</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell"><a href=""><abbr title=""></abbr></a></td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_sshUrl">$sshUrl</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell"><a href=""><abbr title=""></abbr></a></td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_ips">$ips</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell"><a href=""><abbr title=""></abbr></a></td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_region">$region</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell"><a href=""><abbr title=""></abbr></a></td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_status">$status</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell"><a href=""><abbr title=""></abbr></a></td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_type">$type</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell"><a href=""><abbr title=""></abbr></a></td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_vcs">$vcs</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell"><a href=""><abbr title=""></abbr></a></td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_flags">$flags</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell"><a href=""><abbr title=""></abbr></a></td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_configuration">$configuration</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell"><a href=""><abbr title=""></abbr></a></td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_links">$links</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell"><a href=""><abbr title=""></abbr></a></td>
+                </tr>
+                                                                <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#method___construct">__construct()</a></th>
+                    <td class="phpdocumentor-cell">EnvironmentResponse constructor.</td>
+                    <td class="phpdocumentor-cell">mixed</td>
+                </tr>
+                                            </table>
+
+        
+                    <section>
+                <h3 class="phpdocumentor-properties__header">Properties</h3>
+                                    <a id="property_uuid"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$uuid</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Response/EnvironmentResponse.php"><a href="../files/src-response-environmentresponse.html"><abbr title="src/Response/EnvironmentResponse.php">EnvironmentResponse.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">12</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__name">$uuid</span>
+            </code>
+    </article>
+                                    <a id="property_label"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$label</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Response/EnvironmentResponse.php"><a href="../files/src-response-environmentresponse.html"><abbr title="src/Response/EnvironmentResponse.php">EnvironmentResponse.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">13</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__name">$label</span>
+            </code>
+    </article>
+                                    <a id="property_name"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$name</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Response/EnvironmentResponse.php"><a href="../files/src-response-environmentresponse.html"><abbr title="src/Response/EnvironmentResponse.php">EnvironmentResponse.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">14</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__name">$name</span>
+            </code>
+    </article>
+                                    <a id="property_domains"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$domains</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Response/EnvironmentResponse.php"><a href="../files/src-response-environmentresponse.html"><abbr title="src/Response/EnvironmentResponse.php">EnvironmentResponse.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">15</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__name">$domains</span>
+            </code>
+    </article>
+                                    <a id="property_sshUrl"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$sshUrl</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Response/EnvironmentResponse.php"><a href="../files/src-response-environmentresponse.html"><abbr title="src/Response/EnvironmentResponse.php">EnvironmentResponse.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">16</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__name">$sshUrl</span>
+            </code>
+    </article>
+                                    <a id="property_ips"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$ips</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Response/EnvironmentResponse.php"><a href="../files/src-response-environmentresponse.html"><abbr title="src/Response/EnvironmentResponse.php">EnvironmentResponse.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">17</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__name">$ips</span>
+            </code>
+    </article>
+                                    <a id="property_region"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$region</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Response/EnvironmentResponse.php"><a href="../files/src-response-environmentresponse.html"><abbr title="src/Response/EnvironmentResponse.php">EnvironmentResponse.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">18</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__name">$region</span>
+            </code>
+    </article>
+                                    <a id="property_status"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$status</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Response/EnvironmentResponse.php"><a href="../files/src-response-environmentresponse.html"><abbr title="src/Response/EnvironmentResponse.php">EnvironmentResponse.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">19</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__name">$status</span>
+            </code>
+    </article>
+                                    <a id="property_type"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$type</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Response/EnvironmentResponse.php"><a href="../files/src-response-environmentresponse.html"><abbr title="src/Response/EnvironmentResponse.php">EnvironmentResponse.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">20</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__name">$type</span>
+            </code>
+    </article>
+                                    <a id="property_vcs"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$vcs</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Response/EnvironmentResponse.php"><a href="../files/src-response-environmentresponse.html"><abbr title="src/Response/EnvironmentResponse.php">EnvironmentResponse.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">21</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__name">$vcs</span>
+            </code>
+    </article>
+                                    <a id="property_flags"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$flags</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Response/EnvironmentResponse.php"><a href="../files/src-response-environmentresponse.html"><abbr title="src/Response/EnvironmentResponse.php">EnvironmentResponse.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">22</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__name">$flags</span>
+            </code>
+    </article>
+                                    <a id="property_configuration"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$configuration</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Response/EnvironmentResponse.php"><a href="../files/src-response-environmentresponse.html"><abbr title="src/Response/EnvironmentResponse.php">EnvironmentResponse.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">23</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__name">$configuration</span>
+            </code>
+    </article>
+                                    <a id="property_links"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$links</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Response/EnvironmentResponse.php"><a href="../files/src-response-environmentresponse.html"><abbr title="src/Response/EnvironmentResponse.php">EnvironmentResponse.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">24</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__name">$links</span>
+            </code>
+    </article>
+                                                            </section>
+        
+                    <section>
+                <h3 class="phpdocumentor-methods__header">Methods</h3>
+                                    <a id="method___construct"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">__construct()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Response/EnvironmentResponse.php"><a href="../files/src-response-environmentresponse.html"><abbr title="src/Response/EnvironmentResponse.php">EnvironmentResponse.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">31</span>
+    </aside>
+        <p class="phpdocumentor-summary">EnvironmentResponse constructor.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">__construct</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$environment</span> :
+                <span class="phpdocumentor-signature__argument__return-type">object</span>
+                            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">mixed</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$environment</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">object</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"></section></dd>
+                    </dl>
+    
+        
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">mixed</span>
+            
+</article>
+                                                            </section>
+            </article>
+            <div data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+
+                <h2>Search results</h2>
+                <ul class="phpdocumentor-search-results__entries">
+
                 </ul>
             </div>
         </div>
     </div>
-    <!--<div class="go_to_top">-->
-    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
-    <!--</div>-->
-</div>
-
-<div id="___" class="container-fluid">
-        <section class="row-fluid">
-        <div class="span2 sidebar">
-                                <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1897954363"></a>
-                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
-            </div>
-            <div id="namespace-1897954363" class="accordion-body collapse in">
-                <div class="accordion-inner">
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1589181607"></a>
-                                <a href="../namespaces/acquiacloudapi.html" style="margin-left: 30px; padding-left: 0">AcquiaCloudApi</a>
-            </div>
-            <div id="namespace-1589181607" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-638033417"></a>
-                                <a href="../namespaces/acquiacloudapi-connector.html" style="margin-left: 30px; padding-left: 0">Connector</a>
-            </div>
-            <div id="namespace-638033417" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                    <li class="interface"><a href="../classes/AcquiaCloudApi-Connector-ClientInterface.html">ClientInterface</a></li>
-                                                    <li class="interface"><a href="../classes/AcquiaCloudApi-Connector-ConnectorInterface.html">ConnectorInterface</a></li>
-                                                                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Connector-Client.html">Client</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Connector-Connector.html">Connector</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-308394739"></a>
-                                <a href="../namespaces/acquiacloudapi-endpoints.html" style="margin-left: 30px; padding-left: 0">Endpoints</a>
-            </div>
-            <div id="namespace-308394739" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                    <li class="interface"><a href="../classes/AcquiaCloudApi-Endpoints-CloudApiInterface.html">CloudApiInterface</a></li>
-                                                                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Account.html">Account</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Applications.html">Applications</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-CloudApiBase.html">CloudApiBase</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Code.html">Code</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Crons.html">Crons</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-DatabaseBackups.html">DatabaseBackups</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Databases.html">Databases</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Domains.html">Domains</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Environments.html">Environments</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-IdentityProviders.html">IdentityProviders</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Ides.html">Ides</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Insights.html">Insights</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-LogForwardingDestinations.html">LogForwardingDestinations</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Logs.html">Logs</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Metrics.html">Metrics</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Notifications.html">Notifications</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Organizations.html">Organizations</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Permissions.html">Permissions</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Roles.html">Roles</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Servers.html">Servers</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-SslCertificates.html">SslCertificates</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Teams.html">Teams</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Variables.html">Variables</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1815778213"></a>
-                                <a href="../namespaces/acquiacloudapi-exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
-            </div>
-            <div id="namespace-1815778213" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Exception-ApiErrorException.html">ApiErrorException</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-311191433"></a>
-                                <a href="../namespaces/acquiacloudapi-response.html" style="margin-left: 30px; padding-left: 0">Response</a>
-            </div>
-            <div id="namespace-311191433" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-AccountResponse.html">AccountResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-ApplicationResponse.html">ApplicationResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-ApplicationsResponse.html">ApplicationsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-BackupResponse.html">BackupResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-BackupsResponse.html">BackupsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-BranchesResponse.html">BranchesResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-BranchResponse.html">BranchResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-CronResponse.html">CronResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-CronsResponse.html">CronsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-DatabaseResponse.html">DatabaseResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-DatabasesResponse.html">DatabasesResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-DomainResponse.html">DomainResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-DomainsResponse.html">DomainsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html">EnvironmentResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-EnvironmentsResponse.html">EnvironmentsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-IdentityProviderResponse.html">IdentityProviderResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-IdentityProvidersResponse.html">IdentityProvidersResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-IdeResponse.html">IdeResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-IdesResponse.html">IdesResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InsightAlertResponse.html">InsightAlertResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InsightAlertsResponse.html">InsightAlertsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InsightCountResponse.html">InsightCountResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InsightModuleResponse.html">InsightModuleResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InsightModulesResponse.html">InsightModulesResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InsightResponse.html">InsightResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InsightsResponse.html">InsightsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InvitationResponse.html">InvitationResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InvitationsResponse.html">InvitationsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-LogForwardingDestinationResponse.html">LogForwardingDestinationResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-LogForwardingDestinationsResponse.html">LogForwardingDestinationsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-LogResponse.html">LogResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-LogsResponse.html">LogsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-LogstreamResponse.html">LogstreamResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-MemberResponse.html">MemberResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-MembersResponse.html">MembersResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-MetricResponse.html">MetricResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-MetricsResponse.html">MetricsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-NotificationResponse.html">NotificationResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-NotificationsResponse.html">NotificationsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-OperationResponse.html">OperationResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-OrganizationResponse.html">OrganizationResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-OrganizationsResponse.html">OrganizationsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-PermissionResponse.html">PermissionResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-PermissionsResponse.html">PermissionsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-RoleResponse.html">RoleResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-RolesResponse.html">RolesResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-ServerResponse.html">ServerResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-ServersResponse.html">ServersResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-SslCertificateResponse.html">SslCertificateResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-SslCertificatesResponse.html">SslCertificatesResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-TagResponse.html">TagResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-TagsResponse.html">TagsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-TeamResponse.html">TeamResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-TeamsResponse.html">TeamsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-VariableResponse.html">VariableResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-VariablesResponse.html">VariablesResponse</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                    
-                    <ul>
-                                                                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                    
-                    <ul>
-                                                                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-        </div>
-    </section>
-    <section class="row-fluid">
-        <div class="span10 offset2">
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <nav>
-                                                <a href="../namespaces/acquiacloudapi-response.html">\AcquiaCloudApi\Response</a> <i class="icon-level-up"></i>
-                                            </nav>
-                    
-                    <h1><small>\AcquiaCloudApi\Response</small>EnvironmentResponse</h1>
-                    <p><em>Class EnvironmentResponse</em></p>
-                    
-                    
-                                        
-                    <section id="summary">
-                        <h2>Summary</h2>
-                        <section class="row-fluid heading">
-                            <section class="span4">
-                                <a href="#methods">Methods</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#properties">Properties</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#constants">Constants</a>
-                            </section>
-                        </section>
-                        <section class="row-fluid public">
-                            <section class="span4">
-                                                                    <a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#method___construct" class="">__construct()</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_uuid" class="">$uuid</a><br />
-                                                                    <a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_label" class="">$label</a><br />
-                                                                    <a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_name" class="">$name</a><br />
-                                                                    <a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_domains" class="">$domains</a><br />
-                                                                    <a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_sshUrl" class="">$sshUrl</a><br />
-                                                                    <a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_ips" class="">$ips</a><br />
-                                                                    <a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_region" class="">$region</a><br />
-                                                                    <a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_status" class="">$status</a><br />
-                                                                    <a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_type" class="">$type</a><br />
-                                                                    <a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_vcs" class="">$vcs</a><br />
-                                                                    <a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_flags" class="">$flags</a><br />
-                                                                    <a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_configuration" class="">$configuration</a><br />
-                                                                    <a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html#property_links" class="">$links</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No constants found</em>
-                                                            </section>
-                        </section>
-                        <section class="row-fluid protected">
-                            <section class="span4">
-                                                                    <em>No protected methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No protected properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                        <section class="row-fluid private">
-                            <section class="span4">
-                                                                    <em>No private methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No private properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                    </section>
-                </div>
-                <aside class="span4 detailsbar">
-                                        
-                    
-                    <dl>
-                        <dt>File</dt>
-                            <dd><a href="../files/src-response-environmentresponse.html"><div class="path-wrapper">src/Response/EnvironmentResponse.php</div></a></dd>
-                                                <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">AcquiaCloudApi\Response</div></dd>
-                                                <dt>Class hierarchy</dt>
-                            <dd class="hierarchy">
-                                                                                                                                                                    <div class="namespace-wrapper">\AcquiaCloudApi\Response\EnvironmentResponse</div>
-                            </dd>
-
-                        
-                        
-                        
-                                                
-                                                                        </dl>
-                    <h2>Tags</h2>
-                    <table class="table table-condensed">
-                                            <tr><td colspan="2"><em>None found</em></td></tr>
-                                        </table>
-                </aside>
-            </div>
-
-                        
-                                    <a id="properties" name="properties"></a>
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <h2>Properties</h2>
-                </div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_uuid" name="property_uuid" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$uuid</h3>
-                <pre class="signature">$uuid</pre>
-                <p><em></em></p>
-                
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_label" name="property_label" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$label</h3>
-                <pre class="signature">$label</pre>
-                <p><em></em></p>
-                
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_name" name="property_name" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$name</h3>
-                <pre class="signature">$name</pre>
-                <p><em></em></p>
-                
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_domains" name="property_domains" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$domains</h3>
-                <pre class="signature">$domains</pre>
-                <p><em></em></p>
-                
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_sshUrl" name="property_sshUrl" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$sshUrl</h3>
-                <pre class="signature">$sshUrl</pre>
-                <p><em></em></p>
-                
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_ips" name="property_ips" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$ips</h3>
-                <pre class="signature">$ips</pre>
-                <p><em></em></p>
-                
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_region" name="property_region" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$region</h3>
-                <pre class="signature">$region</pre>
-                <p><em></em></p>
-                
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_status" name="property_status" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$status</h3>
-                <pre class="signature">$status</pre>
-                <p><em></em></p>
-                
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_type" name="property_type" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$type</h3>
-                <pre class="signature">$type</pre>
-                <p><em></em></p>
-                
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_vcs" name="property_vcs" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$vcs</h3>
-                <pre class="signature">$vcs</pre>
-                <p><em></em></p>
-                
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_flags" name="property_flags" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$flags</h3>
-                <pre class="signature">$flags</pre>
-                <p><em></em></p>
-                
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_configuration" name="property_configuration" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$configuration</h3>
-                <pre class="signature">$configuration</pre>
-                <p><em></em></p>
-                
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_links" name="property_links" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$links</h3>
-                <pre class="signature">$links</pre>
-                <p><em></em></p>
-                
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                            
-                                    <a id="methods" name="methods"></a>
-            <div class="row-fluid">
-                <div class="span8 content class"><h2>Methods</h2></div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method___construct" name="method___construct" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">__construct()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(object  <span class="argument">$environment</span>) : mixed</pre>
-                <p><em>EnvironmentResponse constructor.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>object</td>
-                                <td>$environment </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    mixed
-                                    
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html"><div class="path-wrapper">\AcquiaCloudApi\Response\EnvironmentResponse</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                                    </div>
-    </section>
-
-    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">EnvironmentResponse.php</h3>
-        </div>
-        <div class="modal-body">
-            <pre data-src="../files/src/Response/EnvironmentResponse.php.txt" class="language-php line-numbers"></pre>
-        </div>
-    </div>
-
-    <footer class="row-fluid">
-        <section class="span10 offset2">
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <section class="row-fluid footer-sections">
-                        <section class="span4">
-                                                        <h1><i class="icon-code"></i></h1>
-                            <div>
-                                <ul>
-                                                                            <li><a href="../namespaces/acquiacloudapi.html">\AcquiaCloudApi</a></li>
-                                                                    </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-bar-chart"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-pushpin"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../reports/errors.html">Errors</a></li>
-                                    <li><a href="../reports/markers.html">Markers</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                    </section>
-                </section>
-            </section>
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <hr />
-                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on February 19th, 2020 at 12:06.
-                </section>
-            </section>
-        </section>
-    </footer>
-</div>
+</main>
 
 </body>
 </html>

@@ -1,376 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <meta charset="utf-8"/>
-    <title>my-doc</title>
-    <meta name="author" content=""/>
-    <meta name="description" content=""/>
-
-    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/prism.css" rel="stylesheet" media="all"/>
-    <link href="../css/template.css" rel="stylesheet" media="all"/>
-    
-    <!--[if lt IE 9]>
-    <script src="../js/html5.js"></script>
-    <![endif]-->
-    <script src="../js/jquery-1.11.0.min.js"></script>
-    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.smooth-scroll.js"></script>
-    <script src="../js/prism.min.js"></script>
-    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-    
-    <link rel="shortcut icon" href="../images/favicon.ico"/>
-    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
-</head>
+    <meta charset="utf-8">
+    <title>Documentation</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/template.css">
+    <link rel="icon" href="../images/favicon.ico"/>
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.4.6/fuse.min.js"></script>
+    <script src="../js/search.js"></script>
+    <script defer src="../js/searchIndex.js"></script>
+    </head>
 <body>
+<header class="phpdocumentor-top-header"></header>
+<header class="phpdocumentor-header">
+    <section class="phpdocumentor-section">
+        <h1 class="phpdocumentor-title">Documentation</h1>
+    </section>
+</header>
+<main class="phpdocumentor">
+    <div class="phpdocumentor-section">
+        <aside class="three phpdocumentor-columns phpdocumentor-sidebar">
+    <section data-search-form class="phpdocumentor-search">
+        <h1 class="phpdocumentor-sidebar__category-header">Search</h1>
+        <label class="phpdocumentor-label">
+            <span class="visually-hidden">Search for</span>
+            <input type="search" class="phpdocumentor-field phpdocumentor-search__field" placeholder="Loading .." disabled />
+        </label>
+    </section>
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <i class="icon-ellipsis-vertical"></i>
-            </a>
-            <a class="brand" href="../index.html">my-doc</a>
+    
+    <h1 class="phpdocumentor-sidebar__category-header">Namespaces</h1>
+            <h2 class="phpdocumentor-sidebar__root-namespace"><a href="../namespaces/default.html"><abbr title="\">Global</abbr></a></h2>
+                    <h3 class="phpdocumentor-sidebar__root-namespace"><a href="../namespaces/acquiacloudapi.html"><abbr title="\AcquiaCloudApi">AcquiaCloudApi</abbr></a></h3>
+            <ul class="phpdocumentor-list">
+                                    <li><a href="../namespaces/acquiacloudapi-connector.html"><abbr title="\AcquiaCloudApi\Connector">Connector</abbr></a></li>
+                                    <li><a href="../namespaces/acquiacloudapi-endpoints.html"><abbr title="\AcquiaCloudApi\Endpoints">Endpoints</abbr></a></li>
+                                    <li><a href="../namespaces/acquiacloudapi-exception.html"><abbr title="\AcquiaCloudApi\Exception">Exception</abbr></a></li>
+                                    <li><a href="../namespaces/acquiacloudapi-response.html"><abbr title="\AcquiaCloudApi\Response">Response</abbr></a></li>
+                                    <li><a href="../namespaces/acquiacloudapi-tests.html"><abbr title="\AcquiaCloudApi\Tests">Tests</abbr></a></li>
+                            </ul>
+            
+        <h1 class="phpdocumentor-sidebar__category-header">Packages</h1>
+            <h2 class="phpdocumentor-sidebar__root-package"><a href="../packages/Default.html"><abbr title="\Default">Default</abbr></a></h2>
+        <ul class="phpdocumentor-list">
+                    </ul>
+            <h2 class="phpdocumentor-sidebar__root-package"><a href="../packages/AcquiaCloudApi.html"><abbr title="\AcquiaCloudApi">AcquiaCloudApi</abbr></a></h2>
+        <ul class="phpdocumentor-list">
+                            <li><a href="../packages/AcquiaCloudApi-CloudApi.html"><abbr title="\AcquiaCloudApi\CloudApi">CloudApi</abbr></a></li>
+                            <li><a href="../packages/AcquiaCloudApi-Endpoints.html"><abbr title="\AcquiaCloudApi\Endpoints">Endpoints</abbr></a></li>
+                            <li><a href="../packages/AcquiaCloudApi-Response.html"><abbr title="\AcquiaCloudApi\Response">Response</abbr></a></li>
+                    </ul>
+        
+    <h1 class="phpdocumentor-sidebar__category-header">Reports</h1>
+        <h2 class="phpdocumentor-sidebar__root-package"><a href="../reports/deprecated.html">Deprecated</a></h2>
+    <h2 class="phpdocumentor-sidebar__root-package"><a href="../reports/errors.html">Errors</a></h2>
+    <h2 class="phpdocumentor-sidebar__root-package"><a href="../reports/markers.html">Markers</a></h2>
+</aside>
 
-            <div class="nav-collapse">
-                <ul class="nav pull-right">
-                                        <li class="dropdown">
-                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
-                            API Documentation <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                                                        <li><a href="../namespaces/acquiacloudapi.html">\AcquiaCloudApi</a></li>
-                                                    </ul>
-                    </li>
-                                        <li class="dropdown" id="charts-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Charts <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../graphs/class.html">
-                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" id="reports-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Reports <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/deprecated.html">
-                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+        <div class="nine phpdocumentor-columns phpdocumentor-content">
+            <ul class="phpdocumentor-breadcrumbs">
+    <li><a href="../index.html">Home</a></li>
+                </ul>
+
+    <h2 class="phpdocumentor-content__title">AcquiaCloudApi</h2>
+
+            <h3>Namespaces</h3>
+        <dl>
+                            <dt><a href="../namespaces/acquiacloudapi-connector.html"><abbr title="\AcquiaCloudApi\Connector">Connector</abbr></a></dt>
+                            <dt><a href="../namespaces/acquiacloudapi-endpoints.html"><abbr title="\AcquiaCloudApi\Endpoints">Endpoints</abbr></a></dt>
+                            <dt><a href="../namespaces/acquiacloudapi-exception.html"><abbr title="\AcquiaCloudApi\Exception">Exception</abbr></a></dt>
+                            <dt><a href="../namespaces/acquiacloudapi-response.html"><abbr title="\AcquiaCloudApi\Response">Response</abbr></a></dt>
+                            <dt><a href="../namespaces/acquiacloudapi-tests.html"><abbr title="\AcquiaCloudApi\Tests">Tests</abbr></a></dt>
+                    </dl>
+    
+    
+    
+    
+                <div data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+
+                <h2>Search results</h2>
+                <ul class="phpdocumentor-search-results__entries">
+
                 </ul>
             </div>
         </div>
     </div>
-    <!--<div class="go_to_top">-->
-    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
-    <!--</div>-->
-</div>
-
-<div id="___" class="container-fluid">
-        <section class="row-fluid">
-        <div class="span2 sidebar">
-                                <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1169826549"></a>
-                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
-            </div>
-            <div id="namespace-1169826549" class="accordion-body collapse in">
-                <div class="accordion-inner">
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1800447328"></a>
-                                <a href="../namespaces/acquiacloudapi.html" style="margin-left: 30px; padding-left: 0">AcquiaCloudApi</a>
-            </div>
-            <div id="namespace-1800447328" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1723102078"></a>
-                                <a href="../namespaces/acquiacloudapi-connector.html" style="margin-left: 30px; padding-left: 0">Connector</a>
-            </div>
-            <div id="namespace-1723102078" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                    <li class="interface"><a href="../classes/AcquiaCloudApi-Connector-ClientInterface.html">ClientInterface</a></li>
-                                                    <li class="interface"><a href="../classes/AcquiaCloudApi-Connector-ConnectorInterface.html">ConnectorInterface</a></li>
-                                                                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Connector-Client.html">Client</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Connector-Connector.html">Connector</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1858118052"></a>
-                                <a href="../namespaces/acquiacloudapi-endpoints.html" style="margin-left: 30px; padding-left: 0">Endpoints</a>
-            </div>
-            <div id="namespace-1858118052" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                    <li class="interface"><a href="../classes/AcquiaCloudApi-Endpoints-CloudApiInterface.html">CloudApiInterface</a></li>
-                                                                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Account.html">Account</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Applications.html">Applications</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-CloudApiBase.html">CloudApiBase</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Code.html">Code</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Crons.html">Crons</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-DatabaseBackups.html">DatabaseBackups</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Databases.html">Databases</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Domains.html">Domains</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Environments.html">Environments</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-IdentityProviders.html">IdentityProviders</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Ides.html">Ides</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Insights.html">Insights</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-LogForwardingDestinations.html">LogForwardingDestinations</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Logs.html">Logs</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Metrics.html">Metrics</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Notifications.html">Notifications</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Organizations.html">Organizations</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Permissions.html">Permissions</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Roles.html">Roles</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Servers.html">Servers</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-SslCertificates.html">SslCertificates</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Teams.html">Teams</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Endpoints-Variables.html">Variables</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-87493656"></a>
-                                <a href="../namespaces/acquiacloudapi-exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
-            </div>
-            <div id="namespace-87493656" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Exception-ApiErrorException.html">ApiErrorException</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-937008096"></a>
-                                <a href="../namespaces/acquiacloudapi-response.html" style="margin-left: 30px; padding-left: 0">Response</a>
-            </div>
-            <div id="namespace-937008096" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-AccountResponse.html">AccountResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-ApplicationResponse.html">ApplicationResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-ApplicationsResponse.html">ApplicationsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-BackupResponse.html">BackupResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-BackupsResponse.html">BackupsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-BranchesResponse.html">BranchesResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-BranchResponse.html">BranchResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-CronResponse.html">CronResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-CronsResponse.html">CronsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-DatabaseResponse.html">DatabaseResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-DatabasesResponse.html">DatabasesResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-DomainResponse.html">DomainResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-DomainsResponse.html">DomainsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-EnvironmentResponse.html">EnvironmentResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-EnvironmentsResponse.html">EnvironmentsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-IdentityProviderResponse.html">IdentityProviderResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-IdentityProvidersResponse.html">IdentityProvidersResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-IdeResponse.html">IdeResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-IdesResponse.html">IdesResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InsightAlertResponse.html">InsightAlertResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InsightAlertsResponse.html">InsightAlertsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InsightCountResponse.html">InsightCountResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InsightModuleResponse.html">InsightModuleResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InsightModulesResponse.html">InsightModulesResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InsightResponse.html">InsightResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InsightsResponse.html">InsightsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InvitationResponse.html">InvitationResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-InvitationsResponse.html">InvitationsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-LogForwardingDestinationResponse.html">LogForwardingDestinationResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-LogForwardingDestinationsResponse.html">LogForwardingDestinationsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-LogResponse.html">LogResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-LogsResponse.html">LogsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-LogstreamResponse.html">LogstreamResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-MemberResponse.html">MemberResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-MembersResponse.html">MembersResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-MetricResponse.html">MetricResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-MetricsResponse.html">MetricsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-NotificationResponse.html">NotificationResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-NotificationsResponse.html">NotificationsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-OperationResponse.html">OperationResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-OrganizationResponse.html">OrganizationResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-OrganizationsResponse.html">OrganizationsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-PermissionResponse.html">PermissionResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-PermissionsResponse.html">PermissionsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-RoleResponse.html">RoleResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-RolesResponse.html">RolesResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-ServerResponse.html">ServerResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-ServersResponse.html">ServersResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-SslCertificateResponse.html">SslCertificateResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-SslCertificatesResponse.html">SslCertificatesResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-TagResponse.html">TagResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-TagsResponse.html">TagsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-TeamResponse.html">TeamResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-TeamsResponse.html">TeamsResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-VariableResponse.html">VariableResponse</a></li>
-                                                    <li class="class"><a href="../classes/AcquiaCloudApi-Response-VariablesResponse.html">VariablesResponse</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                    
-                    <ul>
-                                                                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                    
-                    <ul>
-                                                                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-        </div>
-    </section>
-    <section class="row-fluid">
-        <div class="span10 offset2">
-            <div class="row-fluid">
-                <div class="span8 content namespace">
-                    <nav>
-                                                <a href="../namespaces/default.html">\</a>
-                                            </nav>
-                    <h1><small>\</small>AcquiaCloudApi</h1>
-
-                                        <h2>Namespaces</h2>
-                    <table class="table table-hover">
-                                                    <tr>
-                                <td><a href="../namespaces/acquiacloudapi-connector.html">Connector</a></td>
-                            </tr>
-                                                    <tr>
-                                <td><a href="../namespaces/acquiacloudapi-endpoints.html">Endpoints</a></td>
-                            </tr>
-                                                    <tr>
-                                <td><a href="../namespaces/acquiacloudapi-exception.html">Exception</a></td>
-                            </tr>
-                                                    <tr>
-                                <td><a href="../namespaces/acquiacloudapi-response.html">Response</a></td>
-                            </tr>
-                                            </table>
-                    
-                    
-                    
-                                    </div>
-
-                <aside class="span4 detailsbar">
-                    <dl>
-                        <dt>Namespace hierarchy</dt>
-                        <dd class="hierarchy">
-                                                                                                                                                                                                                                                                
-                                    <div class="namespace-wrapper"><a href="../namespaces/default.html">\</a></div>
-                                                                                        <div class="namespace-wrapper">\AcquiaCloudApi</div>
-                        </dd>
-                    </dl>
-                </aside>
-            </div>
-
-            
-            
-        </div>
-    </section>
-
-    <footer class="row-fluid">
-        <section class="span10 offset2">
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <section class="row-fluid footer-sections">
-                        <section class="span4">
-                                                        <h1><i class="icon-code"></i></h1>
-                            <div>
-                                <ul>
-                                                                            <li><a href="../namespaces/acquiacloudapi.html">\AcquiaCloudApi</a></li>
-                                                                    </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-bar-chart"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-pushpin"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../reports/errors.html">Errors</a></li>
-                                    <li><a href="../reports/markers.html">Markers</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                    </section>
-                </section>
-            </section>
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <hr />
-                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on February 19th, 2020 at 12:06.
-                </section>
-            </section>
-        </section>
-    </footer>
-</div>
+</main>
 
 </body>
 </html>

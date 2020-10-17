@@ -1,3 +1,4 @@
 vendor
 tests/logs
 .idea
+.phpdoc

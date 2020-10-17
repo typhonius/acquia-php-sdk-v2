@@ -11,7 +11,8 @@
     "require": {
         "guzzlehttp/guzzle": "^6.3",
         "php": ">=7.3",
-        "league/oauth2-client": "^2.4"
+        "league/oauth2-client": "^2.4",
+        "symfony/cache": "^4|^5"
     },
     "require-dev": {
         "php-coveralls/php-coveralls": "^2.0.0",

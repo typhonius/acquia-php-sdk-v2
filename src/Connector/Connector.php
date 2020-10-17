@@ -66,7 +66,8 @@ class Connector implements ConnectorInterface
     public function createRequest($verb, $path)
     {
         if (!isset($this->accessToken) || $this->accessToken->hasExpired()) {
-            $cache = new FilesystemAdapter('acquia-php-sdk-v2');
+            $directory = sprintf('%s/%s', getenv('HOME'), '.acquia-php-sdk-v2');
+            $cache = new FilesystemAdapter('cache', 0, $directory);
             $accessToken = $cache->get('cloudapi-token', function (ItemInterface $item) {
                 $item->expiresAfter(300);
                 return $this->provider->getAccessToken('client_credentials');

@@ -10,9 +10,9 @@ use Exception;
 class ApiErrorException extends Exception
 {
 
-  /**
-   * @var object
-   */
+    /**
+     * @var object
+     */
     private $responseBody;
 
     /**
@@ -58,17 +58,17 @@ class ApiErrorException extends Exception
         }
     }
 
-  /**
-   * @return object
-   */
+    /**
+     * @return object
+     */
     public function getResponseBody()
     {
         return $this->responseBody;
     }
 
-  /**
-   * @param object $response_body
-   */
+    /**
+     * @param object $response_body
+     */
     private function setResponseBody($response_body)
     {
         $this->responseBody = $response_body;

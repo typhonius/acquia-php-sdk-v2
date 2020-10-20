@@ -15,6 +15,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Webmozart\PathUtil\Path;
 
 class ConnectorTest extends CloudApiTestCase
 {
@@ -33,7 +34,7 @@ class ConnectorTest extends CloudApiTestCase
         $this->connector = new Connector($config);
 
         // Clear the cache to make sure we get fresh results during testing.
-        $directory = sprintf('%s%s%s', posix_getpwuid(getmyuid())['dir'], \DIRECTORY_SEPARATOR, '.acquia-php-sdk-v2');
+        $directory = sprintf('%s%s%s', Path::getHomeDirectory(), \DIRECTORY_SEPARATOR, '.acquia-php-sdk-v2');
         $this->cache = new FilesystemAdapter('cache', 0, $directory);
         $this->cache->deleteItem('cloudapi-token');
     }

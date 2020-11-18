@@ -41,7 +41,19 @@ abstract class CloudApiTestCase extends TestCase
         $this->assertNotNull(json_decode($stream));
         $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
-        return new Psr7\Response($statusCode, ['Content-Type' => 'application/json'], $stream);
+        // Spoof some of the headers that CloudAPI could respond with.
+        // N.B. In reality, not all headers will appear on each request
+        // e.g. X-CloudAPI-Notification-ID will only appear when a request generates a notification.
+        $headers = [
+            'Content-Type' => 'application/json',
+            'X-CloudAPI-Notification-Id' => 'c936a375-4bb8-422d-9d05-a3ff352646f7',
+            'X-CloudAPI-Stability' => 'production',
+            'X-Request-Id' => 'v-2a996562-2945-11eb-8b05-22000b2996e0',
+            'X-CloudAPI-Version' => '2',
+            'X-AH-Environment' => 'prod',
+        ];
+
+        return new Psr7\Response($statusCode, $headers, $stream);
     }
 
     /**

@@ -153,6 +153,8 @@ class Client implements ClientInterface
             throw new ApiErrorException($body);
         }
 
+        $body->_headers = $response->getHeaders();
+
         return $body;
     }
 

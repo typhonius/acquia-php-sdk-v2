@@ -11,6 +11,7 @@ class OperationResponse
 {
 
     public $message;
+    public $notificationUuid;
     public $links;
 
     /**
@@ -23,6 +24,9 @@ class OperationResponse
         $this->message = $operation->message;
         if (isset($operation->_links)) {
             $this->links = $operation->_links;
+        }
+        if (isset($operation->_headers['X-CloudAPI-Notification-Id'])) {
+            $this->notificationUuid = $operation->_headers['X-CloudAPI-Notification-Id'];
         }
     }
 }

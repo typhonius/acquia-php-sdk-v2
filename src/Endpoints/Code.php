@@ -28,7 +28,7 @@ class Code extends CloudApiBase implements CloudApiInterface
             )
         );
     }
-    
+
     /**
      * Deploys a code branch/tag to an environment.
      *

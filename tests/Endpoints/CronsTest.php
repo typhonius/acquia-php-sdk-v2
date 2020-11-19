@@ -9,18 +9,18 @@ class CronsTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'id',
-    'server',
-    'command',
-    'minute',
-    'hour',
-    'dayMonth',
-    'month',
-    'dayWeek',
-    'label',
-    'flags',
-    'environment',
-    'links'
+        'id',
+        'server',
+        'command',
+        'minute',
+        'hour',
+        'dayMonth',
+        'month',
+        'dayWeek',
+        'label',
+        'flags',
+        'environment',
+        'links'
     ];
 
     public function testGetAllCrons()
@@ -76,6 +76,16 @@ class CronsTest extends CloudApiTestCase
             'My New Cron'
         );
 
+        $requestOptions = [
+            'json' => [
+                'command' => '/usr/local/bin/drush cc all',
+                'frequency' => '*/30 * * * *',
+                'label' => 'My New Cron',
+                'server_id' => null
+            ],
+        ];
+
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Creating a new cron.', $result->message);
     }
@@ -95,6 +105,16 @@ class CronsTest extends CloudApiTestCase
             'My New Cron'
         );
 
+        $requestOptions = [
+            'json' => [
+                'command' => '/usr/local/bin/drush cc all',
+                'frequency' => '*/30 * * * *',
+                'label' => 'My New Cron',
+                'server_id' => null
+            ],
+        ];
+
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Updating cron.', $result->message);
     }

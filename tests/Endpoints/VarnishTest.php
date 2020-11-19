@@ -20,6 +20,12 @@ class VarnishTest extends CloudApiTestCase
             ['example.com', 'www.example.com']
         );
 
+        $requestOptions = [
+            'json' => [
+                'domains' => ['example.com', 'www.example.com'],
+            ],
+        ];
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
 
         $this->assertEquals('Varnish is being cleared for the selected domains.', $result->message);

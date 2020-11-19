@@ -9,13 +9,13 @@ class IdentityProviderTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'uuid',
-    'label',
-    'idp_entity_id',
-    'sso_url',
-    'certificate',
-    'status',
-    'links',
+        'uuid',
+        'label',
+        'idp_entity_id',
+        'sso_url',
+        'certificate',
+        'status',
+        'links',
     ];
 
     public function testGetLogForwardingDestinations()
@@ -114,8 +114,17 @@ class IdentityProviderTest extends CloudApiTestCase
             "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----"
         );
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $requestOptions = [
+            'json' => [
+                'label' => 'Test IDP',
+                'entity_id' => 'entity-id',
+                'sso_url' => 'https://idp.example.com',
+                'certificate' => "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----",
+            ],
+        ];
 
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Identity Provider has been updated.', $result->message);
     }
 }

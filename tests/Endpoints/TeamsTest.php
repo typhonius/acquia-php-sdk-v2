@@ -65,8 +65,14 @@ class TeamsTest extends CloudApiTestCase
             ['access permissions', 'access servers']
         );
 
+        $requestOptions = [
+            'json' => [
+                'email' => 'hello@example.com',
+                'roles' => ['access permissions', 'access servers'],
+            ],
+        ];
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals("Invited team member.", $result->message);
     }
 
@@ -79,8 +85,13 @@ class TeamsTest extends CloudApiTestCase
         $organization = new Teams($client);
         $result = $organization->create('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'Mega Team');
 
+        $requestOptions = [
+            'json' => [
+                'name' => 'Mega Team',
+            ],
+        ];
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals("Team created.", $result->message);
     }
 
@@ -93,8 +104,13 @@ class TeamsTest extends CloudApiTestCase
         $team = new Teams($client);
         $result = $team->rename('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'My Cool Application');
 
+        $requestOptions = [
+            'json' => [
+                'name' => 'My Cool Application',
+            ],
+        ];
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals("Team renamed.", $result->message);
     }
 
@@ -108,7 +124,6 @@ class TeamsTest extends CloudApiTestCase
         $result = $team->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals("Removed team.", $result->message);
     }
 
@@ -124,8 +139,13 @@ class TeamsTest extends CloudApiTestCase
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851'
         );
 
+        $requestOptions = [
+            'json' => [
+                'uuid' => '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
+            ],
+        ];
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Added application to team.', $result->message);
     }
 

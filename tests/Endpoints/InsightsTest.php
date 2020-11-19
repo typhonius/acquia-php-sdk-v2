@@ -9,16 +9,16 @@ class InsightsTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'uuid',
-    'label',
-    'hostname',
-    'status',
-    'updatedAt',
-    'lastConnectedAt',
-    'scores',
-    'counts',
-    'flags',
-    'links'
+        'uuid',
+        'label',
+        'hostname',
+        'status',
+        'updatedAt',
+        'lastConnectedAt',
+        'scores',
+        'counts',
+        'flags',
+        'links'
     ];
 
     public $alertProperties = [
@@ -57,7 +57,7 @@ class InsightsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getAllInsights.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
@@ -79,7 +79,7 @@ class InsightsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getEnvironment.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->getEnvironment('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
@@ -116,7 +116,7 @@ class InsightsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getAllAlerts.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->getAllAlerts('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
@@ -218,7 +218,7 @@ class InsightsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getModules.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->getModules('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 

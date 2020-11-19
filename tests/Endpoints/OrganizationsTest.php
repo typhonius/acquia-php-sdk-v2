@@ -87,8 +87,13 @@ class OrganizationsTest extends CloudApiTestCase
         $organization = new Organizations($client);
         $result = $organization->inviteAdmin('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'user@example.com');
 
+        $requestOptions = [
+            'json' => [
+                'email' => 'user@example.com',
+            ],
+        ];
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Invited organization administrator.', $result->message);
     }
 
@@ -181,6 +186,12 @@ class OrganizationsTest extends CloudApiTestCase
             '82cff7ec-2f09-11e9-b210-d663bd873d93'
         );
 
+        $requestOptions = [
+            'json' => [
+                'user_uuid' => '82cff7ec-2f09-11e9-b210-d663bd873d93',
+            ],
+        ];
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals("Changed organization owner.", $result->message);
     }

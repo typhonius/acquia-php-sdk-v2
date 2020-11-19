@@ -9,10 +9,10 @@ class IdesTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'uuid',
-    'label',
-    'links',
-    'owner',
+        'uuid',
+        'label',
+        'links',
+        'owner',
     ];
 
     public function testGetAllIdes()
@@ -66,8 +66,14 @@ class IdesTest extends CloudApiTestCase
             'My new IDE'
         );
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $requestOptions = [
+            'json' => [
+                'label' => 'My new IDE',
+            ],
+        ];
 
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('The remote IDE is being created.', $result->message);
     }
 
@@ -81,7 +87,6 @@ class IdesTest extends CloudApiTestCase
         $result = $ide->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('The remote IDE is being deleted.', $result->message);
     }
 }

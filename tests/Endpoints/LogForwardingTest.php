@@ -9,16 +9,16 @@ class LogForwardingTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'uuid',
-    'label',
-    'address',
-    'consumer',
-    'credentials',
-    'sources',
-    'status',
-    'flags',
-    'health',
-    'environment'
+        'uuid',
+        'label',
+        'address',
+        'consumer',
+        'credentials',
+        'sources',
+        'status',
+        'flags',
+        'health',
+        'environment'
     ];
 
     public function testGetLogForwardingDestinations()
@@ -77,8 +77,17 @@ class LogForwardingTest extends CloudApiTestCase
             'example.com:1234'
         );
 
+        $requestOptions = [
+            'json' => [
+                'label' => 'Test destination',
+                'sources' => ["apache-access", "apache-error"],
+                'consumer' => 'syslog',
+                'credentials' => ["certificate" => "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----"],
+                'address' => 'example.com:1234'
+            ],
+        ];
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Log forwarding destination for the environment has been created.', $result->message);
     }
 
@@ -141,8 +150,17 @@ class LogForwardingTest extends CloudApiTestCase
             'example.com:1234'
         );
 
+        $requestOptions = [
+            'json' => [
+                'label' => 'Test destination',
+                'sources' => ["apache-access", "apache-error"],
+                'consumer' => 'syslog',
+                'credentials' => ["certificate" => "-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----"],
+                'address' => 'example.com:1234'
+            ],
+        ];
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Log forwarding destination has been updated.', $result->message);
     }
 }

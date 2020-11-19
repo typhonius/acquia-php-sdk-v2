@@ -10,16 +10,16 @@ use AcquiaCloudApi\Endpoints\Applications;
 class NotificationTest extends CloudApiTestCase
 {
     protected $properties = [
-    'uuid',
-    'event',
-    'label',
-    'description',
-    'created_at',
-    'completed_at',
-    'status',
-    'progress',
-    'context',
-    'links'
+        'uuid',
+        'event',
+        'label',
+        'description',
+        'created_at',
+        'completed_at',
+        'status',
+        'progress',
+        'context',
+        'links'
     ];
 
     public function testGetNotification()

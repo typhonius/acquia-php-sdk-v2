@@ -10,11 +10,11 @@ class RolesTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'uuid',
-    'name',
-    'description',
-    'last_edited',
-    'permissions',
+        'uuid',
+        'name',
+        'description',
+        'last_edited',
+        'permissions',
     ];
 
     public function testGetRole()
@@ -60,7 +60,7 @@ class RolesTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Roles/createRole.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $roles = new Roles($client);
         $result = $roles->create(
             '8ff6c046-ec64-4ce4-bea6-27845ec18600',
@@ -69,6 +69,14 @@ class RolesTest extends CloudApiTestCase
             'My new role description'
         );
 
+        $requestOptions = [
+            'json' => [
+                'name' => 'My new role',
+                'permissions' => ['access cloud api', 'pull from prod'],
+                'description' => 'My new role description',
+            ],
+        ];
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Role created.', $result->message);
     }
@@ -95,6 +103,12 @@ class RolesTest extends CloudApiTestCase
         $role = new Roles($client);
         $result = $role->update('r47ac10b-58cc-4372-a567-0e02b2c3d470', ['pull from prod']);
 
+        $requestOptions = [
+            'json' => [
+                'permissions' => ['pull from prod'],
+            ],
+        ];
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Updating role.', $result->message);
     }

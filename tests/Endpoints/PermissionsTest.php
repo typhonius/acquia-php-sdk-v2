@@ -9,10 +9,10 @@ class PermissionsTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'name',
-    'label',
-    'description',
-    'group_label',
+        'name',
+        'label',
+        'description',
+        'group_label',
     ];
 
     public function testGetAllPermissions()

@@ -9,15 +9,15 @@ class LogsTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'type',
-    'label',
-    'flags',
-    'links'
+        'type',
+        'label',
+        'flags',
+        'links'
     ];
 
     public $logstreamProperties = [
-    'logstream',
-    'links'
+        'logstream',
+        'links'
     ];
 
     public function testGetLogs()

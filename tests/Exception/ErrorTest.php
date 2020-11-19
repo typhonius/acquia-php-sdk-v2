@@ -91,7 +91,7 @@ EOM;
         $this->assertEquals($object, $exception->getResponseBody());
         $this->assertEquals(0, $exception->getCode());
 
-        $exception = new ApiErrorException($object, null, 403);
+        $exception = new ApiErrorException($object, "", 403);
         $errorMessage = <<< EOM
 AcquiaCloudApi\Exception\ApiErrorException: [forbidden]: You do not have permission to view applications.\n
 EOM;

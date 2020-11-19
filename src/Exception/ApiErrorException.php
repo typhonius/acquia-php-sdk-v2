@@ -44,7 +44,7 @@ class ApiErrorException extends Exception
      *
      * @param object $response_body
      */
-    public function setError($response_body)
+    private function setError($response_body)
     {
         if (is_array($response_body->message) || is_object($response_body->message)) {
             $output = '';

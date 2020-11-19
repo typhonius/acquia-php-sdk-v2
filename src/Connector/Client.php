@@ -114,14 +114,15 @@ class Client implements ClientInterface
      */
     public function request(string $verb, string $path, array $options = [])
     {
-        // @TODO follow this up by removing $options from the parameters able
-        // to be passed into this function and instead solely relying on the
-        // addOption() method as this can then be tested.
+        // Put options sent with API calls into a property so they can be accessed
+        // and therefore tested in tests.
         $this->requestOptions = $options;
 
-        $this->modifyOptions();
+        // Modify the options to combine options set as part of the API call as well
+        // as those set my tools extending this library.
+        $modifiedOptions = $this->modifyOptions();
 
-        $response = $this->makeRequest($verb, $path, $options);
+        $response = $this->makeRequest($verb, $path, $modifiedOptions);
 
         return $this->processResponse($response);
     }

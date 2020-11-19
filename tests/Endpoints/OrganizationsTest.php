@@ -68,6 +68,7 @@ class OrganizationsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OrganizationsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\OrganizationResponse', $record);
@@ -108,6 +109,7 @@ class OrganizationsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\ApplicationsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\ApplicationResponse', $record);
@@ -129,6 +131,7 @@ class OrganizationsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamResponse', $record);
@@ -151,6 +154,7 @@ class OrganizationsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\InvitationsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\InvitationResponse', $record);

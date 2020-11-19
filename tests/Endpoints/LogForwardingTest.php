@@ -33,6 +33,7 @@ class LogForwardingTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\LogForwardingDestinationsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\LogForwardingDestinationResponse', $record);
@@ -101,7 +102,6 @@ class LogForwardingTest extends CloudApiTestCase
         $result = $logForwarding->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 14);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Log forwarding destination has been deleted.', $result->message);
     }
 
@@ -115,7 +115,6 @@ class LogForwardingTest extends CloudApiTestCase
         $result = $logForwarding->enable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Log forwarding destination has been enabled.', $result->message);
     }
 
@@ -129,7 +128,6 @@ class LogForwardingTest extends CloudApiTestCase
         $result = $logForwarding->disable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Log forwarding destination has been disabled.', $result->message);
     }
 

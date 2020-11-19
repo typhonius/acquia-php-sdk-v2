@@ -45,6 +45,7 @@ class RolesTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\RolesResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\RoleResponse', $record);

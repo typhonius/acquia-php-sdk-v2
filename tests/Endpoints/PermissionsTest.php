@@ -27,6 +27,7 @@ class PermissionsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\PermissionsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\PermissionResponse', $record);

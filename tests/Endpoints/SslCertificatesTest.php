@@ -33,6 +33,7 @@ class SslCertificatesTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\SslCertificatesResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\SslCertificateResponse', $record);

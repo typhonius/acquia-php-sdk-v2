@@ -30,6 +30,7 @@ class MembersTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\MembersResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\MemberResponse', $record);
@@ -71,6 +72,7 @@ class MembersTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\MembersResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\MemberResponse', $record);
@@ -114,7 +116,6 @@ class MembersTest extends CloudApiTestCase
         );
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals("Organization member removed.", $result->message);
     }
 }

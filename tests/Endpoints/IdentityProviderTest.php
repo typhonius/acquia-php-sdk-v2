@@ -30,6 +30,7 @@ class IdentityProviderTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\IdentityProvidersResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\IdentityProviderResponse', $record);
@@ -67,7 +68,6 @@ class IdentityProviderTest extends CloudApiTestCase
         $result = $idp->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Identity provider has been deleted.', $result->message);
     }
 
@@ -81,7 +81,6 @@ class IdentityProviderTest extends CloudApiTestCase
         $result = $idp->enable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Identity Provider has been enabled.', $result->message);
     }
 
@@ -95,7 +94,6 @@ class IdentityProviderTest extends CloudApiTestCase
         $result = $idp->disable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Identity Provider has been disabled.', $result->message);
     }
 

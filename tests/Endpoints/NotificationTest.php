@@ -48,6 +48,8 @@ class NotificationTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\NotificationsResponse', $result);
         $this->assertInstanceOf('\ArrayObject', $result);
+        $this->assertNotEmpty($result);
+
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\NotificationResponse', $record);
             foreach ($this->properties as $property) {

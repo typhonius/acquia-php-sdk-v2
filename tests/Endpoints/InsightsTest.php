@@ -63,6 +63,7 @@ class InsightsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightResponse', $record);
@@ -85,6 +86,7 @@ class InsightsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightResponse', $record);
@@ -108,6 +110,15 @@ class InsightsTest extends CloudApiTestCase
         foreach ($this->properties as $property) {
             $this->assertObjectHasAttribute($property, $result);
         }
+
+        // Check that insight counts consist of InsightCountResponse.
+        $this->assertNotEmpty($result->counts);
+        $this->assertObjectHasAttribute('best_practices', $result->counts);
+        $this->assertObjectHasAttribute('security', $result->counts);
+        $this->assertObjectHasAttribute('performance', $result->counts);
+        foreach ($result->counts as $name => $response) {
+            $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightCountResponse', $response);
+        }
     }
 
     public function testGetAllAlerts()
@@ -122,6 +133,7 @@ class InsightsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightAlertsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightAlertResponse', $record);
@@ -163,7 +175,6 @@ class InsightsTest extends CloudApiTestCase
         );
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Alert ignored.', $result->message);
     }
 
@@ -180,7 +191,6 @@ class InsightsTest extends CloudApiTestCase
         );
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Alert restored.', $result->message);
     }
 
@@ -194,7 +204,6 @@ class InsightsTest extends CloudApiTestCase
         $result = $insights->revoke('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Site revoked from submitting Insight score data.', $result->message);
     }
 
@@ -208,7 +217,6 @@ class InsightsTest extends CloudApiTestCase
         $result = $insights->unrevoke('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Site un-revoked.', $result->message);
     }
 
@@ -224,6 +232,7 @@ class InsightsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightModulesResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightModuleResponse', $record);

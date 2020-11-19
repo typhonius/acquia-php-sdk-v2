@@ -16,6 +16,11 @@ class ApiErrorException extends Exception
     private $responseBody;
 
     /**
+     * @var string
+     */
+    private $errorType;
+
+    /**
      * ApiErrorException Constructor.
      *
      * @param object    $response_body
@@ -36,11 +41,11 @@ class ApiErrorException extends Exception
      */
     public function __toString()
     {
-        return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
+        return __CLASS__ . ": [{$this->errorType}]: {$this->message}\n";
     }
 
     /**
-     * Sets message and code properties.
+     * Sets message and errorType properties.
      *
      * @param object $response_body
      */
@@ -53,7 +58,7 @@ class ApiErrorException extends Exception
             }
             $this->message = $output;
         } else {
-            $this->code = $response_body->error;
+            $this->errorType = $response_body->error;
             $this->message = $response_body->message;
         }
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace AcquiaCloudApi\Tests\Endpoints;
+namespace AcquiaCloudApi\Tests\Connector;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Connector\Connector;

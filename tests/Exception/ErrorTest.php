@@ -1,6 +1,6 @@
 <?php
 
-namespace AcquiaCloudApi\Tests\Endpoints;
+namespace AcquiaCloudApi\Tests\Exception;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
 use GuzzleHttp\Exception\BadResponseException;
@@ -89,5 +89,14 @@ AcquiaCloudApi\Exception\ApiErrorException: [forbidden]: You do not have permiss
 EOM;
         $this->assertEquals($exception->__toString(), $errorMessage);
         $this->assertEquals($object, $exception->getResponseBody());
+        $this->assertEquals(0, $exception->getCode());
+
+        $exception = new ApiErrorException($object, null, 403);
+        $errorMessage = <<< EOM
+AcquiaCloudApi\Exception\ApiErrorException: [forbidden]: You do not have permission to view applications.\n
+EOM;
+        $this->assertEquals($exception->__toString(), $errorMessage);
+        $this->assertEquals($object, $exception->getResponseBody());
+        $this->assertEquals(403, $exception->getCode());
     }
 }

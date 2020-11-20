@@ -15,6 +15,15 @@ use Psr\Http\Message\RequestInterface;
  */
 interface ConnectorInterface
 {
+    /**
+     * @var string BASE_URI
+     */
+    public const BASE_URI = 'https://cloud.acquia.com/api';
+
+    /**
+     * @var string URL_ACCESS_TOKEN
+     */
+    public const URL_ACCESS_TOKEN = 'https://accounts.acquia.com/api/auth/oauth/token';
 
     /**
      * Connector constructor.

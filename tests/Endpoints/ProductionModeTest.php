@@ -18,7 +18,6 @@ class ProductionModeTest extends CloudApiTestCase
         $result = $environment->enableProductionMode('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Production mode has been enabled for this environment.', $result->message);
     }
 
@@ -32,7 +31,6 @@ class ProductionModeTest extends CloudApiTestCase
         $result = $environment->disableProductionMode('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Production mode has been disabled for this environment.', $result->message);
     }
 }

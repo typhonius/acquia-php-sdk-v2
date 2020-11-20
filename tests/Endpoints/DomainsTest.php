@@ -9,9 +9,9 @@ class DomainsTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'hostname',
-    'flags',
-    'environment',
+        'hostname',
+        'flags',
+        'environment',
     ];
 
     public $metricsProperties = [
@@ -34,6 +34,7 @@ class DomainsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\DomainsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\DomainResponse', $record);
@@ -70,6 +71,13 @@ class DomainsTest extends CloudApiTestCase
         $domain = new Domains($client);
         $result = $domain->create('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'new-domain.com');
 
+        $requestOptions = [
+            'json' => [
+                'hostname' => 'new-domain.com',
+            ],
+        ];
+
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals("Adding domain example.com", $result->message);
     }
@@ -115,6 +123,7 @@ class DomainsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\MetricsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\MetricResponse', $record);

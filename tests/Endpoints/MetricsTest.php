@@ -9,11 +9,11 @@ class MetricsTest extends CloudApiTestCase
 {
 
     protected $properties = [
-    'metric',
-    'datapoints',
-    'last_data_at',
-    'metadata',
-    'links'
+        'metric',
+        'datapoints',
+        'last_data_at',
+        'metadata',
+        'links'
     ];
 
     public function testGetAggregateData()
@@ -21,12 +21,13 @@ class MetricsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Metrics/getAggregateData.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $account = new Metrics($client);
         $result = $account->getAggregateData('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\MetricsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\MetricResponse', $record);
@@ -62,6 +63,7 @@ class MetricsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\MetricsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\MetricResponse', $record);
@@ -81,6 +83,7 @@ class MetricsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\MetricsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\MetricResponse', $record);
@@ -100,6 +103,7 @@ class MetricsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\MetricsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\MetricResponse', $record);
@@ -119,6 +123,7 @@ class MetricsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\MetricsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\MetricResponse', $record);

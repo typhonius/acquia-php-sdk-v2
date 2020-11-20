@@ -30,7 +30,6 @@ class DatabaseBackupsTest extends CloudApiTestCase
         $result = $databaseBackup->create('185f07c7-9c4f-407b-8968-67892ebcb38a', 'db_name');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Creating the backup.', $result->message);
     }
 
@@ -45,6 +44,7 @@ class DatabaseBackupsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\BackupsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\BackupResponse', $record);
@@ -82,7 +82,6 @@ class DatabaseBackupsTest extends CloudApiTestCase
         $result = $databaseBackup->restore('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'db_name', 12);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Restoring the database backup.', $result->message);
     }
 
@@ -112,7 +111,6 @@ class DatabaseBackupsTest extends CloudApiTestCase
         $result = $databaseBackup->delete('185f07c7-9c4f-407b-8968-67892ebcb38a', 'db_name', 1234);
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Deleting the database backup.', $result->message);
     }
 }

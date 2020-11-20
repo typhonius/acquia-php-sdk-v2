@@ -1,6 +1,6 @@
 <?php
 
-namespace AcquiaCloudApi\Tests\Endpoints;
+namespace AcquiaCloudApi\Tests\Connector;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Connector\Connector;
@@ -80,11 +80,13 @@ class ConnectorTest extends CloudApiTestCase
         // Override the provider property set in the constructor.
         $reflectionClass = new \ReflectionClass('AcquiaCloudApi\Connector\Connector');
 
-        $provider = new MockProvider([
+        $provider = new MockProvider(
+            [
             'clientId' => 'mock_client_id',
             'clientSecret' => 'mock_secret',
             'redirectUri' => 'none',
-        ]);
+            ]
+        );
 
         $providerProperty = $reflectionClass->getProperty('provider');
         $providerProperty->setAccessible(true);

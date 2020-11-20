@@ -30,6 +30,11 @@ class Client implements ClientInterface
     protected $options = [];
 
     /**
+     * @var array Request options from each individual API call.
+     */
+    private $requestOptions = [];
+
+    /**
      * Client constructor.
      *
      * @param ConnectorInterface $connector
@@ -73,10 +78,10 @@ class Client implements ClientInterface
     /**
      * Allows the library to modify the request prior to making the call to the API.
      */
-    public function modifyOptions($options = []): array
+    public function modifyOptions(): array
     {
         // Combine options set globally e.g. headers with options set by individual API calls e.g. form_params.
-        $options = $this->options + $options;
+        $options = $this->options + $this->requestOptions;
 
         // This library can be standalone or as a dependency. Dependent libraries may also set their own user agent
         // which will make $options['headers']['User-Agent'] an array.
@@ -109,12 +114,15 @@ class Client implements ClientInterface
      */
     public function request(string $verb, string $path, array $options = [])
     {
-        // @TODO follow this up by removing $options from the parameters able
-        // to be passed into this function and instead solely relying on the
-        // addOption() method as this can then be tested.
-        $options = $this->modifyOptions($options);
+        // Put options sent with API calls into a property so they can be accessed
+        // and therefore tested in tests.
+        $this->requestOptions = $options;
 
-        $response = $this->makeRequest($verb, $path, $options);
+        // Modify the options to combine options set as part of the API call as well
+        // as those set my tools extending this library.
+        $modifiedOptions = $this->modifyOptions();
+
+        $response = $this->makeRequest($verb, $path, $modifiedOptions);
 
         return $this->processResponse($response);
     }

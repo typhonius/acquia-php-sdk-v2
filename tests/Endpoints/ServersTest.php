@@ -9,16 +9,16 @@ class ServersTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'id',
-    'name',
-    'hostname',
-    'ip',
-    'status',
-    'region',
-    'roles',
-    'amiType',
-    'configuration',
-    'flags',
+        'id',
+        'name',
+        'hostname',
+        'ip',
+        'status',
+        'region',
+        'roles',
+        'amiType',
+        'configuration',
+        'flags',
     ];
 
     public function testGetServers()
@@ -33,6 +33,7 @@ class ServersTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\ServersResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\ServerResponse', $record);
@@ -74,7 +75,6 @@ class ServersTest extends CloudApiTestCase
         );
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('The server configuration is being updated.', $result->message);
     }
 }

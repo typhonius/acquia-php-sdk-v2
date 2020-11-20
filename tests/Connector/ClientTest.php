@@ -1,6 +1,6 @@
 <?php
 
-namespace AcquiaCloudApi\Tests\Endpoints;
+namespace AcquiaCloudApi\Tests\Connector;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Connector\Client;
@@ -91,19 +91,25 @@ class ClientTest extends CloudApiTestCase
         $client->addQuery('limit', '1');
 
         // Set options as an endpoint call would.
-        $options = [
+        $reflectionClass = new \ReflectionClass('AcquiaCloudApi\Connector\Client');
+
+        $requestOptions = [
             'json' => [
                 'source' => 'source',
                 'message' => 'message',
             ],
         ];
 
+        $providerProperty = $reflectionClass->getProperty('requestOptions');
+        $providerProperty->setAccessible(true);
+        $providerProperty->setValue($client, $requestOptions);
+
         // Modify the request to ensure that all of the above get merged correctly.
         // Run modifyOptions twice to ensure that multiple uses of it do not change
         // the end result.
         // @see https://github.com/typhonius/acquia-php-sdk-v2/issues/87
-        $client->modifyOptions($options);
-        $actualOptions = $client->modifyOptions($options);
+        $client->modifyOptions();
+        $actualOptions = $client->modifyOptions();
 
         $version = $client->getVersion();
         $expectedOptions = [

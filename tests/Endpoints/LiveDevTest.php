@@ -31,8 +31,14 @@ class LiveDevTest extends CloudApiTestCase
         $environment = new Environments($client);
         $result = $environment->disableLiveDev('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $requestOptions = [
+            'json' => [
+                'discard' => 1,
+            ],
+        ];
 
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Live Dev is being disabled.', $result->message);
     }
 }

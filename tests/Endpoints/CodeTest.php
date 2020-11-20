@@ -24,6 +24,7 @@ class CodeTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\BranchesResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\BranchResponse', $record);
@@ -43,6 +44,13 @@ class CodeTest extends CloudApiTestCase
         $code = new Code($client);
         $result = $code->switch('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'my-feature-branch');
 
+        $requestOptions = [
+            'json' => [
+                'branch' => 'my-feature-branch',
+            ],
+        ];
+
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Switching code.', $result->message);
     }
@@ -60,6 +68,14 @@ class CodeTest extends CloudApiTestCase
             'Commit message'
         );
 
+        $requestOptions = [
+            'json' => [
+                'source' => '8ff6c046-ec64-4ce4-bea6-27845ec18600',
+                'message' => 'Commit message',
+            ],
+        ];
+
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Deploying code.', $result->message);
     }

@@ -9,26 +9,26 @@ class AccountTest extends CloudApiTestCase
 {
 
     protected $properties = [
-    'id',
-    'uuid',
-    'name',
-    'first_name',
-    'last_name',
-    'last_login_at',
-    'created_at',
-    'mail',
-    'phone',
-    'job_title',
-    'job_function',
-    'company',
-    'country',
-    'state',
-    'timezone',
-    'picture_url',
-    'features',
-    'flags',
-    'metadata',
-    'links'
+        'id',
+        'uuid',
+        'name',
+        'first_name',
+        'last_name',
+        'last_login_at',
+        'created_at',
+        'mail',
+        'phone',
+        'job_title',
+        'job_function',
+        'company',
+        'country',
+        'state',
+        'timezone',
+        'picture_url',
+        'features',
+        'flags',
+        'metadata',
+        'links'
     ];
 
     public function testGetAccount()
@@ -36,7 +36,7 @@ class AccountTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Account/getAccount.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $account = new Account($client);
         $result = $account->get();
 

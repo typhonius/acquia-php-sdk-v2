@@ -9,19 +9,19 @@ class EnvironmentsTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'uuid',
-    'label',
-    'name',
-    'domains',
-    'sshUrl',
-    'ips',
-    'region',
-    'status',
-    'type',
-    'vcs',
-    'flags',
-    'configuration',
-    'links'
+        'uuid',
+        'label',
+        'name',
+        'domains',
+        'sshUrl',
+        'ips',
+        'region',
+        'status',
+        'type',
+        'vcs',
+        'flags',
+        'configuration',
+        'links'
     ];
 
     public function testGetEnvironments()
@@ -36,6 +36,7 @@ class EnvironmentsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\EnvironmentsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\EnvironmentResponse', $record);
@@ -74,9 +75,15 @@ class EnvironmentsTest extends CloudApiTestCase
         $environment = new Environments($client);
         $result = $environment->update('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', ['version' => '7.2']);
 
-         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $requestOptions = [
+            'json' => [
+                'version' => '7.2',
+            ],
+        ];
 
-         $this->assertEquals('The environment configuration is being updated.', $result->message);
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $this->assertEquals('The environment configuration is being updated.', $result->message);
     }
 
     public function testRenameEnvironment()
@@ -89,8 +96,14 @@ class EnvironmentsTest extends CloudApiTestCase
         $environment = new Environments($client);
         $result = $environment->rename('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'Alpha');
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $requestOptions = [
+            'json' => [
+                'label' => 'Alpha',
+            ],
+        ];
 
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Changing environment label.', $result->message);
     }
 
@@ -112,8 +125,19 @@ class EnvironmentsTest extends CloudApiTestCase
             ]
         );
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $requestOptions = [
+            'json' => [
+                'label' => 'CD label',
+                'branch' => 'my-feature-branch',
+                'databases' => [
+                    "database1",
+                    "database2"
+                ],
+            ],
+        ];
 
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Adding an environment.', $result->message);
     }
 
@@ -128,7 +152,6 @@ class EnvironmentsTest extends CloudApiTestCase
         $result = $environment->delete('24-a47ac10b-58cc-4372-a567-0e02b2c3d470');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('The environment is being deleted.', $result->message);
     }
 }

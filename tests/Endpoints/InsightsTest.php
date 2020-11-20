@@ -9,16 +9,16 @@ class InsightsTest extends CloudApiTestCase
 {
 
     public $properties = [
-    'uuid',
-    'label',
-    'hostname',
-    'status',
-    'updatedAt',
-    'lastConnectedAt',
-    'scores',
-    'counts',
-    'flags',
-    'links'
+        'uuid',
+        'label',
+        'hostname',
+        'status',
+        'updatedAt',
+        'lastConnectedAt',
+        'scores',
+        'counts',
+        'flags',
+        'links'
     ];
 
     public $alertProperties = [
@@ -57,12 +57,13 @@ class InsightsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getAllInsights.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightResponse', $record);
@@ -79,12 +80,13 @@ class InsightsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getEnvironment.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->getEnvironment('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightResponse', $record);
@@ -108,6 +110,15 @@ class InsightsTest extends CloudApiTestCase
         foreach ($this->properties as $property) {
             $this->assertObjectHasAttribute($property, $result);
         }
+
+        // Check that insight counts consist of InsightCountResponse.
+        $this->assertNotEmpty($result->counts);
+        $this->assertObjectHasAttribute('best_practices', $result->counts);
+        $this->assertObjectHasAttribute('security', $result->counts);
+        $this->assertObjectHasAttribute('performance', $result->counts);
+        foreach ($result->counts as $name => $response) {
+            $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightCountResponse', $response);
+        }
     }
 
     public function testGetAllAlerts()
@@ -116,12 +127,13 @@ class InsightsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getAllAlerts.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->getAllAlerts('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightAlertsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightAlertResponse', $record);
@@ -163,7 +175,6 @@ class InsightsTest extends CloudApiTestCase
         );
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Alert ignored.', $result->message);
     }
 
@@ -180,7 +191,6 @@ class InsightsTest extends CloudApiTestCase
         );
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Alert restored.', $result->message);
     }
 
@@ -194,7 +204,6 @@ class InsightsTest extends CloudApiTestCase
         $result = $insights->revoke('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Site revoked from submitting Insight score data.', $result->message);
     }
 
@@ -208,7 +217,6 @@ class InsightsTest extends CloudApiTestCase
         $result = $insights->unrevoke('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('Site un-revoked.', $result->message);
     }
 
@@ -218,12 +226,13 @@ class InsightsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getModules.json');
         $client = $this->getMockClient($response);
 
-      /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->getModules('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightModulesResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightModuleResponse', $record);

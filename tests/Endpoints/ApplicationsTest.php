@@ -9,15 +9,15 @@ class ApplicationsTest extends CloudApiTestCase
 {
 
     protected $properties = [
-    'uuid',
-    'name',
-    'hosting',
-    'subscription',
-    'organization',
-    'type',
-    'flags',
-    'status',
-    'links'
+        'uuid',
+        'name',
+        'hosting',
+        'subscription',
+        'organization',
+        'type',
+        'flags',
+        'status',
+        'links'
     ];
 
     protected $tagProperties = [
@@ -38,6 +38,7 @@ class ApplicationsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\ApplicationsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\ApplicationResponse', $record);
@@ -74,8 +75,14 @@ class ApplicationsTest extends CloudApiTestCase
         $application = new Applications($client);
         $result = $application->rename('8ff6c046-ec64-4ce4-bea6-27845ec18600', "My application's new name");
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $requestOptions = [
+            'json' => [
+                'name' => "My application's new name",
+            ],
+        ];
 
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Application renamed.', $result->message);
     }
 
@@ -90,6 +97,7 @@ class ApplicationsTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\ArrayObject', $result);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\TagsResponse', $result);
+        $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\TagResponse', $record);
@@ -109,8 +117,15 @@ class ApplicationsTest extends CloudApiTestCase
         $application = new Applications($client);
         $result = $application->createTag('8ff6c046-ec64-4ce4-bea6-27845ec18600', "deloitte", "orange");
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $requestOptions = [
+            'json' => [
+                'name' => 'deloitte',
+                'color' => 'orange',
+            ],
+        ];
 
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('The tag has been added to the application.', $result->message);
     }
 
@@ -124,7 +139,6 @@ class ApplicationsTest extends CloudApiTestCase
         $result = $application->deleteTag('8ff6c046-ec64-4ce4-bea6-27845ec18600', "deloitte");
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
-
         $this->assertEquals('The tag has been removed from the application.', $result->message);
     }
 }

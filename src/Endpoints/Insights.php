@@ -7,6 +7,7 @@ use AcquiaCloudApi\Response\InsightResponse;
 use AcquiaCloudApi\Response\InsightAlertsResponse;
 use AcquiaCloudApi\Response\InsightAlertResponse;
 use AcquiaCloudApi\Response\InsightModulesResponse;
+use AcquiaCloudApi\Response\InsightModuleResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
@@ -21,9 +22,9 @@ class Insights extends CloudApiBase implements CloudApiInterface
      * Returns Insight data for all sites associated with the application by its UUID.
      *
      * @param  string $applicationUuid
-     * @return InsightsResponse
+     * @return InsightsResponse<InsightResponse>
      */
-    public function getAll($applicationUuid)
+    public function getAll($applicationUuid): InsightsResponse
     {
         return new InsightsResponse(
             $this->client->request(
@@ -37,9 +38,9 @@ class Insights extends CloudApiBase implements CloudApiInterface
      * Returns Insight data for all sites associated with the environment by its UUID.
      *
      * @param  string $environmentUuid
-     * @return InsightsResponse
+     * @return InsightsResponse<InsightResponse>
      */
-    public function getEnvironment($environmentUuid)
+    public function getEnvironment($environmentUuid): InsightsResponse
     {
         return new InsightsResponse(
             $this->client->request(
@@ -55,7 +56,7 @@ class Insights extends CloudApiBase implements CloudApiInterface
      * @param  string $siteId
      * @return InsightResponse
      */
-    public function get($siteId)
+    public function get($siteId): InsightResponse
     {
         return new InsightResponse(
             $this->client->request(
@@ -69,9 +70,9 @@ class Insights extends CloudApiBase implements CloudApiInterface
      * Returns a list of Insight alerts for this site.
      *
      * @param  string $siteId
-     * @return InsightAlertsResponse
+     * @return InsightAlertsResponse<InsightAlertResponse>
      */
-    public function getAllAlerts($siteId)
+    public function getAllAlerts($siteId): InsightAlertsResponse
     {
         return new InsightAlertsResponse(
             $this->client->request(
@@ -88,7 +89,7 @@ class Insights extends CloudApiBase implements CloudApiInterface
      * @param  string $alertUuid
      * @return InsightAlertResponse
      */
-    public function getAlert($siteId, $alertUuid)
+    public function getAlert($siteId, $alertUuid): InsightAlertResponse
     {
         return new InsightAlertResponse(
             $this->client->request(
@@ -105,7 +106,7 @@ class Insights extends CloudApiBase implements CloudApiInterface
      * @param  string $alertUuid
      * @return OperationResponse
      */
-    public function ignoreAlert($siteId, $alertUuid)
+    public function ignoreAlert($siteId, $alertUuid): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -122,7 +123,7 @@ class Insights extends CloudApiBase implements CloudApiInterface
      * @param  string $alertUuid
      * @return OperationResponse
      */
-    public function restoreAlert($siteId, $alertUuid)
+    public function restoreAlert($siteId, $alertUuid): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -138,7 +139,7 @@ class Insights extends CloudApiBase implements CloudApiInterface
      * @param  string $siteId
      * @return OperationResponse
      */
-    public function revoke($siteId)
+    public function revoke($siteId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -155,7 +156,7 @@ class Insights extends CloudApiBase implements CloudApiInterface
      * @param  string $siteId
      * @return OperationResponse
      */
-    public function unrevoke($siteId)
+    public function unrevoke($siteId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -169,9 +170,9 @@ class Insights extends CloudApiBase implements CloudApiInterface
      * Returns a list of Drupal modules for this site.
      *
      * @param  string $siteId
-     * @return InsightModulesResponse
+     * @return InsightModulesResponse<InsightModuleResponse>
      */
-    public function getModules($siteId)
+    public function getModules($siteId): InsightModulesResponse
     {
         return new InsightModulesResponse(
             $this->client->request(

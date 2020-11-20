@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class RolesResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class RolesResponse extends \ArrayObject
 {
 
     /**
-     * RolesResponse constructor.
-     *
-     * @param array $roles
+     * @param array<object> $roles
      */
     public function __construct($roles)
     {

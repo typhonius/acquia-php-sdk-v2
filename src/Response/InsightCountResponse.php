@@ -2,24 +2,39 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class InsightCountResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class InsightCountResponse
 {
-
+    /**
+     * @var string $name
+     */
     public $name;
+
+    /**
+     * @var int $pass
+     */
     public $pass;
+
+    /**
+     * @var int $fail
+     */
     public $fail;
+
+    /**
+     * @var int $ignored
+     */
     public $ignored;
+
+    /**
+     * @var int $total
+     */
     public $total;
+
+    /**
+     * @var int $percent
+     */
     public $percent;
 
     /**
-     * InsightCountResponse constructor.
-     *
      * @param string $name
      * @param object $insightCount
      */

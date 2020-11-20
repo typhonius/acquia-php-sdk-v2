@@ -2,20 +2,21 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class LogstreamResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class LogstreamResponse
 {
 
+    /**
+     * @var object $logstream
+     */
+
     public $logstream;
+
+    /**
+     * @var object $links
+     */
     public $links;
 
     /**
-     * LogstreamResponse constructor.
-     *
      * @param object $logstream
      */
     public function __construct($logstream)

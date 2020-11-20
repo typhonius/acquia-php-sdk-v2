@@ -3,11 +3,15 @@
 namespace AcquiaCloudApi\Endpoints;
 
 use AcquiaCloudApi\Response\ApplicationsResponse;
+use AcquiaCloudApi\Response\ApplicationResponse;
 use AcquiaCloudApi\Response\InvitationsResponse;
+use AcquiaCloudApi\Response\InvitationResponse;
 use AcquiaCloudApi\Response\MembersResponse;
 use AcquiaCloudApi\Response\MemberResponse;
 use AcquiaCloudApi\Response\OrganizationsResponse;
+use AcquiaCloudApi\Response\OrganizationResponse;
 use AcquiaCloudApi\Response\TeamsResponse;
+use AcquiaCloudApi\Response\TeamResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
@@ -21,9 +25,9 @@ class Organizations extends CloudApiBase implements CloudApiInterface
     /**
      * Show all organizations.
      *
-     * @return OrganizationsResponse
+     * @return OrganizationsResponse<OrganizationResponse>
      */
-    public function getAll()
+    public function getAll(): OrganizationsResponse
     {
         return new OrganizationsResponse($this->client->request('get', '/organizations'));
     }
@@ -32,9 +36,9 @@ class Organizations extends CloudApiBase implements CloudApiInterface
      * Show all applications in an organization.
      *
      * @param string $organizationUuid
-     * @return ApplicationsResponse
+     * @return ApplicationsResponse<ApplicationResponse>
      */
-    public function getApplications($organizationUuid)
+    public function getApplications($organizationUuid): ApplicationsResponse
     {
         return new ApplicationsResponse(
             $this->client->request('get', "/organizations/${organizationUuid}/applications")
@@ -45,9 +49,9 @@ class Organizations extends CloudApiBase implements CloudApiInterface
      * Show all members of an organization.
      *
      * @param  string $organizationUuid
-     * @return MembersResponse
+     * @return MembersResponse<MemberResponse>
      */
-    public function getMembers($organizationUuid)
+    public function getMembers($organizationUuid): MembersResponse
     {
         return new MembersResponse(
             $this->client->request('get', "/organizations/${organizationUuid}/members")
@@ -61,7 +65,7 @@ class Organizations extends CloudApiBase implements CloudApiInterface
      * @param  string $memberUuid
      * @return MemberResponse
      */
-    public function getMember($organizationUuid, $memberUuid)
+    public function getMember($organizationUuid, $memberUuid): MemberResponse
     {
         return new MemberResponse(
             $this->client->request('get', "/organizations/${organizationUuid}/members/${memberUuid}")
@@ -72,9 +76,9 @@ class Organizations extends CloudApiBase implements CloudApiInterface
      * Show all admins of an organization.
      *
      * @param  string $organizationUuid
-     * @return MembersResponse
+     * @return MembersResponse<MemberResponse>
      */
-    public function getAdmins($organizationUuid)
+    public function getAdmins($organizationUuid): MembersResponse
     {
         return new MembersResponse(
             $this->client->request('get', "/organizations/${organizationUuid}/admins")
@@ -88,7 +92,7 @@ class Organizations extends CloudApiBase implements CloudApiInterface
      * @param  string $memberUuid
      * @return MemberResponse
      */
-    public function getAdmin($organizationUuid, $memberUuid)
+    public function getAdmin($organizationUuid, $memberUuid): MemberResponse
     {
         return new MemberResponse(
             $this->client->request('get', "/organizations/${organizationUuid}/admins/${memberUuid}")
@@ -99,9 +103,9 @@ class Organizations extends CloudApiBase implements CloudApiInterface
      * Show all members invited to an organization.
      *
      * @param  string $organizationUuid
-     * @return InvitationsResponse
+     * @return InvitationsResponse<InvitationResponse>
      */
-    public function getMemberInvitations($organizationUuid)
+    public function getMemberInvitations($organizationUuid): InvitationsResponse
     {
         return new InvitationsResponse(
             $this->client->request('get', "/organizations/${organizationUuid}/team-invites")
@@ -115,7 +119,7 @@ class Organizations extends CloudApiBase implements CloudApiInterface
      * @param  string $memberUuid
      * @return OperationResponse
      */
-    public function deleteMember($organizationUuid, $memberUuid)
+    public function deleteMember($organizationUuid, $memberUuid): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -131,7 +135,7 @@ class Organizations extends CloudApiBase implements CloudApiInterface
      * @param string $organizationUuid
      * @return OperationResponse
      */
-    public function leaveOrganization($organizationUuid)
+    public function leaveOrganization($organizationUuid): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -148,7 +152,7 @@ class Organizations extends CloudApiBase implements CloudApiInterface
      * @param string $newOwnerUuid
      * @return OperationResponse
      */
-    public function changeOwner($organizationUuid, $newOwnerUuid)
+    public function changeOwner($organizationUuid, $newOwnerUuid): OperationResponse
     {
         $options = [
             'json' => [
@@ -168,9 +172,9 @@ class Organizations extends CloudApiBase implements CloudApiInterface
      * Show all teams in an organization.
      *
      * @param  string $organizationUuid
-     * @return TeamsResponse
+     * @return TeamsResponse<TeamResponse>
      */
-    public function getTeams($organizationUuid)
+    public function getTeams($organizationUuid): TeamsResponse
     {
         return new TeamsResponse(
             $this->client->request('get', "/organizations/${organizationUuid}/teams")
@@ -184,7 +188,7 @@ class Organizations extends CloudApiBase implements CloudApiInterface
      * @param  string $email
      * @return OperationResponse
      */
-    public function inviteAdmin($organizationUuid, $email)
+    public function inviteAdmin($organizationUuid, $email): OperationResponse
     {
         $options = [
             'json' => [

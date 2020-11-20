@@ -19,7 +19,7 @@ class Notifications extends CloudApiBase implements CloudApiInterface
      * @param  string $notificationUuid
      * @return NotificationResponse
      */
-    public function get($notificationUuid)
+    public function get($notificationUuid): NotificationResponse
     {
         return new NotificationResponse(
             $this->client->request(
@@ -33,9 +33,9 @@ class Notifications extends CloudApiBase implements CloudApiInterface
      * Returns a list of notifications.
      *
      * @param  string $applicationUuid
-     * @return NotificationsResponse
+     * @return NotificationsResponse<NotificationResponse>
      */
-    public function getAll($applicationUuid)
+    public function getAll($applicationUuid): NotificationsResponse
     {
         return new NotificationsResponse(
             $this->client->request(

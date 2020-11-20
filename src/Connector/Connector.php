@@ -30,7 +30,7 @@ class Connector implements ConnectorInterface
     protected $client;
 
     /**
-     * @var AccessTokenInterface|string The generated OAuth 2.0 access token.
+     * @var AccessTokenInterface The generated OAuth 2.0 access token.
      */
     protected $accessToken;
 

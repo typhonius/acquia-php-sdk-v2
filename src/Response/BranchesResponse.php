@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class BranchesResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class BranchesResponse extends \ArrayObject
 {
 
     /**
-     * ApplicationsResponse constructor.
-     *
-     * @param array $branches
+     * @param array<object> $branches
      */
     public function __construct($branches)
     {

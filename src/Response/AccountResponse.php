@@ -2,38 +2,109 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class AccountResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class AccountResponse
 {
-
+    /**
+     * @var int $id
+     */
     public $id;
+
+    /**
+     * @var string $uuid
+     */
     public $uuid;
+
+    /**
+     * @var string $name
+     */
     public $name;
+
+    /**
+     * @var string $first_name
+     */
     public $first_name;
+
+    /**
+     * @var string $last_name
+     */
     public $last_name;
+
+    /**
+     * @var string $last_login_at
+     */
     public $last_login_at;
+
+    /**
+     * @var string $created_at
+     */
     public $created_at;
+
+    /**
+     * @var string $mail
+     */
     public $mail;
+
+    /**
+     * @var object $phone
+     */
     public $phone;
+
+    /**
+     * @var string $job_title
+     */
     public $job_title;
+
+    /**
+     * @var string $job_function
+     */
     public $job_function;
+
+    /**
+     * @var string $company
+     */
     public $company;
+
+    /**
+     * @var string $country
+     */
     public $country;
+
+    /**
+     * @var string $state
+     */
     public $state;
+
+    /**
+     * @var string $timezone
+     */
     public $timezone;
+
+    /**
+     * @var string $picture_url
+     */
     public $picture_url;
+
+    /**
+     * @var array<string> $features
+     */
     public $features;
+
+    /**
+     * @var object $flags
+     */
     public $flags;
+
+    /**
+     * @var object $metadata
+     */
     public $metadata;
+
+    /**
+     * @var string $links
+     */
     public $links;
 
     /**
-     * AccountResponse constructor.
-     *
      * @param object $account
      */
     public function __construct($account)

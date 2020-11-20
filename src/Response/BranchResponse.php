@@ -2,20 +2,19 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class BranchResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class BranchResponse
 {
-
+    /**
+     * @var string $name
+     */
     public $name;
+
+    /**
+     * @var object $flags
+     */
     public $flags;
 
     /**
-     * BranchResponse constructor.
-     *
      * @param object $branch
      */
     public function __construct($branch)

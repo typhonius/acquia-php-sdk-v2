@@ -2,28 +2,60 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class ServerResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class ServerResponse
 {
 
+    /**
+     * @var string $id
+     */
     public $id;
+
+    /**
+     * @var string $name
+     */
     public $name;
+
+    /**
+     * @var string $hostname
+     */
     public $hostname;
+
+    /**
+     * @var string $ip
+     */
     public $ip;
+
+    /**
+     * @var string $status
+     */
     public $status;
+
+    /**
+     * @var string $region
+     */
     public $region;
+
+    /**
+     * @var array<string> $roles
+     */
     public $roles;
+
+    /**
+     * @var string $amiType
+     */
     public $amiType;
+
+    /**
+     * @var object $configuration
+     */
     public $configuration;
+
+    /**
+     * @var object $flags
+     */
     public $flags;
 
     /**
-     * ServerResponse constructor.
-     *
      * @param object $server
      */
     public function __construct($server)

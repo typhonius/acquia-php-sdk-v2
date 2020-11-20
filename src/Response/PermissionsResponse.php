@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class PermissionsResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class PermissionsResponse extends \ArrayObject
 {
 
     /**
-     * PermissionsResponse constructor.
-     *
-     * @param array $permissions
+     * @param array<object> $permissions
      */
     public function __construct($permissions)
     {

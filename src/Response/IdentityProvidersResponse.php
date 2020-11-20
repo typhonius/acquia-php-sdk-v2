@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class IdentityProvidersResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class IdentityProvidersResponse extends \ArrayObject
 {
 
     /**
-     * IdentityProvidersResponse constructor.
-     *
-     * @param array $idps
+     * @param array<object> $idps
      */
     public function __construct($idps)
     {

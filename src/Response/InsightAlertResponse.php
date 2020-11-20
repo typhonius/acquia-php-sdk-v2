@@ -2,30 +2,70 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class InsightAlertResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class InsightAlertResponse
 {
 
+    /**
+     * @var int $alert_id
+     */
     public $alert_id;
+
+    /**
+     * @var string $uuid
+     */
     public $uuid;
+
+    /**
+     * @var string $name
+     */
     public $name;
+
+    /**
+     * @var string $message
+     */
     public $message;
+
+    /**
+     * @var string $article_link
+     */
     public $article_link;
+
+    /**
+     * @var int $severity
+     */
     public $severity;
+
+    /**
+     * @var string $severity_label
+     */
     public $severity_label;
+
+    /**
+     * @var string $failed_value
+     */
     public $failed_value;
+
+    /**
+     * @var string $fix_details
+     */
     public $fix_details;
+
+    /**
+     * @var array<string> $categories
+     */
     public $categories;
+
+    /**
+     * @var object $flags
+     */
     public $flags;
+
+    /**
+     * @var object $links
+     */
     public $links;
 
     /**
-     * InsightAlertResponse constructor.
-     *
      * @param object $alert
      */
     public function __construct($alert)

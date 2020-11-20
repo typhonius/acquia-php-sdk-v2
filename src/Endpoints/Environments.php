@@ -21,7 +21,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
      * @param  string $environmentUuidTo
      * @return OperationResponse
      */
-    public function copyFiles($environmentUuidFrom, $environmentUuidTo)
+    public function copyFiles($environmentUuidFrom, $environmentUuidTo): OperationResponse
     {
         $options = [
             'json' => [
@@ -40,7 +40,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
      * @param  string $environmentUuid
      * @return EnvironmentResponse
      */
-    public function get($environmentUuid)
+    public function get($environmentUuid): EnvironmentResponse
     {
         return new EnvironmentResponse(
             $this->client->request(
@@ -54,9 +54,9 @@ class Environments extends CloudApiBase implements CloudApiInterface
      * Shows all environments in an application.
      *
      * @param  string $applicationUuid
-     * @return EnvironmentsResponse
+     * @return EnvironmentsResponse<EnvironmentResponse>
      */
-    public function getAll($applicationUuid)
+    public function getAll($applicationUuid): EnvironmentsResponse
     {
         return new EnvironmentsResponse(
             $this->client->request(
@@ -69,11 +69,11 @@ class Environments extends CloudApiBase implements CloudApiInterface
     /**
      * Modifies configuration settings for an environment.
      *
-     * @param  string $environmentUuid
-     * @param  array  $config
+     * @param  string  $environmentUuid
+     * @param  mixed[] $config
      * @return OperationResponse
      */
-    public function update($environmentUuid, array $config)
+    public function update($environmentUuid, array $config): OperationResponse
     {
 
         $options = [
@@ -96,7 +96,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
      * @param  string $label
      * @return OperationResponse
      */
-    public function rename($environmentUuid, $label)
+    public function rename($environmentUuid, $label): OperationResponse
     {
 
         $options = [
@@ -120,7 +120,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
      * @param  string $environmentUuid
      * @return OperationResponse
      */
-    public function enableLiveDev($environmentUuid)
+    public function enableLiveDev($environmentUuid): OperationResponse
     {
         return new OperationResponse(
             $this->client->request('post', "/environments/${environmentUuid}/livedev/actions/enable")
@@ -133,7 +133,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
      * @param  string $environmentUuid
      * @return OperationResponse
      */
-    public function disableLiveDev($environmentUuid)
+    public function disableLiveDev($environmentUuid): OperationResponse
     {
 
         $options = [
@@ -157,7 +157,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
      * @param  string $environmentUuid
      * @return OperationResponse
      */
-    public function enableProductionMode($environmentUuid)
+    public function enableProductionMode($environmentUuid): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -173,7 +173,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
      * @param  string $environmentUuid
      * @return OperationResponse
      */
-    public function disableProductionMode($environmentUuid)
+    public function disableProductionMode($environmentUuid): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -186,13 +186,13 @@ class Environments extends CloudApiBase implements CloudApiInterface
     /**
      * Add a new continuous delivery environment to an application.
      *
-     * @param  string $applicationUuid
-     * @param  string $label
-     * @param  string $branch
-     * @param  array  $databases
+     * @param  string        $applicationUuid
+     * @param  string        $label
+     * @param  string        $branch
+     * @param  array<string> $databases
      * @return OperationResponse
      */
-    public function create($applicationUuid, $label, $branch, array $databases)
+    public function create($applicationUuid, $label, $branch, array $databases): OperationResponse
     {
         $options = [
             'json' => [
@@ -217,7 +217,7 @@ class Environments extends CloudApiBase implements CloudApiInterface
      * @param  string $environmentUuid
      * @return OperationResponse
      */
-    public function delete($environmentUuid)
+    public function delete($environmentUuid): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(

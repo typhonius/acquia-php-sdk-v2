@@ -18,9 +18,9 @@ class Variables extends CloudApiBase implements CloudApiInterface
      * Fetches all environment variables.
      *
      * @param  string $environmentUuid
-     * @return VariablesResponse
+     * @return VariablesResponse<VariableResponse>
      */
-    public function getAll($environmentUuid)
+    public function getAll($environmentUuid): VariablesResponse
     {
         return new VariablesResponse(
             $this->client->request(
@@ -37,7 +37,7 @@ class Variables extends CloudApiBase implements CloudApiInterface
      * @param  string $name
      * @return VariableResponse
      */
-    public function get($environmentUuid, $name)
+    public function get($environmentUuid, $name): VariableResponse
     {
         return new VariableResponse(
             $this->client->request(
@@ -55,7 +55,7 @@ class Variables extends CloudApiBase implements CloudApiInterface
      * @param  string $value
      * @return OperationResponse
      */
-    public function create($environmentUuid, $name, $value)
+    public function create($environmentUuid, $name, $value): OperationResponse
     {
         $options = [
             'json' => [
@@ -77,7 +77,7 @@ class Variables extends CloudApiBase implements CloudApiInterface
      * @param  string $value
      * @return OperationResponse
      */
-    public function update($environmentUuid, $name, $value)
+    public function update($environmentUuid, $name, $value): OperationResponse
     {
         $options = [
             'json' => [
@@ -98,7 +98,7 @@ class Variables extends CloudApiBase implements CloudApiInterface
      * @param  string $name
      * @return OperationResponse
      */
-    public function delete($environmentUuid, $name)
+    public function delete($environmentUuid, $name): OperationResponse
     {
         return new OperationResponse(
             $this->client->request('delete', "/environments/${environmentUuid}/variables/${name}")

@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class IdesResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class IdesResponse extends \ArrayObject
 {
 
     /**
-     * IdesResponse constructor.
-     *
-     * @param array $ides
+     * @param array<object> $ides
      */
     public function __construct($ides)
     {

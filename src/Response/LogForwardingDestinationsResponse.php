@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class LogForwardingDestinationsResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class LogForwardingDestinationsResponse extends \ArrayObject
 {
 
     /**
-     * LogForwardingDestinationsResponse constructor.
-     *
-     * @param array $destinations
+     * @param array<object> $destinations
      */
     public function __construct($destinations)
     {

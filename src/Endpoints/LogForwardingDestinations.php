@@ -18,9 +18,9 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
      * Returns a list of log forwarding destinations.
      *
      * @param  string $environmentUuid The environment ID
-     * @return LogForwardingDestinationsResponse
+     * @return LogForwardingDestinationsResponse<LogForwardingDestinationResponse>
      */
-    public function getAll($environmentUuid)
+    public function getAll($environmentUuid): LogForwardingDestinationsResponse
     {
         return new LogForwardingDestinationsResponse(
             $this->client->request(
@@ -37,7 +37,7 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
      * @param  int    $destinationId
      * @return LogForwardingDestinationResponse
      */
-    public function get($environmentUuid, $destinationId)
+    public function get($environmentUuid, $destinationId): LogForwardingDestinationResponse
     {
         return new LogForwardingDestinationResponse(
             $this->client->request(
@@ -50,15 +50,15 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
     /**
      * Creates a log forwarding destination.
      *
-     * @param  string $environmentUuid
-     * @param  string $label
-     * @param  array  $sources
-     * @param  string $consumer
-     * @param  array  $credentials
-     * @param  string $address
+     * @param  string  $environmentUuid
+     * @param  string  $label
+     * @param  mixed[] $sources
+     * @param  string  $consumer
+     * @param  mixed[] $credentials
+     * @param  string  $address
      * @return OperationResponse
      */
-    public function create($environmentUuid, $label, $sources, $consumer, $credentials, $address)
+    public function create($environmentUuid, $label, $sources, $consumer, $credentials, $address): OperationResponse
     {
 
         $options = [
@@ -83,7 +83,7 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
      * @param  int    $destId
      * @return OperationResponse
      */
-    public function delete($environmentUuid, $destId)
+    public function delete($environmentUuid, $destId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request('delete', "/environments/${environmentUuid}/log-forwarding-destinations/${destId}")
@@ -97,7 +97,7 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
      * @param  int    $destId
      * @return OperationResponse
      */
-    public function disable($environmentUuid, $destId)
+    public function disable($environmentUuid, $destId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -114,7 +114,7 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
      * @param  int    $destId
      * @return OperationResponse
      */
-    public function enable($environmentUuid, $destId)
+    public function enable($environmentUuid, $destId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -127,18 +127,17 @@ class LogForwardingDestinations extends CloudApiBase implements CloudApiInterfac
     /**
      * Updates a log forwarding destination.
      *
-     * @param  string $environmentUuid
-     * @param  int    $destId
-     * @param  string $label
-     * @param  array  $sources
-     * @param  string $consumer
-     * @param  array  $creds
-     * @param  string $address
+     * @param  string  $environmentUuid
+     * @param  int     $destId
+     * @param  string  $label
+     * @param  mixed[] $sources
+     * @param  string  $consumer
+     * @param  mixed[] $creds
+     * @param  string  $address
      * @return OperationResponse
      */
-    public function update($environmentUuid, $destId, $label, $sources, $consumer, $creds, $address)
+    public function update($environmentUuid, $destId, $label, $sources, $consumer, $creds, $address): OperationResponse
     {
-
         $options = [
             'json' => [
                 'label' => $label,

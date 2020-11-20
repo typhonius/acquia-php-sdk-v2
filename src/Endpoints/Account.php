@@ -18,7 +18,7 @@ class Account extends CloudApiBase implements CloudApiInterface
      *
      * @return AccountResponse
      */
-    public function get()
+    public function get(): AccountResponse
     {
         return new AccountResponse($this->client->request('get', '/account'));
     }

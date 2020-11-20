@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class CertificatesResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class SslCertificatesResponse extends \ArrayObject
 {
 
     /**
-     * CertificatesResponse constructor.
-     *
-     * @param array $certificates
+     * @param array<object> $certificates
      */
     public function __construct($certificates)
     {

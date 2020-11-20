@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class MetricsResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class MetricsResponse extends \ArrayObject
 {
 
     /**
-     * MetricsResponse constructor.
-     *
-     * @param array $metrics
+     * @param array<object> $metrics
      */
     public function __construct($metrics)
     {

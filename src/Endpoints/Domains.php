@@ -6,6 +6,7 @@ use AcquiaCloudApi\Response\DomainsResponse;
 use AcquiaCloudApi\Response\DomainResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\MetricsResponse;
+use AcquiaCloudApi\Response\MetricResponse;
 
 /**
  * Class Domains
@@ -19,9 +20,9 @@ class Domains extends CloudApiBase implements CloudApiInterface
      * Shows all domains on an environment.
      *
      * @param  string $environmentUuid
-     * @return DomainsResponse
+     * @return DomainsResponse<DomainResponse>
      */
-    public function getAll($environmentUuid)
+    public function getAll($environmentUuid): DomainsResponse
     {
         return new DomainsResponse(
             $this->client->request(
@@ -38,7 +39,7 @@ class Domains extends CloudApiBase implements CloudApiInterface
      * @param  string $domain
      * @return DomainResponse
      */
-    public function get($environmentUuid, $domain)
+    public function get($environmentUuid, $domain): DomainResponse
     {
         return new DomainResponse(
             $this->client->request(
@@ -55,7 +56,7 @@ class Domains extends CloudApiBase implements CloudApiInterface
      * @param  string $hostname
      * @return OperationResponse
      */
-    public function create($environmentUuid, $hostname)
+    public function create($environmentUuid, $hostname): OperationResponse
     {
 
         $options = [
@@ -76,7 +77,7 @@ class Domains extends CloudApiBase implements CloudApiInterface
      * @param  string $domain
      * @return OperationResponse
      */
-    public function delete($environmentUuid, $domain)
+    public function delete($environmentUuid, $domain): OperationResponse
     {
         return new OperationResponse(
             $this->client->request('delete', "/environments/${environmentUuid}/domains/${domain}")
@@ -86,13 +87,12 @@ class Domains extends CloudApiBase implements CloudApiInterface
     /**
      * Purges varnish for selected domains in an environment.
      *
-     * @param  string $environmentUuid
-     * @param  array  $domains
+     * @param  string        $environmentUuid
+     * @param  array<string> $domains
      * @return OperationResponse
      */
-    public function purge($environmentUuid, array $domains)
+    public function purge($environmentUuid, array $domains): OperationResponse
     {
-
         $options = [
             'json' => [
                 'domains' => $domains,
@@ -113,9 +113,9 @@ class Domains extends CloudApiBase implements CloudApiInterface
      *
      * @param  string $environmentUuid
      * @param  string $domain
-     * @return MetricsResponse
+     * @return MetricsResponse<MetricResponse>
      */
-    public function metrics($environmentUuid, $domain)
+    public function metrics($environmentUuid, $domain): MetricsResponse
     {
         return new MetricsResponse(
             $this->client->request(
@@ -132,7 +132,7 @@ class Domains extends CloudApiBase implements CloudApiInterface
      * @param  string $domain
      * @return DomainResponse
      */
-    public function status($environmentUuid, $domain)
+    public function status($environmentUuid, $domain): DomainResponse
     {
         return new DomainResponse(
             $this->client->request(

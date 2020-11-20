@@ -2,27 +2,59 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class OrganizationResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class OrganizationResponse
 {
+    /**
+     * @var string $id
+     */
     public $id;
+
+    /**
+     * @var string $uuid
+     */
     public $uuid;
+
+    /**
+     * @var string $name
+     */
     public $name;
+
+    /**
+     * @var object $owner
+     */
     public $owner;
+
+    /**
+     * @var string $subscriptions_total
+     */
     public $subscriptions_total;
+
+    /**
+     * @var string $admins_total
+     */
     public $admins_total;
+
+    /**
+     * @var string $users_total
+     */
     public $users_total;
+
+    /**
+     * @var string $teams_total
+     */
     public $teams_total;
+
+    /**
+     * @var string $roles_total
+     */
     public $roles_total;
+
+    /**
+     * @var object $links
+     */
     public $links;
 
     /**
-     * OrganizationResponse constructor.
-     *
      * @param object $organization
      */
     public function __construct($organization)

@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class EnvironmentsResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class EnvironmentsResponse extends \ArrayObject
 {
 
     /**
-     * EnvironmentsResponse constructor.
-     *
-     * @param array $environments
+     * @param array<object> $environments
      */
     public function __construct($environments)
     {

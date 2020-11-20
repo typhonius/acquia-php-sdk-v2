@@ -3,6 +3,7 @@
 namespace AcquiaCloudApi\Endpoints;
 
 use AcquiaCloudApi\Response\BranchesResponse;
+use AcquiaCloudApi\Response\BranchResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
@@ -17,9 +18,9 @@ class Code extends CloudApiBase implements CloudApiInterface
      * Shows all code branches and tags in an application.
      *
      * @param  string $applicationUuid
-     * @return BranchesResponse
+     * @return BranchesResponse<BranchResponse>
      */
-    public function getAll($applicationUuid)
+    public function getAll($applicationUuid): BranchesResponse
     {
         return new BranchesResponse(
             $this->client->request(
@@ -36,7 +37,7 @@ class Code extends CloudApiBase implements CloudApiInterface
      * @param  string $branch
      * @return OperationResponse
      */
-    public function switch($environmentUuid, $branch)
+    public function switch($environmentUuid, $branch): OperationResponse
     {
 
         $options = [
@@ -60,8 +61,9 @@ class Code extends CloudApiBase implements CloudApiInterface
      * @param string $environmentFromUuid
      * @param string $environmentToUuid
      * @param string $commitMessage
+     * @return OperationResponse
      */
-    public function deploy($environmentFromUuid, $environmentToUuid, $commitMessage = null)
+    public function deploy($environmentFromUuid, $environmentToUuid, $commitMessage = null): OperationResponse
     {
 
         $options = [

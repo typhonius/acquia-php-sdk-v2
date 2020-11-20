@@ -2,27 +2,59 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class NotificationResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class NotificationResponse
 {
+    /**
+     * @var string $uuid
+     */
     public $uuid;
+
+    /**
+     * @var string $event
+     */
     public $event;
+
+    /**
+     * @var string $label
+     */
     public $label;
+
+    /**
+     * @var string $description
+     */
     public $description;
+
+    /**
+     * @var string $created_at
+     */
     public $created_at;
+
+    /**
+     * @var string $completed_at
+     */
     public $completed_at;
+
+    /**
+     * @var string $status
+     */
     public $status;
+
+    /**
+     * @var int $progress
+     */
     public $progress;
+
+    /**
+     * @var object $context
+     */
     public $context;
+
+    /**
+     * @var object|null $links
+     */
     public $links;
 
     /**
-     * MemberResponse constructor.
-     *
      * @param object $notification
      */
     public function __construct($notification)

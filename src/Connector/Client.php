@@ -20,17 +20,17 @@ class Client implements ClientInterface
     protected $connector;
 
     /**
-     * @var array Query strings to be applied to the request.
+     * @var array<string, mixed> Query strings to be applied to the request.
      */
     protected $query = [];
 
     /**
-     * @var array Guzzle options to be applied to the request.
+     * @var array<string, mixed> Guzzle options to be applied to the request.
      */
     protected $options = [];
 
     /**
-     * @var array Request options from each individual API call.
+     * @var array<string, mixed> Request options from each individual API call.
      */
     private $requestOptions = [];
 
@@ -63,7 +63,7 @@ class Client implements ClientInterface
     /**
      * @inheritdoc
      */
-    public function getVersion()
+    public function getVersion(): string
     {
         if ($file = @file_get_contents(dirname(dirname(__DIR__)) . '/VERSION')) {
             return trim($file);

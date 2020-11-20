@@ -2,19 +2,15 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class DatabaseResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class DatabaseResponse
 {
 
+    /**
+     * @var string $name
+     */
     public $name;
 
     /**
-     * DatabaseResponse constructor.
-     *
      * @param object $database
      */
     public function __construct($database)

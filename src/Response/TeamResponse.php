@@ -2,23 +2,39 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class TeamResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class TeamResponse
 {
+    /**
+     * @var string $uuid
+     */
     public $uuid;
+
+    /**
+     * @var string $name
+     */
     public $name;
+
+    /**
+     * @var string|null $created_at
+     */
     public $created_at;
+
+    /**
+     * @var string|null $updated_at
+     */
     public $updated_at;
+
+    /**
+     * @var object|null $organization
+     */
     public $organization;
+
+    /**
+     * @var object $links
+     */
     public $links;
 
     /**
-     * TeamResponse constructor.
-     *
      * @param object $team
      */
     public function __construct($team)

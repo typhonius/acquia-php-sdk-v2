@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class CronsResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class CronsResponse extends \ArrayObject
 {
 
     /**
-     * CronsResponse constructor.
-     *
-     * @param array $crons
+     * @param array<object> $crons
      */
     public function __construct($crons)
     {

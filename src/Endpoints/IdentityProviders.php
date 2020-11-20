@@ -17,9 +17,9 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
     /**
      * Returns a list of identity providers for the user.
      *
-     * @return IdentityProvidersResponse
+     * @return IdentityProvidersResponse<IdentityProviderResponse>
      */
-    public function getAll()
+    public function getAll(): IdentityProvidersResponse
     {
         return new IdentityProvidersResponse(
             $this->client->request(
@@ -35,7 +35,7 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
      * @param  string $idpUuid The identity provider ID
      * @return IdentityProviderResponse
      */
-    public function get($idpUuid)
+    public function get($idpUuid): IdentityProviderResponse
     {
         return new IdentityProviderResponse(
             $this->client->request(
@@ -51,7 +51,7 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
      * @param  string $idpUuid
      * @return OperationResponse
      */
-    public function delete($idpUuid)
+    public function delete($idpUuid): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -67,7 +67,7 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
      * @param  string $idpUuid
      * @return OperationResponse
      */
-    public function disable($idpUuid)
+    public function disable($idpUuid): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -83,7 +83,7 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
      * @param  string $idpUuid
      * @return OperationResponse
      */
-    public function enable($idpUuid)
+    public function enable($idpUuid): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -103,7 +103,7 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
      * @param  string $certificate
      * @return OperationResponse
      */
-    public function update($idpUuid, $label, $entityId, $ssoUrl, $certificate)
+    public function update($idpUuid, $label, $entityId, $ssoUrl, $certificate): OperationResponse
     {
 
         $options = [

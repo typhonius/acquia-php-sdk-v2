@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class VariablesResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class VariablesResponse extends \ArrayObject
 {
 
     /**
-     * VariablesResponse constructor.
-     *
-     * @param array $variables
+     * @param array<object> $variables
      */
     public function __construct($variables)
     {

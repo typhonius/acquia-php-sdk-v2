@@ -2,28 +2,64 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class InvitationResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class InvitationResponse
 {
+    /**
+     * @var string $uuid
+     */
     public $uuid;
+
+    /**
+     * @var string $email
+     */
     public $email;
+
+    /**
+     * @var MemberResponse $author
+     */
     public $author;
+
+    /**
+     * @var object $applications
+     */
     public $applications;
+
+    /**
+     * @var object $organization
+     */
     public $organization;
+
+    /**
+     * @var array<object> $roles
+     */
     public $roles;
+
+    /**
+     * @var TeamResponse $team
+     */
     public $team;
+
+    /**
+     * @var string $created_at
+     */
     public $created_at;
+
+    /**
+     * @var string $token
+     */
     public $token;
+
+    /**
+     * @var object $flags
+     */
     public $flags;
+
+    /**
+     * @var object $links
+     */
     public $links;
 
     /**
-     * MemberResponse constructor.
-     *
      * @param object $invitation
      */
     public function __construct($invitation)

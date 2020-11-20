@@ -2,21 +2,29 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class IdeResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class IdeResponse
 {
+    /**
+     * @var string $uuid
+     */
     public $uuid;
+
+    /**
+     * @var string $label
+     */
     public $label;
+
+    /**
+     * @var object $links
+     */
     public $links;
+
+    /**
+     * @var MemberResponse $owner
+     */
     public $owner;
 
     /**
-     * IdeResponse constructor.
-     *
      * @param object $ide
      */
     public function __construct($ide)

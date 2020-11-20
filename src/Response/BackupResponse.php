@@ -2,26 +2,49 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class BackupResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class BackupResponse
 {
-
+    /**
+     * @var int $id
+     */
     public $id;
+
+    /**
+     * @var object $database
+     */
     public $database;
+
+    /**
+     * @var string $type
+     */
     public $type;
+
+    /**
+     * @var string $startedAt
+     */
     public $startedAt;
+
+    /**
+     * @var string $completedAt
+     */
     public $completedAt;
+
+    /**
+     * @var object $flags
+     */
     public $flags;
+
+    /**
+     * @var object $environment
+     */
     public $environment;
+
+    /**
+     * @var object $links
+     */
     public $links;
 
     /**
-     * BackupResponse constructor.
-     *
      * @param object $backup
      */
     public function __construct($backup)

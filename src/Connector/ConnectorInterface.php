@@ -28,7 +28,7 @@ interface ConnectorInterface
     /**
      * Connector constructor.
      *
-     * @param array $config
+     * @param array<string, string> $config
      */
     public function __construct(array $config);
 
@@ -47,7 +47,7 @@ interface ConnectorInterface
      *
      * @param string $verb
      * @param string $path
-     * @param array  $options
+     * @param array<string, array>  $options
      *
      * @return ResponseInterface
      */

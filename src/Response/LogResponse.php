@@ -2,22 +2,29 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class LogResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class LogResponse
 {
-
+    /**
+     * @var string $type
+     */
     public $type;
+
+    /**
+     * @var string $label
+     */
     public $label;
+
+    /**
+     * @var object $flags
+     */
     public $flags;
+
+    /**
+     * @var object $links
+     */
     public $links;
 
     /**
-     * LogResponse constructor.
-     *
      * @param object $log
      */
     public function __construct($log)

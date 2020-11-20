@@ -2,25 +2,54 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class MemberResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class MemberResponse
 {
+    /**
+     * @var string $uuid
+     */
     public $uuid;
+
+    /**
+     * @var TeamsResponse<TeamResponse>|null $teams
+     */
     public $teams;
+
+    /**
+     * @var string $first_name
+     */
     public $first_name;
+
+    /**
+     * @var string $last_name
+     */
     public $last_name;
+
+    /**
+     * @var string|null $mail
+     */
     public $mail;
+
+    /**
+     * @var string $picture_url
+     */
     public $picture_url;
+
+    /**
+     * @var string $username
+     */
     public $username;
+
+    /**
+     * @var object|null $flags
+     */
+    public $flags;
+
+    /**
+     * @var object|null $links
+     */
     public $links;
 
     /**
-     * MemberResponse constructor.
-     *
      * @param object $member
      */
     public function __construct($member)
@@ -39,6 +68,9 @@ class MemberResponse
 
         if (property_exists($member, 'teams')) {
             $this->teams = new TeamsResponse($member->teams);
+        }
+        if (property_exists($member, 'flags')) {
+            $this->links = $member->flags;
         }
         if (property_exists($member, '_links')) {
             $this->links = $member->_links;

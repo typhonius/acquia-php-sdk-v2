@@ -18,9 +18,9 @@ class Ides extends CloudApiBase implements CloudApiInterface
      * Returns a list of remote IDEs.
      *
      * @param  string $applicationUuid The application ID
-     * @return IdesResponse
+     * @return IdesResponse<IdeResponse>
      */
-    public function getAll($applicationUuid)
+    public function getAll($applicationUuid): IdesResponse
     {
         return new IdesResponse(
             $this->client->request(
@@ -36,7 +36,7 @@ class Ides extends CloudApiBase implements CloudApiInterface
      * @param  string $ideUuid The Remote IDE universally unique identifier.
      * @return IdeResponse
      */
-    public function get($ideUuid)
+    public function get($ideUuid): IdeResponse
     {
         return new IdeResponse(
             $this->client->request(
@@ -53,7 +53,7 @@ class Ides extends CloudApiBase implements CloudApiInterface
      * @param  string $label
      * @return OperationResponse
      */
-    public function create($applicationUuid, $label)
+    public function create($applicationUuid, $label): OperationResponse
     {
 
         $options = [
@@ -73,7 +73,7 @@ class Ides extends CloudApiBase implements CloudApiInterface
      * @param  string $ideUuid
      * @return OperationResponse
      */
-    public function delete($ideUuid)
+    public function delete($ideUuid): OperationResponse
     {
         return new OperationResponse(
             $this->client->request('delete', "/ides/${ideUuid}")

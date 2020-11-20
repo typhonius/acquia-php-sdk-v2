@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class TeamsResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class TeamsResponse extends \ArrayObject
 {
 
     /**
-     * TeamsResponse constructor.
-     *
-     * @param array $teams
+     * @param array<object> $teams
      */
     public function __construct($teams)
     {

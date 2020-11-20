@@ -7,7 +7,9 @@ use AcquiaCloudApi\Endpoints\Organizations;
 
 class MembersTest extends CloudApiTestCase
 {
-
+    /**
+     * @var mixed[] $properties
+     */
     public $properties = [
         'uuid',
         'teams',
@@ -19,12 +21,12 @@ class MembersTest extends CloudApiTestCase
         'links'
     ];
 
-    public function testGetOrganizationMembers()
+    public function testGetOrganizationMembers(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/getMembers.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->getMembers('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
@@ -41,12 +43,12 @@ class MembersTest extends CloudApiTestCase
         }
     }
 
-    public function testGetOrganizationMember()
+    public function testGetOrganizationMember(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/getMember.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->getMember(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
@@ -61,12 +63,12 @@ class MembersTest extends CloudApiTestCase
         }
     }
 
-    public function testGetOrganizationAdmins()
+    public function testGetOrganizationAdmins(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/getAdmins.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->getAdmins('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
@@ -83,12 +85,12 @@ class MembersTest extends CloudApiTestCase
         }
     }
 
-    public function testGetOrganizationAdmin()
+    public function testGetOrganizationAdmin(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/getAdmin.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->getAdmin(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
@@ -103,12 +105,12 @@ class MembersTest extends CloudApiTestCase
         }
     }
 
-    public function testMemberDelete()
+    public function testMemberDelete(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/deleteMember.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->deleteMember(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',

@@ -39,7 +39,7 @@ class Client implements ClientInterface
      *
      * @param ConnectorInterface $connector
      */
-    public function __construct(ConnectorInterface $connector)
+    final public function __construct(ConnectorInterface $connector)
     {
         $this->connector = $connector;
     }
@@ -61,10 +61,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Returns the current version of the library.
-     *
-     * @return string
-     * @throws \Exception
+     * @inheritdoc
      */
     public function getVersion()
     {
@@ -76,7 +73,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Allows the library to modify the request prior to making the call to the API.
+     * @inheritdoc
      */
     public function modifyOptions(): array
     {

@@ -7,7 +7,9 @@ use AcquiaCloudApi\Endpoints\Account;
 
 class AccountTest extends CloudApiTestCase
 {
-
+    /**
+     * @var mixed[] $properties
+     */
     protected $properties = [
         'id',
         'uuid',
@@ -31,12 +33,12 @@ class AccountTest extends CloudApiTestCase
         'links'
     ];
 
-    public function testGetAccount()
+    public function testGetAccount(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Account/getAccount.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $account = new Account($client);
         $result = $account->get();
 

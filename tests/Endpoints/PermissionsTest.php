@@ -7,7 +7,9 @@ use AcquiaCloudApi\Endpoints\Permissions;
 
 class PermissionsTest extends CloudApiTestCase
 {
-
+    /**
+     * @var mixed[] $properties
+     */
     public $properties = [
         'name',
         'label',
@@ -15,13 +17,13 @@ class PermissionsTest extends CloudApiTestCase
         'group_label',
     ];
 
-    public function testGetAllPermissions()
+    public function testGetAllPermissions(): void
     {
 
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Permissions/getPermissions.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $permissions = new Permissions($client);
         $result = $permissions->get();
 

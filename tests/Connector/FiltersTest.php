@@ -7,9 +7,8 @@ use AcquiaCloudApi\Tests\CloudApiTestCase;
 class FiltersTest extends CloudApiTestCase
 {
 
-    public function testAddFilter()
+    public function testAddFilter(): void
     {
-
         $object = $this->getMockClient();
 
         $expectedValue = ['filter' => 'name=@"foobar"'];
@@ -62,7 +61,7 @@ class FiltersTest extends CloudApiTestCase
         $this->assertEquals($property->getValue($object), $expectedValue);
     }
 
-    public function getPrivateProperty($className, $propertyName)
+    public function getPrivateProperty(string $className, string $propertyName): \ReflectionProperty
     {
         $reflector = new \ReflectionClass($className);
         $property = $reflector->getProperty($propertyName);

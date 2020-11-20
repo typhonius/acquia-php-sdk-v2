@@ -7,7 +7,9 @@ use AcquiaCloudApi\Endpoints\Insights;
 
 class InsightsTest extends CloudApiTestCase
 {
-
+    /**
+     * @var mixed[] $properties
+     */
     public $properties = [
         'uuid',
         'label',
@@ -21,6 +23,9 @@ class InsightsTest extends CloudApiTestCase
         'links'
     ];
 
+    /**
+     * @var mixed[] $alertProperties
+     */
     public $alertProperties = [
         'alert_id',
         'uuid',
@@ -36,6 +41,9 @@ class InsightsTest extends CloudApiTestCase
         'links'
     ];
 
+    /**
+     * @var mixed[] $moduleProperties
+     */
     public $moduleProperties = [
         'module_id',
         'name',
@@ -51,13 +59,13 @@ class InsightsTest extends CloudApiTestCase
         'tags'
     ];
 
-    public function testGetInsights()
+    public function testGetInsights(): void
     {
 
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getAllInsights.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
@@ -74,13 +82,13 @@ class InsightsTest extends CloudApiTestCase
         }
     }
 
-    public function testGetEnvironmentInsights()
+    public function testGetEnvironmentInsights(): void
     {
 
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getEnvironment.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->getEnvironment('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
@@ -97,12 +105,12 @@ class InsightsTest extends CloudApiTestCase
         }
     }
 
-    public function testGetInsight()
+    public function testGetInsight(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getInsight.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->get('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
@@ -121,13 +129,13 @@ class InsightsTest extends CloudApiTestCase
         }
     }
 
-    public function testGetAllAlerts()
+    public function testGetAllAlerts(): void
     {
 
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getAllAlerts.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->getAllAlerts('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
@@ -144,12 +152,12 @@ class InsightsTest extends CloudApiTestCase
         }
     }
 
-    public function testGetAlert()
+    public function testGetAlert(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getAlert.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->getAlert(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
@@ -162,12 +170,12 @@ class InsightsTest extends CloudApiTestCase
         }
     }
 
-    public function testIgnoreAlert()
+    public function testIgnoreAlert(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/ignoreAlert.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->ignoreAlert(
             '8ff6c046-ec64-4ce4-bea6-27845ec18600',
@@ -178,12 +186,12 @@ class InsightsTest extends CloudApiTestCase
         $this->assertEquals('Alert ignored.', $result->message);
     }
 
-    public function testRestoreAlert()
+    public function testRestoreAlert(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/restoreAlert.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->restoreAlert(
             '8ff6c046-ec64-4ce4-bea6-27845ec18600',
@@ -194,12 +202,12 @@ class InsightsTest extends CloudApiTestCase
         $this->assertEquals('Alert restored.', $result->message);
     }
 
-    public function testRevokeSite()
+    public function testRevokeSite(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/revokeSite.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->revoke('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
@@ -207,12 +215,12 @@ class InsightsTest extends CloudApiTestCase
         $this->assertEquals('Site revoked from submitting Insight score data.', $result->message);
     }
 
-    public function testUnrevokeSite()
+    public function testUnrevokeSite(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/unrevokeSite.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->unrevoke('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
@@ -220,13 +228,13 @@ class InsightsTest extends CloudApiTestCase
         $this->assertEquals('Site un-revoked.', $result->message);
     }
 
-    public function testGetModules()
+    public function testGetModules(): void
     {
 
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getModules.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->getModules('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 

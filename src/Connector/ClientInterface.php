@@ -15,6 +15,21 @@ interface ClientInterface
 {
 
     /**
+     * Returns the current version of the library.
+     *
+     * @return string
+     * @throws \Exception
+     */
+    public function getVersion();
+
+    /**
+     * Allows the library to modify the request prior to making the call to the API.
+     *
+     * @return array
+     */
+    public function modifyOptions();
+
+    /**
      * Takes parameters passed in, makes a request to the API, and processes the response.
      *
      * @param string $verb

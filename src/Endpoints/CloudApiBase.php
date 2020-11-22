@@ -3,6 +3,7 @@
 namespace AcquiaCloudApi\Endpoints;
 
 use AcquiaCloudApi\Connector\ClientInterface;
+use AcquiaCloudApi\Exception\LinkedResourceNotImplementedException;
 
 /**
  * Class CloudApiBase
@@ -28,21 +29,16 @@ abstract class CloudApiBase implements CloudApiInterface
     }
 
     /**
-     * @param array<string,string> $link
+     * @param array{type:string, path:string} $link
      * @return mixed
+     * @throws LinkedResourceNotImplementedException
      */
     public function getLinkedResource($link)
     {
-        $type = key($link);
-        $value = reset($link);
+        // Remove https://cloud.acquia.com/api from the path as this is already added by the Connector.
+        $path = str_replace('https://cloud.acquia.com/api', '', $link['path']);
 
-        // Parse only the path part of the URL.
-        $path = parse_url($value, PHP_URL_PATH);
-        
-        // Remove /api from the path as this is already added by the Connector.
-        $path = substr($path, 4);
-
-        switch($type) {
+        switch ($link['type']) {
             case 'alerts':
                 return new \AcquiaCloudApi\Response\InsightAlertsResponse(
                     $this->client->request('get', $path)
@@ -78,16 +74,10 @@ abstract class CloudApiBase implements CloudApiInterface
                     $this->client->request('get', $path)
                 );
             break;
-            case 'download':
-            break;
             case 'environments':
                 return new \AcquiaCloudApi\Response\EnvironmentsResponse(
                     $this->client->request('get', $path)
                 );
-            break;
-            case 'events':
-            break;
-            case 'features':
             break;
             case 'ides':
                 return new \AcquiaCloudApi\Response\IdesResponse(
@@ -129,18 +119,15 @@ abstract class CloudApiBase implements CloudApiInterface
                     $this->client->request('get', $path)
                 );
             break;
-            case 'servers':return new \AcquiaCloudApi\Response\ServersResponse(
-                $this->client->request('get', $path)
-            );
-            break;
-            case 'settings':
+            case 'servers':
+                return new \AcquiaCloudApi\Response\ServersResponse(
+                    $this->client->request('get', $path)
+                );
             break;
             case 'ssl':
                 return new \AcquiaCloudApi\Response\SslCertificatesResponse(
                     $this->client->request('get', $path)
                 );
-            break;
-            case 'tasks':
             break;
             case 'teams':
                 return new \AcquiaCloudApi\Response\TeamsResponse(
@@ -152,10 +139,8 @@ abstract class CloudApiBase implements CloudApiInterface
                     $this->client->request('get', $path)
                 );
             break;
-
         }
 
-        var_dump(get_defined_vars());
-        throw new \Exception('Not found');
+        throw new LinkedResourceNotImplementedException($link['type'] . ' link not implemented in this SDK. Please file an issue here: https://github.com/typhonius/acquia-php-sdk-v2/issues');
     }
 }

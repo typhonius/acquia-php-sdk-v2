@@ -6,5 +6,8 @@ parameters:
         -
             message: '%Parameter #1 \$client of method League\\OAuth2\\Client\\Provider\\AbstractProvider::setHttpClient\(\) expects GuzzleHttp\\ClientInterface, Eloquent\\Phony\\Mock\\Mock given.%'
             path: tests/Connector/ConnectorTest.php
+        -
+            message: '#Unreachable statement - code above always terminates.#'
+            path: src/Endpoints/CloudApiBase.php
 includes:
     - vendor/phpstan/phpstan-phpunit/extension.neon

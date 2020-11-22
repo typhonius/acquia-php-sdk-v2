@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class CronResponse
+class CronResponse extends GenericResponse
 {
     /**
      * @var string $id

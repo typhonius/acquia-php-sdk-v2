@@ -2,12 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class CertificateResponse
- *
- * @package AcquiaCloudApi\Response
- */
-class SslCertificateResponse
+class SslCertificateResponse extends GenericResponse
 {
 
     /**

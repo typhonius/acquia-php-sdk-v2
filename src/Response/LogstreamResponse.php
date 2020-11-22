@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class LogstreamResponse
+class LogstreamResponse extends GenericResponse
 {
 
     /**

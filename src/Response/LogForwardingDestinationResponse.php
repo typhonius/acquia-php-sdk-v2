@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class LogForwardingDestinationResponse
+class LogForwardingDestinationResponse extends GenericResponse
 {
     /**
      * @var string $uuid

@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class MetricResponse
+class MetricResponse extends GenericResponse
 {
     /**
      * @var string $metric

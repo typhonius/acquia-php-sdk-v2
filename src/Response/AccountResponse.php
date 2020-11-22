@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class AccountResponse
+class AccountResponse extends GenericResponse
 {
     /**
      * @var int $id

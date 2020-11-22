@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class IdentityProviderResponse
+class IdentityProviderResponse extends GenericResponse
 {
     /**
      * @var string $uuid

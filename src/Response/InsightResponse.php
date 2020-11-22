@@ -4,7 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 use stdClass;
 
-class InsightResponse
+class InsightResponse extends GenericResponse
 {
     /**
      * @var string $uuid

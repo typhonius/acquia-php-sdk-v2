@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class OperationResponse
+class OperationResponse extends GenericResponse
 {
 
     /**

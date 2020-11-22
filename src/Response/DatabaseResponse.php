@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class DatabaseResponse
+class DatabaseResponse extends GenericResponse
 {
 
     /**

@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class EnvironmentResponse
+class EnvironmentResponse extends GenericResponse
 {
     /**
      * @var string $uuid

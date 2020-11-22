@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class BranchResponse
+class BranchResponse extends GenericResponse
 {
     /**
      * @var string $name

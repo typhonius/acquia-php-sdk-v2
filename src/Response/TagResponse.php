@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class TagResponse
+class TagResponse extends GenericResponse
 {
 
     /**

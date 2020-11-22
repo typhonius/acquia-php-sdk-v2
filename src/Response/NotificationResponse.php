@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class NotificationResponse
+class NotificationResponse extends GenericResponse
 {
     /**
      * @var string $uuid

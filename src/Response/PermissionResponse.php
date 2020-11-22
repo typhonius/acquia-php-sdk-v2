@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class PermissionResponse
+class PermissionResponse extends GenericResponse
 {
     /**
      * @var string $name

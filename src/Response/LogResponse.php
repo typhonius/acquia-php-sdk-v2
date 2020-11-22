@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class LogResponse
+class LogResponse extends GenericResponse
 {
     /**
      * @var string $type

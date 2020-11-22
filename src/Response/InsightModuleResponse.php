@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class InsightModuleResponse
+class InsightModuleResponse extends GenericResponse
 {
     /**
      * @var int $module_id

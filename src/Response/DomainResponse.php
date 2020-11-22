@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class DomainResponse
+class DomainResponse extends GenericResponse
 {
     /**
      * @var string $hostname

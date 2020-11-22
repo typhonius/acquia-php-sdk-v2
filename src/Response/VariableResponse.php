@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class VariableResponse
+class VariableResponse extends GenericResponse
 {
     /**
      * @var string $name

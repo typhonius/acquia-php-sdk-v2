@@ -7,6 +7,7 @@ use AcquiaCloudApi\Endpoints\Applications;
 use AcquiaCloudApi\Endpoints\LogForwardingDestinations;
 use AcquiaCloudApi\Exception\NoLinkedResourceException;
 use AcquiaCloudApi\Exception\LinkedResourceNotFoundException;
+use AcquiaCloudApi\Exception\LinkedResourceNotImplementedException;
 
 class LinkedResourcesTest extends CloudApiTestCase
 {
@@ -93,8 +94,8 @@ class LinkedResourcesTest extends CloudApiTestCase
         $application = new Applications($client);
 
         $insightsLink = [
-            'type' => 'insights',
-            'path' => '{baseUri}/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/insights'
+            'type' => 'insight',
+            'path' => '{baseUri}/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/insight'
         ];
         $insights = $application->getLinkedResource($insightsLink);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightsResponse', $insights);
@@ -118,7 +119,7 @@ class LinkedResourcesTest extends CloudApiTestCase
 
     public function testGetLinkedTeams(): void
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/getAllEnvironments.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/getAllTeams.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
@@ -129,23 +130,27 @@ class LinkedResourcesTest extends CloudApiTestCase
             'path' => '{baseUri}/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/teams'
         ];
         $teams = $application->getLinkedResource($teamsLink);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\EnvironmentsResponse', $teams);
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamsResponse', $teams);
     }
 
-    public function testGetLinked(): void
+    public function testGetLinkNotImplementedError(): void
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/getAllEnvironments.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/getApplication.json');
         $client = $this->getMockClient($response);
 
         /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $application = new Applications($client);
+        $application->get('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
-        $teamsLink = [
-            'type' => 'teams',
-            'path' => '{baseUri}/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/teams'
+        $selfLink = [
+            'type' => 'self',
+            'path' => '{baseUri}/applications/185f07c7-9c4f-407b-8968-67892ebcb38a'
         ];
-        $teams = $application->getLinkedResource($teamsLink);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\EnvironmentsResponse', $teams);
+
+        $this->expectException(LinkedResourceNotImplementedException::class);
+        $this->expectExceptionMessage('self link not implemented in this SDK. Please file an issue here: https://github.com/typhonius/acquia-php-sdk-v2/issues');
+
+        $application->getLinkedResource($selfLink);
     }
 
     public function testLinkedResourcesNotFoundError(): void
@@ -161,7 +166,7 @@ class LinkedResourcesTest extends CloudApiTestCase
         $this->expectException(LinkedResourceNotFoundException::class);
         $this->expectExceptionMessage('No property exists for potatoes. Available links are self code databases environments events features insight permissions settings tasks teams parent');
 
-        $link = $result->getLink('potatoes');
+        $result->getLink('potatoes');
     }
 
     public function testHrefNotFoundError(): void
@@ -178,7 +183,7 @@ class LinkedResourcesTest extends CloudApiTestCase
         $this->expectException(LinkedResourceNotFoundException::class);
         $this->expectExceptionMessage('href property not found on databases');
 
-        $link = $result->getLink('databases');
+        $result->getLink('databases');
     }
 
     public function testNoLinkedResourcesError(): void
@@ -192,10 +197,9 @@ class LinkedResourcesTest extends CloudApiTestCase
 
         $this->assertInstanceOf('\AcquiaCloudApi\Response\LogForwardingDestinationResponse', $result);
 
-
         $this->expectException(NoLinkedResourceException::class);
         $this->expectExceptionMessage('No linked resources for AcquiaCloudApi\Response\LogForwardingDestinationResponse');
 
-        $link = $result->getLink('bananas');
+        $result->getLink('bananas');
     }
 }

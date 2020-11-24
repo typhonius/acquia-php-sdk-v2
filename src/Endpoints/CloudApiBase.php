@@ -37,35 +37,33 @@ abstract class CloudApiBase implements CloudApiInterface
     {
         // Remove https://cloud.acquia.com/api from the path as this is already added by the Connector.
         $path = str_replace('https://cloud.acquia.com/api', '', $link['path']);
-
         $type = $link['type'];
 
-        $typeMap = [
-            'alerts' => 'InsightAlertsResponse',
-            'applications' => 'ApplicationsResponse',
-            'backups' => 'BackupsResponse',
-            'code' => 'BranchesResponse',
-            'crons' => 'CronsResponse',
-            'databases' => 'DatabasesResponse',
-            'domains' => 'DomainsResponse',
-            'environments' => 'EnvironmentsResponse',
-            'ides' => 'IdesResponse',
-            'insight' => 'InsightsResponse',
-            'logs' => 'LogsResponse',
-            'members' => 'MembersResponse',
-            'metrics' => 'MetricsResponse',
-            'modules' => 'InsightModulesResponse',
-            'notification' => 'NotificationResponse',
-            'permissions' => 'PermissionsResponse',
-            'servers' => 'ServersResponse',
-            'ssl' => 'SslCertificatesResponse',
-            'teams' => 'TeamsResponse',
-            'variables' => 'VariablesResponse',
+        $classMap = [
+            'alerts' => '\AcquiaCloudApi\Response\InsightAlertsResponse',
+            'applications' => '\AcquiaCloudApi\Response\ApplicationsResponse',
+            'backups' => '\AcquiaCloudApi\Response\BackupsResponse',
+            'code' => '\AcquiaCloudApi\Response\BranchesResponse',
+            'crons' => '\AcquiaCloudApi\Response\CronsResponse',
+            'databases' => '\AcquiaCloudApi\Response\DatabasesResponse',
+            'domains' => '\AcquiaCloudApi\Response\DomainsResponse',
+            'environments' => '\AcquiaCloudApi\Response\EnvironmentsResponse',
+            'ides' => '\AcquiaCloudApi\Response\IdesResponse',
+            'insight' => '\AcquiaCloudApi\Response\InsightsResponse',
+            'logs' => '\AcquiaCloudApi\Response\LogsResponse',
+            'members' => '\AcquiaCloudApi\Response\MembersResponse',
+            'metrics' => '\AcquiaCloudApi\Response\MetricsResponse',
+            'modules' => '\AcquiaCloudApi\Response\InsightModulesResponse',
+            'notification' => '\AcquiaCloudApi\Response\NotificationResponse',
+            'permissions' => '\AcquiaCloudApi\Response\PermissionsResponse',
+            'servers' => '\AcquiaCloudApi\Response\ServersResponse',
+            'ssl' => '\AcquiaCloudApi\Response\SslCertificatesResponse',
+            'teams' => '\AcquiaCloudApi\Response\TeamsResponse',
+            'variables' => '\AcquiaCloudApi\Response\VariablesResponse',
         ];
 
-        if (isset($typeMap[$type])) {
-            $class = "\AcquiaCloudApi\Response\\${typeMap[$type]}";
-            return new $class(
+        if (isset($classMap[$type])) {
+            return new $classMap[$type](
                 $this->client->request('get', $path)
             );
         }

@@ -16,10 +16,10 @@ class Metrics extends CloudApiBase implements CloudApiInterface
     /**
      * Retrieves aggregate usage data for an application.
      *
-     * @return MetricsResponse
      * @param  string $applicationUuid
+     * @return MetricsResponse<MetricResponse>
      */
-    public function getAggregateData($applicationUuid)
+    public function getAggregateData($applicationUuid): MetricsResponse
     {
         return new MetricsResponse(
             $this->client->request(
@@ -32,11 +32,11 @@ class Metrics extends CloudApiBase implements CloudApiInterface
     /**
      * Retrieves aggregate usage metric data for an application.
      *
-     * @return MetricResponse
      * @param  string $applicationUuid
      * @param  string $usageMetric
+     * @return MetricResponse
      */
-    public function getAggregateUsageMetrics($applicationUuid, $usageMetric)
+    public function getAggregateUsageMetrics($applicationUuid, $usageMetric): MetricResponse
     {
         return new MetricResponse(
             $this->client->request(
@@ -49,10 +49,10 @@ class Metrics extends CloudApiBase implements CloudApiInterface
     /**
      * Retrieves usage data for an application, broken down by environment.
      *
-     * @return MetricsResponse
      * @param  string $applicationUuid
+     * @return MetricsResponse<MetricResponse>
      */
-    public function getDataByEnvironment($applicationUuid)
+    public function getDataByEnvironment($applicationUuid): MetricsResponse
     {
         return new MetricsResponse(
             $this->client->request(
@@ -65,10 +65,10 @@ class Metrics extends CloudApiBase implements CloudApiInterface
     /**
      * Retrieves views data for an application, broken down by environment.
      *
-     * @return MetricsResponse
      * @param  string $applicationUuid
+     * @return MetricsResponse<MetricResponse>
      */
-    public function getViewsByEnvironment($applicationUuid)
+    public function getViewsByEnvironment($applicationUuid): MetricsResponse
     {
         return new MetricsResponse(
             $this->client->request(
@@ -81,10 +81,10 @@ class Metrics extends CloudApiBase implements CloudApiInterface
     /**
      * Retrieves visits data for an application, broken down by environment.
      *
-     * @return MetricsResponse
      * @param  string $applicationUuid
+     * @return MetricsResponse<MetricResponse>
      */
-    public function getVisitsByEnvironment($applicationUuid)
+    public function getVisitsByEnvironment($applicationUuid): MetricsResponse
     {
         return new MetricsResponse(
             $this->client->request(
@@ -98,10 +98,10 @@ class Metrics extends CloudApiBase implements CloudApiInterface
      * Returns StackMetrics data for the metrics specified in the filter paramater
      * (e.g., apache-access, web-cpu).
      *
-     * @return MetricsResponse
      * @param  string $environmentUuid
+     * @return MetricsResponse<MetricResponse>
      */
-    public function getStackMetricsData($environmentUuid)
+    public function getStackMetricsData($environmentUuid): MetricsResponse
     {
         return new MetricsResponse(
             $this->client->request(
@@ -114,11 +114,11 @@ class Metrics extends CloudApiBase implements CloudApiInterface
     /**
      * Returns StackMetrics data for the metric (e.g., apache-access).
      *
-     * @return MetricResponse
      * @param  string $environmentUuid
      * @param  string $metricType
+     * @return MetricResponse
      */
-    public function getStackMetricsDataByMetric($environmentUuid, $metricType)
+    public function getStackMetricsDataByMetric($environmentUuid, $metricType): MetricResponse
     {
         return new MetricResponse(
             $this->client->request(

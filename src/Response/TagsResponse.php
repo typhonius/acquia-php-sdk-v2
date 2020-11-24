@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class TagsResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class TagsResponse extends \ArrayObject
 {
 
     /**
-     * TagsResponse constructor.
-     *
-     * @param array $tags
+     * @param array<object> $tags
      */
     public function __construct($tags)
     {

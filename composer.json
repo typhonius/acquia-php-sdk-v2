@@ -18,8 +18,8 @@
     "require-dev": {
         "php-coveralls/php-coveralls": "^2.0.0",
         "phpunit/phpunit": "^7.0",
-        "phpstan/phpstan": "^0.11.19",
-        "phpstan/phpstan-phpunit": "^0.11.2",
+        "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan-phpunit": "^0.12",
         "squizlabs/php_codesniffer": "3.*",
         "eloquent/phony-phpunit": "^4"
     },
@@ -45,7 +45,7 @@
         "cs": "phpcs --standard=PSR12 -n src tests --ignore=./tests/logs/*",
         "cbf": "phpcbf --standard=PSR2 -n src tests",
         "unit": "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --configuration=phpunit.xml --testdox",
-        "stan": "phpstan analyse --level 5 src tests",
+        "stan": "phpstan analyse --level 6 src tests",
         "test": [
             "@lint",
             "@unit",

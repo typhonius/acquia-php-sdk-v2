@@ -18,9 +18,9 @@ class Crons extends CloudApiBase implements CloudApiInterface
      * Show all cron tasks for an environment.
      *
      * @param  string $environmentUuid The environment ID
-     * @return CronsResponse
+     * @return CronsResponse<CronResponse>
      */
-    public function getAll($environmentUuid)
+    public function getAll($environmentUuid): CronsResponse
     {
         return new CronsResponse(
             $this->client->request(
@@ -37,7 +37,7 @@ class Crons extends CloudApiBase implements CloudApiInterface
      * @param  int    $cronId
      * @return CronResponse
      */
-    public function get($environmentUuid, $cronId)
+    public function get($environmentUuid, $cronId): CronResponse
     {
         return new CronResponse(
             $this->client->request(
@@ -57,7 +57,7 @@ class Crons extends CloudApiBase implements CloudApiInterface
      * @param  string $serverId
      * @return OperationResponse
      */
-    public function create($environmentUuid, $command, $frequency, $label, $serverId = null)
+    public function create($environmentUuid, $command, $frequency, $label, $serverId = null): OperationResponse
     {
 
         $options = [
@@ -85,7 +85,7 @@ class Crons extends CloudApiBase implements CloudApiInterface
      * @param  string $serverId
      * @return OperationResponse
      */
-    public function update($environmentUuid, $cronId, $command, $frequency, $label, $serverId = null)
+    public function update($environmentUuid, $cronId, $command, $frequency, $label, $serverId = null): OperationResponse
     {
 
         $options = [
@@ -109,7 +109,7 @@ class Crons extends CloudApiBase implements CloudApiInterface
      * @param  int    $cronId
      * @return OperationResponse
      */
-    public function delete($environmentUuid, $cronId)
+    public function delete($environmentUuid, $cronId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request('delete', "/environments/${environmentUuid}/crons/${cronId}")
@@ -123,7 +123,7 @@ class Crons extends CloudApiBase implements CloudApiInterface
      * @param  int    $cronId
      * @return OperationResponse
      */
-    public function disable($environmentUuid, $cronId)
+    public function disable($environmentUuid, $cronId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -140,7 +140,7 @@ class Crons extends CloudApiBase implements CloudApiInterface
      * @param  int    $cronId
      * @return OperationResponse
      */
-    public function enable($environmentUuid, $cronId)
+    public function enable($environmentUuid, $cronId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(

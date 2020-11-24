@@ -15,19 +15,19 @@ use AcquiaCloudApi\Connector\Connector;
 class ErrorTest extends CloudApiTestCase
 {
 
-    public function testError403()
+    public function testError403(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Error/error403.json');
         $client = $this->getMockClient($response);
         $this->expectException(ApiErrorException::class);
         $this->expectExceptionMessage('You do not have permission to view applications.');
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $application = new Applications($client);
         $application->getAll();
     }
 
-    public function testError404()
+    public function testError404(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Error/error404.json');
         $client = $this->getMockClient($response);
@@ -35,12 +35,12 @@ class ErrorTest extends CloudApiTestCase
         $this->expectExceptionMessage(
             'The application you are trying to access does not exist, or you do not have permission to access it.'
         );
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $application = new Applications($client);
         $application->getAll();
     }
 
-    public function testMultipleErrors()
+    public function testMultipleErrors(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Error/multipleErrors.json');
         $client = $this->getMockClient($response);
@@ -51,12 +51,12 @@ You do not have sufficient permissions to do this task.
 
 EOM;
         $this->expectExceptionMessage($errorMessage);
-
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $application = new Applications($client);
         $application->getAll();
     }
 
-    public function testErrorException()
+    public function testErrorException(): void
     {
 
         $request = new Request('GET', '/test');
@@ -77,7 +77,7 @@ EOM;
         $this->assertEquals($response->getReasonPhrase(), 'Internal Server Error');
     }
 
-    public function testApiErrorException()
+    public function testApiErrorException(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Error/error403.json');
         $body = $response->getBody();

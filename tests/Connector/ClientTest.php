@@ -10,7 +10,7 @@ use AcquiaCloudApi\Endpoints\Code;
 class ClientTest extends CloudApiTestCase
 {
 
-    public function testAddQuery()
+    public function testAddQuery(): void
     {
         $client = $this->getMockClient();
 
@@ -27,12 +27,12 @@ class ClientTest extends CloudApiTestCase
         $this->assertEquals($expectedQuery, $client->getQuery());
     }
 
-    public function testFilteredQuery()
+    public function testFilteredQuery(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Client/getFilteredCode.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $client->addQuery('filter', 'name=@*2014*');
         $client->addQuery('filter', 'type=@*true*');
         $code = new Code($client);
@@ -43,7 +43,7 @@ class ClientTest extends CloudApiTestCase
         }
     }
 
-    public function testClearQuery()
+    public function testClearQuery(): void
     {
         $client = $this->getMockClient();
 
@@ -54,7 +54,7 @@ class ClientTest extends CloudApiTestCase
         $this->assertTrue(empty($client->getQuery()));
     }
 
-    public function testOptions()
+    public function testOptions(): void
     {
         $client = $this->getMockClient();
 
@@ -76,7 +76,7 @@ class ClientTest extends CloudApiTestCase
         $this->assertTrue(empty($client->getOptions()));
     }
 
-    public function testModifyOptions()
+    public function testModifyOptions(): void
     {
         $client = $this->getMockClient();
 
@@ -129,7 +129,7 @@ class ClientTest extends CloudApiTestCase
         $this->assertEquals($expectedOptions, $actualOptions);
     }
 
-    public function testVersion()
+    public function testVersion(): void
     {
         $versionFile = sprintf('%s/VERSION', dirname(dirname(__DIR__)));
         $version = trim(file_get_contents($versionFile));
@@ -140,7 +140,7 @@ class ClientTest extends CloudApiTestCase
         $this->assertEquals($version, $actualValue);
     }
 
-    public function testMissingVersion()
+    public function testMissingVersion(): void
     {
         $versionFile = sprintf('%s/VERSION', dirname(dirname(__DIR__)));
         $versionFileBak = sprintf('%s.bak', $versionFile);

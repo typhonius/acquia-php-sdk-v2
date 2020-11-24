@@ -15,11 +15,26 @@ interface ClientInterface
 {
 
     /**
+     * Returns the current version of the library.
+     *
+     * @return string
+     * @throws \Exception
+     */
+    public function getVersion(): string;
+
+    /**
+     * Allows the library to modify the request prior to making the call to the API.
+     *
+     * @return array<string, mixed>
+     */
+    public function modifyOptions(): array;
+
+    /**
      * Takes parameters passed in, makes a request to the API, and processes the response.
      *
      * @param string $verb
      * @param string $path
-     * @param array  $options
+     * @param array<string, mixed> $options
      *
      * @return mixed|StreamInterface
      */
@@ -28,10 +43,10 @@ interface ClientInterface
     /**
      * @param  string $verb
      * @param  string $path
-     * @param  array  $options
+     * @param  array<string, mixed> $options
      * @return ResponseInterface
      */
-    public function makeRequest(string $verb, string $path, array $options = []);
+    public function makeRequest(string $verb, string $path, array $options = []): ResponseInterface;
 
     /**
      * Processes the returned response from the API.
@@ -45,14 +60,14 @@ interface ClientInterface
     /**
      * Get query from Client.
      *
-     * @return array
+     * @return array<string, mixed>
      */
-    public function getQuery();
+    public function getQuery(): array;
 
     /**
      * Clear query.
      */
-    public function clearQuery();
+    public function clearQuery(): void;
 
     /**
      * Add a query parameter to filter results.
@@ -60,19 +75,19 @@ interface ClientInterface
      * @param string     $name
      * @param string|int $value
      */
-    public function addQuery($name, $value);
+    public function addQuery($name, $value): void;
 
     /**
      * Get options from Client.
      *
-     * @return array
+     * @return array<string, mixed>
      */
-    public function getOptions();
+    public function getOptions(): array;
 
     /**
      * Clear options.
      */
-    public function clearOptions();
+    public function clearOptions(): void;
 
     /**
      * Add an option to the Guzzle request object.
@@ -80,5 +95,5 @@ interface ClientInterface
      * @param string $name
      * @param mixed  $value
      */
-    public function addOption($name, $value);
+    public function addOption($name, $value): void;
 }

@@ -2,28 +2,59 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class ApplicationResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class ApplicationResponse
 {
-
+    /**
+     * @var int $id
+     */
     public $id;
+
+    /**
+     * @var string $uuid
+     */
     public $uuid;
+
+    /**
+     * @var string $name
+     */
     public $name;
+
+    /**
+     * @var object $hosting
+     */
     public $hosting;
+
+    /**
+     * @var object $subscription
+     */
     public $subscription;
+
+    /**
+     * @var object $organization
+     */
     public $organization;
+
+    /**
+     * @var string|null $type
+     */
     public $type;
+
+    /**
+     * @var object $flags
+     */
     public $flags;
+
+    /**
+     * @var string $status
+     */
     public $status;
+
+    /**
+     * @var object $links
+     */
     public $links;
 
     /**
-     * ApplicationResponse constructor.
-     *
      * @param object $application
      */
     public function __construct($application)

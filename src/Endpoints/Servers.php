@@ -21,7 +21,7 @@ class Servers extends CloudApiBase implements CloudApiInterface
      * @param  string $serverId
      * @return ServerResponse
      */
-    public function get($environmentUuid, $serverId)
+    public function get($environmentUuid, $serverId): ServerResponse
     {
         return new ServerResponse(
             $this->client->request(
@@ -34,14 +34,13 @@ class Servers extends CloudApiBase implements CloudApiInterface
     /**
      * Modifies configuration settings for a server.
      *
-     * @param  string $environmentUuid
-     * @param  string $serverId
-     * @param  array  $config
+     * @param  string  $environmentUuid
+     * @param  string  $serverId
+     * @param  mixed[] $config
      * @return OperationResponse
      */
-    public function update($environmentUuid, $serverId, array $config)
+    public function update($environmentUuid, $serverId, array $config): OperationResponse
     {
-
         return new OperationResponse(
             $this->client->request(
                 'put',
@@ -55,9 +54,9 @@ class Servers extends CloudApiBase implements CloudApiInterface
      * Show all servers associated with an environment.
      *
      * @param  string $environmentUuid
-     * @return ServersResponse
+     * @return ServersResponse<ServerResponse>
      */
-    public function getAll($environmentUuid)
+    public function getAll($environmentUuid): ServersResponse
     {
         return new ServersResponse(
             $this->client->request(

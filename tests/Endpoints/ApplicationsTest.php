@@ -7,7 +7,9 @@ use AcquiaCloudApi\Endpoints\Applications;
 
 class ApplicationsTest extends CloudApiTestCase
 {
-
+    /**
+     * @var mixed[] $properties
+     */
     protected $properties = [
         'uuid',
         'name',
@@ -20,6 +22,9 @@ class ApplicationsTest extends CloudApiTestCase
         'links'
     ];
 
+    /**
+     * @var mixed[] $tagProperties
+     */
     protected $tagProperties = [
         'name',
         'color',
@@ -27,12 +32,12 @@ class ApplicationsTest extends CloudApiTestCase
         'links'
     ];
 
-    public function testGetApplications()
+    public function testGetApplications(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/getAllApplications.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $application = new Applications($client);
         $result = $application->getAll();
 
@@ -49,12 +54,12 @@ class ApplicationsTest extends CloudApiTestCase
         }
     }
 
-    public function testGetApplication()
+    public function testGetApplication(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/getApplication.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $application = new Applications($client);
         $result = $application->get('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
@@ -66,12 +71,12 @@ class ApplicationsTest extends CloudApiTestCase
         }
     }
 
-    public function testRenameApplication()
+    public function testRenameApplication(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/renameApplication.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $application = new Applications($client);
         $result = $application->rename('8ff6c046-ec64-4ce4-bea6-27845ec18600', "My application's new name");
 
@@ -86,12 +91,12 @@ class ApplicationsTest extends CloudApiTestCase
         $this->assertEquals('Application renamed.', $result->message);
     }
 
-    public function testGetAllTags()
+    public function testGetAllTags(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/getAllTags.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $application = new Applications($client);
         $result = $application->getAllTags('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
@@ -108,12 +113,12 @@ class ApplicationsTest extends CloudApiTestCase
         }
     }
 
-    public function testCreateTag()
+    public function testCreateTag(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/createTag.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $application = new Applications($client);
         $result = $application->createTag('8ff6c046-ec64-4ce4-bea6-27845ec18600', "deloitte", "orange");
 
@@ -129,12 +134,12 @@ class ApplicationsTest extends CloudApiTestCase
         $this->assertEquals('The tag has been added to the application.', $result->message);
     }
 
-    public function testDeleteTag()
+    public function testDeleteTag(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/deleteTag.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $application = new Applications($client);
         $result = $application->deleteTag('8ff6c046-ec64-4ce4-bea6-27845ec18600', "deloitte");
 

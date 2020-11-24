@@ -10,15 +10,54 @@ namespace AcquiaCloudApi\Response;
 class SslCertificateResponse
 {
 
+    /**
+     * @var int $id
+     */
     public $id;
+
+    /**
+     * @var string $label
+     */
     public $label;
+
+    /**
+     * @var string $certificate
+     */
     public $certificate;
+
+    /**
+     * @var string $private_key
+     */
     public $private_key;
+
+    /**
+     * @var string $ca
+     */
     public $ca;
+
+    /**
+     * @var object $flags
+     */
     public $flags;
+
+    /**
+     * @var string $expires_at
+     */
     public $expires_at;
+
+    /**
+     * @var array<string> $domains
+     */
     public $domains;
+
+    /**
+     * @var object $environment
+     */
     public $environment;
+
+    /**
+     * @var object $links
+     */
     public $links;
 
     /**
@@ -28,7 +67,6 @@ class SslCertificateResponse
      */
     public function __construct($certificate)
     {
-
         $this->id = $certificate->id;
         $this->label = $certificate->label;
         $this->certificate = $certificate->certificate;

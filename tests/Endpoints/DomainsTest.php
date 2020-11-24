@@ -7,13 +7,18 @@ use AcquiaCloudApi\Endpoints\Domains;
 
 class DomainsTest extends CloudApiTestCase
 {
-
+    /**
+     * @var mixed[] $properties
+     */
     public $properties = [
         'hostname',
         'flags',
         'environment',
     ];
 
+    /**
+     * @var mixed[] $metricsProperties
+     */
     public $metricsProperties = [
         'metric',
         'datapoints',
@@ -22,13 +27,12 @@ class DomainsTest extends CloudApiTestCase
         'links'
     ];
 
-    public function testGetDomains()
+    public function testGetDomains(): void
     {
-
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Domains/getAllDomains.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $domain = new Domains($client);
         $result = $domain->getAll('185f07c7-9c4f-407b-8968-67892ebcb38a');
 
@@ -45,12 +49,12 @@ class DomainsTest extends CloudApiTestCase
         }
     }
 
-    public function testGetDomain()
+    public function testGetDomain(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Domains/getDomain.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $domain = new Domains($client);
         $result = $domain->get('185f07c7-9c4f-407b-8968-67892ebcb38a', 'example.com');
 
@@ -62,12 +66,12 @@ class DomainsTest extends CloudApiTestCase
         }
     }
 
-    public function testDomainAdd()
+    public function testDomainAdd(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Domains/createDomain.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $domain = new Domains($client);
         $result = $domain->create('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'new-domain.com');
 
@@ -82,12 +86,12 @@ class DomainsTest extends CloudApiTestCase
         $this->assertEquals("Adding domain example.com", $result->message);
     }
 
-    public function testDomainDelete()
+    public function testDomainDelete(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Domains/deleteDomain.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $domain = new Domains($client);
         $result = $domain->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'deleted-domain.com');
 
@@ -95,12 +99,12 @@ class DomainsTest extends CloudApiTestCase
         $this->assertEquals("Removing the domain example.com", $result->message);
     }
 
-    public function testDomainStatus()
+    public function testDomainStatus(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Domains/getDomainStatus.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $domain = new Domains($client);
         $result = $domain->status('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'domain.com');
 
@@ -112,12 +116,12 @@ class DomainsTest extends CloudApiTestCase
         }
     }
 
-    public function testDomainMetrics()
+    public function testDomainMetrics(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Domains/getDomainMetrics.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $domain = new Domains($client);
         $result = $domain->metrics('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'example.com');
 

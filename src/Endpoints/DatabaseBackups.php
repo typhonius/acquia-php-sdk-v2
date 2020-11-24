@@ -22,7 +22,7 @@ class DatabaseBackups extends CloudApiBase implements CloudApiInterface
      * @param  string $dbName
      * @return OperationResponse
      */
-    public function create($environmentUuid, $dbName)
+    public function create($environmentUuid, $dbName): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -37,9 +37,9 @@ class DatabaseBackups extends CloudApiBase implements CloudApiInterface
      *
      * @param  string $environmentUuid
      * @param  string $dbName
-     * @return BackupsResponse
+     * @return BackupsResponse<BackupResponse>
      */
-    public function getAll($environmentUuid, $dbName)
+    public function getAll($environmentUuid, $dbName): BackupsResponse
     {
         return new BackupsResponse(
             $this->client->request(
@@ -57,7 +57,7 @@ class DatabaseBackups extends CloudApiBase implements CloudApiInterface
      * @param  int    $backupId
      * @return BackupResponse
      */
-    public function get($environmentUuid, $dbName, $backupId)
+    public function get($environmentUuid, $dbName, $backupId): BackupResponse
     {
         return new BackupResponse(
             $this->client->request(
@@ -75,7 +75,7 @@ class DatabaseBackups extends CloudApiBase implements CloudApiInterface
      * @param  int    $backupId
      * @return OperationResponse
      */
-    public function restore($environmentUuid, $dbName, $backupId)
+    public function restore($environmentUuid, $dbName, $backupId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -93,7 +93,7 @@ class DatabaseBackups extends CloudApiBase implements CloudApiInterface
      * @param  int    $backupId
      * @return StreamInterface
      */
-    public function download($environmentUuid, $dbName, $backupId)
+    public function download($environmentUuid, $dbName, $backupId): StreamInterface
     {
         return $this->client->request(
             'get',
@@ -109,7 +109,7 @@ class DatabaseBackups extends CloudApiBase implements CloudApiInterface
      * @param  int    $backupId
      * @return OperationResponse
      */
-    public function delete($environmentUuid, $dbName, $backupId)
+    public function delete($environmentUuid, $dbName, $backupId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(

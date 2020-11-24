@@ -7,7 +7,9 @@ use AcquiaCloudApi\Endpoints\LogForwardingDestinations;
 
 class LogForwardingTest extends CloudApiTestCase
 {
-
+    /**
+     * @var mixed[] $properties
+     */
     public $properties = [
         'uuid',
         'label',
@@ -21,13 +23,13 @@ class LogForwardingTest extends CloudApiTestCase
         'environment'
     ];
 
-    public function testGetLogForwardingDestinations()
+    public function testGetLogForwardingDestinations(): void
     {
 
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/getAllLogForwarding.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logForwarding = new LogForwardingDestinations($client);
         $result = $logForwarding->getAll('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
@@ -44,12 +46,12 @@ class LogForwardingTest extends CloudApiTestCase
         }
     }
 
-    public function testGetLogForwardingDestination()
+    public function testGetLogForwardingDestination(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/getLogForwarding.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logForwarding = new LogForwardingDestinations($client);
         $result = $logForwarding->get('8ff6c046-ec64-4ce4-bea6-27845ec18600', 3);
 
@@ -61,12 +63,12 @@ class LogForwardingTest extends CloudApiTestCase
         }
     }
 
-    public function testCreateLogForwardingDestination()
+    public function testCreateLogForwardingDestination(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/createLogForwarding.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logForwarding = new LogForwardingDestinations($client);
 
         $result = $logForwarding->create(
@@ -92,12 +94,12 @@ class LogForwardingTest extends CloudApiTestCase
         $this->assertEquals('Log forwarding destination for the environment has been created.', $result->message);
     }
 
-    public function testDeleteLogForwardingDestination()
+    public function testDeleteLogForwardingDestination(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/deleteLogForwarding.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logForwarding = new LogForwardingDestinations($client);
         $result = $logForwarding->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 14);
 
@@ -105,12 +107,12 @@ class LogForwardingTest extends CloudApiTestCase
         $this->assertEquals('Log forwarding destination has been deleted.', $result->message);
     }
 
-    public function testEnableLogForwardingDestination()
+    public function testEnableLogForwardingDestination(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/enableLogForwarding.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logForwarding = new LogForwardingDestinations($client);
         $result = $logForwarding->enable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
@@ -118,12 +120,12 @@ class LogForwardingTest extends CloudApiTestCase
         $this->assertEquals('Log forwarding destination has been enabled.', $result->message);
     }
 
-    public function testDisableLogForwardingDestination()
+    public function testDisableLogForwardingDestination(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/disableLogForwarding.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logForwarding = new LogForwardingDestinations($client);
         $result = $logForwarding->disable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
@@ -131,12 +133,12 @@ class LogForwardingTest extends CloudApiTestCase
         $this->assertEquals('Log forwarding destination has been disabled.', $result->message);
     }
 
-    public function testUpdateLogForwardingDestination()
+    public function testUpdateLogForwardingDestination(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/updateLogForwarding.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $logForwarding = new LogForwardingDestinations($client);
         $result = $logForwarding->update(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',

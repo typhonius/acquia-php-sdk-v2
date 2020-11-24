@@ -3,6 +3,7 @@
 namespace AcquiaCloudApi\Tests;
 
 use AcquiaCloudApi\Connector\Client;
+use AcquiaCloudApi\Connector\ClientInterface;
 use GuzzleHttp\Psr7;
 use PHPUnit\Framework\TestCase;
 
@@ -62,9 +63,9 @@ abstract class CloudApiTestCase extends TestCase
      * Mock client class.
      *
      * @param  mixed $response
-     * @return Client
+     * @return ClientInterface
      */
-    protected function getMockClient($response = ''): Client
+    protected function getMockClient($response = ''): ClientInterface
     {
         if ($response) {
             $connector = $this
@@ -92,8 +93,8 @@ abstract class CloudApiTestCase extends TestCase
     /**
      * Uses reflection to retrieve the internal request options to test passed parameters.
      *
-     * @param  Client $client
-     * @return array
+     * @param  ClientInterface $client
+     * @return array{json:array}
      */
     protected function getRequestOptions($client): array
     {

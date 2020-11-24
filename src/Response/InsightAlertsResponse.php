@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class InsightAlertsResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class InsightAlertsResponse extends \ArrayObject
 {
 
     /**
-     * InsightAlertsResponse constructor.
-     *
-     * @param array $alerts
+     * @param array<object> $alerts
      */
     public function __construct($alerts)
     {

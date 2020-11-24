@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class DomainsResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class DomainsResponse extends \ArrayObject
 {
 
     /**
-     * DomainsResponse constructor.
-     *
-     * @param array $domains
+     * @param array<object> $domains
      */
     public function __construct($domains)
     {

@@ -18,9 +18,9 @@ class Roles extends CloudApiBase implements CloudApiInterface
      * Show all roles in an organization.
      *
      * @param  string $organizationUuid
-     * @return RolesResponse
+     * @return RolesResponse<RoleResponse>
      */
-    public function getAll($organizationUuid)
+    public function getAll($organizationUuid): RolesResponse
     {
         return new RolesResponse(
             $this->client->request('get', "/organizations/${organizationUuid}/roles")
@@ -33,7 +33,7 @@ class Roles extends CloudApiBase implements CloudApiInterface
      * @param  string $roleUuid
      * @return RoleResponse
      */
-    public function get($roleUuid)
+    public function get($roleUuid): RoleResponse
     {
         return new RoleResponse(
             $this->client->request('get', "/roles/${roleUuid}")
@@ -43,13 +43,13 @@ class Roles extends CloudApiBase implements CloudApiInterface
     /**
      * Create a new role.
      *
-     * @param  string      $organizationUuid
-     * @param  string      $name
-     * @param  array       $permissions
+     * @param  string        $organizationUuid
+     * @param  string        $name
+     * @param  array<string> $permissions
      * @param  null|string $description
      * @return OperationResponse
      */
-    public function create($organizationUuid, $name, array $permissions, $description = null)
+    public function create($organizationUuid, $name, array $permissions, $description = null): OperationResponse
     {
         $options = [
             'json' => [
@@ -67,11 +67,11 @@ class Roles extends CloudApiBase implements CloudApiInterface
     /**
      * Update the permissions associated with a role.
      *
-     * @param  string $roleUuid
-     * @param  array  $permissions
+     * @param  string        $roleUuid
+     * @param  array<string> $permissions
      * @return OperationResponse
      */
-    public function update($roleUuid, array $permissions)
+    public function update($roleUuid, array $permissions): OperationResponse
     {
         $options = [
             'json' => [
@@ -90,7 +90,7 @@ class Roles extends CloudApiBase implements CloudApiInterface
      * @param  string $roleUuid
      * @return OperationResponse
      */
-    public function delete($roleUuid)
+    public function delete($roleUuid): OperationResponse
     {
         return new OperationResponse($this->client->request('delete', "/roles/${roleUuid}"));
     }

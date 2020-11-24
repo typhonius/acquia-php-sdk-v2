@@ -2,20 +2,20 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class OperationResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class OperationResponse
 {
 
+    /**
+     * @var string $message
+     */
     public $message;
+
+    /**
+     * @var object|null $links
+     */
     public $links;
 
     /**
-     * ApplicationResponse constructor.
-     *
      * @param object $operation
      */
     public function __construct($operation)

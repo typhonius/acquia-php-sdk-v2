@@ -15,11 +15,20 @@ use Psr\Http\Message\RequestInterface;
  */
 interface ConnectorInterface
 {
+    /**
+     * @var string BASE_URI
+     */
+    public const BASE_URI = 'https://cloud.acquia.com/api';
+
+    /**
+     * @var string URL_ACCESS_TOKEN
+     */
+    public const URL_ACCESS_TOKEN = 'https://accounts.acquia.com/api/auth/oauth/token';
 
     /**
      * Connector constructor.
      *
-     * @param array $config
+     * @param array<string, string> $config
      */
     public function __construct(array $config);
 
@@ -38,7 +47,7 @@ interface ConnectorInterface
      *
      * @param string $verb
      * @param string $path
-     * @param array  $options
+     * @param array<string, array>  $options
      *
      * @return ResponseInterface
      */

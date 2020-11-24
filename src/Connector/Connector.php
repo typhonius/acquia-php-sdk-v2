@@ -18,15 +18,6 @@ use Webmozart\PathUtil\Path;
  */
 class Connector implements ConnectorInterface
 {
-    /**
-     * @var string BASE_URI
-     */
-    public const BASE_URI = 'https://cloud.acquia.com/api';
-
-    /**
-     * @var string URL_ACCESS_TOKEN
-     */
-    public const URL_ACCESS_TOKEN = 'https://accounts.acquia.com/api/auth/oauth/token';
 
     /**
      * @var GenericProvider The OAuth 2.0 provider to use in communication.
@@ -39,7 +30,7 @@ class Connector implements ConnectorInterface
     protected $client;
 
     /**
-     * @var AccessTokenInterface|string The generated OAuth 2.0 access token.
+     * @var AccessTokenInterface The generated OAuth 2.0 access token.
      */
     protected $accessToken;
 
@@ -69,7 +60,7 @@ class Connector implements ConnectorInterface
         if (!isset($this->accessToken) || $this->accessToken->hasExpired()) {
             $directory = sprintf('%s%s%s', Path::getHomeDirectory(), \DIRECTORY_SEPARATOR, '.acquia-php-sdk-v2');
             $cache = new FilesystemAdapter('cache', 300, $directory);
-            $accessToken = $cache->get('cloudapi-token', function (ItemInterface $item) {
+            $accessToken = $cache->get('cloudapi-token', function () {
                 return $this->provider->getAccessToken('client_credentials');
             });
 

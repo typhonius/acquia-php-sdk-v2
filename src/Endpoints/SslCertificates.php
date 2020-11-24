@@ -18,9 +18,9 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
      * Returns a list of SSL certificates.
      *
      * @param  string $environmentUuid The environment ID
-     * @return SslCertificatesResponse
+     * @return SslCertificatesResponse<SslCertificateResponse>
      */
-    public function getAll($environmentUuid)
+    public function getAll($environmentUuid): SslCertificatesResponse
     {
         return new SslCertificatesResponse(
             $this->client->request(
@@ -37,7 +37,7 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
      * @param  int    $certificateId
      * @return SslCertificateResponse
      */
-    public function get($environmentUuid, $certificateId)
+    public function get($environmentUuid, $certificateId): SslCertificateResponse
     {
         return new SslCertificateResponse(
             $this->client->request(
@@ -59,7 +59,7 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
      * @param  bool   $legacy
      * @return OperationResponse
      */
-    public function create($envUuid, $label, $cert, $key, $ca = null, $csr = null, $legacy = false)
+    public function create($envUuid, $label, $cert, $key, $ca = null, $csr = null, $legacy = false): OperationResponse
     {
 
         $options = [
@@ -85,7 +85,7 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
      * @param  int    $certificateId
      * @return OperationResponse
      */
-    public function delete($environmentUuid, $certificateId)
+    public function delete($environmentUuid, $certificateId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request('delete', "/environments/${environmentUuid}/ssl/certificates/${certificateId}")
@@ -99,7 +99,7 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
      * @param  int    $certificateId
      * @return OperationResponse
      */
-    public function disable($environmentUuid, $certificateId)
+    public function disable($environmentUuid, $certificateId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -116,7 +116,7 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
      * @param  int    $certificateId
      * @return OperationResponse
      */
-    public function enable($environmentUuid, $certificateId)
+    public function enable($environmentUuid, $certificateId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(

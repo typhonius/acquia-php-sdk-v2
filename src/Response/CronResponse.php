@@ -2,30 +2,69 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class CronResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class CronResponse
 {
-
+    /**
+     * @var string $id
+     */
     public $id;
+
+    /**
+     * @var string $server
+     */
     public $server;
+
+    /**
+     * @var string $command
+     */
     public $command;
+
+    /**
+     * @var string $minute
+     */
     public $minute;
+
+    /**
+     * @var string $hour
+     */
     public $hour;
+
+    /**
+     * @var string $dayMonth
+     */
     public $dayMonth;
+
+    /**
+     * @var string $month
+     */
     public $month;
+
+    /**
+     * @var string $dayWeek
+     */
     public $dayWeek;
+
+    /**
+     * @var string $label
+     */
     public $label;
+
+    /**
+     * @var object $flags
+     */
     public $flags;
+
+    /**
+     * @var object $environment
+     */
     public $environment;
+
+    /**
+     * @var object $links
+     */
     public $links;
 
     /**
-     * CronResponse constructor.
-     *
      * @param object $cron
      */
     public function __construct($cron)

@@ -2,22 +2,34 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class RoleResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class RoleResponse
 {
+    /**
+     * @var string $uuid
+     */
     public $uuid;
+
+    /**
+     * @var string $name
+     */
     public $name;
+
+    /**
+     * @var string $description
+     */
     public $description;
+
+    /**
+     * @var string $last_edited
+     */
     public $last_edited;
+
+    /**
+     * @var PermissionsResponse<PermissionResponse> $permissions
+     */
     public $permissions;
 
     /**
-     * RoleResponse constructor.
-     *
      * @param object $role
      */
     public function __construct($role)

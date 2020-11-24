@@ -2,22 +2,34 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class MetricResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class MetricResponse
 {
+    /**
+     * @var string $metric
+     */
     public $metric;
+
+    /**
+     * @var array<array> $datapoints
+     */
     public $datapoints;
+
+    /**
+     * @var string|null $last_data_at
+     */
     public $last_data_at;
+
+    /**
+     * @var object $metadata
+     */
     public $metadata;
+
+    /**
+     * @var object|null $links
+     */
     public $links;
 
     /**
-     * MetricResponse constructor.
-     *
      * @param object $metric
      */
     public function __construct($metric)

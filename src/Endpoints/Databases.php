@@ -3,6 +3,7 @@
 namespace AcquiaCloudApi\Endpoints;
 
 use AcquiaCloudApi\Response\DatabasesResponse;
+use AcquiaCloudApi\Response\DatabaseResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
@@ -17,9 +18,9 @@ class Databases extends CloudApiBase implements CloudApiInterface
      * Shows all databases in an application.
      *
      * @param  string $applicationUuid
-     * @return DatabasesResponse
+     * @return DatabasesResponse<DatabaseResponse>
      */
-    public function getAll($applicationUuid)
+    public function getAll($applicationUuid): DatabasesResponse
     {
         return new DatabasesResponse(
             $this->client->request(
@@ -36,7 +37,7 @@ class Databases extends CloudApiBase implements CloudApiInterface
      * @param  string $name
      * @return OperationResponse
      */
-    public function create($applicationUuid, $name)
+    public function create($applicationUuid, $name): OperationResponse
     {
         $options = [
             'json' => [
@@ -56,7 +57,7 @@ class Databases extends CloudApiBase implements CloudApiInterface
      * @param  string $name
      * @return OperationResponse
      */
-    public function delete($applicationUuid, $name)
+    public function delete($applicationUuid, $name): OperationResponse
     {
         return new OperationResponse(
             $this->client->request('delete', "/applications/${applicationUuid}/databases/${name}")
@@ -73,7 +74,7 @@ class Databases extends CloudApiBase implements CloudApiInterface
      * @param  string $name
      * @return OperationResponse
      */
-    public function truncate($applicationUuid, $name)
+    public function truncate($applicationUuid, $name): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -91,7 +92,7 @@ class Databases extends CloudApiBase implements CloudApiInterface
      * @param  string $environmentToUuid
      * @return OperationResponse
      */
-    public function copy($environmentFromUuid, $dbName, $environmentToUuid)
+    public function copy($environmentFromUuid, $dbName, $environmentToUuid): OperationResponse
     {
         $options = [
             'json' => [

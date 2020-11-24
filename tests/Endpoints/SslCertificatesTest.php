@@ -7,7 +7,9 @@ use AcquiaCloudApi\Endpoints\SslCertificates;
 
 class SslCertificatesTest extends CloudApiTestCase
 {
-
+    /**
+     * @var mixed[] $properties
+     */
     public $properties = [
         'id',
         'label',
@@ -21,13 +23,13 @@ class SslCertificatesTest extends CloudApiTestCase
         'links'
     ];
 
-    public function testGetCertificates()
+    public function testGetCertificates(): void
     {
 
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/SslCertificates/getAllSslCertificates.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $certificate = new SslCertificates($client);
         $result = $certificate->getAll('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
@@ -44,12 +46,12 @@ class SslCertificatesTest extends CloudApiTestCase
         }
     }
 
-    public function testGetCertificate()
+    public function testGetCertificate(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/SslCertificates/getSslCertificate.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $certificate = new SslCertificates($client);
         $result = $certificate->get('8ff6c046-ec64-4ce4-bea6-27845ec18600', 3);
 
@@ -61,12 +63,12 @@ class SslCertificatesTest extends CloudApiTestCase
         }
     }
 
-    public function testCreateSslCertificate()
+    public function testCreateSslCertificate(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/SslCertificates/createSslCertificate.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $certificate = new SslCertificates($client);
         $result = $certificate->create(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
@@ -92,13 +94,13 @@ class SslCertificatesTest extends CloudApiTestCase
         $this->assertEquals('Installing the certificate.', $result->message);
     }
 
-    public function testCreateLegacySslCertificate()
+    public function testCreateLegacySslCertificate(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/SslCertificates/createSslCertificate.json');
         $client = $this->getMockClient($response);
 
         /**
-         * @var \AcquiaCloudApi\CloudApi\ClientInterface $client
+         * @var \AcquiaCloudApi\Connector\ClientInterface $client
          */
         $certificate = new SslCertificates($client);
         $result = $certificate->create(
@@ -126,12 +128,12 @@ class SslCertificatesTest extends CloudApiTestCase
         $this->assertEquals('Installing the certificate.', $result->message);
     }
 
-    public function testDeleteSslCertificate()
+    public function testDeleteSslCertificate(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/SslCertificates/deleteSslCertificate.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $certificate = new SslCertificates($client);
         $result = $certificate->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 14);
 
@@ -139,12 +141,12 @@ class SslCertificatesTest extends CloudApiTestCase
         $this->assertEquals('Deleting the certificate.', $result->message);
     }
 
-    public function testActivateSslCertificate()
+    public function testActivateSslCertificate(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/SslCertificates/activateSslCertificate.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $certificate = new SslCertificates($client);
         $result = $certificate->enable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 
@@ -152,12 +154,12 @@ class SslCertificatesTest extends CloudApiTestCase
         $this->assertEquals('Activating the certificate.', $result->message);
     }
 
-    public function testDeactivateSslCertificate()
+    public function testDeactivateSslCertificate(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/SslCertificates/deactivateSslCertificate.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $certificate = new SslCertificates($client);
         $result = $certificate->disable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
 

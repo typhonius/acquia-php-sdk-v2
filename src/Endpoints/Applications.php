@@ -19,9 +19,9 @@ class Applications extends CloudApiBase implements CloudApiInterface
     /**
      * Shows all applications.
      *
-     * @return ApplicationsResponse
+     * @return ApplicationsResponse<ApplicationResponse>
      */
-    public function getAll()
+    public function getAll(): ApplicationsResponse
     {
         return new ApplicationsResponse($this->client->request('get', '/applications'));
     }
@@ -32,7 +32,7 @@ class Applications extends CloudApiBase implements CloudApiInterface
      * @param  string $applicationUuid
      * @return ApplicationResponse
      */
-    public function get($applicationUuid)
+    public function get($applicationUuid): ApplicationResponse
     {
         return new ApplicationResponse(
             $this->client->request(
@@ -49,7 +49,7 @@ class Applications extends CloudApiBase implements CloudApiInterface
      * @param  string $name
      * @return OperationResponse
      */
-    public function rename($applicationUuid, $name)
+    public function rename($applicationUuid, $name): OperationResponse
     {
 
         $options = [
@@ -71,9 +71,9 @@ class Applications extends CloudApiBase implements CloudApiInterface
      * Returns a list of application tags associated with this application.
      *
      * @param  string $applicationUuid
-     * @return TagsResponse
+     * @return TagsResponse<TagResponse>
      */
-    public function getAllTags($applicationUuid)
+    public function getAllTags($applicationUuid): TagsResponse
     {
 
         return new TagsResponse(
@@ -92,7 +92,7 @@ class Applications extends CloudApiBase implements CloudApiInterface
      * @param  string $color
      * @return OperationResponse
      */
-    public function createTag($applicationUuid, $name, $color)
+    public function createTag($applicationUuid, $name, $color): OperationResponse
     {
 
         $options = [
@@ -118,7 +118,7 @@ class Applications extends CloudApiBase implements CloudApiInterface
      * @param  string $tagName
      * @return OperationResponse
      */
-    public function deleteTag($applicationUuid, $tagName)
+    public function deleteTag($applicationUuid, $tagName): OperationResponse
     {
 
         return new OperationResponse(

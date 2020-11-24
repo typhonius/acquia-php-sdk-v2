@@ -2,24 +2,39 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class DomainResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class DomainResponse
 {
-
+    /**
+     * @var string $hostname
+     */
     public $hostname;
+
+    /**
+     * @var object $flags
+     */
     public $flags;
+
+    /**
+     * @var array<string>|null $ip_addresses
+     */
     public $ip_addresses;
+
+    /**
+     * @var array<string>|null $cnames
+     */
     public $cnames;
+
+    /**
+     * @var object $environment
+     */
     public $environment;
+
+    /**
+     * @var object $links
+     */
     public $links;
 
     /**
-     * DomainResponse constructor.
-     *
      * @param object $domain
      */
     public function __construct($domain)

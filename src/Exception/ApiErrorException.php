@@ -49,7 +49,7 @@ class ApiErrorException extends Exception
      *
      * @param object $response_body
      */
-    private function setError($response_body)
+    private function setError($response_body): void
     {
         if (is_array($response_body->message) || is_object($response_body->message)) {
             $output = '';
@@ -74,7 +74,7 @@ class ApiErrorException extends Exception
     /**
      * @param object $response_body
      */
-    private function setResponseBody($response_body)
+    private function setResponseBody($response_body): void
     {
         $this->responseBody = $response_body;
     }

@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class InsightModulesResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class InsightModulesResponse extends \ArrayObject
 {
 
     /**
-     * InsightModulesResponse constructor.
-     *
-     * @param array $modules
+     * @param array<object> $modules
      */
     public function __construct($modules)
     {

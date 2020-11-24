@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Tests\Connector;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Connector\Connector;
+use AcquiaCloudApi\Connector\ConnectorInterface;
 use League\OAuth2\Client\Test\Provider\Fake as MockProvider;
 use League\OAuth2\Client\Token\AccessToken;
 use Psr\Http\Message\StreamInterface;
@@ -15,16 +16,23 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\Cache\Adapter\AbstractAdapter;
 use Webmozart\PathUtil\Path;
 
 class ConnectorTest extends CloudApiTestCase
 {
 
+    /**
+     * @var ConnectorInterface $connector
+     */
     public $connector;
 
+    /**
+     * @var AbstractAdapter $cache
+     */
     public $cache;
 
-    public function setUp()
+    public function setUp(): void
     {
         $config = [
             'key' => 'key',
@@ -39,14 +47,14 @@ class ConnectorTest extends CloudApiTestCase
         $this->cache->deleteItem('cloudapi-token');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         // Delete the cached token again to clean up.
         $delete = $this->cache->deleteItem('cloudapi-token');
         $this->assertTrue($delete);
     }
 
-    public function testConnector()
+    public function testConnector(): void
     {
         $this->assertEquals(
             $this->connector::BASE_URI,
@@ -75,7 +83,7 @@ class ConnectorTest extends CloudApiTestCase
         $this->assertEquals('secret', $clientSecret->getValue($provider));
     }
 
-    public function testGetAuthenticatedRequest()
+    public function testGetAuthenticatedRequest(): void
     {
         // Override the provider property set in the constructor.
         $reflectionClass = new \ReflectionClass('AcquiaCloudApi\Connector\Connector');
@@ -138,7 +146,7 @@ class ConnectorTest extends CloudApiTestCase
         $this->assertAttributeSame($expires, 'expires', $accessToken);
     }
 
-    public function testGuzzleRequest()
+    public function testGuzzleRequest(): void
     {
         // Fake a Guzzle client for the request and response.
         $client = new GuzzleClient(['handler' => new MockHandler([new Response()])]);

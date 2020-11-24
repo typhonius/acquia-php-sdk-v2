@@ -4,28 +4,59 @@ namespace AcquiaCloudApi\Response;
 
 use stdClass;
 
-/**
- * Class InsightResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class InsightResponse
 {
-
+    /**
+     * @var string $uuid
+     */
     public $uuid;
+
+    /**
+     * @var string $label
+     */
     public $label;
+
+    /**
+     * @var string $hostname
+     */
     public $hostname;
+
+    /**
+     * @var string $status
+     */
     public $status;
+
+    /**
+     * @var string $updatedAt
+     */
     public $updatedAt;
+
+    /**
+     * @var string $lastConnectedAt
+     */
     public $lastConnectedAt;
+
+    /**
+     * @var object $scores
+     */
     public $scores;
+
+    /**
+     * @var object $counts
+     */
     public $counts;
+
+    /**
+     * @var object $flags
+     */
     public $flags;
+
+    /**
+     * @var object $links
+     */
     public $links;
 
     /**
-     * InsightResponse constructor.
-     *
      * @param object $insight
      */
     public function __construct($insight)

@@ -2,22 +2,30 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class TagResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class TagResponse
 {
 
+    /**
+     * @var string $name
+     */
     public $name;
+
+    /**
+     * @var string $color
+     */
     public $color;
+
+    /**
+     * @var object $context
+     */
     public $context;
+
+    /**
+     * @var object $links
+     */
     public $links;
 
     /**
-     * TagResponse constructor.
-     *
      * @param object $tag
      */
     public function __construct($tag)

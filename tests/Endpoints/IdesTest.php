@@ -7,7 +7,9 @@ use AcquiaCloudApi\Endpoints\Ides;
 
 class IdesTest extends CloudApiTestCase
 {
-
+    /**
+     * @var mixed[] $properties
+     */
     public $properties = [
         'uuid',
         'label',
@@ -15,13 +17,13 @@ class IdesTest extends CloudApiTestCase
         'owner',
     ];
 
-    public function testGetAllIdes()
+    public function testGetAllIdes(): void
     {
 
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Ides/getAllIdes.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $ide = new Ides($client);
         $result = $ide->getAll('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
@@ -38,12 +40,12 @@ class IdesTest extends CloudApiTestCase
         }
     }
 
-    public function testGetIde()
+    public function testGetIde(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Ides/getIde.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $ide = new Ides($client);
         $result = $ide->get('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
@@ -55,12 +57,12 @@ class IdesTest extends CloudApiTestCase
         }
     }
 
-    public function testCreateIde()
+    public function testCreateIde(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Ides/createIde.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $ide = new Ides($client);
         $result = $ide->create(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
@@ -78,12 +80,12 @@ class IdesTest extends CloudApiTestCase
         $this->assertEquals('The remote IDE is being created.', $result->message);
     }
 
-    public function testDeleteIde()
+    public function testDeleteIde(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Ides/deleteIde.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $ide = new Ides($client);
         $result = $ide->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 

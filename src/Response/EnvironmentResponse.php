@@ -2,30 +2,74 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class EnvironmentResponse
- *
- * @package AcquiaCloudApi\Response
- */
 class EnvironmentResponse
 {
+    /**
+     * @var string $uuid
+     */
     public $uuid;
+
+    /**
+     * @var string $label
+     */
     public $label;
+
+    /**
+     * @var string $name
+     */
     public $name;
+
+    /**
+     * @var array<string> $domains
+     */
     public $domains;
+
+    /**
+     * @var string|null $sshUrl
+     */
     public $sshUrl;
+
+    /**
+     * @var array<string> $ips
+     */
     public $ips;
+
+    /**
+     * @var string $region
+     */
     public $region;
+
+    /**
+     * @var string $status
+     */
     public $status;
+
+    /**
+     * @var string $type
+     */
     public $type;
+
+    /**
+     * @var object $vcs
+     */
     public $vcs;
+
+    /**
+     * @var object $flags
+     */
     public $flags;
+
+    /**
+     * @var object $configuration
+     */
     public $configuration;
+
+    /**
+     * @var object $links
+     */
     public $links;
 
     /**
-     * EnvironmentResponse constructor.
-     *
      * @param object $environment
      */
     public function __construct($environment)

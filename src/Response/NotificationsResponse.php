@@ -3,17 +3,14 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * Class NotificationsResponse
- *
- * @package AcquiaCloudApi\Response
+ * @template TValue
+ * @template-extends \ArrayObject<int,TValue>
  */
 class NotificationsResponse extends \ArrayObject
 {
 
     /**
-     * MembersResponse constructor.
-     *
-     * @param array $notifications
+     * @param array<object> $notifications
      */
     public function __construct($notifications)
     {

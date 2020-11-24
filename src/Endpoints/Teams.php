@@ -5,6 +5,7 @@ namespace AcquiaCloudApi\Endpoints;
 use AcquiaCloudApi\Response\ApplicationResponse;
 use AcquiaCloudApi\Response\ApplicationsResponse;
 use AcquiaCloudApi\Response\TeamsResponse;
+use AcquiaCloudApi\Response\TeamResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
@@ -22,7 +23,7 @@ class Teams extends CloudApiBase implements CloudApiInterface
      * @param  string $name
      * @return OperationResponse
      */
-    public function create($organizationUuid, $name)
+    public function create($organizationUuid, $name): OperationResponse
     {
         $options = [
             'json' => [
@@ -38,9 +39,9 @@ class Teams extends CloudApiBase implements CloudApiInterface
     /**
      * Show all teams.
      *
-     * @return TeamsResponse
+     * @return TeamsResponse<TeamResponse>
      */
-    public function getAll()
+    public function getAll(): TeamsResponse
     {
         return new TeamsResponse(
             $this->client->request('get', '/teams')
@@ -54,7 +55,7 @@ class Teams extends CloudApiBase implements CloudApiInterface
      * @param  string $name
      * @return OperationResponse
      */
-    public function rename($teamUuid, $name)
+    public function rename($teamUuid, $name): OperationResponse
     {
         $options = [
             'json' => [
@@ -74,7 +75,7 @@ class Teams extends CloudApiBase implements CloudApiInterface
      * @param  string $teamUuid
      * @return OperationResponse
      */
-    public function delete($teamUuid)
+    public function delete($teamUuid): OperationResponse
     {
         return new OperationResponse(
             $this->client->request('delete', "/teams/${teamUuid}")
@@ -88,7 +89,7 @@ class Teams extends CloudApiBase implements CloudApiInterface
      * @param  string $applicationUuid
      * @return OperationResponse
      */
-    public function addApplication($teamUuid, $applicationUuid)
+    public function addApplication($teamUuid, $applicationUuid): OperationResponse
     {
         $options = [
             'json' => [
@@ -104,12 +105,12 @@ class Teams extends CloudApiBase implements CloudApiInterface
     /**
      * Invites a user to join a team.
      *
-     * @param  string $teamUuid
-     * @param  string $email
-     * @param  array  $roles
+     * @param  string   $teamUuid
+     * @param  string   $email
+     * @param  string[] $roles
      * @return OperationResponse
      */
-    public function invite($teamUuid, $email, $roles)
+    public function invite($teamUuid, $email, $roles): OperationResponse
     {
         $options = [
             'json' => [
@@ -127,9 +128,9 @@ class Teams extends CloudApiBase implements CloudApiInterface
      * Show all applications associated with a team.
      *
      * @param  string $teamUuid
-     * @return ApplicationsResponse
+     * @return ApplicationsResponse<ApplicationResponse>
      */
-    public function getApplications($teamUuid)
+    public function getApplications($teamUuid): ApplicationsResponse
     {
         return new ApplicationsResponse(
             $this->client->request('get', "/teams/${teamUuid}/applications")

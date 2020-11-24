@@ -6,6 +6,7 @@ use AcquiaCloudApi\Response\EnvironmentResponse;
 use AcquiaCloudApi\Response\EnvironmentsResponse;
 use AcquiaCloudApi\Response\LogstreamResponse;
 use AcquiaCloudApi\Response\LogsResponse;
+use AcquiaCloudApi\Response\LogResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 use Psr\Http\Message\StreamInterface;
 
@@ -21,9 +22,9 @@ class Logs extends CloudApiBase implements CloudApiInterface
      * Returns a list of log files available for download.
      *
      * @param  string $environmentUuid
-     * @return LogsResponse
+     * @return LogsResponse<LogResponse>
      */
-    public function getAll($environmentUuid)
+    public function getAll($environmentUuid): LogsResponse
     {
         return new LogsResponse(
             $this->client->request('get', "/environments/${environmentUuid}/logs")
@@ -37,7 +38,7 @@ class Logs extends CloudApiBase implements CloudApiInterface
      * @param  string $logType
      * @return StreamInterface
      */
-    public function download($environmentUuid, $logType)
+    public function download($environmentUuid, $logType): StreamInterface
     {
         return $this->client->request('get', "/environments/${environmentUuid}/logs/${logType}");
     }
@@ -49,7 +50,7 @@ class Logs extends CloudApiBase implements CloudApiInterface
      * @param  string $logType
      * @return OperationResponse
      */
-    public function snapshot($environmentUuid, $logType)
+    public function snapshot($environmentUuid, $logType): OperationResponse
     {
         return new OperationResponse(
             $this->client->request('post', "/environments/${environmentUuid}/logs/${logType}")
@@ -62,7 +63,7 @@ class Logs extends CloudApiBase implements CloudApiInterface
      * @param  string $environmentUuid
      * @return LogstreamResponse
      */
-    public function stream($environmentUuid)
+    public function stream($environmentUuid): LogstreamResponse
     {
         return new LogstreamResponse(
             $this->client->request('get', "/environments/${environmentUuid}/logstream")

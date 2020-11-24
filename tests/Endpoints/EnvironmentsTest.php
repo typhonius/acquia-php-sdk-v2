@@ -7,7 +7,9 @@ use AcquiaCloudApi\Endpoints\Environments;
 
 class EnvironmentsTest extends CloudApiTestCase
 {
-
+    /**
+     * @var mixed[] $properties
+     */
     public $properties = [
         'uuid',
         'label',
@@ -24,13 +26,12 @@ class EnvironmentsTest extends CloudApiTestCase
         'links'
     ];
 
-    public function testGetEnvironments()
+    public function testGetEnvironments(): void
     {
-
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/getAllEnvironments.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $environments = new Environments($client);
         $result = $environments->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
@@ -47,13 +48,13 @@ class EnvironmentsTest extends CloudApiTestCase
         }
     }
 
-    public function testGetEnvironment()
+    public function testGetEnvironment(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/getEnvironment.json');
 
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $environment = new Environments($client);
         $result = $environment->get('24-a47ac10b-58cc-4372-a567-0e02b2c3d470');
 
@@ -65,13 +66,13 @@ class EnvironmentsTest extends CloudApiTestCase
         }
     }
 
-    public function testModifyEnvironment()
+    public function testModifyEnvironment(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/updateEnvironment.json');
 
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $environment = new Environments($client);
         $result = $environment->update('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', ['version' => '7.2']);
 
@@ -86,13 +87,13 @@ class EnvironmentsTest extends CloudApiTestCase
         $this->assertEquals('The environment configuration is being updated.', $result->message);
     }
 
-    public function testRenameEnvironment()
+    public function testRenameEnvironment(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/renameEnvironment.json');
 
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $environment = new Environments($client);
         $result = $environment->rename('24-a47ac10b-58cc-4372-a567-0e02b2c3d470', 'Alpha');
 
@@ -107,13 +108,13 @@ class EnvironmentsTest extends CloudApiTestCase
         $this->assertEquals('Changing environment label.', $result->message);
     }
 
-    public function testCreateCDEnvironment()
+    public function testCreateCDEnvironment(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/createCDEnvironment.json');
 
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $environment = new Environments($client);
         $result = $environment->create(
             '24-a47ac10b-58cc-4372-a567-0e02b2c3d470',
@@ -141,13 +142,13 @@ class EnvironmentsTest extends CloudApiTestCase
         $this->assertEquals('Adding an environment.', $result->message);
     }
 
-    public function testDeleteCDEnvironment()
+    public function testDeleteCDEnvironment(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/deleteCDEnvironment.json');
 
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\CloudApi\ClientInterface $client */
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $environment = new Environments($client);
         $result = $environment->delete('24-a47ac10b-58cc-4372-a567-0e02b2c3d470');
 

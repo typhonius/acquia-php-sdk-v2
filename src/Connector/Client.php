@@ -20,17 +20,17 @@ class Client implements ClientInterface
     protected $connector;
 
     /**
-     * @var array Query strings to be applied to the request.
+     * @var array<string, mixed> Query strings to be applied to the request.
      */
     protected $query = [];
 
     /**
-     * @var array Guzzle options to be applied to the request.
+     * @var array<string, mixed> Guzzle options to be applied to the request.
      */
     protected $options = [];
 
     /**
-     * @var array Request options from each individual API call.
+     * @var array<string, mixed> Request options from each individual API call.
      */
     private $requestOptions = [];
 
@@ -39,7 +39,7 @@ class Client implements ClientInterface
      *
      * @param ConnectorInterface $connector
      */
-    public function __construct(ConnectorInterface $connector)
+    final public function __construct(ConnectorInterface $connector)
     {
         $this->connector = $connector;
     }
@@ -61,12 +61,9 @@ class Client implements ClientInterface
     }
 
     /**
-     * Returns the current version of the library.
-     *
-     * @return string
-     * @throws \Exception
+     * @inheritdoc
      */
-    public function getVersion()
+    public function getVersion(): string
     {
         if ($file = @file_get_contents(dirname(dirname(__DIR__)) . '/VERSION')) {
             return trim($file);
@@ -76,7 +73,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Allows the library to modify the request prior to making the call to the API.
+     * @inheritdoc
      */
     public function modifyOptions(): array
     {

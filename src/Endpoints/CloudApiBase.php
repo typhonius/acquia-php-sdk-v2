@@ -2,6 +2,7 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
+use AcquiaCloudApi\Connector\ConnectorInterface;
 use AcquiaCloudApi\Connector\ClientInterface;
 use AcquiaCloudApi\Exception\LinkedResourceNotImplementedException;
 
@@ -35,8 +36,8 @@ abstract class CloudApiBase implements CloudApiInterface
      */
     public function getLinkedResource($link)
     {
-        // Remove https://cloud.acquia.com/api from the path as this is already added by the Connector.
-        $path = str_replace('https://cloud.acquia.com/api', '', $link['path']);
+        // Remove the base URI from the path as this is already added by the Connector when we call request().
+        $path = str_replace(ConnectorInterface::BASE_URI, '', $link['path']);
         $type = $link['type'];
 
         $classMap = [

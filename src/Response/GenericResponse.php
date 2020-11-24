@@ -19,10 +19,15 @@ abstract class GenericResponse
         if (!property_exists($this, 'links')) {
             throw new NoLinkedResourceException('No linked resources for ' . get_called_class());
         } elseif (!property_exists($this->links, $name)) {
-            throw new LinkedResourceNotFoundException('No property exists for ' . $name . '. Available links are ' . implode(' ', array_keys(get_object_vars($this->links))));
-        } elseif (!property_exists($this->links->$name, 'href')) {
-            throw new LinkedResourceNotFoundException('href property not found on ' . $name);
+            throw new LinkedResourceNotFoundException('No property exists for ' . $name . '. Available links are ' . implode(' ', array_keys((array) $this->links)));
         }
-        return ['type' => $name, 'path' => $this->links->$name->href];
+
+        /**
+         * Because the name of the property within the $links->property->$name object may change, we must avoid accessing it directly.
+         * The below converts the object into an array, obtains the values directly (bypassing the need to know the key),
+         * and retrieves the first (and only) item from the resultant array which will be our linked resource path.
+         */
+        $path = current(array_values((array) $this->links->$name));
+        return ['type' => $name, 'path' => $path];
     }
 }

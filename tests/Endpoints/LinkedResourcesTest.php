@@ -169,23 +169,6 @@ class LinkedResourcesTest extends CloudApiTestCase
         $result->getLink('potatoes');
     }
 
-    public function testHrefNotFoundError(): void
-    {
-        // Test links that have no href keys.
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Error/applicationWithoutHrefLinks.json');
-        $client = $this->getMockClient($response);
-
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
-        $application = new Applications($client);
-
-        $result = $application->get('8ff6c046-ec64-4ce4-bea6-27845ec18600');
-
-        $this->expectException(LinkedResourceNotFoundException::class);
-        $this->expectExceptionMessage('href property not found on databases');
-
-        $result->getLink('databases');
-    }
-
     public function testNoLinkedResourcesError(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/LogForwarding/getLogForwarding.json');

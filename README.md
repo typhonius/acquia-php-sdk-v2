@@ -24,7 +24,7 @@ library as a dependency to your composer.json file.
 ```json
 {
     "require": {
-        "typhonius/acquia-php-sdk-v2": "^2.0.0"
+        "typhonius/acquia-php-sdk-v2": "^2"
     }
 }
 ```

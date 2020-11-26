@@ -133,17 +133,36 @@ class ConnectorTest extends CloudApiTestCase
             'host' => 'Host',
         ];
 
-        $this->assertAttributeSame($expectedHeaders, 'headers', $request);
-        $this->assertAttributeSame($expectedHeaderNames, 'headerNames', $request);
+        $requestReflectionClass = new \ReflectionClass('GuzzleHttp\Psr7\Request');
+        $headerProperty = $requestReflectionClass->getProperty('headers');
+        $headerNamesProperty = $requestReflectionClass->getProperty('headerNames');
+        $headerProperty->setAccessible(true);
+        $headerNamesProperty->setAccessible(true);
+        $headers = $headerProperty->getValue($request);
+        $headerNames = $headerNamesProperty->getValue($request);
+
+        $this->assertEquals($expectedHeaders, $headers);
+        $this->assertEquals($expectedHeaderNames, $headerNames);
 
         // Check the cache to make sure that the token has been cached successfully.
         $accessToken = $this->cache->getItem('cloudapi-token')->get();
 
         // Ensure that the cached item is an AccessToken and that it contains the values we set above.
+        $accessTokenReflectionClass = new \ReflectionClass('League\OAuth2\Client\Token\AccessToken');
+        $accessTokenProperty = $accessTokenReflectionClass->getProperty('accessToken');
+        $resourceOwnerProperty = $accessTokenReflectionClass->getProperty('resourceOwnerId');
+        $expiresProperty = $accessTokenReflectionClass->getProperty('expires');
+        $accessTokenProperty->setAccessible(true);
+        $resourceOwnerProperty->setAccessible(true);
+        $expiresProperty->setAccessible(true);
+        $token = $accessTokenProperty->getValue($accessToken);
+        $resourceOwner = $resourceOwnerProperty->getValue($accessToken);
+        $expiry = $expiresProperty->getValue($accessToken);
+
         $this->assertInstanceOf('League\OAuth2\Client\Token\AccessToken', $accessToken);
-        $this->assertAttributeSame('acquia-token', 'accessToken', $accessToken);
-        $this->assertAttributeSame(3, 'resourceOwnerId', $accessToken);
-        $this->assertAttributeSame($expires, 'expires', $accessToken);
+        $this->assertEquals('acquia-token', $token);
+        $this->assertEquals(3, $resourceOwner);
+        $this->assertEquals($expires, $expiry);
     }
 
     public function testGuzzleRequest(): void

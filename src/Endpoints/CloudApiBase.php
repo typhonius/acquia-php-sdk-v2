@@ -30,7 +30,7 @@ abstract class CloudApiBase implements CloudApiInterface
     }
 
     /**
-     * @param array{type:string, path:string} $link
+     * @param array{type:string, path:string, responseClass:class-string} $link
      * @return mixed
      * @throws LinkedResourceNotImplementedException
      */
@@ -39,6 +39,7 @@ abstract class CloudApiBase implements CloudApiInterface
         // Remove the base URI from the path as this is already added by the Connector when we call request().
         $path = str_replace(ConnectorInterface::BASE_URI, '', $link['path']);
         $type = $link['type'];
+        $responseClass = $link['responseClass'];
 
         $classMap = [
             'alerts' => '\AcquiaCloudApi\Response\InsightAlertsResponse',
@@ -57,6 +58,7 @@ abstract class CloudApiBase implements CloudApiInterface
             'modules' => '\AcquiaCloudApi\Response\InsightModulesResponse',
             'notification' => '\AcquiaCloudApi\Response\NotificationResponse',
             'permissions' => '\AcquiaCloudApi\Response\PermissionsResponse',
+            'self' => $responseClass,
             'servers' => '\AcquiaCloudApi\Response\ServersResponse',
             'ssl' => '\AcquiaCloudApi\Response\SslCertificatesResponse',
             'teams' => '\AcquiaCloudApi\Response\TeamsResponse',

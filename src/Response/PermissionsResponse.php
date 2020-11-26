@@ -3,10 +3,9 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * @template TValue
- * @template-extends \ArrayObject<int,TValue>
+ * @extends CollectionResponse<PermissionResponse>
  */
-class PermissionsResponse extends \ArrayObject
+class PermissionsResponse extends CollectionResponse
 {
 
     /**
@@ -14,14 +13,6 @@ class PermissionsResponse extends \ArrayObject
      */
     public function __construct($permissions)
     {
-        parent::__construct(
-            array_map(
-                function ($permission) {
-                    return new PermissionResponse($permission);
-                },
-                $permissions
-            ),
-            self::ARRAY_AS_PROPS
-        );
+        parent::__construct('PermissionResponse', $permissions);
     }
 }

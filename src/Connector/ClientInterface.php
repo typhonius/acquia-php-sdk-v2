@@ -5,6 +5,7 @@ namespace AcquiaCloudApi\Connector;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use AcquiaCloudApi\Exception\ApiErrorException;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Interface ClientInterface

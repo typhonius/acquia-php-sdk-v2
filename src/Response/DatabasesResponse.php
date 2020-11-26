@@ -3,10 +3,9 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * @template TValue
- * @template-extends \ArrayObject<int,TValue>
+ * @extends CollectionResponse<DatabaseResponse>
  */
-class DatabasesResponse extends \ArrayObject
+class DatabasesResponse extends CollectionResponse
 {
 
     /**
@@ -14,14 +13,6 @@ class DatabasesResponse extends \ArrayObject
      */
     public function __construct($databases)
     {
-        parent::__construct(
-            array_map(
-                function ($database) {
-                    return new DatabaseResponse($database);
-                },
-                $databases
-            ),
-            self::ARRAY_AS_PROPS
-        );
+        parent::__construct('DatabaseResponse', $databases);
     }
 }

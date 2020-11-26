@@ -146,10 +146,6 @@ class Client implements ClientInterface
             return $body_json;
         }
 
-        if (property_exists($body, '_embedded') && property_exists($body->_embedded, 'items')) {
-            return $body->_embedded->items;
-        }
-
         if (property_exists($body, 'error') && property_exists($body, 'message')) {
             throw new ApiErrorException($body);
         }

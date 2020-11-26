@@ -42,11 +42,6 @@ jobs:
         run: |
           composer install --prefer-source --no-progress --no-suggest --no-interaction
 
-      - name: Setup PCOV
-        run: |
-          composer require pcov/clobber
-          vendor/bin/pcov clobber
-
       - name: Download Infection
         run: |
           wget https://github.com/infection/infection/releases/download/0.20.0/infection.phar

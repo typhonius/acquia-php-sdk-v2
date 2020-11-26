@@ -3,10 +3,9 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * @template TValue
- * @template-extends \ArrayObject<int,TValue>
+ * @extends CollectionResponse<IdentityProviderResponse>
  */
-class IdentityProvidersResponse extends \ArrayObject
+class IdentityProvidersResponse extends CollectionResponse
 {
 
     /**
@@ -14,14 +13,6 @@ class IdentityProvidersResponse extends \ArrayObject
      */
     public function __construct($idps)
     {
-        parent::__construct(
-            array_map(
-                function ($idp) {
-                    return new IdentityProviderResponse($idp);
-                },
-                $idps
-            ),
-            self::ARRAY_AS_PROPS
-        );
+        parent::__construct('IdentityProviderResponse', $idps);
     }
 }

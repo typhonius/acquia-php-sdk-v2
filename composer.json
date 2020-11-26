@@ -28,7 +28,8 @@
             "AcquiaCloudApi\\Connector\\": "src/Connector",
             "AcquiaCloudApi\\Endpoints\\": "src/Endpoints",
             "AcquiaCloudApi\\Response\\": "src/Response",
-            "AcquiaCloudApi\\Exception\\": "src/Exception"
+            "AcquiaCloudApi\\Exception\\": "src/Exception",
+            "AcquiaCloudApi\\Traits\\": "src/Traits"
         }
     },
     "autoload-dev": {

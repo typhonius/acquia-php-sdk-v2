@@ -3,10 +3,9 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * @template TValue
- * @template-extends \ArrayObject<int,TValue>
+ * @extends CollectionResponse<LogForwardingDestinationResponse>
  */
-class LogForwardingDestinationsResponse extends \ArrayObject
+class LogForwardingDestinationsResponse extends CollectionResponse
 {
 
     /**
@@ -14,14 +13,6 @@ class LogForwardingDestinationsResponse extends \ArrayObject
      */
     public function __construct($destinations)
     {
-        parent::__construct(
-            array_map(
-                function ($destination) {
-                    return new LogForwardingDestinationResponse($destination);
-                },
-                $destinations
-            ),
-            self::ARRAY_AS_PROPS
-        );
+        parent::__construct('LogForwardingDestinationResponse', $destinations);
     }
 }

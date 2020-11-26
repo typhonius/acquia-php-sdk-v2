@@ -3,10 +3,9 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * @template TValue
- * @template-extends \ArrayObject<int,TValue>
+ * @extends CollectionResponse<MemberResponse>
  */
-class MembersResponse extends \ArrayObject
+class MembersResponse extends CollectionResponse
 {
 
     /**
@@ -14,14 +13,6 @@ class MembersResponse extends \ArrayObject
      */
     public function __construct($members)
     {
-        parent::__construct(
-            array_map(
-                function ($member) {
-                    return new MemberResponse($member);
-                },
-                $members
-            ),
-            self::ARRAY_AS_PROPS
-        );
+        parent::__construct('MemberResponse', $members);
     }
 }

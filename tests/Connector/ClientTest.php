@@ -39,7 +39,7 @@ class ClientTest extends CloudApiTestCase
         $result = $code->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
         foreach ($result as $record) {
-            $this->assertContains('2014', $record->name);
+            $this->assertStringContainsString('2014', $record->name);
         }
     }
 

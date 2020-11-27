@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest, macos-latest]
-        php-versions: ['7.3', '7.4']
+        php-versions: ['7.3', '7.4', '8.0']
     name: PHP ${{ matrix.php-versions }} build and test on ${{ matrix.operating-system }}
     steps:
     - name: Checkout
@@ -50,11 +50,6 @@ jobs:
     - name: Install dependencies
       if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install --prefer-source --no-progress --no-suggest --no-interaction
-
-    - name: Setup PCOV
-      run: |
-        composer require pcov/clobber
-        vendor/bin/pcov clobber
 
     - name: Run test suite
       run: composer run-script test

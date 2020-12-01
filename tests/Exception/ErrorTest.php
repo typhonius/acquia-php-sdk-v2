@@ -106,8 +106,10 @@ EOM;
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage('CollectionResponse does not contain embedded items.');
 
-        $body = new \stdClass();
-        $body->_links = [];
+        $body = [];
+        $item = new \stdClass();
+        $item->_links = [];
+        $body[] = $item;
         new ApplicationsResponse($body);
     }
 }

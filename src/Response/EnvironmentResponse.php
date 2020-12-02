@@ -70,7 +70,7 @@ class EnvironmentResponse
     public $links;
     
     /**
-     * @var object $platform
+     * @var string $platform
      */
     public $platform;
 

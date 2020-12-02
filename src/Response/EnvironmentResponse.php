@@ -68,6 +68,11 @@ class EnvironmentResponse
      * @var object $links
      */
     public $links;
+    
+    /**
+     * @var object $platform
+     */
+    public $platform;
 
     /**
      * @param object $environment
@@ -89,5 +94,6 @@ class EnvironmentResponse
         $this->configuration = $environment->configuration;
         $this->flags = $environment->flags;
         $this->links = $environment->_links;
+        $this->platform = $environment->platform;
     }
 }

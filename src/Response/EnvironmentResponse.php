@@ -68,7 +68,7 @@ class EnvironmentResponse
      * @var object $links
      */
     public $links;
-    
+
     /**
      * @var string $platform
      */

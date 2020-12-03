@@ -41,6 +41,8 @@
           "10.0.1.5"
         ],
         "region": "us-east-1",
+        "balancer": "cluster",
+        "platform": "cloud-next",
         "status": "normal",
         "type": "drupal",
         "size": null,
@@ -135,6 +137,8 @@
           "10.0.1.2"
         ],
         "region": "us-east-1",
+        "balancer": "cluster",
+        "platform": "cloud",
         "status": "normal",
         "type": "drupal",
         "size": null,
@@ -180,6 +184,8 @@
         "image_url": null,
         "ips": [],
         "region": "us-east-1",
+        "balancer": "cluster",
+        "platform": "cloud-next",
         "status": "normal",
         "type": "node",
         "size": "medium",

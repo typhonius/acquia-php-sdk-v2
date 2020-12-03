@@ -23,7 +23,9 @@ class EnvironmentsTest extends CloudApiTestCase
         'vcs',
         'flags',
         'configuration',
-        'links'
+        'links',
+        'platform',
+        'balancer',
     ];
 
     public function testGetEnvironments(): void

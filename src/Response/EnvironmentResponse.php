@@ -70,6 +70,16 @@ class EnvironmentResponse
     public $links;
 
     /**
+     * @var string $platform
+     */
+    public $platform;
+
+    /**
+     * @var string $balancer
+     */
+    public $balancer;
+
+    /**
      * @param object $environment
      */
     public function __construct($environment)
@@ -83,6 +93,8 @@ class EnvironmentResponse
         }
         $this->ips = $environment->ips;
         $this->region = $environment->region;
+        $this->balancer = $environment->balancer;
+        $this->platform = $environment->platform;
         $this->status = $environment->status;
         $this->type = $environment->type;
         $this->vcs = $environment->vcs;

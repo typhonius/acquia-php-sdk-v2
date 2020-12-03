@@ -17,6 +17,8 @@
     "10.0.1.5"
   ],
   "region": "us-east-1",
+  "balancer": "cluster",
+  "platform": "cloud-next",
   "status": "normal",
   "type": "drupal",
   "size": null,
@@ -59,8 +61,11 @@
   },
   "flags": {
     "cde": false,
+    "cdn": false,
     "hsd": false,
     "livedev": false,
+    "migration": false,
+    "multicert": true,
     "multi_region": false,
     "production": false,
     "production_mode": false,
@@ -71,15 +76,15 @@
   "configuration": {
     "operating_system": "precise",
     "php": {
-      "version": "7.1",
+      "apcu": 32,
+      "interned_strings_buffer": null,
+      "max_execution_time": null,
+      "max_input_vars": null,
+      "max_post_size": null,
       "memory_limit": 128,
       "opcache": 96,
-      "apcu": 64,
-      "interned_strings_buffer": 16,
-      "max_execution_time": 300,
-      "max_post_size": 256,
-      "max_input_vars": 1000,
-      "sendmail_path": null
+      "sendmail_path": null,
+      "version": "7.3"
     }
   },
   "gardener": {
@@ -147,6 +152,9 @@
       "_links": {
         "self": {
           "href": "https://cloud.acquia.com/api/applications/a47ac10b-58cc-4372-a567-0e02b2c3d470"
+        },
+        "parent": {
+          "href": "https://cloud.acquia.com/api/applications"
         }
       }
     }

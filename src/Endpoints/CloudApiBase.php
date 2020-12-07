@@ -65,6 +65,10 @@ abstract class CloudApiBase implements CloudApiInterface
             'variables' => '\AcquiaCloudApi\Response\VariablesResponse',
         ];
 
+        // Clear any queries attached to the client to prevent sorts etc being carried through
+        // from the original query.
+        $this->client->clearQuery();
+
         if (isset($classMap[$type])) {
             return new $classMap[$type](
                 $this->client->request('get', $path)

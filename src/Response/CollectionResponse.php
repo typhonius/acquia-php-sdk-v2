@@ -38,11 +38,6 @@ abstract class CollectionResponse extends \ArrayObject
 
         $class = '\AcquiaCloudApi\Response\\' . $class;
 
-
-        // var_dump($body);
-
-
-
         parent::__construct(
             array_map(
                 function ($child) use ($class) {

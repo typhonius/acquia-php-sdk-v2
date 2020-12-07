@@ -106,10 +106,11 @@ EOM;
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage('CollectionResponse does not contain embedded items.');
 
-        $body = [];
-        $item = new \stdClass();
-        $item->_links = [];
-        $body[] = $item;
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/getAllApplications.json');
+        $body_json = $response->getBody();
+        $body = json_decode($body_json);
+        unset($body->_embedded);
+
         new ApplicationsResponse($body);
     }
 }

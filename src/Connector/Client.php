@@ -65,11 +65,7 @@ class Client implements ClientInterface
      */
     public function getVersion(): string
     {
-        if ($file = @file_get_contents(dirname(dirname(__DIR__)) . '/VERSION')) {
-            return trim($file);
-        } else {
-            throw new \Exception('No VERSION file');
-        }
+        return self::VERSION;
     }
 
     /**

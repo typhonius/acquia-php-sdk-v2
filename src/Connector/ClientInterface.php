@@ -13,6 +13,10 @@ use AcquiaCloudApi\Exception\ApiErrorException;
  */
 interface ClientInterface
 {
+    /**
+     * @var string VERSION
+     */
+    public const VERSION = '2.0.16-dev';
 
     /**
      * Returns the current version of the library.

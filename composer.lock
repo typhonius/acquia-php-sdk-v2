@@ -1252,20 +1252,20 @@
         },
         {
             "name": "eloquent/phony",
-            "version": "4.0.1",
+            "version": "5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eloquent/phony.git",
-                "reference": "2df76045aef0d11b92a4dd034734c124c715078b"
+                "reference": "13fa8a3dfce18c71dc23bb63aace5bb008122fb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eloquent/phony/zipball/2df76045aef0d11b92a4dd034734c124c715078b",
-                "reference": "2df76045aef0d11b92a4dd034734c124c715078b",
+                "url": "https://api.github.com/repos/eloquent/phony/zipball/13fa8a3dfce18c71dc23bb63aace5bb008122fb8",
+                "reference": "13fa8a3dfce18c71dc23bb63aace5bb008122fb8",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2"
+                "php": "^7.3 || ^8"
             },
             "require-dev": {
                 "eloquent/code-style": "^1.0",
@@ -1277,12 +1277,12 @@
                 "phpstan/extension-installer": "^1",
                 "phpstan/phpstan": "^0.12",
                 "phpstan/phpstan-phpunit": "^0.12",
-                "phpunit/phpunit": "^7 || ^8 <8.3.0 || ^8.3.4"
+                "phpunit/phpunit": "^9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.1.x-dev"
+                    "dev-master": "5.1.x-dev"
                 }
             },
             "autoload": {
@@ -1318,25 +1318,25 @@
                 "stubbing",
                 "test"
             ],
-            "time": "2020-08-29T03:44:02+00:00"
+            "time": "2020-12-21T07:58:11+00:00"
         },
         {
             "name": "eloquent/phony-phpunit",
-            "version": "7.0.0",
+            "version": "7.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eloquent/phony-phpunit.git",
-                "reference": "9d7fcebec22c8a8c13a048350987c6319a1afe24"
+                "reference": "e77ff95ea6235211d4aae7e5f53488a5faebc2e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eloquent/phony-phpunit/zipball/9d7fcebec22c8a8c13a048350987c6319a1afe24",
-                "reference": "9d7fcebec22c8a8c13a048350987c6319a1afe24",
+                "url": "https://api.github.com/repos/eloquent/phony-phpunit/zipball/e77ff95ea6235211d4aae7e5f53488a5faebc2e0",
+                "reference": "e77ff95ea6235211d4aae7e5f53488a5faebc2e0",
                 "shasum": ""
             },
             "require": {
-                "eloquent/phony": "^4",
-                "php": ">=7.3",
+                "eloquent/phony": "^5",
+                "php": "^7.3 || ^8",
                 "phpunit/phpunit": "^9"
             },
             "require-dev": {
@@ -1351,7 +1351,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.1.x-dev"
+                    "dev-master": "7.2.x-dev"
                 }
             },
             "autoload": {
@@ -1387,7 +1387,7 @@
                 "stubbing",
                 "test"
             ],
-            "time": "2020-02-12T03:16:22+00:00"
+            "time": "2020-12-21T09:36:47+00:00"
         },
         {
             "name": "myclabs/deep-copy",

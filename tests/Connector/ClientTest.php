@@ -131,28 +131,13 @@ class ClientTest extends CloudApiTestCase
 
     public function testVersion(): void
     {
-        $versionFile = sprintf('%s/VERSION', dirname(dirname(__DIR__)));
-        $version = trim(file_get_contents($versionFile));
+        $reflectionClass = new \ReflectionClass('AcquiaCloudApi\Connector\Client');
+        $constants = $reflectionClass->getConstants();
+        $reflectionVersion = $constants['VERSION'];
 
         $client = $this->getMockClient();
-        $actualValue = $client->getVersion();
+        $methodVersion = $client->getVersion();
 
-        $this->assertEquals($version, $actualValue);
-    }
-
-    public function testMissingVersion(): void
-    {
-        $versionFile = sprintf('%s/VERSION', dirname(dirname(__DIR__)));
-        $versionFileBak = sprintf('%s.bak', $versionFile);
-        rename($versionFile, $versionFileBak);
-
-        try {
-            $client = $this->getMockClient();
-            $version = $client->getVersion();
-        } catch (\Exception $e) {
-            $this->assertEquals('Exception', get_class($e));
-            $this->assertEquals('No VERSION file', $e->getMessage());
-        }
-        rename($versionFileBak, $versionFile);
+        $this->assertEquals($methodVersion, $reflectionVersion);
     }
 }

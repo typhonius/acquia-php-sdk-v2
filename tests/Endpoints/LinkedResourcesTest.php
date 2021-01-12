@@ -53,7 +53,7 @@ class LinkedResourcesTest extends CloudApiTestCase
             'path' => '{baseUri}/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/environments',
             'responseClass' => 'AcquiaCloudApi\Response\ApplicationResponse'
         ];
-        $environments = $application->getLinkedResource($environmentsLink);
+        $environments = $client->getLinkedResource($environmentsLink);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\EnvironmentsResponse', $environments);
     }
 
@@ -70,7 +70,7 @@ class LinkedResourcesTest extends CloudApiTestCase
             'path' => '{baseUri}/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/databases',
             'responseClass' => 'AcquiaCloudApi\Response\ApplicationResponse'
         ];
-        $databases = $application->getLinkedResource($databasesLink);
+        $databases = $client->getLinkedResource($databasesLink);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\DatabasesResponse', $databases);
     }
 
@@ -87,7 +87,7 @@ class LinkedResourcesTest extends CloudApiTestCase
             'path' => '{baseUri}/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/code',
             'responseClass' => 'AcquiaCloudApi\Response\ApplicationResponse'
         ];
-        $branches = $application->getLinkedResource($codeLink);
+        $branches = $client->getLinkedResource($codeLink);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\BranchesResponse', $branches);
     }
     public function testGetLinkedInsights(): void
@@ -103,7 +103,7 @@ class LinkedResourcesTest extends CloudApiTestCase
             'path' => '{baseUri}/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/insight',
             'responseClass' => 'AcquiaCloudApi\Response\ApplicationResponse'
         ];
-        $insights = $application->getLinkedResource($insightsLink);
+        $insights = $client->getLinkedResource($insightsLink);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightsResponse', $insights);
     }
 
@@ -120,7 +120,7 @@ class LinkedResourcesTest extends CloudApiTestCase
             'path' => '{baseUri}/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/permissions',
             'responseClass' => 'AcquiaCloudApi\Response\ApplicationResponse'
         ];
-        $permissions = $application->getLinkedResource($permissionsLink);
+        $permissions = $client->getLinkedResource($permissionsLink);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\PermissionsResponse', $permissions);
     }
 
@@ -137,7 +137,7 @@ class LinkedResourcesTest extends CloudApiTestCase
             'path' => '{baseUri}/applications/185f07c7-9c4f-407b-8968-67892ebcb38a/teams',
             'responseClass' => 'AcquiaCloudApi\Response\ApplicationResponse'
         ];
-        $teams = $application->getLinkedResource($teamsLink);
+        $teams = $client->getLinkedResource($teamsLink);
         $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamsResponse', $teams);
     }
 
@@ -159,7 +159,7 @@ class LinkedResourcesTest extends CloudApiTestCase
         $this->expectException(LinkedResourceNotImplementedException::class);
         $this->expectExceptionMessage('parent link not implemented in this SDK. Please file an issue here: https://github.com/typhonius/acquia-php-sdk-v2/issues');
 
-        $application->getLinkedResource($selfLink);
+        $client->getLinkedResource($selfLink);
     }
 
     public function testHrefNotFoundError(): void

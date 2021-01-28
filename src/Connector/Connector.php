@@ -78,7 +78,7 @@ class Connector implements ConnectorInterface
 
         return $this->provider->getAuthenticatedRequest(
             $verb,
-            self::BASE_URI . $path,
+            $this->baseUri . $path,
             $this->accessToken
         );
     }

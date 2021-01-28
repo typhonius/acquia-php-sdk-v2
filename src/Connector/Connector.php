@@ -20,6 +20,11 @@ class Connector implements ConnectorInterface
 {
 
     /**
+     * @var string The base URI for Acquia Cloud API.
+     */
+    protected $baseUri;
+
+    /**
      * @var GenericProvider The OAuth 2.0 provider to use in communication.
      */
     protected $provider;
@@ -39,6 +44,10 @@ class Connector implements ConnectorInterface
      */
     public function __construct(array $config)
     {
+        $this->baseUri = ConnectorInterface::BASE_URI;
+        if (getenv('ACQUIA_CLOUD_API_BASE_URI')) {
+            $this->baseUri = getenv('ACQUIA_CLOUD_API_BASE_URI');
+        }
         $this->provider = new GenericProvider(
             [
             'clientId'                => $config['key'],

@@ -34,17 +34,8 @@ class ConnectorTest extends CloudApiTestCase
 
     public function setUp(): void
     {
-        $config = [
-            'key' => 'key',
-            'secret' => 'secret'
-        ];
-
-        $this->connector = new Connector($config);
-
-        // Clear the cache to make sure we get fresh results during testing.
-        $directory = sprintf('%s%s%s', Path::getHomeDirectory(), \DIRECTORY_SEPARATOR, '.acquia-php-sdk-v2');
-        $this->cache = new FilesystemAdapter('cache', 0, $directory);
-        $this->cache->deleteItem('cloudapi-token');
+        $this->createConnector();
+        $this->clearCache();
     }
 
     public function tearDown(): void
@@ -82,6 +73,16 @@ class ConnectorTest extends CloudApiTestCase
         $this->assertEquals('key', $clientId->getValue($provider));
         $this->assertEquals('secret', $clientSecret->getValue($provider));
     }
+
+    public function testConnectorBaseUri() {
+        $base_uri = 'https://test-cloud.acquia.com/api';
+        $this->createConnector($base_uri);
+        $this->assertEquals(
+          $this->connector::BASE_URI,
+          $base_uri
+        );
+    }
+
 
     public function testGetAuthenticatedRequest(): void
     {
@@ -196,5 +197,23 @@ class ConnectorTest extends CloudApiTestCase
         // Basic checks to make sure that we get a return code.
         $this->assertEquals(200, $return->getStatusCode());
         $this->assertEquals('OK', $return->getReasonPhrase());
+    }
+
+    protected function clearCache(): void
+    {
+        // Clear the cache to make sure we get fresh results during testing.
+        $directory = sprintf('%s%s%s', Path::getHomeDirectory(), \DIRECTORY_SEPARATOR, '.acquia-php-sdk-v2');
+        $this->cache = new FilesystemAdapter('cache', 0, $directory);
+        $this->cache->deleteItem('cloudapi-token');
+    }
+
+    protected function createConnector($base_url = NULL): void
+    {
+        $config = [
+          'key' => 'key',
+          'secret' => 'secret'
+        ];
+
+        $this->connector = new Connector($config, $base_url);
     }
 }

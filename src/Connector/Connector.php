@@ -42,12 +42,13 @@ class Connector implements ConnectorInterface
     /**
      * @inheritdoc
      */
-    public function __construct(array $config)
+    public function __construct(array $config, $base_uri = NULL)
     {
         $this->baseUri = ConnectorInterface::BASE_URI;
-        if (getenv('ACQUIA_CLOUD_API_BASE_URI')) {
-            $this->baseUri = getenv('ACQUIA_CLOUD_API_BASE_URI');
+        if ($base_uri) {
+            $this->baseUri = $base_uri;
         }
+
         $this->provider = new GenericProvider(
             [
             'clientId'                => $config['key'],

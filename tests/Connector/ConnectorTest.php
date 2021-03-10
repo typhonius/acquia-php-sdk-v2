@@ -74,12 +74,13 @@ class ConnectorTest extends CloudApiTestCase
         $this->assertEquals('secret', $clientSecret->getValue($provider));
     }
 
-    public function testConnectorBaseUri() {
+    public function testConnectorBaseUri()
+    {
         $base_uri = 'https://test-cloud.acquia.com/api';
         $this->createConnector($base_uri);
         $this->assertEquals(
-          $this->connector->getBaseUri(),
-          $base_uri
+            $this->connector->getBaseUri(),
+            $base_uri
         );
     }
 
@@ -207,7 +208,7 @@ class ConnectorTest extends CloudApiTestCase
         $this->cache->deleteItem('cloudapi-token');
     }
 
-    protected function createConnector($base_url = NULL): void
+    protected function createConnector($base_url = null): void
     {
         $config = [
           'key' => 'key',

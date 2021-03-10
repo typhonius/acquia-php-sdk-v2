@@ -63,6 +63,14 @@ class Connector implements ConnectorInterface
     }
 
     /**
+     * @return string
+     */
+    public function getBaseUri(): string
+    {
+        return $this->baseUri;
+    }
+
+    /**
      * @inheritdoc
      */
     public function createRequest($verb, $path)

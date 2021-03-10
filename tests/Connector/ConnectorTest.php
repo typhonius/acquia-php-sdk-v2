@@ -78,7 +78,7 @@ class ConnectorTest extends CloudApiTestCase
         $base_uri = 'https://test-cloud.acquia.com/api';
         $this->createConnector($base_uri);
         $this->assertEquals(
-          $this->connector::BASE_URI,
+          $this->connector->getBaseUri(),
           $base_uri
         );
     }

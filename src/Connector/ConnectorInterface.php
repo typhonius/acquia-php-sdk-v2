@@ -52,4 +52,9 @@ interface ConnectorInterface
      * @return ResponseInterface
      */
     public function sendRequest($verb, $path, $options);
+
+    /**
+     * @return string
+     */
+    public function getBaseUri(): string;
 }

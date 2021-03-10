@@ -42,7 +42,7 @@ class Connector implements ConnectorInterface
     /**
      * @inheritdoc
      */
-    public function __construct(array $config, $base_uri = null)
+    public function __construct(array $config, string $base_uri = null)
     {
         $this->baseUri = ConnectorInterface::BASE_URI;
         if ($base_uri) {

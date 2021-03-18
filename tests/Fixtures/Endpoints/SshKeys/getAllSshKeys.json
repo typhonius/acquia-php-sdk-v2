@@ -1,0 +1,66 @@
+{
+  "total": 2,
+  "pagination": {
+    "total": 2,
+    "limit": 2,
+    "offset": 0
+  },
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/account/ssh-keys"
+    },
+    "parent": {
+      "href": "https://cloud.acquia.com/api/account"
+    },
+    "limit": {
+      "href": "https://cloud.acquia.com/api/account/ssh-keys{?limit}",
+      "templated": true
+    },
+    "offset": {
+      "href": "https://cloud.acquia.com/api/account/ssh-keys{?offset}",
+      "templated": true
+    },
+    "sort": {
+      "href": "https://cloud.acquia.com/api/account/ssh-keys{?sort}",
+      "templated": true
+    },
+    "filter": {
+      "href": "https://cloud.acquia.com/api/account/ssh-keys{?filter}",
+      "templated": true
+    }
+  },
+  "_embedded": {
+    "items": [
+      {
+        "uuid": "1bc40e0d-da9f-4915-a264-624a03edcbd8",
+        "created_at": "2019-08-09T20:17:52+00:00",
+        "label": "Test SSH key 1",
+        "public_key": "sha-rsa...= Test Key 1",
+        "fingerprint": "7d:4e:ac:69:df:f3:f6:65:a0:cb:cd:63:ac:bf:f9:de",
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/account/ssh-keys/1bc40e0d-da9f-4915-a264-624a03edcbd8"
+          },
+          "parent": {
+            "href": "https://cloud.acquia.com/api/account/ssh-keys"
+          }
+        }
+      },
+      {
+        "uuid": "5d9a096f-e52c-c4bc-9a40-021ffdafbd8b",
+        "created_at": "2021-02-18T18:08:49+00:00",
+        "label": "Test SSH key 2",
+        "public_key": "ssh-rsa...== Test Key 2",
+        "fingerprint": "7a:ce:4c:69:dc:a3:a6:66:a0:cb:de:63:ac:cf:f9:de",
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/account/ssh-keys/5d9a096f-e52c-c4bc-9a40-021ffdafbd8b"
+          },
+          "parent": {
+            "href": "https://cloud.acquia.com/api/account/ssh-keys"
+          }
+        }
+      }
+    ]
+  }
+}

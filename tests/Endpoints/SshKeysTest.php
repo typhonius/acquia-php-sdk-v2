@@ -13,7 +13,10 @@ class SshKeysTest extends CloudApiTestCase
     public $properties = [
         'uuid',
         'label',
-        'public_key'
+        'public_key',
+        'fingerprint',
+        'created_at',
+        'links'
     ];
 
     public function testGetKeys(): void

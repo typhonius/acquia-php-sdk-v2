@@ -20,6 +20,11 @@ class Connector implements ConnectorInterface
 {
 
     /**
+     * @var string The base URI for Acquia Cloud API.
+     */
+    protected $baseUri;
+
+    /**
      * @var GenericProvider The OAuth 2.0 provider to use in communication.
      */
     protected $provider;
@@ -37,8 +42,13 @@ class Connector implements ConnectorInterface
     /**
      * @inheritdoc
      */
-    public function __construct(array $config)
+    public function __construct(array $config, string $base_uri = null)
     {
+        $this->baseUri = ConnectorInterface::BASE_URI;
+        if ($base_uri) {
+            $this->baseUri = $base_uri;
+        }
+
         $this->provider = new GenericProvider(
             [
             'clientId'                => $config['key'],
@@ -50,6 +60,14 @@ class Connector implements ConnectorInterface
         );
 
         $this->client = new GuzzleClient();
+    }
+
+    /**
+     * @return string
+     */
+    public function getBaseUri(): string
+    {
+        return $this->baseUri;
     }
 
     /**
@@ -69,7 +87,7 @@ class Connector implements ConnectorInterface
 
         return $this->provider->getAuthenticatedRequest(
             $verb,
-            self::BASE_URI . $path,
+            $this->baseUri . $path,
             $this->accessToken
         );
     }

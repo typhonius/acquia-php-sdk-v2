@@ -1,5 +1,5 @@
 {
-  "total": 53,
+  "total": 55,
   "_links": {
     "self": {
       "href": "https://cloud.acquia.com/api/permissions"
@@ -11,307 +11,478 @@
         "name": "administer alerts",
         "label": "Manage Insight alerts",
         "description": "Grants the ability to ignore alerts and change settings on a Drupal website using the \"Fix it Now\" feature.",
-        "group_label": "Insight"
+        "group_label": "Insight",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "revoke insight installs",
         "label": "Revoke Insight sites",
         "description": "Grants the ability to revoke sites so they can no longer submit data.",
-        "group_label": "Insight"
+        "group_label": "Insight",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "deploy to non-prod",
         "label": "Pull and deploy code, files, or databases to non-production environments",
         "description": "Grants the ability to enable or disable live development and non-production work.",
-        "group_label": "Workflow"
+        "group_label": "Workflow",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "deploy to prod",
         "label": "Deploy code, files, or databases to the production environment",
         "description": null,
-        "group_label": "Workflow"
+        "group_label": "Workflow",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "pull from prod",
         "label": "Pull files or databases from the production environment",
         "description": null,
-        "group_label": "Workflow"
+        "group_label": "Workflow",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "move file to non-prod",
         "label": "Move files to non-production environments",
         "description": null,
-        "group_label": "Workflow"
+        "group_label": "Workflow",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "move file to prod",
         "label": "Move files to the production environment",
         "description": null,
-        "group_label": "Workflow"
+        "group_label": "Workflow",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "move file from prod",
         "label": "Move files from production environments",
         "description": null,
-        "group_label": "Workflow"
+        "group_label": "Workflow",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "move file from non-prod",
         "label": "Move files from non-production environments",
         "description": null,
-        "group_label": "Workflow"
+        "group_label": "Workflow",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "clear varnish on non-prod",
         "label": "Clear Varnish cache for non-production environments",
         "description": null,
-        "group_label": "Workflow"
+        "group_label": "Workflow",
+        "flags": {
+          "deprecated": true
+        }
       },
       {
         "name": "clear varnish on prod",
         "label": "Clear Varnish cache for the production environment",
         "description": null,
-        "group_label": "Workflow"
+        "group_label": "Workflow",
+        "flags": {
+          "deprecated": true
+        }
       },
       {
         "name": "configure prod env",
         "label": "Configure production environment",
         "description": null,
-        "group_label": "Workflow"
+        "group_label": "Workflow",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "configure non-prod env",
         "label": "Configure non-production environments",
         "description": null,
-        "group_label": "Workflow"
+        "group_label": "Workflow",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "add an environment",
         "label": "Add an environment",
         "description": null,
-        "group_label": "Workflow"
+        "group_label": "Workflow",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "delete an environment",
         "label": "Delete an environment",
         "description": null,
-        "group_label": "Workflow"
+        "group_label": "Workflow",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "administer domain non-prod",
         "label": "Add or remove domains for non-production environments",
         "description": null,
-        "group_label": "Domains"
+        "group_label": "Domains",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "administer domain prod",
         "label": "Add or remove domains for the production environment",
         "description": null,
-        "group_label": "Domains"
+        "group_label": "Domains",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "administer ssl prod",
         "label": "Add or remove SSL certificates for the production environment",
         "description": null,
-        "group_label": "Domains"
+        "group_label": "Domains",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "administer ssl non-prod",
         "label": "Add or remove SSL certificates for the non-production environments",
         "description": null,
-        "group_label": "Domains"
+        "group_label": "Domains",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "reboot server",
         "label": "Reboot server",
         "description": null,
-        "group_label": "Server administration"
+        "group_label": "Server administration",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "resize server",
         "label": "Resize server",
         "description": "Increasing the size of your server costs money.",
-        "group_label": "Server administration"
+        "group_label": "Server administration",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "suspend server",
         "label": "Suspend server",
         "description": null,
-        "group_label": "Server administration"
+        "group_label": "Server administration",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "configure server",
         "label": "Configure server",
         "description": null,
-        "group_label": "Server administration"
+        "group_label": "Server administration",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "download logs non-prod",
         "label": "Download logs for non-production environments",
         "description": null,
-        "group_label": "Logs"
+        "group_label": "Logs",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "download logs prod",
         "label": "Download logs for the production environment",
         "description": null,
-        "group_label": "Logs"
+        "group_label": "Logs",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "add database",
         "label": "Add a database",
         "description": null,
-        "group_label": "Databases"
+        "group_label": "Databases",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "remove database",
         "label": "Remove a database",
         "description": null,
-        "group_label": "Databases"
+        "group_label": "Databases",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "view database connection",
         "label": "View database connection details (username, password, or hostname)",
         "description": null,
-        "group_label": "Databases"
+        "group_label": "Databases",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "download db backup non-prod",
         "label": "Download database backups for non-production environments",
         "description": null,
-        "group_label": "Databases"
+        "group_label": "Databases",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "download db backup prod",
         "label": "Download database backups for the production environment",
         "description": null,
-        "group_label": "Databases"
+        "group_label": "Databases",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "create db backup non-prod",
         "label": "Create database backups for non-production environments",
         "description": null,
-        "group_label": "Databases"
+        "group_label": "Databases",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "create db backup prod",
         "label": "Create database backups for the production environment",
         "description": null,
-        "group_label": "Databases"
+        "group_label": "Databases",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "restore db backup non-prod",
         "label": "Restore database backups for non-production environments",
         "description": null,
-        "group_label": "Databases"
+        "group_label": "Databases",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "restore db backup prod",
         "label": "Restore database backups for the production environment",
         "description": null,
-        "group_label": "Databases"
+        "group_label": "Databases",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "administer team",
         "label": "Add or remove a user of a team",
         "description": "Granting this permission will give any user with this role full permissions on this team.",
-        "group_label": "Administration"
+        "group_label": "Administration",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "access cloud api",
         "label": "Access the Cloud API",
         "description": "Grants the ability to use the API and bypass all other permissions via command line tools.",
-        "group_label": "Administration"
+        "group_label": "Administration",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "administer cron non-prod",
         "label": "Modify cron tasks for non-production environments",
         "description": null,
-        "group_label": "Cron"
+        "group_label": "Cron",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "administer cron prod",
         "label": "Modify cron tasks for the production environment",
         "description": null,
-        "group_label": "Cron"
+        "group_label": "Cron",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "search limit increase",
         "label": "Increase the search index limit for a subscription",
         "description": null,
-        "group_label": "Search"
+        "group_label": "Search",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "search schema edit",
         "label": "Edit the search schema for a subscription",
         "description": null,
-        "group_label": "Search"
+        "group_label": "Search",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "create support ticket",
         "label": "Create a support ticket",
         "description": null,
-        "group_label": "Support"
+        "group_label": "Support",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "edit any support ticket",
         "label": "View and edit any support tickets for a subscription",
         "description": null,
-        "group_label": "Support"
+        "group_label": "Support",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "administer ssh keys",
         "label": "Manage SSH keys",
         "description": "Grants the ability to use SSH and bypass all other permissions via command line tools.",
-        "group_label": "SSH keys"
+        "group_label": "SSH keys",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "view build plans",
         "label": "View Build plans",
         "description": null,
-        "group_label": "Build"
+        "group_label": "Build",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "edit build plans",
         "label": "Edit Build plans",
         "description": null,
-        "group_label": "Build"
+        "group_label": "Build",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "run build plans",
         "label": "Run Build plans",
         "description": null,
-        "group_label": "Build"
+        "group_label": "Build",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "add ssh key to git",
         "label": "Add SSH key to git repository",
         "description": null,
-        "group_label": "SSH keys"
+        "group_label": "SSH keys",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "add ssh key to non-prod",
         "label": "Add SSH key to non-production environments",
         "description": null,
-        "group_label": "SSH keys"
+        "group_label": "SSH keys",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "add ssh key to prod",
         "label": "Add SSH key to the production environment",
         "description": null,
-        "group_label": "SSH keys"
+        "group_label": "SSH keys",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "view remote administration",
         "label": "View Remote Administration",
         "description": "This permission is only relevant if your subscription has remote administration.",
-        "group_label": "Administration"
+        "group_label": "Administration",
+        "flags": {
+          "deprecated": false
+        }
       },
       {
         "name": "edit remote administration",
         "label": "Edit Remote Administration",
         "description": "This permission is only relevant if your subscription has remote administration.",
-        "group_label": "Administration"
+        "group_label": "Administration",
+        "flags": {
+          "deprecated": false
+        }
+      },
+      {
+        "name": "clear caches on prod",
+        "label": "Clear caches for the production environment",
+        "description": null,
+        "group_label": "Workflow",
+        "flags": {
+          "deprecated": false
+        }
+      },
+      {
+        "name": "clear caches on non-prod",
+        "label": "Clear caches for non-production environments",
+        "description": null,
+        "group_label": "Workflow",
+        "flags": {
+          "deprecated": false
+        }
       }
     ]
   }

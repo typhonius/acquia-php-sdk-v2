@@ -7,7 +7,7 @@ namespace AcquiaCloudApi\Response;
  *
  * @package AcquiaCloudApi\Response
  */
-class SshKeyResponse
+class SshKeyResponse extends GenericResponse
 {
     /**
      * @var string $uuid

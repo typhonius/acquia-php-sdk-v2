@@ -3,10 +3,9 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * @template TValue
- * @template-extends \ArrayObject<int,TValue>
+ * @extends CollectionResponse<SshKeyResponse>
  */
-class SshKeysResponse extends \ArrayObject
+class SshKeysResponse extends CollectionResponse
 {
 
     /**
@@ -14,14 +13,6 @@ class SshKeysResponse extends \ArrayObject
      */
     public function __construct($sshkeys)
     {
-        parent::__construct(
-            array_map(
-                function ($sshkey) {
-                    return new SshKeyResponse($sshkey);
-                },
-                $sshkeys
-            ),
-            self::ARRAY_AS_PROPS
-        );
+        parent::__construct('SshKeyResponse', $sshkeys);
     }
 }

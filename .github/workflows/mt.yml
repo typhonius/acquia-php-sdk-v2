@@ -40,7 +40,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer install --prefer-source --no-progress --no-suggest --no-interaction
+          composer install --no-progress --no-suggest --no-interaction
 
       - name: Download Infection
         run: |

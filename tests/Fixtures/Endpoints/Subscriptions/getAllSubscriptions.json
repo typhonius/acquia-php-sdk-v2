@@ -1,0 +1,159 @@
+{
+    "total": 3,
+    "_links": {
+        "self": {
+            "href": "{baseUri}/subscriptions"
+        },
+        "sort": {
+            "href": "{baseUri}/subscriptions{?sort}",
+            "templated": true
+        },
+        "filter": {
+            "href": "{baseUri}/subscriptions{?filter}",
+            "templated": true
+        },
+        "limit": {
+            "href": "{baseUri}/subscriptions{?limit}",
+            "templated": true
+        },
+        "parent": {
+            "href": "{baseUri}/"
+        }
+    },
+    "_embedded": {
+        "items": [
+            {
+                "id": 123,
+                "uuid": "faa297f3-f59a-4abc-8d71-904f51bcb1c5",
+                "name": "Acquia Cloud Free Subscription",
+                "start_at": "2011-03-28T00:00:00",
+                "expire_at": "2015-11-11T00:00:00",
+                "product": {
+                    "id": 1890149,
+                    "name": "Acquia Cloud Free",
+                    "type": "free"
+                },
+                "applications_total": 3,
+                "applications_used": 1,
+                "advisory_hours_total": 1.23,
+                "advisory_hours_used": 4.56,
+                "organization": {
+                    "uuid": "39f38840-c494-4622-80a5-fc40269cb42d",
+                    "name": "Acquia Inc."
+                },
+                "flags": {
+                    "active": true,
+                    "expired": true,
+                    "zuora": false
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/subscriptions/faa297f3-f59a-4abc-8d71-904f51bcb1c5"
+                    }
+                },
+                "_embedded": {
+                    "organization": {
+                        "uuid": "39f38840-c494-4622-80a5-fc40269cb42d",
+                        "name": "Acquia Inc.",
+                        "_links": {
+                            "self": {
+                                "href": "{baseUri}/organizations/39f38840-c494-4622-80a5-fc40269cb42d"
+                            },
+                            "parent": {
+                                "href": "{baseUri}/organizations"
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "id": 222,
+                "uuid": "36496037-6eb5-482d-8549-e45e1718f2b7",
+                "name": "My Acquia Subscription",
+                "start_at": "2012-05-15T12:00:00Z",
+                "expire_at": "2015-05-15T12:00:00Z",
+                "product": {
+                    "id": 8999,
+                    "name": "Enterprise",
+                    "type": "enterprise"
+                },
+                "applications_total": 5,
+                "applications_used": 2,
+                "advisory_hours_total": 2.34,
+                "advisory_hours_used": 5.67,
+                "organization": {
+                    "uuid": "93c97126-2870-47f0-9ffd-9a92033c443e",
+                    "name": "My Organization"
+                },
+                "flags": {
+                    "active": true,
+                    "expired": true,
+                    "zuora": false
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/subscriptions/36496037-6eb5-482d-8549-e45e1718f2b7"
+                    }
+                },
+                "_embedded": {
+                    "organization": {
+                        "uuid": "93c97126-2870-47f0-9ffd-9a92033c443e",
+                        "name": "My Organization",
+                        "_links": {
+                            "self": {
+                                "href": "{baseUri}/organizations/93c97126-2870-47f0-9ffd-9a92033c443e"
+                            },
+                            "parent": {
+                                "href": "{baseUri}/organizations"
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "id": 333,
+                "uuid": "2d92f652-882c-458a-8183-4d9cef7c2fde",
+                "name": "My Acquia Subscription 2",
+                "start_at": "2012-05-15T12:00:00Z",
+                "expire_at": "2015-05-15T12:00:00Z",
+                "product": {
+                    "id": 8999,
+                    "name": "Enterprise",
+                    "type": "enterprise"
+                },
+                "applications_total": 5,
+                "applications_used": 2,
+                "advisory_hours_total": 3.45,
+                "advisory_hours_used": 6.78,
+                "organization": {
+                    "uuid": "93c97126-2870-47f0-9ffd-9a92033c443e",
+                    "name": "My Organization"
+                },
+                "flags": {
+                    "active": true,
+                    "expired": true,
+                    "zuora": false
+                },
+                "_links": {
+                    "self": {
+                        "href": "{baseUri}/subscriptions/2d92f652-882c-458a-8183-4d9cef7c2fde"
+                    }
+                },
+                "_embedded": {
+                    "organization": {
+                        "uuid": "93c97126-2870-47f0-9ffd-9a92033c443e",
+                        "name": "My Organization",
+                        "_links": {
+                            "self": {
+                                "href": "{baseUri}/organizations/93c97126-2870-47f0-9ffd-9a92033c443e"
+                            },
+                            "parent": {
+                                "href": "{baseUri}/organizations"
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

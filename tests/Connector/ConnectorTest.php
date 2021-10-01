@@ -5,6 +5,7 @@ namespace AcquiaCloudApi\Tests\Connector;
 use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Connector\Connector;
 use AcquiaCloudApi\Connector\ConnectorInterface;
+use GuzzleHttp\Psr7\Uri;
 use League\OAuth2\Client\Test\Provider\Fake as MockProvider;
 use League\OAuth2\Client\Token\AccessToken;
 use Psr\Http\Message\StreamInterface;
@@ -134,17 +135,22 @@ class ConnectorTest extends CloudApiTestCase
             'authorization' => 'Authorization',
             'host' => 'Host',
         ];
+        $expectedUri = new Uri('https://cloud.acquia.com/api/account');
 
         $requestReflectionClass = new \ReflectionClass('GuzzleHttp\Psr7\Request');
         $headerProperty = $requestReflectionClass->getProperty('headers');
         $headerNamesProperty = $requestReflectionClass->getProperty('headerNames');
+        $uriProperty = $requestReflectionClass->getProperty('uri');
         $headerProperty->setAccessible(true);
         $headerNamesProperty->setAccessible(true);
+        $uriProperty->setAccessible(true);
         $headers = $headerProperty->getValue($request);
         $headerNames = $headerNamesProperty->getValue($request);
+        $uri = $uriProperty->getValue($request);
 
         $this->assertEquals($expectedHeaders, $headers);
         $this->assertEquals($expectedHeaderNames, $headerNames);
+        $this->assertEquals($expectedUri, $uri);
 
         // Check the cache to make sure that the token has been cached successfully.
         $accessToken = $this->cache->getItem('cloudapi-token')->get();

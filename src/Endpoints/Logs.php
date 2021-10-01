@@ -40,7 +40,7 @@ class Logs extends CloudApiBase implements CloudApiInterface
      */
     public function download($environmentUuid, $logType): StreamInterface
     {
-        return $this->client->request('get', "/environments/${environmentUuid}/logs/${logType}");
+        return $this->client->stream('get', "/environments/${environmentUuid}/logs/${logType}");
     }
 
     /**

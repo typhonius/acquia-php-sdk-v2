@@ -112,12 +112,30 @@ class Client implements ClientInterface
         $this->requestOptions = $options;
 
         // Modify the options to combine options set as part of the API call as well
-        // as those set my tools extending this library.
+        // as those set by tools extending this library.
         $modifiedOptions = $this->modifyOptions();
 
         $response = $this->makeRequest($verb, $path, $modifiedOptions);
 
         return $this->processResponse($response);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function stream(string $verb, string $path, array $options = [])
+    {
+        // Put options sent with API calls into a property so they can be accessed
+        // and therefore tested in tests.
+        $this->requestOptions = $options;
+
+        // Modify the options to combine options set as part of the API call as well
+        // as those set by tools extending this library.
+        $modifiedOptions = $this->modifyOptions();
+
+        $response = $this->makeRequest($verb, $path, $modifiedOptions);
+
+        return $response->getBody();
     }
 
     /**
@@ -142,9 +160,6 @@ class Client implements ClientInterface
 
         $body_json = $response->getBody();
         $body = json_decode($body_json);
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            return $body_json;
-        }
 
         if (property_exists($body, '_embedded') && property_exists($body->_embedded, 'items')) {
             return $body->_embedded->items;

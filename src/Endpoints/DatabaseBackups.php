@@ -95,7 +95,7 @@ class DatabaseBackups extends CloudApiBase implements CloudApiInterface
      */
     public function download($environmentUuid, $dbName, $backupId): StreamInterface
     {
-        return $this->client->request(
+        return $this->client->stream(
             'get',
             "/environments/${environmentUuid}/databases/${dbName}/backups/${backupId}/actions/download"
         );

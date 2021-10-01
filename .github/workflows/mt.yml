@@ -33,7 +33,7 @@ jobs:
 
       - name: Download Infection
         run: |
-          wget https://github.com/infection/infection/releases/download/0.20.0/infection.phar
+          wget https://github.com/infection/infection/releases/download/0.21.0/infection.phar
           chmod +x infection.phar
 
       - name: Run Infection for added files only

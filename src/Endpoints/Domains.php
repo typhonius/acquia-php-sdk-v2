@@ -85,7 +85,7 @@ class Domains extends CloudApiBase implements CloudApiInterface
     }
 
     /**
-     * Purges varnish for selected domains in an environment.
+     * Purges cache for selected domains in an environment.
      *
      * @param  string        $environmentUuid
      * @param  array<string> $domains
@@ -102,8 +102,25 @@ class Domains extends CloudApiBase implements CloudApiInterface
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/environments/${environmentUuid}/domains/actions/clear-varnish",
+                "/environments/${environmentUuid}/actions/clear-caches",
                 $options
+            )
+        );
+    }
+
+    /**
+     * Purges cache for a single domain in an environment.
+     *
+     * @param  string        $environmentUuid
+     * @param  string        $domain
+     * @return OperationResponse
+     */
+    public function clearDomainCache($environmentUuid, $domain): OperationResponse
+    {
+        return new OperationResponse(
+            $this->client->request(
+                'post',
+                "/environments/${environmentUuid}/domains/${domain}/actions/clear-caches"
             )
         );
     }

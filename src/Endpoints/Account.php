@@ -30,6 +30,6 @@ class Account extends CloudApiBase implements CloudApiInterface
      */
     public function getDrushAliases()
     {
-        return $this->client->request('get', '/account/drush-aliases/download');
+        return $this->client->stream('get', '/account/drush-aliases/download');
     }
 }

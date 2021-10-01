@@ -93,6 +93,13 @@ $client->addQuery('version', '9');
 $result = $account->getDrushAliases();
 $drushArchive = tempnam(sys_get_temp_dir(), 'AcquiaDrushAliases') . '.tar.gz';
 file_put_contents($drushArchive, $aliases, LOCK_EX);
+
+// Download database backup
+// file_put_contents loads the response into memory. This is okay for small things like Drush aliases, but not for database backups.
+// Use curl.options to stream data to disk and minimize memory usage.
+$client->addOption('sink', $filepath);
+$client->addOption('curl.options', ['CURLOPT_RETURNTRANSFER' => true, 'CURLOPT_FILE' => $filepath]);
+$backup->download($environmentUuid, $dbName, $backupId);
 ```
 
 ## Documentation

@@ -110,11 +110,9 @@ class InsightsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Insights/getInsight.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $insights = new Insights($client);
         $result = $insights->get('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightResponse', $result);
         foreach ($this->properties as $property) {
             $this->assertObjectHasAttribute($property, $result);
         }
@@ -124,7 +122,7 @@ class InsightsTest extends CloudApiTestCase
         $this->assertObjectHasAttribute('best_practices', $result->counts);
         $this->assertObjectHasAttribute('security', $result->counts);
         $this->assertObjectHasAttribute('performance', $result->counts);
-        foreach ($result->counts as $name => $response) {
+        foreach ((array)$result->counts as $name => $response) {
             $this->assertInstanceOf('\AcquiaCloudApi\Response\InsightCountResponse', $response);
         }
     }

@@ -3,8 +3,7 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * @template TValue
- * @template-extends \ArrayObject<int,TValue>
+ * @template-extends \ArrayObject<int, \AcquiaCloudApi\Response\NotificationResponse>
  */
 class NotificationsResponse extends \ArrayObject
 {

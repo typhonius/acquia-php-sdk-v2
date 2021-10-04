@@ -8,18 +8,6 @@ updates:
     timezone: Australia/Sydney
   open-pull-requests-limit: 99
   ignore:
-  - dependency-name: phpstan/phpstan
-    versions:
-    - 0.12.70
-    - 0.12.76
-    - 0.12.77
-    - 0.12.78
-    - 0.12.79
-    - 0.12.80
-    - 0.12.81
-    - 0.12.82
-    - 0.12.83
-    - 0.12.84
   - dependency-name: phpunit/phpunit
     versions:
     - 9.5.3

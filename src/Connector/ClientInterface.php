@@ -3,8 +3,6 @@
 namespace AcquiaCloudApi\Connector;
 
 use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\Exception\BadResponseException;
-use AcquiaCloudApi\Exception\ApiErrorException;
 use Psr\Http\Message\StreamInterface;
 use AcquiaCloudApi\Exception\LinkedResourceNotImplementedException;
 
@@ -42,9 +40,20 @@ interface ClientInterface
      * @param string $path
      * @param array<string, mixed> $options
      *
-     * @return mixed|StreamInterface
+     * @return mixed
      */
     public function request(string $verb, string $path, array $options = []);
+
+    /**
+     * Takes parameters passed in, makes a request to the API, and streams the response.
+     *
+     * @param string $verb
+     * @param string $path
+     * @param array<string, mixed> $options
+     *
+     * @return StreamInterface
+     */
+    public function stream(string $verb, string $path, array $options = []);
 
     /**
      * @param  string $verb
@@ -58,7 +67,7 @@ interface ClientInterface
      * Processes the returned response from the API.
      *
      * @param  ResponseInterface $response
-     * @return mixed|StreamInterface
+     * @return mixed
      * @throws \Exception
      */
     public function processResponse(ResponseInterface $response);

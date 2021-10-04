@@ -38,6 +38,11 @@
             "League\\OAuth2\\Client\\Test\\": "vendor/league/oauth2-client/test/src/"
         }
     },
+    "config": {
+        "preferred-install": {
+            "league/oauth2-client": "source"
+        }
+    },
     "scripts": {
         "lint": [
             "find src -name '*.php' -print0 | xargs -0 -n1 php -l",
@@ -46,7 +51,7 @@
         "cs": "phpcs --standard=PSR12 -n src tests --ignore=./tests/logs/*",
         "cbf": "phpcbf --standard=PSR12 -n src tests --ignore=./tests/logs/*",
         "unit": "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --configuration=phpunit.xml --testdox",
-        "stan": "phpstan analyse --level 6 src tests",
+        "stan": "phpstan analyse",
         "test": [
             "@lint",
             "@unit",

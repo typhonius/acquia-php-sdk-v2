@@ -1,4 +1,8 @@
 parameters:
+    level: 6
+    paths:
+        - src
+        - tests
     ignoreErrors:
         -
             message: '#Access to an undefined property Eloquent\\Phony\\Mock\\Handle\\InstanceHandle::\$[a-zA-Z\_]+.#'

@@ -21,7 +21,7 @@ abstract class CollectionResponse extends \ArrayObject
      * @param string $class
      * @param object|array<int, object> $body
      */
-    public function __construct($class, $body)
+    public function __construct(string $class, $body)
     {
         // Links will not be available if we create a CollectionResponse manually within
         // a GenericResponse e.g. a TeamsResponse as part of a MemberResponse.
@@ -40,7 +40,7 @@ abstract class CollectionResponse extends \ArrayObject
 
         parent::__construct(
             array_map(
-                function ($child) use ($class) {
+                static function ($child) use ($class) {
                     return new $class($child);
                 },
                 $items

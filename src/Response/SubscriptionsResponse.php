@@ -3,9 +3,9 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * @template-extends \ArrayObject<int, \AcquiaCloudApi\Response\SubscriptionResponse>
+ * @extends CollectionResponse<SubscriptionResponse>
  */
-class SubscriptionsResponse extends \ArrayObject
+class SubscriptionsResponse extends CollectionResponse
 {
 
     /**
@@ -13,14 +13,6 @@ class SubscriptionsResponse extends \ArrayObject
      */
     public function __construct($subscriptions)
     {
-        parent::__construct(
-            array_map(
-                function ($subscription) {
-                    return new SubscriptionResponse($subscription);
-                },
-                $subscriptions
-            ),
-            self::ARRAY_AS_PROPS
-        );
+        parent::__construct('SubscriptionResponse', $subscriptions);
     }
 }

@@ -4,7 +4,9 @@ namespace AcquiaCloudApi\Tests;
 
 use AcquiaCloudApi\Connector\Client;
 use AcquiaCloudApi\Connector\ClientInterface;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Stream;
+use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -17,14 +19,14 @@ abstract class CloudApiTestCase extends TestCase
      * Returns a PSR7 Stream for a given fixture.
      *
      * @param  string $fixture The fixture to create the stream for.
-     * @return Psr7\Stream
+     * @return Stream
      */
-    protected function getPsr7StreamForFixture($fixture): Psr7\Stream
+    protected function getPsr7StreamForFixture($fixture): Stream
     {
         $path = sprintf('%s/Fixtures/%s', __DIR__, $fixture);
         $this->assertFileExists($path);
-        $stream = Psr7\stream_for(file_get_contents($path));
-        $this->assertInstanceOf(Psr7\Stream::class, $stream);
+        $stream = Utils::streamFor(file_get_contents($path));
+        $this->assertInstanceOf(Stream::class, $stream);
 
         return $stream;
     }
@@ -34,15 +36,15 @@ abstract class CloudApiTestCase extends TestCase
      *
      * @param  string  $fixture    The fixture to create the response for.
      * @param  integer $statusCode A HTTP Status Code for the response.
-     * @return Psr7\Response
+     * @return Response
      */
-    protected function getPsr7JsonResponseForFixture($fixture, $statusCode = 200): Psr7\Response
+    protected function getPsr7JsonResponseForFixture($fixture, $statusCode = 200): Response
     {
         $stream = $this->getPsr7StreamForFixture($fixture);
         $this->assertNotNull(json_decode($stream));
         $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
-        return new Psr7\Response($statusCode, ['Content-Type' => 'application/json'], $stream);
+        return new Response($statusCode, ['Content-Type' => 'application/json'], $stream);
     }
 
     /**
@@ -50,13 +52,13 @@ abstract class CloudApiTestCase extends TestCase
      *
      * @param  string  $fixture    The fixture to create the response for.
      * @param  integer $statusCode A HTTP Status Code for the response.
-     * @return Psr7\Response
+     * @return Response
      */
-    protected function getPsr7GzipResponseForFixture($fixture, $statusCode = 200): Psr7\Response
+    protected function getPsr7GzipResponseForFixture($fixture, $statusCode = 200): Response
     {
         $stream = $this->getPsr7StreamForFixture($fixture);
 
-        return new Psr7\Response($statusCode, ['Content-Type' => 'application/octet-stream'], $stream);
+        return new Response($statusCode, ['Content-Type' => 'application/octet-stream'], $stream);
     }
 
     /**

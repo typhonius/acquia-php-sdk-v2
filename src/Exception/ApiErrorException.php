@@ -78,4 +78,12 @@ class ApiErrorException extends Exception
     {
         $this->responseBody = $response_body;
     }
+    
+    /**
+     * @return string
+     */
+    public function getErrorType(): string 
+    {
+        return $this->errorType;
+    }
 }

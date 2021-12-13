@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class IdesResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $ides
      */

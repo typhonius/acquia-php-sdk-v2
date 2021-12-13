@@ -17,7 +17,6 @@ use AcquiaCloudApi\Response\OperationResponse;
  */
 class Insights extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Returns Insight data for all sites associated with the application by its UUID.
      *

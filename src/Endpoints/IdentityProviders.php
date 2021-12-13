@@ -13,7 +13,6 @@ use AcquiaCloudApi\Response\IdentityProviderResponse;
  */
 class IdentityProviders extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Returns a list of identity providers for the user.
      *

@@ -13,7 +13,6 @@ use AcquiaCloudApi\Response\ServerResponse;
  */
 class Servers extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Gets information about a single server.
      *

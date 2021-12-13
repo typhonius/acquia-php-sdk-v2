@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class SubscriptionsResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $subscriptions
      */

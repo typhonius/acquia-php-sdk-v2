@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class CronsResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $crons
      */

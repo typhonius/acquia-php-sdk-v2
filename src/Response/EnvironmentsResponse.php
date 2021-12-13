@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class EnvironmentsResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $environments
      */

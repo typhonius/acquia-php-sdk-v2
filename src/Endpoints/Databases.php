@@ -13,7 +13,6 @@ use AcquiaCloudApi\Response\OperationResponse;
  */
 class Databases extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Shows all databases in an application.
      *

@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class IdentityProvidersResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $idps
      */

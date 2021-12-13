@@ -8,7 +8,6 @@ use AcquiaCloudApi\Endpoints\Teams;
 
 class TeamsTest extends CloudApiTestCase
 {
-
     /**
      * @var mixed[] $teamProperties
      */

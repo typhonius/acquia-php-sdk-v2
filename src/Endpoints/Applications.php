@@ -15,7 +15,6 @@ use AcquiaCloudApi\Response\OperationResponse;
  */
 class Applications extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Shows all applications.
      *

@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class LogsResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $logs
      */

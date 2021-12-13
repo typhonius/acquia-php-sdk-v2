@@ -13,7 +13,6 @@ use AcquiaCloudApi\Response\VariablesResponse;
  */
 class Variables extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Fetches all environment variables.
      *

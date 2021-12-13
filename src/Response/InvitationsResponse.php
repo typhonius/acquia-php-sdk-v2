@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class InvitationsResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $invitations
      */

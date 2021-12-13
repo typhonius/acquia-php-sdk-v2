@@ -12,7 +12,6 @@ use Psr\Http\Message\StreamInterface;
  */
 class Account extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Returns details about your account.
      *

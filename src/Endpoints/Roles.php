@@ -13,7 +13,6 @@ use AcquiaCloudApi\Response\OperationResponse;
  */
 class Roles extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Show all roles in an organization.
      *

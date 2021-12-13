@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class SslCertificatesResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $certificates
      */

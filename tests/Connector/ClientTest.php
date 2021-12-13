@@ -9,7 +9,6 @@ use AcquiaCloudApi\Endpoints\Code;
 
 class ClientTest extends CloudApiTestCase
 {
-
     public function testAddQuery(): void
     {
         $client = $this->getMockClient();

@@ -13,7 +13,6 @@ use AcquiaCloudApi\Response\OperationResponse;
  */
 class Crons extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Show all cron tasks for an environment.
      *

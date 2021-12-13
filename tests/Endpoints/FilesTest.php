@@ -7,7 +7,6 @@ use AcquiaCloudApi\Endpoints\Environments;
 
 class FilesTest extends CloudApiTestCase
 {
-
     public function testFilesCopy(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/copyFiles.json');

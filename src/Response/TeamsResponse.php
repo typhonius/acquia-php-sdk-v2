@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class TeamsResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $teams
      */

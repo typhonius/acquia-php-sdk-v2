@@ -4,7 +4,6 @@ namespace AcquiaCloudApi\Response;
 
 class InsightAlertResponse
 {
-
     /**
      * @var int $alert_id
      */

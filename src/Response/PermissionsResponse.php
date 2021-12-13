@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class PermissionsResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $permissions
      */

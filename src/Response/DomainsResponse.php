@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class DomainsResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $domains
      */

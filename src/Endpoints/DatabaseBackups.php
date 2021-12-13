@@ -14,7 +14,6 @@ use Psr\Http\Message\StreamInterface;
  */
 class DatabaseBackups extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Backup a database.
      *

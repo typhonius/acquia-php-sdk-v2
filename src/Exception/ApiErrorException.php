@@ -9,7 +9,6 @@ use Exception;
  */
 class ApiErrorException extends Exception
 {
-
     /**
      * @var object
      */

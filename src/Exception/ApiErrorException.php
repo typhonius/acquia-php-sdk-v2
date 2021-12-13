@@ -78,7 +78,7 @@ class ApiErrorException extends Exception
     {
         $this->responseBody = $response_body;
     }
-    
+   
     /**
      * @return string
      */

@@ -12,7 +12,6 @@ use AcquiaCloudApi\Response\PermissionResponse;
  */
 class Permissions extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Show all available permissions.
      *

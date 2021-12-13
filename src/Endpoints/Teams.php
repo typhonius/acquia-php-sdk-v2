@@ -15,7 +15,6 @@ use AcquiaCloudApi\Response\OperationResponse;
  */
 class Teams extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Create a new team.
      *

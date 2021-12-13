@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class SshKeysResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $sshkeys
      */

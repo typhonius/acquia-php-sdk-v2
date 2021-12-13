@@ -12,7 +12,6 @@ use AcquiaCloudApi\Response\MetricResponse;
  */
 class Metrics extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Retrieves aggregate usage data for an application.
      *

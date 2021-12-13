@@ -7,7 +7,6 @@ use AcquiaCloudApi\Endpoints\Environments;
 
 class ProductionModeTest extends CloudApiTestCase
 {
-
     public function testProductionModeEnable(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/enableProductionMode.json');

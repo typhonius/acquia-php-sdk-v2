@@ -4,7 +4,6 @@ namespace AcquiaCloudApi\Response;
 
 class DatabaseResponse
 {
-
     /**
      * @var string $name
      */

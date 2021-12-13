@@ -9,7 +9,6 @@ namespace AcquiaCloudApi\Response;
  */
 class SslCertificateResponse
 {
-
     /**
      * @var int $id
      */

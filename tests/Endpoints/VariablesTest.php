@@ -7,7 +7,6 @@ use AcquiaCloudApi\Tests\CloudApiTestCase;
 
 class VariablesTest extends CloudApiTestCase
 {
-
     /**
      * @var mixed[] $properties
      */

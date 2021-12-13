@@ -13,7 +13,6 @@ use AcquiaCloudApi\Response\OperationResponse;
  */
 class SshKeys extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Returns a list of SSL keys.
      *

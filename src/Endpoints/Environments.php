@@ -13,7 +13,6 @@ use AcquiaCloudApi\Response\OperationResponse;
  */
 class Environments extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Copies files from an environment to another environment.
      *

@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class NotificationsResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $notifications
      */

@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class LogForwardingDestinationsResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $destinations
      */

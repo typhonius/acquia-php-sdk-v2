@@ -14,7 +14,6 @@ use AcquiaCloudApi\Connector\Connector;
 
 class ErrorTest extends CloudApiTestCase
 {
-
     public function testError403(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Error/error403.json');

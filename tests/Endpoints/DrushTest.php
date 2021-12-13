@@ -7,7 +7,6 @@ use AcquiaCloudApi\Endpoints\Account;
 
 class DrushTest extends CloudApiTestCase
 {
-
     public function testGetDrushAliases(): void
     {
         $response = $this->getPsr7GzipResponseForFixture('Endpoints/Account/getDrushAliases.dat');

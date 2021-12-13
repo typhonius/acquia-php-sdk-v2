@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class DatabasesResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $databases
      */

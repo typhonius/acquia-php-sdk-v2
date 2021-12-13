@@ -18,7 +18,6 @@ use Webmozart\PathUtil\Path;
  */
 class Connector implements ConnectorInterface
 {
-
     /**
      * @var string The base URI for Acquia Cloud API.
      */

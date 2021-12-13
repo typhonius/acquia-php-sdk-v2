@@ -14,7 +14,6 @@ use PHPUnit\Framework\TestCase;
  */
 abstract class CloudApiTestCase extends TestCase
 {
-
     /**
      * Returns a PSR7 Stream for a given fixture.
      *

@@ -12,7 +12,6 @@ use AcquiaCloudApi\Response\NotificationsResponse;
  */
 class Notifications extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Returns details about a notification.
      *

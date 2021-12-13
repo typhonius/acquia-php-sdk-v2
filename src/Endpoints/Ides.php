@@ -13,7 +13,6 @@ use AcquiaCloudApi\Response\OperationResponse;
  */
 class Ides extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Returns a list of remote IDEs.
      *

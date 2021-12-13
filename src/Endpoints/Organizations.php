@@ -21,7 +21,6 @@ use AcquiaCloudApi\Response\OperationResponse;
  */
 class Organizations extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Show all organizations.
      *

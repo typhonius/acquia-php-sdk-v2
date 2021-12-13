@@ -11,7 +11,6 @@ use AcquiaCloudApi\Connector\ClientInterface;
  */
 abstract class CloudApiBase implements CloudApiInterface
 {
-
     /**
      * @var ClientInterface The API client.
      */

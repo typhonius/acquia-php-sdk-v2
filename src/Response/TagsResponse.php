@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class TagsResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $tags
      */

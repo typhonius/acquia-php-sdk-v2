@@ -13,7 +13,6 @@ use AcquiaCloudApi\Response\OperationResponse;
  */
 class SslCertificates extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Returns a list of SSL certificates.
      *

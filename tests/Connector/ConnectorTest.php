@@ -22,7 +22,6 @@ use Webmozart\PathUtil\Path;
 
 class ConnectorTest extends CloudApiTestCase
 {
-
     /**
      * @var ConnectorInterface $connector
      */

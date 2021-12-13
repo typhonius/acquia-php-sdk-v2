@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class BranchesResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $branches
      */

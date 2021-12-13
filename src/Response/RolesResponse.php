@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class RolesResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $roles
      */

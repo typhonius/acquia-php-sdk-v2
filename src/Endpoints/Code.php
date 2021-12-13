@@ -13,7 +13,6 @@ use AcquiaCloudApi\Response\OperationResponse;
  */
 class Code extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Shows all code branches and tags in an application.
      *

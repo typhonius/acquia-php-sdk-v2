@@ -7,7 +7,6 @@ use AcquiaCloudApi\Endpoints\Environments;
 
 class LiveDevTest extends CloudApiTestCase
 {
-
     public function testLiveDevEnable(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/enableLiveDev.json');

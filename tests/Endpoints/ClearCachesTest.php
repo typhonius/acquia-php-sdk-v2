@@ -7,7 +7,6 @@ use AcquiaCloudApi\Endpoints\Domains;
 
 class ClearCachesTest extends CloudApiTestCase
 {
-
     public function testClearCache(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Domains/clearCaches.json');

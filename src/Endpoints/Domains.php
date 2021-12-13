@@ -15,7 +15,6 @@ use AcquiaCloudApi\Response\MetricResponse;
  */
 class Domains extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Shows all domains on an environment.
      *

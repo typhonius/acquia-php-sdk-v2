@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class MetricsResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $metrics
      */

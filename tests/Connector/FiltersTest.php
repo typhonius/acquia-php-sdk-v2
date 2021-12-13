@@ -6,7 +6,6 @@ use AcquiaCloudApi\Tests\CloudApiTestCase;
 
 class FiltersTest extends CloudApiTestCase
 {
-
     public function testAddFilter(): void
     {
         $object = $this->getMockClient();

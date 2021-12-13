@@ -17,7 +17,6 @@ use Psr\Http\Message\StreamInterface;
  */
 class Logs extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Returns a list of log files available for download.
      *

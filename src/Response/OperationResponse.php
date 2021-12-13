@@ -4,7 +4,6 @@ namespace AcquiaCloudApi\Response;
 
 class OperationResponse
 {
-
     /**
      * @var string $message
      */

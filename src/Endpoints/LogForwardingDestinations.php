@@ -13,7 +13,6 @@ use AcquiaCloudApi\Response\LogForwardingDestinationResponse;
  */
 class LogForwardingDestinations extends CloudApiBase implements CloudApiInterface
 {
-
     /**
      * Returns a list of log forwarding destinations.
      *

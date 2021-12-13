@@ -7,7 +7,6 @@ namespace AcquiaCloudApi\Response;
  */
 class InsightAlertsResponse extends \ArrayObject
 {
-
     /**
      * @param array<object> $alerts
      */

@@ -82,7 +82,7 @@ class ApiErrorException extends Exception
     /**
      * @return string
      */
-    public function getErrorType(): string 
+    public function getErrorType(): string
     {
         return $this->errorType;
     }

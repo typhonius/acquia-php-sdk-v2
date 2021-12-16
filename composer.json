@@ -10,7 +10,7 @@
     "license": "MIT",
     "require": {
         "guzzlehttp/guzzle": "^7.2",
-        "php": ">=7.3",
+        "php": ">=7.4",
         "league/oauth2-client": "^2.4",
         "symfony/cache": "^4|^5",
         "symfony/filesystem": "^5.4"
@@ -39,6 +39,9 @@
         }
     },
     "config": {
+        "platform": {
+            "php": "7.4"
+        },
         "preferred-install": {
             "league/oauth2-client": "source"
         }

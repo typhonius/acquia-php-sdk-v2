@@ -39,6 +39,9 @@
         }
     },
     "config": {
+        "platform": {
+            "php": "7.4"
+        },
         "preferred-install": {
             "league/oauth2-client": "source"
         }

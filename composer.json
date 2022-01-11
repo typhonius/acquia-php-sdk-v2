@@ -10,9 +10,9 @@
     "license": "MIT",
     "require": {
         "guzzlehttp/guzzle": "^7.2",
-        "php": ">=7.4",
+        "php": "^8.0.2",
         "league/oauth2-client": "^2.4",
-        "symfony/cache": "^4|^5",
+        "symfony/cache": "^5 | ^6",
         "webmozart/path-util": "^2.3"
     },
     "require-dev": {
@@ -40,7 +40,7 @@
     },
     "config": {
         "platform": {
-            "php": "7.4"
+            "php": "8.0.2"
         },
         "preferred-install": {
             "league/oauth2-client": "source"

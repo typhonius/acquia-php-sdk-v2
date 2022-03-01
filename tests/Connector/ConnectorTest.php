@@ -7,7 +7,6 @@ use AcquiaCloudApi\Connector\Connector;
 use AcquiaCloudApi\Connector\ConnectorInterface;
 use GuzzleHttp\Psr7\Uri;
 use League\OAuth2\Client\Test\Provider\Fake as MockProvider;
-use League\OAuth2\Client\Token\AccessToken;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\ResponseInterface;
 use Eloquent\Phony\Phpunit\Phony;
@@ -18,7 +17,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\Adapter\AbstractAdapter;
-use Webmozart\PathUtil\Path;
+use Symfony\Component\Filesystem\Path;
 
 class ConnectorTest extends CloudApiTestCase
 {

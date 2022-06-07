@@ -11,8 +11,6 @@
     },
     "applications_total": 10,
     "applications_used": 0,
-    "advisory_hours_total": 0,
-    "advisory_hours_used": 0,
     "organization": {
         "uuid": "93c97126-2870-47f0-9ffd-9a92033c443e",
         "name": "My Organization"

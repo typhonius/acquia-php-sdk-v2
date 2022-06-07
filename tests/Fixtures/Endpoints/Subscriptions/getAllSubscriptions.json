@@ -35,8 +35,6 @@
                 },
                 "applications_total": 3,
                 "applications_used": 1,
-                "advisory_hours_total": 1.23,
-                "advisory_hours_used": 4.56,
                 "organization": {
                     "uuid": "39f38840-c494-4622-80a5-fc40269cb42d",
                     "name": "Acquia Inc."
@@ -79,8 +77,6 @@
                 },
                 "applications_total": 5,
                 "applications_used": 2,
-                "advisory_hours_total": 2.34,
-                "advisory_hours_used": 5.67,
                 "organization": {
                     "uuid": "93c97126-2870-47f0-9ffd-9a92033c443e",
                     "name": "My Organization"
@@ -123,8 +119,6 @@
                 },
                 "applications_total": 5,
                 "applications_used": 2,
-                "advisory_hours_total": 3.45,
-                "advisory_hours_used": 6.78,
                 "organization": {
                     "uuid": "93c97126-2870-47f0-9ffd-9a92033c443e",
                     "name": "My Organization"

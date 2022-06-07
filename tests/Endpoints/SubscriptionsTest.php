@@ -18,8 +18,6 @@ class SubscriptionsTest extends CloudApiTestCase
         'product',
         'applications_total',
         'applications_used',
-        'advisory_hours_total',
-        'advisory_hours_used',
         'organization',
         'flags',
         'links'

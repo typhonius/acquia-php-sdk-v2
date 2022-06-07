@@ -45,16 +45,6 @@ class SubscriptionResponse
     public $applications_used;
 
     /**
-     * @var int $advisory_hours_total
-     */
-    public $advisory_hours_total;
-
-    /**
-     * @var int $advisory_hours_used
-     */
-    public $advisory_hours_used;
-
-    /**
      * @var object $organization
      */
     public $organization;
@@ -82,8 +72,6 @@ class SubscriptionResponse
         $this->product = $subscription->product;
         $this->applications_total = $subscription->applications_total;
         $this->applications_used = $subscription->applications_used;
-        $this->advisory_hours_total = $subscription->advisory_hours_total;
-        $this->advisory_hours_used = $subscription->advisory_hours_used;
         $this->organization = $subscription->organization;
         $this->flags = $subscription->flags;
         $this->links = $subscription->_links;

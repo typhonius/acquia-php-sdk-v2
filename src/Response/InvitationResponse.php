@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class InvitationResponse
+class InvitationResponse extends GenericResponse
 {
     /**
      * @var string $uuid

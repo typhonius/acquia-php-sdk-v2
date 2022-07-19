@@ -3,23 +3,15 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * @template-extends \ArrayObject<int, \AcquiaCloudApi\Response\NotificationResponse>
+ * @extends CollectionResponse<NotificationResponse>
  */
-class NotificationsResponse extends \ArrayObject
+class NotificationsResponse extends CollectionResponse
 {
     /**
      * @param array<object> $notifications
      */
     public function __construct($notifications)
     {
-        parent::__construct(
-            array_map(
-                function ($notification) {
-                    return new NotificationResponse($notification);
-                },
-                $notifications
-            ),
-            self::ARRAY_AS_PROPS
-        );
+        parent::__construct('NotificationResponse', $notifications);
     }
 }

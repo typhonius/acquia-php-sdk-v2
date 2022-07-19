@@ -3,23 +3,15 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * @template-extends \ArrayObject<int, \AcquiaCloudApi\Response\BranchResponse>
+ * @extends CollectionResponse<BranchResponse>
  */
-class BranchesResponse extends \ArrayObject
+class BranchesResponse extends CollectionResponse
 {
     /**
      * @param array<object> $branches
      */
     public function __construct($branches)
     {
-        parent::__construct(
-            array_map(
-                function ($branch) {
-                    return new BranchResponse($branch);
-                },
-                $branches
-            ),
-            self::ARRAY_AS_PROPS
-        );
+        parent::__construct('BranchResponse', $branches);
     }
 }

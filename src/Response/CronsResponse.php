@@ -3,23 +3,15 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * @template-extends \ArrayObject<int, \AcquiaCloudApi\Response\CronResponse>
+ * @extends CollectionResponse<CronResponse>
  */
-class CronsResponse extends \ArrayObject
+class CronsResponse extends CollectionResponse
 {
     /**
      * @param array<object> $crons
      */
     public function __construct($crons)
     {
-        parent::__construct(
-            array_map(
-                function ($cron) {
-                    return new CronResponse($cron);
-                },
-                $crons
-            ),
-            self::ARRAY_AS_PROPS
-        );
+        parent::__construct('CronResponse', $crons);
     }
 }

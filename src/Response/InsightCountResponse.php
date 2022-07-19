@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class InsightCountResponse
+class InsightCountResponse extends GenericResponse
 {
     /**
      * @var string $name

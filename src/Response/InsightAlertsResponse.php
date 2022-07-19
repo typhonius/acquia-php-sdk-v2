@@ -3,23 +3,15 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * @template-extends \ArrayObject<int, \AcquiaCloudApi\Response\InsightAlertResponse>
+ * @extends CollectionResponse<InsightAlertResponse>
  */
-class InsightAlertsResponse extends \ArrayObject
+class InsightAlertsResponse extends CollectionResponse
 {
     /**
      * @param array<object> $alerts
      */
     public function __construct($alerts)
     {
-        parent::__construct(
-            array_map(
-                function ($alert) {
-                    return new InsightAlertResponse($alert);
-                },
-                $alerts
-            ),
-            self::ARRAY_AS_PROPS
-        );
+        parent::__construct('InsightAlertResponse', $alerts);
     }
 }

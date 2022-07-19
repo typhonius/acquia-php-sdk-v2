@@ -2,7 +2,9 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
+use AcquiaCloudApi\Connector\ConnectorInterface;
 use AcquiaCloudApi\Connector\ClientInterface;
+use AcquiaCloudApi\Exception\LinkedResourceNotImplementedException;
 
 /**
  * Class CloudApiBase

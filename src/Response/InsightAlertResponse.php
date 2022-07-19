@@ -2,7 +2,7 @@
 
 namespace AcquiaCloudApi\Response;
 
-class InsightAlertResponse
+class InsightAlertResponse extends GenericResponse
 {
     /**
      * @var int $alert_id

@@ -3,23 +3,15 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * @template-extends \ArrayObject<int, \AcquiaCloudApi\Response\BackupResponse>
+ * @extends CollectionResponse<BackupResponse>
  */
-class BackupsResponse extends \ArrayObject
+class BackupsResponse extends CollectionResponse
 {
     /**
      * @param array<object> $backups
      */
     public function __construct($backups)
     {
-        parent::__construct(
-            array_map(
-                function ($backup) {
-                    return new BackupResponse($backup);
-                },
-                $backups
-            ),
-            self::ARRAY_AS_PROPS
-        );
+        parent::__construct('BackupResponse', $backups);
     }
 }

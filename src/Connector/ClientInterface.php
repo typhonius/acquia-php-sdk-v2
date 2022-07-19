@@ -3,9 +3,8 @@
 namespace AcquiaCloudApi\Connector;
 
 use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\Exception\BadResponseException;
-use AcquiaCloudApi\Exception\ApiErrorException;
 use Psr\Http\Message\StreamInterface;
+use AcquiaCloudApi\Exception\LinkedResourceNotImplementedException;
 
 /**
  * Interface ClientInterface
@@ -112,4 +111,11 @@ interface ClientInterface
      * @param mixed  $value
      */
     public function addOption($name, $value): void;
+
+    /**
+     * @param array{type:string, path:string, responseClass:class-string} $link
+     * @return mixed
+     * @throws LinkedResourceNotImplementedException
+     */
+    public function getLinkedResource($link);
 }

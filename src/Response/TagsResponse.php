@@ -3,23 +3,15 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * @template-extends \ArrayObject<int, \AcquiaCloudApi\Response\TagResponse>
+ * @extends CollectionResponse<TagResponse>
  */
-class TagsResponse extends \ArrayObject
+class TagsResponse extends CollectionResponse
 {
     /**
      * @param array<object> $tags
      */
     public function __construct($tags)
     {
-        parent::__construct(
-            array_map(
-                function ($tag) {
-                    return new TagResponse($tag);
-                },
-                $tags
-            ),
-            self::ARRAY_AS_PROPS
-        );
+        parent::__construct('TagResponse', $tags);
     }
 }

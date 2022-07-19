@@ -11,6 +11,7 @@ use Psr\Http\Message\RequestInterface;
 use AcquiaCloudApi\Endpoints\Applications;
 use AcquiaCloudApi\Connector\Client;
 use AcquiaCloudApi\Connector\Connector;
+use AcquiaCloudApi\Response\ApplicationsResponse;
 
 class ErrorTest extends CloudApiTestCase
 {
@@ -97,5 +98,18 @@ EOM;
         $this->assertEquals($exception->__toString(), $errorMessage);
         $this->assertEquals($object, $exception->getResponseBody());
         $this->assertEquals(403, $exception->getCode());
+    }
+
+    public function testCollectionException(): void
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('CollectionResponse does not contain embedded items.');
+
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Applications/getAllApplications.json');
+        $body_json = $response->getBody();
+        $body = json_decode($body_json);
+        unset($body->_embedded);
+
+        new ApplicationsResponse($body);
     }
 }

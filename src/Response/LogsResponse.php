@@ -3,23 +3,15 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * @template-extends \ArrayObject<int, \AcquiaCloudApi\Response\LogResponse>
+ * @extends CollectionResponse<LogResponse>
  */
-class LogsResponse extends \ArrayObject
+class LogsResponse extends CollectionResponse
 {
     /**
      * @param array<object> $logs
      */
     public function __construct($logs)
     {
-        parent::__construct(
-            array_map(
-                function ($log) {
-                    return new LogResponse($log);
-                },
-                $logs
-            ),
-            self::ARRAY_AS_PROPS
-        );
+        parent::__construct('LogResponse', $logs);
     }
 }

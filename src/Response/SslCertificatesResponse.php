@@ -3,23 +3,15 @@
 namespace AcquiaCloudApi\Response;
 
 /**
- * @template-extends \ArrayObject<int, \AcquiaCloudApi\Response\SslCertificateResponse>
+ * @extends CollectionResponse<SslCertificateResponse>
  */
-class SslCertificatesResponse extends \ArrayObject
+class SslCertificatesResponse extends CollectionResponse
 {
     /**
      * @param array<object> $certificates
      */
     public function __construct($certificates)
     {
-        parent::__construct(
-            array_map(
-                function ($certificate) {
-                    return new SslCertificateResponse($certificate);
-                },
-                $certificates
-            ),
-            self::ARRAY_AS_PROPS
-        );
+        parent::__construct('SslCertificateResponse', $certificates);
     }
 }

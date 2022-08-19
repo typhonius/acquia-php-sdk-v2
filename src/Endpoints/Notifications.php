@@ -10,20 +10,21 @@ use AcquiaCloudApi\Response\NotificationsResponse;
  *
  * @package AcquiaCloudApi\CloudApi
  */
-class Notifications extends CloudApiBase implements CloudApiInterface
+class Notifications extends CloudApiBase
 {
     /**
      * Returns details about a notification.
      *
-     * @param  string $notificationUuid
+     * @param string $notificationUuid
+     *
      * @return NotificationResponse
      */
-    public function get($notificationUuid): NotificationResponse
+    public function get(string $notificationUuid): NotificationResponse
     {
         return new NotificationResponse(
             $this->client->request(
                 'get',
-                "/notifications/${notificationUuid}"
+                "/notifications/$notificationUuid"
             )
         );
     }
@@ -31,15 +32,16 @@ class Notifications extends CloudApiBase implements CloudApiInterface
     /**
      * Returns a list of notifications.
      *
-     * @param  string $applicationUuid
+     * @param string $applicationUuid
+     *
      * @return NotificationsResponse<NotificationResponse>
      */
-    public function getAll($applicationUuid): NotificationsResponse
+    public function getAll(string $applicationUuid): NotificationsResponse
     {
         return new NotificationsResponse(
             $this->client->request(
                 'get',
-                "/applications/${applicationUuid}/notifications"
+                "/applications/$applicationUuid/notifications"
             )
         );
     }

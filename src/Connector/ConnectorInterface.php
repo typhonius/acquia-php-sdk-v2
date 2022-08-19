@@ -40,18 +40,18 @@ interface ConnectorInterface
      *
      * @return RequestInterface
      */
-    public function createRequest($verb, $path);
+    public function createRequest(string $verb, string $path): RequestInterface;
 
     /**
      * Sends the request to the API using Guzzle.
      *
      * @param string $verb
      * @param string $path
-     * @param array<string, array>  $options
+     * @param array<string, array<mixed>>  $options
      *
      * @return ResponseInterface
      */
-    public function sendRequest($verb, $path, $options);
+    public function sendRequest(string $verb, string $path, array $options): ResponseInterface;
 
     /**
      * @return string

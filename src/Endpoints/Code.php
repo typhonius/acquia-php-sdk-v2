@@ -11,20 +11,21 @@ use AcquiaCloudApi\Response\OperationResponse;
  *
  * @package AcquiaCloudApi\CloudApi
  */
-class Code extends CloudApiBase implements CloudApiInterface
+class Code extends CloudApiBase
 {
     /**
      * Shows all code branches and tags in an application.
      *
-     * @param  string $applicationUuid
+     * @param string $applicationUuid
+     *
      * @return BranchesResponse<BranchResponse>
      */
-    public function getAll($applicationUuid): BranchesResponse
+    public function getAll(string $applicationUuid): BranchesResponse
     {
         return new BranchesResponse(
             $this->client->request(
                 'get',
-                "/applications/${applicationUuid}/code"
+                "/applications/$applicationUuid/code"
             )
         );
     }
@@ -32,11 +33,12 @@ class Code extends CloudApiBase implements CloudApiInterface
     /**
      * Deploys a code branch/tag to an environment.
      *
-     * @param  string $environmentUuid
-     * @param  string $branch
+     * @param string $environmentUuid
+     * @param string $branch
+     *
      * @return OperationResponse
      */
-    public function switch($environmentUuid, $branch): OperationResponse
+    public function switch(string $environmentUuid, string $branch): OperationResponse
     {
 
         $options = [
@@ -48,7 +50,7 @@ class Code extends CloudApiBase implements CloudApiInterface
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/environments/${environmentUuid}/code/actions/switch",
+                "/environments/$environmentUuid/code/actions/switch",
                 $options
             )
         );
@@ -59,10 +61,11 @@ class Code extends CloudApiBase implements CloudApiInterface
      *
      * @param string $environmentFromUuid
      * @param string $environmentToUuid
-     * @param string $commitMessage
+     * @param string|null $commitMessage
+     *
      * @return OperationResponse
      */
-    public function deploy($environmentFromUuid, $environmentToUuid, $commitMessage = null): OperationResponse
+    public function deploy(string $environmentFromUuid, string $environmentToUuid, string $commitMessage = null): OperationResponse
     {
 
         $options = [
@@ -75,7 +78,7 @@ class Code extends CloudApiBase implements CloudApiInterface
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/environments/${environmentToUuid}/code",
+                "/environments/$environmentToUuid/code",
                 $options
             )
         );

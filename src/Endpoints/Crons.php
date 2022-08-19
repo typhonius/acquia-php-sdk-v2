@@ -2,8 +2,8 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Response\CronsResponse;
 use AcquiaCloudApi\Response\CronResponse;
+use AcquiaCloudApi\Response\CronsResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
@@ -11,20 +11,21 @@ use AcquiaCloudApi\Response\OperationResponse;
  *
  * @package AcquiaCloudApi\CloudApi
  */
-class Crons extends CloudApiBase implements CloudApiInterface
+class Crons extends CloudApiBase
 {
     /**
      * Show all cron tasks for an environment.
      *
-     * @param  string $environmentUuid The environment ID
+     * @param string $environmentUuid The environment ID
+     *
      * @return CronsResponse<CronResponse>
      */
-    public function getAll($environmentUuid): CronsResponse
+    public function getAll(string $environmentUuid): CronsResponse
     {
         return new CronsResponse(
             $this->client->request(
                 'get',
-                "/environments/${environmentUuid}/crons"
+                "/environments/$environmentUuid/crons"
             )
         );
     }
@@ -32,16 +33,17 @@ class Crons extends CloudApiBase implements CloudApiInterface
     /**
      * Get information about a cron task.
      *
-     * @param  string $environmentUuid The environment ID
-     * @param  int    $cronId
+     * @param string $environmentUuid The environment ID
+     * @param int $cronId
+     *
      * @return CronResponse
      */
-    public function get($environmentUuid, $cronId): CronResponse
+    public function get(string $environmentUuid, int $cronId): CronResponse
     {
         return new CronResponse(
             $this->client->request(
                 'get',
-                "/environments/${environmentUuid}/crons/${cronId}"
+                "/environments/$environmentUuid/crons/$cronId"
             )
         );
     }
@@ -49,14 +51,15 @@ class Crons extends CloudApiBase implements CloudApiInterface
     /**
      * Add a cron task.
      *
-     * @param  string $environmentUuid
-     * @param  string $command
-     * @param  string $frequency
-     * @param  string $label
-     * @param  string $serverId
+     * @param string $environmentUuid
+     * @param string $command
+     * @param string $frequency
+     * @param string $label
+     * @param string|null $serverId
+     *
      * @return OperationResponse
      */
-    public function create($environmentUuid, $command, $frequency, $label, $serverId = null): OperationResponse
+    public function create(string $environmentUuid, string $command, string $frequency, string $label, string $serverId = null): OperationResponse
     {
 
         $options = [
@@ -64,27 +67,28 @@ class Crons extends CloudApiBase implements CloudApiInterface
                 'command' => $command,
                 'frequency' => $frequency,
                 'label' => $label,
-                'server_id' => $serverId
+                'server_id' => $serverId,
             ],
         ];
 
         return new OperationResponse(
-            $this->client->request('post', "/environments/${environmentUuid}/crons", $options)
+            $this->client->request('post', "/environments/$environmentUuid/crons", $options)
         );
     }
 
     /**
      * Update a cron task.
      *
-     * @param  string $environmentUuid
-     * @param  string $cronId
-     * @param  string $command
-     * @param  string $frequency
-     * @param  string $label
-     * @param  string $serverId
+     * @param string $environmentUuid
+     * @param string $cronId
+     * @param string $command
+     * @param string $frequency
+     * @param string $label
+     * @param string|null $serverId
+     *
      * @return OperationResponse
      */
-    public function update($environmentUuid, $cronId, $command, $frequency, $label, $serverId = null): OperationResponse
+    public function update(string $environmentUuid, string $cronId, string $command, string $frequency, string $label, string $serverId = null): OperationResponse
     {
 
         $options = [
@@ -92,42 +96,44 @@ class Crons extends CloudApiBase implements CloudApiInterface
                 'command' => $command,
                 'frequency' => $frequency,
                 'label' => $label,
-                'server_id' => $serverId
+                'server_id' => $serverId,
             ],
         ];
 
         return new OperationResponse(
-            $this->client->request('post', "/environments/${environmentUuid}/crons/${cronId}", $options)
+            $this->client->request('post', "/environments/$environmentUuid/crons/$cronId", $options)
         );
     }
 
     /**
      * Delete a cron task.
      *
-     * @param  string $environmentUuid
-     * @param  int    $cronId
+     * @param string $environmentUuid
+     * @param int $cronId
+     *
      * @return OperationResponse
      */
-    public function delete($environmentUuid, $cronId): OperationResponse
+    public function delete(string $environmentUuid, int $cronId): OperationResponse
     {
         return new OperationResponse(
-            $this->client->request('delete', "/environments/${environmentUuid}/crons/${cronId}")
+            $this->client->request('delete', "/environments/$environmentUuid/crons/$cronId")
         );
     }
 
     /**
      * Disable a cron task.
      *
-     * @param  string $environmentUuid
-     * @param  int    $cronId
+     * @param string $environmentUuid
+     * @param int $cronId
+     *
      * @return OperationResponse
      */
-    public function disable($environmentUuid, $cronId): OperationResponse
+    public function disable(string $environmentUuid, int $cronId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/environments/${environmentUuid}/crons/${cronId}/actions/disable"
+                "/environments/$environmentUuid/crons/$cronId/actions/disable"
             )
         );
     }
@@ -135,16 +141,17 @@ class Crons extends CloudApiBase implements CloudApiInterface
     /**
      * Enable a cron task.
      *
-     * @param  string $environmentUuid
-     * @param  int    $cronId
+     * @param string $environmentUuid
+     * @param int $cronId
+     *
      * @return OperationResponse
      */
-    public function enable($environmentUuid, $cronId): OperationResponse
+    public function enable(string $environmentUuid, int $cronId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/environments/${environmentUuid}/crons/${cronId}/actions/enable"
+                "/environments/$environmentUuid/crons/$cronId/actions/enable"
             )
         );
     }

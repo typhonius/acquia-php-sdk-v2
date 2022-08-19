@@ -1,4 +1,4 @@
 vendor
 tests/logs
 .idea
-.phpunit.result.cache
+build

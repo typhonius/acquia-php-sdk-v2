@@ -2,8 +2,8 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Response\IdesResponse;
 use AcquiaCloudApi\Response\IdeResponse;
+use AcquiaCloudApi\Response\IdesResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
@@ -11,20 +11,21 @@ use AcquiaCloudApi\Response\OperationResponse;
  *
  * @package AcquiaCloudApi\CloudApi
  */
-class Ides extends CloudApiBase implements CloudApiInterface
+class Ides extends CloudApiBase
 {
     /**
      * Returns a list of remote IDEs.
      *
-     * @param  string $applicationUuid The application ID
+     * @param string $applicationUuid The application ID
+     *
      * @return IdesResponse<IdeResponse>
      */
-    public function getAll($applicationUuid): IdesResponse
+    public function getAll(string $applicationUuid): IdesResponse
     {
         return new IdesResponse(
             $this->client->request(
                 'get',
-                "/applications/${applicationUuid}/ides"
+                "/applications/$applicationUuid/ides"
             )
         );
     }
@@ -32,15 +33,16 @@ class Ides extends CloudApiBase implements CloudApiInterface
     /**
      * Get remote IDE info.
      *
-     * @param  string $ideUuid The Remote IDE universally unique identifier.
+     * @param string $ideUuid The Remote IDE universally unique identifier.
+     *
      * @return IdeResponse
      */
-    public function get($ideUuid): IdeResponse
+    public function get(string $ideUuid): IdeResponse
     {
         return new IdeResponse(
             $this->client->request(
                 'get',
-                "/ides/${ideUuid}"
+                "/ides/$ideUuid"
             )
         );
     }
@@ -48,11 +50,12 @@ class Ides extends CloudApiBase implements CloudApiInterface
     /**
      * Creates a new remote IDE.
      *
-     * @param  string $applicationUuid
-     * @param  string $label
+     * @param string $applicationUuid
+     * @param string $label
+     *
      * @return OperationResponse
      */
-    public function create($applicationUuid, $label): OperationResponse
+    public function create(string $applicationUuid, string $label): OperationResponse
     {
 
         $options = [
@@ -62,20 +65,21 @@ class Ides extends CloudApiBase implements CloudApiInterface
         ];
 
         return new OperationResponse(
-            $this->client->request('post', "/applications/${applicationUuid}/ides", $options)
+            $this->client->request('post', "/applications/$applicationUuid/ides", $options)
         );
     }
 
     /**
      * De-provisions a specific Remote IDE.
      *
-     * @param  string $ideUuid
+     * @param string $ideUuid
+     *
      * @return OperationResponse
      */
-    public function delete($ideUuid): OperationResponse
+    public function delete(string $ideUuid): OperationResponse
     {
         return new OperationResponse(
-            $this->client->request('delete', "/ides/${ideUuid}")
+            $this->client->request('delete', "/ides/$ideUuid")
         );
     }
 }

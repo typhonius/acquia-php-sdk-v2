@@ -95,7 +95,7 @@ abstract class CloudApiTestCase extends TestCase
      * Uses reflection to retrieve the internal request options to test passed parameters.
      *
      * @param  ClientInterface $client
-     * @return array{json:array}
+     * @return array<mixed>
      */
     protected function getRequestOptions($client): array
     {

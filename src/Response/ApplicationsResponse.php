@@ -2,10 +2,12 @@
 
 namespace AcquiaCloudApi\Response;
 
+use ArrayObject;
+
 /**
  * @template-extends \ArrayObject<int, \AcquiaCloudApi\Response\ApplicationResponse>
  */
-class ApplicationsResponse extends \ArrayObject
+class ApplicationsResponse extends ArrayObject
 {
     /**
      * @param array<object> $applications
@@ -14,7 +16,7 @@ class ApplicationsResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($application) {
+                static function ($application) {
                     return new ApplicationResponse($application);
                 },
                 $applications

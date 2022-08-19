@@ -10,7 +10,7 @@ use Psr\Http\Message\StreamInterface;
  *
  * @package AcquiaCloudApi\CloudApi
  */
-class Account extends CloudApiBase implements CloudApiInterface
+class Account extends CloudApiBase
 {
     /**
      * Returns details about your account.
@@ -27,7 +27,7 @@ class Account extends CloudApiBase implements CloudApiInterface
      *
      * @return StreamInterface
      */
-    public function getDrushAliases()
+    public function getDrushAliases(): StreamInterface
     {
         return $this->client->stream('get', '/account/drush-aliases/download');
     }

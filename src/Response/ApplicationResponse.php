@@ -57,7 +57,7 @@ class ApplicationResponse
     /**
      * @param object $application
      */
-    public function __construct($application)
+    public function __construct(object $application)
     {
         $this->id = $application->id;
         $this->uuid = $application->uuid;

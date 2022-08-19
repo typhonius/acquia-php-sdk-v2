@@ -2,15 +2,15 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Response\PermissionsResponse;
 use AcquiaCloudApi\Response\PermissionResponse;
+use AcquiaCloudApi\Response\PermissionsResponse;
 
 /**
  * Class Permissions
  *
  * @package AcquiaCloudApi\CloudApi
  */
-class Permissions extends CloudApiBase implements CloudApiInterface
+class Permissions extends CloudApiBase
 {
     /**
      * Show all available permissions.

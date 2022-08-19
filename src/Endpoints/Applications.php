@@ -4,16 +4,16 @@ namespace AcquiaCloudApi\Endpoints;
 
 use AcquiaCloudApi\Response\ApplicationResponse;
 use AcquiaCloudApi\Response\ApplicationsResponse;
+use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\TagResponse;
 use AcquiaCloudApi\Response\TagsResponse;
-use AcquiaCloudApi\Response\OperationResponse;
 
 /**
  * Class Applications
  *
  * @package AcquiaCloudApi\CloudApi
  */
-class Applications extends CloudApiBase implements CloudApiInterface
+class Applications extends CloudApiBase
 {
     /**
      * Shows all applications.
@@ -28,15 +28,16 @@ class Applications extends CloudApiBase implements CloudApiInterface
     /**
      * Shows information about an application.
      *
-     * @param  string $applicationUuid
+     * @param string $applicationUuid
+     *
      * @return ApplicationResponse
      */
-    public function get($applicationUuid): ApplicationResponse
+    public function get(string $applicationUuid): ApplicationResponse
     {
         return new ApplicationResponse(
             $this->client->request(
                 'get',
-                "/applications/${applicationUuid}"
+                "/applications/$applicationUuid"
             )
         );
     }
@@ -44,11 +45,12 @@ class Applications extends CloudApiBase implements CloudApiInterface
     /**
      * Renames an application.
      *
-     * @param  string $applicationUuid
-     * @param  string $name
+     * @param string $applicationUuid
+     * @param string $name
+     *
      * @return OperationResponse
      */
-    public function rename($applicationUuid, $name): OperationResponse
+    public function rename(string $applicationUuid, string $name): OperationResponse
     {
 
         $options = [
@@ -60,7 +62,7 @@ class Applications extends CloudApiBase implements CloudApiInterface
         return new OperationResponse(
             $this->client->request(
                 'put',
-                "/applications/${applicationUuid}",
+                "/applications/$applicationUuid",
                 $options
             )
         );
@@ -69,16 +71,17 @@ class Applications extends CloudApiBase implements CloudApiInterface
     /**
      * Returns a list of application tags associated with this application.
      *
-     * @param  string $applicationUuid
+     * @param string $applicationUuid
+     *
      * @return TagsResponse<TagResponse>
      */
-    public function getAllTags($applicationUuid): TagsResponse
+    public function getAllTags(string $applicationUuid): TagsResponse
     {
 
         return new TagsResponse(
             $this->client->request(
                 'get',
-                "/applications/${applicationUuid}/tags"
+                "/applications/$applicationUuid/tags"
             )
         );
     }
@@ -86,12 +89,13 @@ class Applications extends CloudApiBase implements CloudApiInterface
     /**
      * Creates a new application tag.
      *
-     * @param  string $applicationUuid
-     * @param  string $name
-     * @param  string $color
+     * @param string $applicationUuid
+     * @param string $name
+     * @param string $color
+     *
      * @return OperationResponse
      */
-    public function createTag($applicationUuid, $name, $color): OperationResponse
+    public function createTag(string $applicationUuid, string $name, string $color): OperationResponse
     {
 
         $options = [
@@ -104,7 +108,7 @@ class Applications extends CloudApiBase implements CloudApiInterface
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/applications/${applicationUuid}/tags",
+                "/applications/$applicationUuid/tags",
                 $options
             )
         );
@@ -113,17 +117,18 @@ class Applications extends CloudApiBase implements CloudApiInterface
     /**
      * Deletes an application tag.
      *
-     * @param  string $applicationUuid
-     * @param  string $tagName
+     * @param string $applicationUuid
+     * @param string $tagName
+     *
      * @return OperationResponse
      */
-    public function deleteTag($applicationUuid, $tagName): OperationResponse
+    public function deleteTag(string $applicationUuid, string $tagName): OperationResponse
     {
 
         return new OperationResponse(
             $this->client->request(
                 'delete',
-                "/applications/${applicationUuid}/tags/${tagName}"
+                "/applications/$applicationUuid/tags/$tagName"
             )
         );
     }

@@ -5,6 +5,8 @@ namespace AcquiaCloudApi\Connector;
 use League\OAuth2\Client\Provider\GenericProvider;
 use League\OAuth2\Client\Token\AccessTokenInterface;
 use GuzzleHttp\Client as GuzzleClient;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Filesystem\Path;
 
@@ -18,7 +20,7 @@ class Connector implements ConnectorInterface
     /**
      * @var string The base URI for Acquia Cloud API.
      */
-    protected $baseUri;
+    protected string $baseUri;
 
     /**
      * @var GenericProvider The OAuth 2.0 provider to use in communication.
@@ -28,12 +30,12 @@ class Connector implements ConnectorInterface
     /**
      * @var GuzzleClient The client used to make HTTP requests to the API.
      */
-    protected $client;
+    protected GuzzleClient $client;
 
     /**
-     * @var AccessTokenInterface The generated OAuth 2.0 access token.
+     * @var AccessTokenInterface|null The generated OAuth 2.0 access token.
      */
-    protected $accessToken;
+    protected ?AccessTokenInterface $accessToken;
 
     /**
      * @inheritdoc
@@ -69,7 +71,7 @@ class Connector implements ConnectorInterface
     /**
      * @inheritdoc
      */
-    public function createRequest($verb, $path)
+    public function createRequest(string $verb, string $path): RequestInterface
     {
         if (!isset($this->accessToken) || $this->accessToken->hasExpired()) {
             $directory = sprintf('%s%s%s', Path::getHomeDirectory(), \DIRECTORY_SEPARATOR, '.acquia-php-sdk-v2');
@@ -91,8 +93,9 @@ class Connector implements ConnectorInterface
 
     /**
      * @inheritdoc
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function sendRequest($verb, $path, $options)
+    public function sendRequest(string $verb, string $path, array $options): ResponseInterface
     {
         $request = $this->createRequest($verb, $path);
         return $this->client->send($request, $options);

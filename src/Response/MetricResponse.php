@@ -10,7 +10,7 @@ class MetricResponse
     public $metric;
 
     /**
-     * @var array<array> $datapoints
+     * @var array<array<mixed>> $datapoints
      */
     public $datapoints;
 
@@ -32,7 +32,7 @@ class MetricResponse
     /**
      * @param object $metric
      */
-    public function __construct($metric)
+    public function __construct(object $metric)
     {
         $this->metric = $metric->metric;
         $this->datapoints = $metric->datapoints;

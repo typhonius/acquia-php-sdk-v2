@@ -107,7 +107,7 @@ class AccountResponse
     /**
      * @param object $account
      */
-    public function __construct($account)
+    public function __construct(object $account)
     {
         $this->id = $account->id;
         $this->uuid = $account->uuid;

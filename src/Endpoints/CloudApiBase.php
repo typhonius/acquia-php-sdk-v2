@@ -14,7 +14,7 @@ abstract class CloudApiBase implements CloudApiInterface
     /**
      * @var ClientInterface The API client.
      */
-    protected $client;
+    protected ClientInterface $client;
 
     /**
      * Client constructor.

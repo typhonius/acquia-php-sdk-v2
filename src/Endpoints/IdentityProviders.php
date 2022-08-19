@@ -2,16 +2,16 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Response\OperationResponse;
-use AcquiaCloudApi\Response\IdentityProvidersResponse;
 use AcquiaCloudApi\Response\IdentityProviderResponse;
+use AcquiaCloudApi\Response\IdentityProvidersResponse;
+use AcquiaCloudApi\Response\OperationResponse;
 
 /**
  * Class IdentityProviders
  *
  * @package AcquiaCloudApi\CloudApi
  */
-class IdentityProviders extends CloudApiBase implements CloudApiInterface
+class IdentityProviders extends CloudApiBase
 {
     /**
      * Returns a list of identity providers for the user.
@@ -31,15 +31,16 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
     /**
      * Returns a specific identity provider by UUID.
      *
-     * @param  string $idpUuid The identity provider ID
+     * @param string $idpUuid The identity provider ID
+     *
      * @return IdentityProviderResponse
      */
-    public function get($idpUuid): IdentityProviderResponse
+    public function get(string $idpUuid): IdentityProviderResponse
     {
         return new IdentityProviderResponse(
             $this->client->request(
                 'get',
-                "/identity-providers/${idpUuid}"
+                "/identity-providers/$idpUuid"
             )
         );
     }
@@ -47,15 +48,16 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
     /**
      * Delete a specific identity provider by UUID.
      *
-     * @param  string $idpUuid
+     * @param string $idpUuid
+     *
      * @return OperationResponse
      */
-    public function delete($idpUuid): OperationResponse
+    public function delete(string $idpUuid): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
                 'delete',
-                "/identity-providers/${idpUuid}"
+                "/identity-providers/$idpUuid"
             )
         );
     }
@@ -63,15 +65,16 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
     /**
      * Disables an identity provider by UUID.
      *
-     * @param  string $idpUuid
+     * @param string $idpUuid
+     *
      * @return OperationResponse
      */
-    public function disable($idpUuid): OperationResponse
+    public function disable(string $idpUuid): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/identity-providers/${idpUuid}/actions/disable"
+                "/identity-providers/$idpUuid/actions/disable"
             )
         );
     }
@@ -79,15 +82,16 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
     /**
      * Enables an identity provider by UUID.
      *
-     * @param  string $idpUuid
+     * @param string $idpUuid
+     *
      * @return OperationResponse
      */
-    public function enable($idpUuid): OperationResponse
+    public function enable(string $idpUuid): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/identity-providers/${idpUuid}/actions/enable"
+                "/identity-providers/$idpUuid/actions/enable"
             )
         );
     }
@@ -95,14 +99,15 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
     /**
      * Updates a identity provider by UUID.
      *
-     * @param  string $idpUuid
-     * @param  string $label
-     * @param  string $entityId
-     * @param  string $ssoUrl
-     * @param  string $certificate
+     * @param string $idpUuid
+     * @param string $label
+     * @param string $entityId
+     * @param string $ssoUrl
+     * @param string $certificate
+     *
      * @return OperationResponse
      */
-    public function update($idpUuid, $label, $entityId, $ssoUrl, $certificate): OperationResponse
+    public function update(string $idpUuid, string $label, string $entityId, string $ssoUrl, string $certificate): OperationResponse
     {
 
         $options = [
@@ -117,7 +122,7 @@ class IdentityProviders extends CloudApiBase implements CloudApiInterface
         return new OperationResponse(
             $this->client->request(
                 'put',
-                "/identity-providers/${idpUuid}",
+                "/identity-providers/$idpUuid",
                 $options
             )
         );

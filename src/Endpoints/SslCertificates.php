@@ -2,29 +2,30 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Response\SslCertificatesResponse;
-use AcquiaCloudApi\Response\SslCertificateResponse;
 use AcquiaCloudApi\Response\OperationResponse;
+use AcquiaCloudApi\Response\SslCertificateResponse;
+use AcquiaCloudApi\Response\SslCertificatesResponse;
 
 /**
  * Class SslCertificates
  *
  * @package AcquiaCloudApi\CloudApi
  */
-class SslCertificates extends CloudApiBase implements CloudApiInterface
+class SslCertificates extends CloudApiBase
 {
     /**
      * Returns a list of SSL certificates.
      *
-     * @param  string $environmentUuid The environment ID
+     * @param string $environmentUuid The environment ID
+     *
      * @return SslCertificatesResponse<SslCertificateResponse>
      */
-    public function getAll($environmentUuid): SslCertificatesResponse
+    public function getAll(string $environmentUuid): SslCertificatesResponse
     {
         return new SslCertificatesResponse(
             $this->client->request(
                 'get',
-                "/environments/${environmentUuid}/ssl/certificates"
+                "/environments/$environmentUuid/ssl/certificates"
             )
         );
     }
@@ -32,16 +33,17 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
     /**
      * Returns a specific certificate by certificate ID.
      *
-     * @param  string $environmentUuid The environment ID
-     * @param  int    $certificateId
+     * @param string $environmentUuid The environment ID
+     * @param int $certificateId
+     *
      * @return SslCertificateResponse
      */
-    public function get($environmentUuid, $certificateId): SslCertificateResponse
+    public function get(string $environmentUuid, int $certificateId): SslCertificateResponse
     {
         return new SslCertificateResponse(
             $this->client->request(
                 'get',
-                "/environments/${environmentUuid}/ssl/certificates/${certificateId}"
+                "/environments/$environmentUuid/ssl/certificates/$certificateId"
             )
         );
     }
@@ -49,16 +51,17 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
     /**
      * Install an SSL certificate.
      *
-     * @param  string $envUuid
-     * @param  string $label
-     * @param  string $cert
-     * @param  string $key
-     * @param  string $ca
-     * @param  int    $csr
-     * @param  bool   $legacy
+     * @param string $envUuid
+     * @param string $label
+     * @param string $cert
+     * @param string $key
+     * @param string|null $ca
+     * @param int|null $csr
+     * @param bool $legacy
+     *
      * @return OperationResponse
      */
-    public function create($envUuid, $label, $cert, $key, $ca = null, $csr = null, $legacy = false): OperationResponse
+    public function create(string $envUuid, string $label, string $cert, string $key, string $ca = null, int $csr = null, bool $legacy = false): OperationResponse
     {
 
         $options = [
@@ -68,42 +71,44 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
                 'private_key' => $key,
                 'ca_certificates' => $ca,
                 'csr_id' => $csr,
-                'legacy' => $legacy
+                'legacy' => $legacy,
             ],
         ];
 
         return new OperationResponse(
-            $this->client->request('post', "/environments/${envUuid}/ssl/certificates", $options)
+            $this->client->request('post', "/environments/$envUuid/ssl/certificates", $options)
         );
     }
 
     /**
      * Delete a specific certificate by ID.
      *
-     * @param  string $environmentUuid
-     * @param  int    $certificateId
+     * @param string $environmentUuid
+     * @param int $certificateId
+     *
      * @return OperationResponse
      */
-    public function delete($environmentUuid, $certificateId): OperationResponse
+    public function delete(string $environmentUuid, int $certificateId): OperationResponse
     {
         return new OperationResponse(
-            $this->client->request('delete', "/environments/${environmentUuid}/ssl/certificates/${certificateId}")
+            $this->client->request('delete', "/environments/$environmentUuid/ssl/certificates/$certificateId")
         );
     }
 
     /**
      * Deactivates an active SSL certificate.
      *
-     * @param  string $environmentUuid
-     * @param  int    $certificateId
+     * @param string $environmentUuid
+     * @param int $certificateId
+     *
      * @return OperationResponse
      */
-    public function disable($environmentUuid, $certificateId): OperationResponse
+    public function disable(string $environmentUuid, int $certificateId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/environments/${environmentUuid}/ssl/certificates/${certificateId}/actions/deactivate"
+                "/environments/$environmentUuid/ssl/certificates/$certificateId/actions/deactivate"
             )
         );
     }
@@ -111,16 +116,17 @@ class SslCertificates extends CloudApiBase implements CloudApiInterface
     /**
      * Activates an SSL certificate.
      *
-     * @param  string $environmentUuid
-     * @param  int    $certificateId
+     * @param string $environmentUuid
+     * @param int $certificateId
+     *
      * @return OperationResponse
      */
-    public function enable($environmentUuid, $certificateId): OperationResponse
+    public function enable(string $environmentUuid, int $certificateId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/environments/${environmentUuid}/ssl/certificates/${certificateId}/actions/activate"
+                "/environments/$environmentUuid/ssl/certificates/$certificateId/actions/activate"
             )
         );
     }

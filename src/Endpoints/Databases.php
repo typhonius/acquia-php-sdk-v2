@@ -2,8 +2,8 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Response\DatabasesResponse;
 use AcquiaCloudApi\Response\DatabaseResponse;
+use AcquiaCloudApi\Response\DatabasesResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
 /**
@@ -11,20 +11,21 @@ use AcquiaCloudApi\Response\OperationResponse;
  *
  * @package AcquiaCloudApi\CloudApi
  */
-class Databases extends CloudApiBase implements CloudApiInterface
+class Databases extends CloudApiBase
 {
     /**
      * Shows all databases in an application.
      *
-     * @param  string $applicationUuid
+     * @param string $applicationUuid
+     *
      * @return DatabasesResponse<DatabaseResponse>
      */
-    public function getAll($applicationUuid): DatabasesResponse
+    public function getAll(string $applicationUuid): DatabasesResponse
     {
         return new DatabasesResponse(
             $this->client->request(
                 'get',
-                "/applications/${applicationUuid}/databases"
+                "/applications/$applicationUuid/databases"
             )
         );
     }
@@ -32,11 +33,12 @@ class Databases extends CloudApiBase implements CloudApiInterface
     /**
      * Create a new database.
      *
-     * @param  string $applicationUuid
-     * @param  string $name
+     * @param string $applicationUuid
+     * @param string $name
+     *
      * @return OperationResponse
      */
-    public function create($applicationUuid, $name): OperationResponse
+    public function create(string $applicationUuid, string $name): OperationResponse
     {
         $options = [
             'json' => [
@@ -45,21 +47,22 @@ class Databases extends CloudApiBase implements CloudApiInterface
         ];
 
         return new OperationResponse(
-            $this->client->request('post', "/applications/${applicationUuid}/databases", $options)
+            $this->client->request('post', "/applications/$applicationUuid/databases", $options)
         );
     }
 
     /**
      * Delete a database.
      *
-     * @param  string $applicationUuid
-     * @param  string $name
+     * @param string $applicationUuid
+     * @param string $name
+     *
      * @return OperationResponse
      */
-    public function delete($applicationUuid, $name): OperationResponse
+    public function delete(string $applicationUuid, string $name): OperationResponse
     {
         return new OperationResponse(
-            $this->client->request('delete', "/applications/${applicationUuid}/databases/${name}")
+            $this->client->request('delete', "/applications/$applicationUuid/databases/$name")
         );
     }
 
@@ -69,16 +72,17 @@ class Databases extends CloudApiBase implements CloudApiInterface
      * This action will delete all tables of the database in ALL environments
      * within this application.
      *
-     * @param  string $applicationUuid
-     * @param  string $name
+     * @param string $applicationUuid
+     * @param string $name
+     *
      * @return OperationResponse
      */
-    public function truncate($applicationUuid, $name): OperationResponse
+    public function truncate(string $applicationUuid, string $name): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/applications/${applicationUuid}/databases/${name}/actions/erase"
+                "/applications/$applicationUuid/databases/$name/actions/erase"
             )
         );
     }
@@ -86,12 +90,13 @@ class Databases extends CloudApiBase implements CloudApiInterface
     /**
      * Copies a database from an environment to an environment.
      *
-     * @param  string $environmentFromUuid
-     * @param  string $dbName
-     * @param  string $environmentToUuid
+     * @param string $environmentFromUuid
+     * @param string $dbName
+     * @param string $environmentToUuid
+     *
      * @return OperationResponse
      */
-    public function copy($environmentFromUuid, $dbName, $environmentToUuid): OperationResponse
+    public function copy(string $environmentFromUuid, string $dbName, string $environmentToUuid): OperationResponse
     {
         $options = [
             'json' => [
@@ -101,7 +106,7 @@ class Databases extends CloudApiBase implements CloudApiInterface
         ];
 
         return new OperationResponse(
-            $this->client->request('post', "/environments/${environmentToUuid}/databases", $options)
+            $this->client->request('post', "/environments/$environmentToUuid/databases", $options)
         );
     }
 }

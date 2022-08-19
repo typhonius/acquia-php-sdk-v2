@@ -2,53 +2,56 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Response\RolesResponse;
-use AcquiaCloudApi\Response\RoleResponse;
 use AcquiaCloudApi\Response\OperationResponse;
+use AcquiaCloudApi\Response\RoleResponse;
+use AcquiaCloudApi\Response\RolesResponse;
 
 /**
  * Class Roles
  *
  * @package AcquiaCloudApi\CloudApi
  */
-class Roles extends CloudApiBase implements CloudApiInterface
+class Roles extends CloudApiBase
 {
     /**
      * Show all roles in an organization.
      *
-     * @param  string $organizationUuid
+     * @param string $organizationUuid
+     *
      * @return RolesResponse<RoleResponse>
      */
-    public function getAll($organizationUuid): RolesResponse
+    public function getAll(string $organizationUuid): RolesResponse
     {
         return new RolesResponse(
-            $this->client->request('get', "/organizations/${organizationUuid}/roles")
+            $this->client->request('get', "/organizations/$organizationUuid/roles")
         );
     }
 
     /**
      * Return details about a specific role.
      *
-     * @param  string $roleUuid
+     * @param string $roleUuid
+     *
      * @return RoleResponse
      */
-    public function get($roleUuid): RoleResponse
+    public function get(string $roleUuid): RoleResponse
     {
         return new RoleResponse(
-            $this->client->request('get', "/roles/${roleUuid}")
+            $this->client->request('get', "/roles/$roleUuid")
         );
     }
 
     /**
      * Create a new role.
      *
-     * @param  string        $organizationUuid
-     * @param  string        $name
-     * @param  array<string> $permissions
-     * @param  null|string $description
+     * @param string $organizationUuid
+     * @param string $name
+     * @param array<string> $permissions
+     * @param string|null $description
+     *
      * @return OperationResponse
      */
-    public function create($organizationUuid, $name, array $permissions, $description = null): OperationResponse
+    public function create(string $organizationUuid, string $name, array $permissions, string $description = null): OperationResponse
     {
         $options = [
             'json' => [
@@ -59,18 +62,19 @@ class Roles extends CloudApiBase implements CloudApiInterface
         ];
 
         return new OperationResponse(
-            $this->client->request('post', "/organizations/${organizationUuid}/roles", $options)
+            $this->client->request('post', "/organizations/$organizationUuid/roles", $options)
         );
     }
 
     /**
      * Update the permissions associated with a role.
      *
-     * @param  string        $roleUuid
-     * @param  array<string> $permissions
+     * @param string $roleUuid
+     * @param array<string> $permissions
+     *
      * @return OperationResponse
      */
-    public function update($roleUuid, array $permissions): OperationResponse
+    public function update(string $roleUuid, array $permissions): OperationResponse
     {
         $options = [
             'json' => [
@@ -79,18 +83,19 @@ class Roles extends CloudApiBase implements CloudApiInterface
         ];
 
         return new OperationResponse(
-            $this->client->request('put', "/roles/${roleUuid}", $options)
+            $this->client->request('put', "/roles/$roleUuid", $options)
         );
     }
 
     /**
      * Delete a role.
      *
-     * @param  string $roleUuid
+     * @param string $roleUuid
+     *
      * @return OperationResponse
      */
-    public function delete($roleUuid): OperationResponse
+    public function delete(string $roleUuid): OperationResponse
     {
-        return new OperationResponse($this->client->request('delete', "/roles/${roleUuid}"));
+        return new OperationResponse($this->client->request('delete', "/roles/$roleUuid"));
     }
 }

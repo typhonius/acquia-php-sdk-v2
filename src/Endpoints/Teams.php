@@ -4,25 +4,26 @@ namespace AcquiaCloudApi\Endpoints;
 
 use AcquiaCloudApi\Response\ApplicationResponse;
 use AcquiaCloudApi\Response\ApplicationsResponse;
-use AcquiaCloudApi\Response\TeamsResponse;
-use AcquiaCloudApi\Response\TeamResponse;
 use AcquiaCloudApi\Response\OperationResponse;
+use AcquiaCloudApi\Response\TeamResponse;
+use AcquiaCloudApi\Response\TeamsResponse;
 
 /**
  * Class Teams
  *
  * @package AcquiaCloudApi\CloudApi
  */
-class Teams extends CloudApiBase implements CloudApiInterface
+class Teams extends CloudApiBase
 {
     /**
      * Create a new team.
      *
-     * @param  string $organizationUuid
-     * @param  string $name
+     * @param string $organizationUuid
+     * @param string $name
+     *
      * @return OperationResponse
      */
-    public function create($organizationUuid, $name): OperationResponse
+    public function create(string $organizationUuid, string $name): OperationResponse
     {
         $options = [
             'json' => [
@@ -31,7 +32,7 @@ class Teams extends CloudApiBase implements CloudApiInterface
         ];
 
         return new OperationResponse(
-            $this->client->request('post', "/organizations/${organizationUuid}/teams", $options)
+            $this->client->request('post', "/organizations/$organizationUuid/teams", $options)
         );
     }
 
@@ -50,11 +51,12 @@ class Teams extends CloudApiBase implements CloudApiInterface
     /**
      * Rename an existing team.
      *
-     * @param  string $teamUuid
-     * @param  string $name
+     * @param string $teamUuid
+     * @param string $name
+     *
      * @return OperationResponse
      */
-    public function rename($teamUuid, $name): OperationResponse
+    public function rename(string $teamUuid, string $name): OperationResponse
     {
         $options = [
             'json' => [
@@ -63,7 +65,7 @@ class Teams extends CloudApiBase implements CloudApiInterface
         ];
 
         return new OperationResponse(
-            $this->client->request('put', "/teams/${teamUuid}", $options)
+            $this->client->request('put', "/teams/$teamUuid", $options)
         );
     }
 
@@ -71,24 +73,26 @@ class Teams extends CloudApiBase implements CloudApiInterface
     /**
      * Delete a team.
      *
-     * @param  string $teamUuid
+     * @param string $teamUuid
+     *
      * @return OperationResponse
      */
-    public function delete($teamUuid): OperationResponse
+    public function delete(string $teamUuid): OperationResponse
     {
         return new OperationResponse(
-            $this->client->request('delete', "/teams/${teamUuid}")
+            $this->client->request('delete', "/teams/$teamUuid")
         );
     }
 
     /**
      * Add an application to a team.
      *
-     * @param  string $teamUuid
-     * @param  string $applicationUuid
+     * @param string $teamUuid
+     * @param string $applicationUuid
+     *
      * @return OperationResponse
      */
-    public function addApplication($teamUuid, $applicationUuid): OperationResponse
+    public function addApplication(string $teamUuid, string $applicationUuid): OperationResponse
     {
         $options = [
             'json' => [
@@ -97,42 +101,44 @@ class Teams extends CloudApiBase implements CloudApiInterface
         ];
 
         return new OperationResponse(
-            $this->client->request('post', "/teams/${teamUuid}/applications", $options)
+            $this->client->request('post', "/teams/$teamUuid/applications", $options)
         );
     }
 
     /**
      * Invites a user to join a team.
      *
-     * @param  string   $teamUuid
-     * @param  string   $email
-     * @param  string[] $roles
+     * @param string $teamUuid
+     * @param string $email
+     * @param string[] $roles
+     *
      * @return OperationResponse
      */
-    public function invite($teamUuid, $email, $roles): OperationResponse
+    public function invite(string $teamUuid, string $email, array $roles): OperationResponse
     {
         $options = [
             'json' => [
                 'email' => $email,
-                'roles' => $roles
+                'roles' => $roles,
             ],
         ];
 
         return new OperationResponse(
-            $this->client->request('post', "/teams/${teamUuid}/invites", $options)
+            $this->client->request('post', "/teams/$teamUuid/invites", $options)
         );
     }
 
     /**
      * Show all applications associated with a team.
      *
-     * @param  string $teamUuid
+     * @param string $teamUuid
+     *
      * @return ApplicationsResponse<ApplicationResponse>
      */
-    public function getApplications($teamUuid): ApplicationsResponse
+    public function getApplications(string $teamUuid): ApplicationsResponse
     {
         return new ApplicationsResponse(
-            $this->client->request('get', "/teams/${teamUuid}/applications")
+            $this->client->request('get', "/teams/$teamUuid/applications")
         );
     }
 }

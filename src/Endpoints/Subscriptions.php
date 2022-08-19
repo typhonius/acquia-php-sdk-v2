@@ -6,7 +6,7 @@ use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\SubscriptionResponse;
 use AcquiaCloudApi\Response\SubscriptionsResponse;
 
-class Subscriptions extends CloudApiBase implements CloudApiInterface
+class Subscriptions extends CloudApiBase
 {
     /**
      * Shows all Subscriptions.
@@ -21,15 +21,16 @@ class Subscriptions extends CloudApiBase implements CloudApiInterface
     /**
      * Shows information about an subscription.
      *
-     * @param  string $subscriptionUuid
+     * @param string $subscriptionUuid
+     *
      * @return SubscriptionResponse
      */
-    public function get($subscriptionUuid): SubscriptionResponse
+    public function get(string $subscriptionUuid): SubscriptionResponse
     {
         return new SubscriptionResponse(
             $this->client->request(
                 'get',
-                "/subscriptions/${subscriptionUuid}"
+                "/subscriptions/$subscriptionUuid"
             )
         );
     }
@@ -37,11 +38,12 @@ class Subscriptions extends CloudApiBase implements CloudApiInterface
     /**
      * Renames an subscription.
      *
-     * @param  string $subscriptionUuid
-     * @param  string $name
+     * @param string $subscriptionUuid
+     * @param string $name
+     *
      * @return OperationResponse
      */
-    public function rename($subscriptionUuid, $name): OperationResponse
+    public function rename(string $subscriptionUuid, string $name): OperationResponse
     {
 
         $options = [
@@ -53,7 +55,7 @@ class Subscriptions extends CloudApiBase implements CloudApiInterface
         return new OperationResponse(
             $this->client->request(
                 'put',
-                "/subscriptions/${subscriptionUuid}",
+                "/subscriptions/$subscriptionUuid",
                 $options
             )
         );

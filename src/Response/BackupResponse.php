@@ -47,7 +47,7 @@ class BackupResponse
     /**
      * @param object $backup
      */
-    public function __construct($backup)
+    public function __construct(object $backup)
     {
         $this->id = $backup->id;
         $this->database = $backup->database;

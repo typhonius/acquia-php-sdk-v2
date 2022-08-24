@@ -31,6 +31,21 @@ class Ides extends CloudApiBase
     }
 
     /**
+     * Returns a list of the current user's IDEs.
+     *
+     * @return IdesResponse<IdeResponse>
+     */
+    public function getMine(): IdesResponse
+    {
+        return new IdesResponse(
+            $this->client->request(
+                'get',
+                '/account/ides'
+            )
+        );
+    }
+
+    /**
      * Get remote IDE info.
      *
      * @param string $ideUuid The Remote IDE universally unique identifier.

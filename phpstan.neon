@@ -10,5 +10,8 @@ parameters:
         -
             message: '%Parameter #1 \$client of method League\\OAuth2\\Client\\Provider\\AbstractProvider::setHttpClient\(\) expects GuzzleHttp\\ClientInterface, Eloquent\\Phony\\Mock\\Mock given.%'
             path: tests/Connector/ConnectorTest.php
+        -
+            # https://github.com/phpstan/phpstan/issues/1066
+            message: '#Psr\\Cache\\InvalidArgumentException is not subtype of Throwable#'
 includes:
     - vendor/phpstan/phpstan-phpunit/extension.neon

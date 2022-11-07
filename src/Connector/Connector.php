@@ -2,6 +2,7 @@
 
 namespace AcquiaCloudApi\Connector;
 
+use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\GenericProvider;
 use League\OAuth2\Client\Token\AccessTokenInterface;
 use GuzzleHttp\Client as GuzzleClient;
@@ -20,12 +21,17 @@ class Connector implements ConnectorInterface
     /**
      * @var string The base URI for Acquia Cloud API.
      */
-    protected string $baseUri;
+    private string $baseUri;
+
+    /**
+     * @var string The URL access token for Accounts API.
+     */
+    private string $urlAccessToken;
 
     /**
      * @var GenericProvider The OAuth 2.0 provider to use in communication.
      */
-    protected $provider;
+    protected AbstractProvider $provider;
 
     /**
      * @var GuzzleClient The client used to make HTTP requests to the API.
@@ -40,11 +46,16 @@ class Connector implements ConnectorInterface
     /**
      * @inheritdoc
      */
-    public function __construct(array $config, string $base_uri = null)
+    public function __construct(array $config, string $base_uri = null, string $url_access_token = null)
     {
         $this->baseUri = ConnectorInterface::BASE_URI;
         if ($base_uri) {
             $this->baseUri = $base_uri;
+        }
+
+        $this->urlAccessToken = ConnectorInterface::URL_ACCESS_TOKEN;
+        if ($url_access_token) {
+            $this->urlAccessToken = $url_access_token;
         }
 
         $this->provider = new GenericProvider(
@@ -52,7 +63,7 @@ class Connector implements ConnectorInterface
             'clientId'                => $config['key'],
             'clientSecret'            => $config['secret'],
             'urlAuthorize'            => '',
-            'urlAccessToken'          => self::URL_ACCESS_TOKEN,
+            'urlAccessToken'          => $this->getUrlAccessToken(),
             'urlResourceOwnerDetails' => '',
             ]
         );
@@ -69,12 +80,21 @@ class Connector implements ConnectorInterface
     }
 
     /**
+     * @return string
+     */
+    public function getUrlAccessToken(): string
+    {
+        return $this->urlAccessToken;
+    }
+
+    /**
      * @inheritdoc
+     * @throws \Psr\Cache\InvalidArgumentException
      */
     public function createRequest(string $verb, string $path): RequestInterface
     {
         if (!isset($this->accessToken) || $this->accessToken->hasExpired()) {
-            $directory = sprintf('%s%s%s', Path::getHomeDirectory(), \DIRECTORY_SEPARATOR, '.acquia-php-sdk-v2');
+            $directory = Path::join(Path::getHomeDirectory(), '.acquia-php-sdk-v2');
             /** @infection-ignore-all */
             $cache = new FilesystemAdapter('cache', 300, $directory);
             $accessToken = $cache->get('cloudapi-token', function () {
@@ -86,7 +106,7 @@ class Connector implements ConnectorInterface
 
         return $this->provider->getAuthenticatedRequest(
             $verb,
-            $this->baseUri . $path,
+            $this->getBaseUri() . $path,
             $this->accessToken
         );
     }
@@ -94,6 +114,7 @@ class Connector implements ConnectorInterface
     /**
      * @inheritdoc
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Psr\Cache\InvalidArgumentException
      */
     public function sendRequest(string $verb, string $path, array $options): ResponseInterface
     {

@@ -24,12 +24,12 @@ class ConnectorTest extends CloudApiTestCase
     /**
      * @var ConnectorInterface $connector
      */
-    public $connector;
+    public ConnectorInterface $connector;
 
     /**
      * @var AbstractAdapter $cache
      */
-    public $cache;
+    public AbstractAdapter $cache;
 
     public function setUp(): void
     {
@@ -47,12 +47,12 @@ class ConnectorTest extends CloudApiTestCase
     public function testConnector(): void
     {
         $this->assertEquals(
-            $this->connector::BASE_URI,
-            'https://cloud.acquia.com/api'
+            'https://cloud.acquia.com/api',
+            $this->connector::BASE_URI
         );
         $this->assertEquals(
-            $this->connector::URL_ACCESS_TOKEN,
-            'https://accounts.acquia.com/api/auth/oauth/token'
+            'https://accounts.acquia.com/api/auth/oauth/token',
+            $this->connector::URL_ACCESS_TOKEN
         );
 
         $connectorReflectionClass = new \ReflectionClass('AcquiaCloudApi\Connector\Connector');
@@ -83,11 +83,20 @@ class ConnectorTest extends CloudApiTestCase
         );
     }
 
+    public function testConnectorUrlAccessToken(): void
+    {
+        $url_access_token = 'https://test-accounts.acquia.com/api/auth/oauth/token';
+        $this->createConnector(null, $url_access_token);
+        $this->assertEquals(
+            $this->connector->getUrlAccessToken(),
+            $url_access_token
+        );
+    }
 
     public function testGetAuthenticatedRequest(): void
     {
         // Override the provider property set in the constructor.
-        $reflectionClass = new \ReflectionClass('AcquiaCloudApi\Connector\Connector');
+        $reflectionClass = new \ReflectionClass(Connector::class);
 
         $provider = new MockProvider(
             [
@@ -171,6 +180,9 @@ class ConnectorTest extends CloudApiTestCase
         $this->assertEquals($expires, $expiry);
     }
 
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function testGuzzleRequest(): void
     {
         // Fake a Guzzle client for the request and response.
@@ -180,7 +192,7 @@ class ConnectorTest extends CloudApiTestCase
         $request = new Request('GET', 'https://cloud.acquia.com/api/account');
 
         $this->connector = $this
-            ->getMockBuilder('AcquiaCloudApi\Connector\Connector')
+            ->getMockBuilder(Connector::class)
             ->disableOriginalConstructor()
             ->setMethods(['createRequest'])
             ->getMock();
@@ -191,7 +203,7 @@ class ConnectorTest extends CloudApiTestCase
             ->willReturn($request);
 
         // Add our fake Guzzle client to the Connector class.
-        $reflectionClass = new \ReflectionClass('AcquiaCloudApi\Connector\Connector');
+        $reflectionClass = new \ReflectionClass(Connector::class);
         $providerProperty = $reflectionClass->getProperty('client');
         $providerProperty->setAccessible(true);
         $providerProperty->setValue($this->connector, $client);
@@ -212,13 +224,13 @@ class ConnectorTest extends CloudApiTestCase
         $this->cache->deleteItem('cloudapi-token');
     }
 
-    protected function createConnector(string $base_url = null): void
+    protected function createConnector(string $base_url = null, string $url_access_token = null): void
     {
         $config = [
           'key' => 'key',
           'secret' => 'secret'
         ];
 
-        $this->connector = new Connector($config, $base_url);
+        $this->connector = new Connector($config, $base_url, $url_access_token);
     }
 }

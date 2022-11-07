@@ -57,4 +57,9 @@ interface ConnectorInterface
      * @return string
      */
     public function getBaseUri(): string;
+
+    /**
+     * @return string
+     */
+    public function getUrlAccessToken(): string;
 }

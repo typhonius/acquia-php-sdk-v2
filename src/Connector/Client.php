@@ -53,11 +53,9 @@ class Client implements ClientInterface
      */
     public static function factory(ConnectorInterface $connector)
     {
-        $client = new static(
+        return new static(
             $connector
         );
-
-        return $client;
     }
 
     /**
@@ -123,7 +121,7 @@ class Client implements ClientInterface
     /**
      * @inheritdoc
      */
-    public function stream(string $verb, string $path, array $options = [])
+    public function stream(string $verb, string $path, array $options = []): StreamInterface
     {
         // Put options sent with API calls into a property so they can be accessed
         // and therefore tested in tests.

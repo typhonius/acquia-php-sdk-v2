@@ -54,7 +54,7 @@ interface ClientInterface
      *
      * @return StreamInterface
      */
-    public function stream(string $verb, string $path, array $options = []);
+    public function stream(string $verb, string $path, array $options = []): StreamInterface;
 
     /**
      * @param  string $verb

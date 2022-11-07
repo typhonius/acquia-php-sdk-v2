@@ -6,10 +6,8 @@ use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\GenericProvider;
 use League\OAuth2\Client\Token\AccessTokenInterface;
 use GuzzleHttp\Client as GuzzleClient;
-use Psr\Cache\InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use RuntimeException;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Filesystem\Path;
 
@@ -91,6 +89,7 @@ class Connector implements ConnectorInterface
 
     /**
      * @inheritdoc
+     * @throws \Psr\Cache\InvalidArgumentException
      */
     public function createRequest(string $verb, string $path): RequestInterface
     {
@@ -98,13 +97,9 @@ class Connector implements ConnectorInterface
             $directory = Path::join(Path::getHomeDirectory(), '.acquia-php-sdk-v2');
             /** @infection-ignore-all */
             $cache = new FilesystemAdapter('cache', 300, $directory);
-            try {
-                $accessToken = $cache->get('cloudapi-token', function () {
-                    return $this->provider->getAccessToken('client_credentials');
-                });
-            } catch (InvalidArgumentException $e) {
-                throw new RuntimeException("Invalid cache argument");
-            }
+            $accessToken = $cache->get('cloudapi-token', function () {
+                return $this->provider->getAccessToken('client_credentials');
+            });
 
             $this->accessToken = $accessToken;
         }
@@ -119,6 +114,7 @@ class Connector implements ConnectorInterface
     /**
      * @inheritdoc
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Psr\Cache\InvalidArgumentException
      */
     public function sendRequest(string $verb, string $path, array $options): ResponseInterface
     {

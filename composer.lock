@@ -1974,16 +1974,16 @@
         },
         {
             "name": "overtrue/phplint",
-            "version": "3.3.1",
+            "version": "3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/phplint.git",
-                "reference": "936bd5c1b88819782b69db22d0c27c14f964e655"
+                "reference": "6049eb11bec9c893d00acb7bdb2b6d0fbf3f5d8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/phplint/zipball/936bd5c1b88819782b69db22d0c27c14f964e655",
-                "reference": "936bd5c1b88819782b69db22d0c27c14f964e655",
+                "url": "https://api.github.com/repos/overtrue/phplint/zipball/6049eb11bec9c893d00acb7bdb2b6d0fbf3f5d8a",
+                "reference": "6049eb11bec9c893d00acb7bdb2b6d0fbf3f5d8a",
                 "shasum": ""
             },
             "require": {
@@ -2039,7 +2039,7 @@
             ],
             "support": {
                 "issues": "https://github.com/overtrue/phplint/issues",
-                "source": "https://github.com/overtrue/phplint/tree/3.3.1"
+                "source": "https://github.com/overtrue/phplint/tree/3.3.2"
             },
             "funding": [
                 {
@@ -2047,7 +2047,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-12-22T15:56:32+00:00"
+            "time": "2022-12-23T08:27:05+00:00"
         },
         {
             "name": "phar-io/manifest",

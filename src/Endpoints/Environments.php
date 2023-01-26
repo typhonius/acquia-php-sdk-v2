@@ -192,6 +192,40 @@ class Environments extends CloudApiBase
     }
 
     /**
+     * Enable platform email for an environment.
+     *
+     * @param string $environmentUuid
+     *
+     * @return OperationResponse
+     */
+    public function enableEmail(string $environmentUuid): OperationResponse
+    {
+        return new OperationResponse(
+          $this->client->request(
+            'post',
+            "/environments/$environmentUuid/email/actions/enable"
+          )  
+        );
+    }
+
+    /**
+     * Disable platform email for an environment.
+     *
+     * @param string $environmentUuid
+     *
+     * @return OperationResponse
+     */
+    public function disableEmail(string $environmentUuid): OperationResponse
+    {
+        return new OperationResponse(
+          $this->client->request(
+            'post',
+            "/environments/$environmentUuid/email/actions/disable"
+          )  
+        );
+    }
+
+    /**
      * Add a new continuous delivery environment to an application.
      *
      * @param string $applicationUuid

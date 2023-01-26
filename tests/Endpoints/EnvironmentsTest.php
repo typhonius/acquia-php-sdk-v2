@@ -157,4 +157,32 @@ class EnvironmentsTest extends CloudApiTestCase
         $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('The environment is being deleted.', $result->message);
     }
+
+    public testEnableEmail(): void
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/enableEmail.json');
+
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
+        $environment = new Environments($client);
+        $result = $environment->enableEmail('24-a47ac10b-58cc-4372-a567-0e02b2c3d470');
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $this->assertEquals('Platform Email is being enabled', $result->message);
+    }
+
+    public testDisableEmail(): void
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/enableEmail.json');
+
+        $client = $this->getMockClient($response);
+
+        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
+        $environment = new Environments($client);
+        $result = $environment->disableEmail('24-a47ac10b-58cc-4372-a567-0e02b2c3d470');
+
+        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
+        $this->assertEquals('Platform Email is being disabled', $result->message);
+    }
 }

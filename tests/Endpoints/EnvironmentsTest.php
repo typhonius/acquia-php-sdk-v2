@@ -158,7 +158,7 @@ class EnvironmentsTest extends CloudApiTestCase
         $this->assertEquals('The environment is being deleted.', $result->message);
     }
 
-    public testEnableEmail(): void
+    public function testEnableEmail(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/enableEmail.json');
 

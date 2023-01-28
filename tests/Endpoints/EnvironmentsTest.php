@@ -172,7 +172,7 @@ class EnvironmentsTest extends CloudApiTestCase
         $this->assertEquals('Platform Email is being enabled', $result->message);
     }
 
-    public testDisableEmail(): void
+    public function testDisableEmail(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/enableEmail.json');
 

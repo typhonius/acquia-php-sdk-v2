@@ -174,7 +174,7 @@ class EnvironmentsTest extends CloudApiTestCase
 
     public function testDisableEmail(): void
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/enableEmail.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/disableEmail.json');
 
         $client = $this->getMockClient($response);
 

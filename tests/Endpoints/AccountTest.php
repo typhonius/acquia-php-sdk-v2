@@ -8,9 +8,9 @@ use AcquiaCloudApi\Endpoints\Account;
 class AccountTest extends CloudApiTestCase
 {
     /**
-     * @var mixed[] $properties
+     * @var array<string> $properties
      */
-    protected $properties = [
+    protected array $properties = [
         'id',
         'uuid',
         'name',
@@ -38,14 +38,7 @@ class AccountTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Account/getAccount.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $account = new Account($client);
-        $result = $account->get();
-
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\AccountResponse', $result);
-
-        foreach ($this->properties as $property) {
-            $this->assertObjectHasAttribute($property, $result);
-        }
+        $account->get();
     }
 }

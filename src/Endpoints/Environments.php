@@ -201,10 +201,10 @@ class Environments extends CloudApiBase
     public function enableEmail(string $environmentUuid): OperationResponse
     {
         return new OperationResponse(
-          $this->client->request(
-            'post',
-            "/environments/$environmentUuid/email/actions/enable"
-          )  
+            $this->client->request(
+                'post',
+                "/environments/$environmentUuid/email/actions/enable"
+            )
         );
     }
 
@@ -218,10 +218,10 @@ class Environments extends CloudApiBase
     public function disableEmail(string $environmentUuid): OperationResponse
     {
         return new OperationResponse(
-          $this->client->request(
-            'post',
-            "/environments/$environmentUuid/email/actions/disable"
-          )  
+            $this->client->request(
+                'post',
+                "/environments/$environmentUuid/email/actions/disable"
+            )
         );
     }
 

@@ -10,10 +10,6 @@ jobs:
   tests:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        php-version: ['7.4', '8.0', '8.1']
-
     name: Mutation Testing Code Review Annotations ${{ matrix.php-version }}
     steps:
       - name: Checkout code
@@ -22,18 +18,18 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-version }}
+          php-version: 8.2
           tools: composer:v2
           extensions: pcov
           coverage: pcov
 
       - name: Install dependencies
         run: |
-          composer install --no-progress --no-suggest --no-interaction
+          composer install --no-progress --no-interaction
 
       - name: Download Infection
         run: |
-          wget https://github.com/infection/infection/releases/download/0.21.0/infection.phar
+          wget https://github.com/infection/infection/releases/download/0.26.19/infection.phar
           chmod +x infection.phar
 
       - name: Run Infection for added files only

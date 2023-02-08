@@ -6,8 +6,8 @@
     },
     "logs": {
         "text": "tests/logs/infection.log",
-        "badge": {
-            "branch": "master"
+        "stryker": {
+            "badge": "master"
         }
     },
     "mutators": {

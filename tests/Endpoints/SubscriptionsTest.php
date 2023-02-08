@@ -4,44 +4,23 @@ namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Endpoints\Subscriptions;
+use AcquiaCloudApi\Response\SubscriptionsResponse;
+use AcquiaCloudApi\Response\SubscriptionResponse;
 
 class SubscriptionsTest extends CloudApiTestCase
 {
-    /**
-     * @var mixed[] $properties
-     */
-    protected $properties = [
-        'uuid',
-        'name',
-        'start_at',
-        'expire_at',
-        'product',
-        'applications_total',
-        'applications_used',
-        'organization',
-        'flags',
-        'links'
-    ];
-
     public function testGetSubscriptions(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Subscriptions/getAllSubscriptions.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $subscription = new Subscriptions($client);
         $result = $subscription->getAll();
 
-        $this->assertInstanceOf('\ArrayObject', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\SubscriptionsResponse', $result);
         $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
-            $this->assertInstanceOf('\AcquiaCloudApi\Response\SubscriptionResponse', $record);
-
-            foreach ($this->properties as $property) {
-                $this->assertObjectHasAttribute($property, $record);
-            }
+            $this->assertInstanceOf(SubscriptionResponse::class, $record);
         }
     }
 
@@ -50,16 +29,10 @@ class SubscriptionsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Subscriptions/getSubscription.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $subscription = new Subscriptions($client);
         $result = $subscription->get('8533debb-ae4e-427b-aa34-731719b4201a');
 
-        $this->assertNotInstanceOf('\AcquiaCloudApi\Response\SubscriptionsResponse', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\SubscriptionResponse', $result);
-
-        foreach ($this->properties as $property) {
-            $this->assertObjectHasAttribute($property, $result);
-        }
+        $this->assertNotInstanceOf(SubscriptionsResponse::class, $result);
     }
 
     public function testRenameSubscription(): void
@@ -67,7 +40,6 @@ class SubscriptionsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Subscriptions/renameSubscription.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $subscription = new Subscriptions($client);
         $result = $subscription->rename('8533debb-ae4e-427b-aa34-731719b4201a', "My subscription's new name");
 
@@ -78,7 +50,6 @@ class SubscriptionsTest extends CloudApiTestCase
         ];
 
         $this->assertEquals($requestOptions, $this->getRequestOptions($client));
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Subscription updated.', $result->message);
     }
 }

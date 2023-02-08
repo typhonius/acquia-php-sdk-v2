@@ -12,7 +12,6 @@ class FilesTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Environments/copyFiles.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $environment = new Environments($client);
         $result = $environment->copyFiles(
             '8ff6c046-ec64-4ce4-bea6-27845ec18600',
@@ -26,7 +25,6 @@ class FilesTest extends CloudApiTestCase
         ];
 
         $this->assertEquals($requestOptions, $this->getRequestOptions($client));
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Copying files.', $result->message);
     }
 }

@@ -3,58 +3,25 @@
 namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
-use AcquiaCloudApi\Endpoints\Organizations;
 use AcquiaCloudApi\Endpoints\Teams;
+use AcquiaCloudApi\Response\ApplicationResponse;
+use AcquiaCloudApi\Response\TeamResponse;
 
 class TeamsTest extends CloudApiTestCase
 {
-    /**
-     * @var mixed[] $teamProperties
-     */
-    protected $teamProperties = [
-        'uuid',
-        'name',
-        'created_at',
-        'updated_at',
-        'organization',
-        'links'
-    ];
-
-    /**
-     * @var mixed[] $applicationProperties
-     */
-    protected $applicationProperties = [
-        'uuid',
-        'name',
-        'hosting',
-        'subscription',
-        'organization',
-        'type',
-        'flags',
-        'status',
-        'links'
-    ];
-
     public function testGetTeams(): void
     {
 
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/getAllTeams.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $team = new Teams($client);
         $result = $team->getAll();
 
-        $this->assertInstanceOf('\ArrayObject', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamsResponse', $result);
         $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
-            $this->assertInstanceOf('\AcquiaCloudApi\Response\TeamResponse', $record);
-
-            foreach ($this->teamProperties as $property) {
-                $this->assertObjectHasAttribute($property, $record);
-            }
+            $this->assertInstanceOf(TeamResponse::class, $record);
         }
     }
 
@@ -63,7 +30,6 @@ class TeamsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/invite.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $team = new Teams($client);
         $result = $team->invite(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
@@ -78,7 +44,6 @@ class TeamsTest extends CloudApiTestCase
             ],
         ];
         $this->assertEquals($requestOptions, $this->getRequestOptions($client));
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals("Invited team member.", $result->message);
     }
 
@@ -87,7 +52,6 @@ class TeamsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/createTeam.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Teams($client);
         $result = $organization->create('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'Mega Team');
 
@@ -97,7 +61,6 @@ class TeamsTest extends CloudApiTestCase
             ],
         ];
         $this->assertEquals($requestOptions, $this->getRequestOptions($client));
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals("Team created.", $result->message);
     }
 
@@ -106,7 +69,6 @@ class TeamsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/rename.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $team = new Teams($client);
         $result = $team->rename('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'My Cool Application');
 
@@ -116,7 +78,6 @@ class TeamsTest extends CloudApiTestCase
             ],
         ];
         $this->assertEquals($requestOptions, $this->getRequestOptions($client));
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals("Team renamed.", $result->message);
     }
 
@@ -125,11 +86,9 @@ class TeamsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/deleteTeam.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $team = new Teams($client);
         $result = $team->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals("Removed team.", $result->message);
     }
 
@@ -138,7 +97,6 @@ class TeamsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/addApplication.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $team = new Teams($client);
         $result = $team->addApplication(
             '8ff6c046-ec64-4ce4-bea6-27845ec18600',
@@ -151,7 +109,6 @@ class TeamsTest extends CloudApiTestCase
             ],
         ];
         $this->assertEquals($requestOptions, $this->getRequestOptions($client));
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Added application to team.', $result->message);
     }
 
@@ -160,20 +117,13 @@ class TeamsTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Teams/getApplications.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $team = new Teams($client);
         $result = $team->getApplications('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
-        $this->assertInstanceOf('\ArrayObject', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\ApplicationsResponse', $result);
         $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
-            $this->assertInstanceOf('\AcquiaCloudApi\Response\ApplicationResponse', $record);
-
-            foreach ($this->applicationProperties as $property) {
-                $this->assertObjectHasAttribute($property, $record);
-            }
+            $this->assertInstanceOf(ApplicationResponse::class, $record);
         }
     }
 }

@@ -10,10 +10,6 @@ jobs:
   tests:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        php-version: ['7.4', '8.0', '8.1', '8.2']
-
     name: Mutation Testing Code Review Annotations ${{ matrix.php-version }}
     steps:
       - name: Checkout code
@@ -22,7 +18,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-version }}
+          php-version: 8.2
           tools: composer:v2
           extensions: pcov
           coverage: pcov

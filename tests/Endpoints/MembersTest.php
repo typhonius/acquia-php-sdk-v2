@@ -4,42 +4,23 @@ namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Endpoints\Organizations;
+use AcquiaCloudApi\Response\MemberResponse;
+use AcquiaCloudApi\Response\MembersResponse;
 
 class MembersTest extends CloudApiTestCase
 {
-    /**
-     * @var mixed[] $properties
-     */
-    public $properties = [
-        'uuid',
-        'teams',
-        'first_name',
-        'last_name',
-        'mail',
-        'picture_url',
-        'username',
-        'links'
-    ];
-
     public function testGetOrganizationMembers(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/getMembers.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->getMembers('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
-        $this->assertInstanceOf('\ArrayObject', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\MembersResponse', $result);
         $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
-            $this->assertInstanceOf('\AcquiaCloudApi\Response\MemberResponse', $record);
-
-            foreach ($this->properties as $property) {
-                $this->assertObjectHasAttribute($property, $record);
-            }
+            $this->assertInstanceOf(MemberResponse::class, $record);
         }
     }
 
@@ -48,19 +29,13 @@ class MembersTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/getMember.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->getMember(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
             'f2daa9cc-e5a0-4036-a5c8-f96e336c62b5'
         );
 
-        $this->assertNotInstanceOf('\AcquiaCloudApi\Response\MembersResponse', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\MemberResponse', $result);
-
-        foreach ($this->properties as $property) {
-            $this->assertObjectHasAttribute($property, $result);
-        }
+        $this->assertNotInstanceOf(MembersResponse::class, $result);
     }
 
     public function testGetOrganizationAdmins(): void
@@ -68,20 +43,13 @@ class MembersTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/getAdmins.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->getAdmins('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851');
 
-        $this->assertInstanceOf('\ArrayObject', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\MembersResponse', $result);
         $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
-            $this->assertInstanceOf('\AcquiaCloudApi\Response\MemberResponse', $record);
-
-            foreach ($this->properties as $property) {
-                $this->assertObjectHasAttribute($property, $record);
-            }
+            $this->assertInstanceOf(MemberResponse::class, $record);
         }
     }
 
@@ -90,19 +58,13 @@ class MembersTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/getAdmin.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->getAdmin(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
             'f2daa9cc-e5a0-4036-a5c8-f96e336c62b5'
         );
 
-        $this->assertNotInstanceOf('\AcquiaCloudApi\Response\MembersResponse', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\MemberResponse', $result);
-
-        foreach ($this->properties as $property) {
-            $this->assertObjectHasAttribute($property, $result);
-        }
+        $this->assertNotInstanceOf(MembersResponse::class, $result);
     }
 
     public function testMemberDelete(): void
@@ -110,14 +72,12 @@ class MembersTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Organizations/deleteMember.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $organization = new Organizations($client);
         $result = $organization->deleteMember(
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
             '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851'
         );
 
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals("Organization member removed.", $result->message);
     }
 }

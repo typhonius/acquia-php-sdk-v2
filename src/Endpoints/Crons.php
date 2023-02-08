@@ -101,7 +101,7 @@ class Crons extends CloudApiBase
         ];
 
         return new OperationResponse(
-            $this->client->request('post', "/environments/$environmentUuid/crons/$cronId", $options)
+            $this->client->request('put', "/environments/$environmentUuid/crons/$cronId", $options)
         );
     }
 

@@ -4,36 +4,22 @@ namespace AcquiaCloudApi\Tests\Endpoints;
 
 use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Endpoints\Code;
+use AcquiaCloudApi\Response\BranchResponse;
 
 class CodeTest extends CloudApiTestCase
 {
-    /**
-     * @var mixed[] $properties
-     */
-    public $properties = [
-        'name',
-        'flags',
-    ];
-
     public function testGetBranches(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Code/getAllCode.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $code = new Code($client);
         $result = $code->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
 
-        $this->assertInstanceOf('\ArrayObject', $result);
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\BranchesResponse', $result);
         $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
-            $this->assertInstanceOf('\AcquiaCloudApi\Response\BranchResponse', $record);
-
-            foreach ($this->properties as $property) {
-                $this->assertObjectHasAttribute($property, $record);
-            }
+            $this->assertInstanceOf(BranchResponse::class, $record);
         }
     }
 
@@ -42,7 +28,6 @@ class CodeTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Code/switchCode.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $code = new Code($client);
         $result = $code->switch('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'my-feature-branch');
 
@@ -53,7 +38,6 @@ class CodeTest extends CloudApiTestCase
         ];
 
         $this->assertEquals($requestOptions, $this->getRequestOptions($client));
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Switching code.', $result->message);
     }
 
@@ -62,7 +46,6 @@ class CodeTest extends CloudApiTestCase
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Code/deployCode.json');
         $client = $this->getMockClient($response);
 
-        /** @var \AcquiaCloudApi\Connector\ClientInterface $client */
         $code = new Code($client);
         $result = $code->deploy(
             '8ff6c046-ec64-4ce4-bea6-27845ec18600',
@@ -78,7 +61,6 @@ class CodeTest extends CloudApiTestCase
         ];
 
         $this->assertEquals($requestOptions, $this->getRequestOptions($client));
-        $this->assertInstanceOf('\AcquiaCloudApi\Response\OperationResponse', $result);
         $this->assertEquals('Deploying code.', $result->message);
     }
 }

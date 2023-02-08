@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        php-version: ['7.4', '8.0', '8.1']
+        php-version: ['7.4', '8.0', '8.1', '8.2']
 
     name: Mutation Testing Code Review Annotations ${{ matrix.php-version }}
     steps:
@@ -29,11 +29,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer install --no-progress --no-suggest --no-interaction
+          composer install --no-progress --no-interaction
 
       - name: Download Infection
         run: |
-          wget https://github.com/infection/infection/releases/download/0.21.0/infection.phar
+          wget https://github.com/infection/infection/releases/download/0.26.19/infection.phar
           chmod +x infection.phar
 
       - name: Run Infection for added files only

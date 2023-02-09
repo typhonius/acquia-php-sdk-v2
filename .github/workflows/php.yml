@@ -16,7 +16,7 @@ jobs:
     name: PHP ${{ matrix.php-versions }} build and test on ${{ matrix.operating-system }}
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
@@ -43,7 +43,7 @@ jobs:
       run: composer run-script test
 
     - name: Upload code coverage
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ runner.os }}-php-${{ matrix.php-versions }}-phpunit.html
         path: ./tests/logs/phpunit.html

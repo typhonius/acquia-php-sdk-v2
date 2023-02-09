@@ -9,7 +9,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4 | ^8.0.2 | ^8.1 | ^8.2",
+        "php": "^8.0 | ^8.1 | ^8.2",
         "guzzlehttp/guzzle": "^7.2",
         "league/oauth2-client": "^2.4",
         "symfony/cache": "^5 | ^6",
@@ -23,7 +23,7 @@
         "squizlabs/php_codesniffer": "3.*",
         "eloquent/phony-phpunit": "^7",
         "ext-json": "*",
-        "overtrue/phplint": "^3.2"
+        "overtrue/phplint": "^4"
     },
     "autoload": {
         "psr-4": {
@@ -41,7 +41,7 @@
     },
     "config": {
         "platform": {
-            "php": "7.4"
+            "php": "8.0"
         },
         "preferred-install": {
             "league/oauth2-client": "source"

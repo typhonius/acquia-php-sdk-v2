@@ -2,7 +2,7 @@
 Acquia PHP SDK for CloudAPI v2
 =
 
-[![Acquia PHP SDK v2 build and test](https://github.com/typhonius/acquia-php-sdk-v2/actions/workflows/php.yml/badge.svg)](https://github.com/typhonius/acquia-php-sdk-v2/actions/workflows/php.yml)
+[![Build Status](https://github.com/typhonius/acquia-php-sdk-v2/actions/workflows/php.yml/badge.svg)](https://github.com/typhonius/acquia-php-sdk-v2/actions/workflows/php.yml)
 [![Total Downloads](https://poser.pugx.org/typhonius/acquia-php-sdk-v2/downloads.png)](https://packagist.org/packages/typhonius/acquia-php-sdk-v2)
 [![Coverage Status](https://codecov.io/gh/typhonius/acquia-php-sdk-v2/branch/master/graph/badge.svg)](https://codecov.io/gh/typhonius/acquia-php-sdk-v2)
 [![Quality Status](https://scrutinizer-ci.com/g/typhonius/acquia-php-sdk-v2/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/typhonius/acquia-php-sdk-v2/)

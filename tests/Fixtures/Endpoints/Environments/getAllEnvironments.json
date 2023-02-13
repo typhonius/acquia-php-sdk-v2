@@ -131,6 +131,7 @@
           "multi-site": "prod.example.com/admin/gardens/staging"
         },
         "active_domain": "example.com",
+        "default_domain": "site.hosted.acquia-sites.com",
         "image_url": null,
         "ips": [
           "10.0.1.1",
@@ -181,6 +182,7 @@
           "test.example.com"
         ],
         "active_domain": "test.example.com",
+        "default_domain": "sitetest.hosted.acquia-sites.com",
         "image_url": null,
         "ips": [],
         "region": "us-east-1",

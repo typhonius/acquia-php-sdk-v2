@@ -7,22 +7,22 @@
     },
     "_links": {
         "self": {
-            "href": "{baseUri}/organizations/g47ac10b-58cc-4372-a567-0e02b2c3d470/applications"
+            "href": "{baseUri}/organizations/547ac10b-58cc-4372-a567-0e02b2c3d470/applications"
         },
         "sort": {
-            "href": "{baseUri}/organizations/g47ac10b-58cc-4372-a567-0e02b2c3d470/applications{?sort}",
+            "href": "{baseUri}/organizations/547ac10b-58cc-4372-a567-0e02b2c3d470/applications{?sort}",
             "templated": true
         },
         "filter": {
-            "href": "{baseUri}/organizations/g47ac10b-58cc-4372-a567-0e02b2c3d470/applications{?filter}",
+            "href": "{baseUri}/organizations/547ac10b-58cc-4372-a567-0e02b2c3d470/applications{?filter}",
             "templated": true
         },
         "limit": {
-            "href": "{baseUri}/organizations/g47ac10b-58cc-4372-a567-0e02b2c3d470/applications{?limit}",
+            "href": "{baseUri}/organizations/547ac10b-58cc-4372-a567-0e02b2c3d470/applications{?limit}",
             "templated": true
         },
         "parent": {
-            "href": "{baseUri}/organizations/g47ac10b-58cc-4372-a567-0e02b2c3d470"
+            "href": "{baseUri}/organizations/547ac10b-58cc-4372-a567-0e02b2c3d470"
         }
     },
     "_embedded": {
@@ -36,11 +36,11 @@
                     "id": "devcloud:devcloud2"
                 },
                 "subscription": {
-                    "uuid": "s47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "uuid": "047ac10b-58cc-4372-a567-0e02b2c3d470",
                     "name": "Sample subscription"
                 },
                 "organization": {
-                    "uuid": "g47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "uuid": "547ac10b-58cc-4372-a567-0e02b2c3d470",
                     "name": "Sample organization"
                 },
                 "flags": {
@@ -62,11 +62,11 @@
                     "id": "devcloud:devcloud2"
                 },
                 "subscription": {
-                    "uuid": "s47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "uuid": "047ac10b-58cc-4372-a567-0e02b2c3d470",
                     "name": "Sample subscription"
                 },
                 "organization": {
-                    "uuid": "g47ac10b-58cc-4372-a567-0e02b2c3d470",
+                    "uuid": "547ac10b-58cc-4372-a567-0e02b2c3d470",
                     "name": "Sample organization"
                 },
                 "flags": {

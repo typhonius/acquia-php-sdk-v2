@@ -44,7 +44,7 @@ class Connector implements ConnectorInterface
     protected ?AccessTokenInterface $accessToken;
 
     /**
-     * @inheritdoc
+     * @param array<string, string> $config
      */
     public function __construct(array $config, string $base_uri = null, string $url_access_token = null)
     {

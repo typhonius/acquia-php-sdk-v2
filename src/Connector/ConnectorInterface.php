@@ -26,13 +26,6 @@ interface ConnectorInterface
     public const URL_ACCESS_TOKEN = 'https://accounts.acquia.com/api/auth/oauth/token';
 
     /**
-     * Connector constructor.
-     *
-     * @param array<string, string> $config
-     */
-    public function __construct(array $config);
-
-    /**
      * Creates an authenticated Request instance.
      *
      * @param string $verb

@@ -12,11 +12,11 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest, macos-latest]
-        php-versions: ['7.4', '8.0', '8.1', '8.2']
+        php-versions: ['8.0', '8.1', '8.2']
     name: PHP ${{ matrix.php-versions }} build and test on ${{ matrix.operating-system }}
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
@@ -43,7 +43,7 @@ jobs:
       run: composer run-script test
 
     - name: Upload code coverage
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ runner.os }}-php-${{ matrix.php-versions }}-phpunit.html
         path: ./tests/logs/phpunit.html
@@ -55,3 +55,16 @@ jobs:
         file: ./tests/logs/clover.xml
         name: acquia-php-sdk-v2-codecov
         fail_ci_if_error: true
+
+  # Require all checks to pass without having to enumerate them in the branch protection UI.
+  # @see https://github.community/t/is-it-possible-to-require-all-github-actions-tasks-to-pass-without-enumerating-them/117957
+  check:
+    if: always()
+    needs:
+    - run
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Decide whether the needed jobs succeeded or failed
+      uses: re-actors/alls-green@release/v1
+      with:
+        jobs: ${{ toJSON(needs) }}

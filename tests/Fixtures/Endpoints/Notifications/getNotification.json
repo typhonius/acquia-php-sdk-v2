@@ -1,5 +1,5 @@
 {
-    "uuid": "f4b37e3c-1g96-4ed4-ad20-3081fe0f9545",
+    "uuid": "f4b37e3c-1a96-4ed4-ad20-3081fe0f9545",
     "event": "DatabaseBackupCreated",
     "label": "Database backup created",
     "description": "A \"sample_db\" database backup has been created for \"Dev\".",
@@ -20,13 +20,13 @@
         },
         "application": {
             "uuids": [
-                "3580d1ec-cfgb-1624-5d85-0d28g2d9n69a"
+                "3580d1ec-cf6b-1624-5d85-0d2842d9b69a"
             ]
         },
         "team": {
             "uuids": [
-                "3cb395d2-7cba-1fh4-b588-22000b04072f",
-                "a31ba519-4ec3-47c9-9dd1-b509g3fb618f"
+                "3cb395d2-7cba-1f64-b588-22000b04072f",
+                "a31ba519-4ec3-47c9-9dd1-b50943fb618f"
             ]
         },
         "organization": {
@@ -51,7 +51,7 @@
     },
     "_links": {
         "self": {
-            "href": "https:\/\/cloud.acquia.com\/api\/notifications\/f4b37e3c-1g96-4ed4-ad20-3081fe0f9545"
+            "href": "https:\/\/cloud.acquia.com\/api\/notifications\/f4b37e3c-1a96-4ed4-ad20-3081fe0f9545"
         }
     },
     "_embedded": {

@@ -33,8 +33,14 @@ jobs:
           chmod +x infection.phar
 
       - name: Run Infection for added files only
-        env:
-          INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
+        if: github.event_name == 'pull_request'
         run: |
           git fetch --depth=1 origin $GITHUB_BASE_REF
-          php infection.phar -j2 --git-diff-filter=A --git-diff-base=origin/$GITHUB_BASE_REF --logger-github --ignore-msi-with-no-mutations --only-covered
+          php infection.phar -j8 --git-diff-filter=A --git-diff-base=origin/$GITHUB_BASE_REF --logger-github --ignore-msi-with-no-mutations --only-covered
+
+      - name: Run Infection for all files
+        if: github.event_name == 'push'
+        env:
+            INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
+        run: |
+            php infection.phar -j8 --ignore-msi-with-no-mutations --only-covered

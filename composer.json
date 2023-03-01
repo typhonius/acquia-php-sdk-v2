@@ -23,7 +23,7 @@
         "squizlabs/php_codesniffer": "3.*",
         "eloquent/phony-phpunit": "^7",
         "ext-json": "*",
-        "overtrue/phplint": "^4"
+        "overtrue/phplint": "^9"
     },
     "autoload": {
         "psr-4": {

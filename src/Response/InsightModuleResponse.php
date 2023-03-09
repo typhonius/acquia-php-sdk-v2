@@ -31,8 +31,6 @@ class InsightModuleResponse
      */
     public array $tags;
 
-    /**
-     */
     public function __construct(object $module)
     {
         $this->module_id = $module->module_id;

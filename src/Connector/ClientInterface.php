@@ -37,7 +37,6 @@ interface ClientInterface
      * Takes parameters passed in, makes a request to the API, and processes the response.
      *
      * @param array<string, mixed> $options
-     *
      */
     public function request(string $verb, string $path, array $options = []): mixed;
 
@@ -45,7 +44,6 @@ interface ClientInterface
      * Takes parameters passed in, makes a request to the API, and streams the response.
      *
      * @param array<string, mixed> $options
-     *
      */
     public function stream(string $verb, string $path, array $options = []): StreamInterface;
 
@@ -75,7 +73,6 @@ interface ClientInterface
 
     /**
      * Add a query parameter to filter results.
-     *
      */
     public function addQuery(string $name, int|string $value): void;
 
@@ -93,7 +90,6 @@ interface ClientInterface
 
     /**
      * Add an option to the Guzzle request object.
-     *
      */
     public function addOption(string $name, mixed $value): void;
 }

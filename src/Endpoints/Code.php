@@ -16,7 +16,6 @@ class Code extends CloudApiBase
     /**
      * Shows all code branches and tags in an application.
      *
-     *
      * @return BranchesResponse<BranchResponse>
      */
     public function getAll(string $applicationUuid): BranchesResponse
@@ -31,8 +30,6 @@ class Code extends CloudApiBase
 
     /**
      * Deploys a code branch/tag to an environment.
-     *
-     *
      */
     public function switch(string $environmentUuid, string $branch): OperationResponse
     {
@@ -56,7 +53,6 @@ class Code extends CloudApiBase
      * Deploys code from one environment to another environment.
      *
      * @param string|null $commitMessage
-     *
      */
     public function deploy(
         string $environmentFromUuid,

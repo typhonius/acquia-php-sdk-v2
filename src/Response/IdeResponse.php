@@ -12,8 +12,6 @@ class IdeResponse
 
     public MemberResponse $owner;
 
-    /**
-     */
     public function __construct(object $ide)
     {
         $this->uuid = $ide->uuid;

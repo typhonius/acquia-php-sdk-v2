@@ -59,7 +59,6 @@ abstract class CloudApiTestCase extends TestCase
 
     /**
      * Mock client class.
-     *
      */
     protected function getMockClient(mixed $response = ''): ClientInterface
     {

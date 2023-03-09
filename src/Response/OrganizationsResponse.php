@@ -14,7 +14,7 @@ class OrganizationsResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($organization) {
+                static function ($organization) {
                     return new OrganizationResponse($organization);
                 },
                 $organizations

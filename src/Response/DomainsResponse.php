@@ -14,7 +14,7 @@ class DomainsResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($domain) {
+                static function ($domain) {
                     return new DomainResponse($domain);
                 },
                 $domains

@@ -25,8 +25,6 @@ class MemberResponse
 
     public ?object $links;
 
-    /**
-     */
     public function __construct(object $member)
     {
         $this->uuid = $member->uuid;

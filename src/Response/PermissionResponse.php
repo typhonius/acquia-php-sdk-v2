@@ -12,8 +12,6 @@ class PermissionResponse
 
     public string $group_label;
 
-    /**
-     */
     public function __construct(object $permission)
     {
         $this->name = $permission->name;

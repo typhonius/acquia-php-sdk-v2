@@ -10,8 +10,6 @@ class VariableResponse
 
     public object $links;
 
-    /**
-     */
     public function __construct(object $variable)
     {
         $this->name = $variable->name;

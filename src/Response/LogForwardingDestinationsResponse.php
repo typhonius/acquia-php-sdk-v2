@@ -14,7 +14,7 @@ class LogForwardingDestinationsResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($destination) {
+                static function ($destination) {
                     return new LogForwardingDestinationResponse($destination);
                 },
                 $destinations

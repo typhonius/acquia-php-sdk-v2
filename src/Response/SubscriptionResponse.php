@@ -26,8 +26,6 @@ class SubscriptionResponse
 
     public object $links;
 
-    /**
-     */
     public function __construct(object $subscription)
     {
         $this->id = $subscription->id;

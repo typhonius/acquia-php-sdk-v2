@@ -24,8 +24,6 @@ class ApplicationResponse
 
     public object $links;
 
-    /**
-     */
     public function __construct(object $application)
     {
         $this->id = $application->id;

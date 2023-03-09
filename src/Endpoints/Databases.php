@@ -17,7 +17,6 @@ class Databases extends CloudApiBase
     /**
      * Shows all databases in an application.
      *
-     *
      * @return DatabaseNamesResponse<DatabaseNameResponse>
      */
     public function getNames(string $applicationUuid): DatabaseNamesResponse
@@ -45,8 +44,6 @@ class Databases extends CloudApiBase
 
     /**
      * Create a new database.
-     *
-     *
      */
     public function create(string $applicationUuid, string $name): OperationResponse
     {
@@ -63,8 +60,6 @@ class Databases extends CloudApiBase
 
     /**
      * Delete a database.
-     *
-     *
      */
     public function delete(string $applicationUuid, string $name): OperationResponse
     {
@@ -78,8 +73,6 @@ class Databases extends CloudApiBase
      *
      * This action will delete all tables of the database in ALL environments
      * within this application.
-     *
-     *
      */
     public function truncate(string $applicationUuid, string $name): OperationResponse
     {
@@ -93,8 +86,6 @@ class Databases extends CloudApiBase
 
     /**
      * Copies a database from an environment to an environment.
-     *
-     *
      */
     public function copy(string $environmentFromUuid, string $dbName, string $environmentToUuid): OperationResponse
     {

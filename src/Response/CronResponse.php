@@ -28,8 +28,6 @@ class CronResponse
 
     public object $links;
 
-    /**
-     */
     public function __construct(object $cron)
     {
         $this->id = $cron->id;

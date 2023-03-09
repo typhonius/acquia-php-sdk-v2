@@ -14,7 +14,7 @@ class VariablesResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($variable) {
+                static function ($variable) {
                     return new VariableResponse($variable);
                 },
                 $variables

@@ -14,7 +14,7 @@ class InsightAlertsResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($alert) {
+                static function ($alert) {
                     return new InsightAlertResponse($alert);
                 },
                 $alerts

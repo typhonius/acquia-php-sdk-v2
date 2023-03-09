@@ -8,8 +8,6 @@ class LogstreamResponse
 
     public object $links;
 
-    /**
-     */
     public function __construct(object $logstream)
     {
         $this->logstream = $logstream->logstream;

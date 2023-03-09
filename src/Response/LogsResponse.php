@@ -14,7 +14,7 @@ class LogsResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($log) {
+                static function ($log) {
                     return new LogResponse($log);
                 },
                 $logs

@@ -36,7 +36,6 @@ class Client implements ClientInterface
 
     /**
      * Client constructor.
-     *
      */
     final public function __construct(ConnectorInterface $connector)
     {
@@ -45,7 +44,6 @@ class Client implements ClientInterface
 
     /**
      * Client factory method for instantiating.
-     *
      *
      * @return static
      */

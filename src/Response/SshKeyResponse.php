@@ -23,7 +23,6 @@ class SshKeyResponse
 
     /**
      * SshKeyResponse constructor.
-     *
      */
 
     public function __construct(object $sshkey)

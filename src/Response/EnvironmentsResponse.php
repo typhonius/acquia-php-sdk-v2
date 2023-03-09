@@ -14,7 +14,7 @@ class EnvironmentsResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($environment) {
+                static function ($environment) {
                     return new EnvironmentResponse($environment);
                 },
                 $environments

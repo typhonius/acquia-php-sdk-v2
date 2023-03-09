@@ -17,7 +17,6 @@ class SslCertificates extends CloudApiBase
      * Returns a list of SSL certificates.
      *
      * @param string $environmentUuid The environment ID
-     *
      * @return SslCertificatesResponse<SslCertificateResponse>
      */
     public function getAll(string $environmentUuid): SslCertificatesResponse
@@ -34,7 +33,6 @@ class SslCertificates extends CloudApiBase
      * Returns a specific certificate by certificate ID.
      *
      * @param string $environmentUuid The environment ID
-     *
      */
     public function get(string $environmentUuid, int $certificateId): SslCertificateResponse
     {
@@ -51,7 +49,6 @@ class SslCertificates extends CloudApiBase
      *
      * @param string|null $ca
      * @param int|null $csr
-     *
      */
     public function create(
         string $envUuid,
@@ -81,8 +78,6 @@ class SslCertificates extends CloudApiBase
 
     /**
      * Delete a specific certificate by ID.
-     *
-     *
      */
     public function delete(string $environmentUuid, int $certificateId): OperationResponse
     {
@@ -93,8 +88,6 @@ class SslCertificates extends CloudApiBase
 
     /**
      * Deactivates an active SSL certificate.
-     *
-     *
      */
     public function disable(string $environmentUuid, int $certificateId): OperationResponse
     {
@@ -108,8 +101,6 @@ class SslCertificates extends CloudApiBase
 
     /**
      * Activates an SSL certificate.
-     *
-     *
      */
     public function enable(string $environmentUuid, int $certificateId): OperationResponse
     {

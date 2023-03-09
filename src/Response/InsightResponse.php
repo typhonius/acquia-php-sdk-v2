@@ -26,8 +26,6 @@ class InsightResponse
 
     public object $links;
 
-    /**
-     */
     public function __construct(object $insight)
     {
         $this->uuid = $insight->uuid;

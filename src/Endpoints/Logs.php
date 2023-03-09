@@ -18,7 +18,6 @@ class Logs extends CloudApiBase
     /**
      * Returns a list of log files available for download.
      *
-     *
      * @return LogsResponse<LogResponse>
      */
     public function getAll(string $environmentUuid): LogsResponse
@@ -30,8 +29,6 @@ class Logs extends CloudApiBase
 
     /**
      * Downloads a log file.
-     *
-     *
      */
     public function download(string $environmentUuid, string $logType): StreamInterface
     {
@@ -40,8 +37,6 @@ class Logs extends CloudApiBase
 
     /**
      * Returns logstream WSS stream information.
-     *
-     *
      */
     public function stream(string $environmentUuid): LogstreamResponse
     {
@@ -52,8 +47,6 @@ class Logs extends CloudApiBase
 
     /**
      * Creates a log file snapshot.
-     *
-     *
      */
     public function snapshot(string $environmentUuid, string $logType): OperationResponse
     {

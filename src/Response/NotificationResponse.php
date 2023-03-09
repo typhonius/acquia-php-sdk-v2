@@ -24,8 +24,6 @@ class NotificationResponse
 
     public ?object $links;
 
-    /**
-     */
     public function __construct(object $notification)
     {
         $this->uuid = $notification->uuid;

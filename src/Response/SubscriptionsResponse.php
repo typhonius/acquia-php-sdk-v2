@@ -14,7 +14,7 @@ class SubscriptionsResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($subscription) {
+                static function ($subscription) {
                     return new SubscriptionResponse($subscription);
                 },
                 $subscriptions

@@ -17,7 +17,6 @@ class Crons extends CloudApiBase
      * Show all cron tasks for an environment.
      *
      * @param string $environmentUuid The environment ID
-     *
      * @return CronsResponse<CronResponse>
      */
     public function getAll(string $environmentUuid): CronsResponse
@@ -34,7 +33,6 @@ class Crons extends CloudApiBase
      * Get information about a cron task.
      *
      * @param string $environmentUuid The environment ID
-     *
      */
     public function get(string $environmentUuid, int $cronId): CronResponse
     {
@@ -50,7 +48,6 @@ class Crons extends CloudApiBase
      * Add a cron task.
      *
      * @param string|null $serverId
-     *
      */
     public function create(
         string $environmentUuid,
@@ -78,7 +75,6 @@ class Crons extends CloudApiBase
      * Update a cron task.
      *
      * @param string|null $serverId
-     *
      */
     public function update(
         string $environmentUuid,
@@ -105,8 +101,6 @@ class Crons extends CloudApiBase
 
     /**
      * Delete a cron task.
-     *
-     *
      */
     public function delete(string $environmentUuid, int $cronId): OperationResponse
     {
@@ -117,8 +111,6 @@ class Crons extends CloudApiBase
 
     /**
      * Disable a cron task.
-     *
-     *
      */
     public function disable(string $environmentUuid, int $cronId): OperationResponse
     {
@@ -132,8 +124,6 @@ class Crons extends CloudApiBase
 
     /**
      * Enable a cron task.
-     *
-     *
      */
     public function enable(string $environmentUuid, int $cronId): OperationResponse
     {

@@ -12,8 +12,6 @@ class LogResponse
 
     public object $links;
 
-    /**
-     */
     public function __construct(object $log)
     {
         $this->type = $log->type;

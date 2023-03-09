@@ -34,7 +34,6 @@ class SslCertificateResponse
 
     /**
      * CertificateResponse constructor.
-     *
      */
     public function __construct(object $certificate)
     {

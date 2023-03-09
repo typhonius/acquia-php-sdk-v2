@@ -14,7 +14,7 @@ class IdentityProvidersResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($idp) {
+                static function ($idp) {
                     return new IdentityProviderResponse($idp);
                 },
                 $idps

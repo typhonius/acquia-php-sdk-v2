@@ -15,8 +15,6 @@ class Servers extends CloudApiBase
 {
     /**
      * Gets information about a single server.
-     *
-     *
      */
     public function get(string $environmentUuid, string $serverId): ServerResponse
     {
@@ -32,7 +30,6 @@ class Servers extends CloudApiBase
      * Modifies configuration settings for a server.
      *
      * @param mixed[] $config
-     *
      */
     public function update(string $environmentUuid, string $serverId, array $config): OperationResponse
     {
@@ -47,7 +44,6 @@ class Servers extends CloudApiBase
 
     /**
      * Show all servers associated with an environment.
-     *
      *
      * @return ServersResponse<ServerResponse>
      */

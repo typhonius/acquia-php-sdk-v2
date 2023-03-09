@@ -22,8 +22,6 @@ class DomainResponse
 
     public object $links;
 
-    /**
-     */
     public function __construct(object $domain)
     {
         $this->hostname = $domain->hostname;

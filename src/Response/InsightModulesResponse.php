@@ -14,7 +14,7 @@ class InsightModulesResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($module) {
+                static function ($module) {
                     return new InsightModuleResponse($module);
                 },
                 $modules

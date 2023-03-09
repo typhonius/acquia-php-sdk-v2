@@ -16,8 +16,6 @@ class InsightCountResponse
 
     public int $percent;
 
-    /**
-     */
     public function __construct(string $name, object $insightCount)
     {
         $this->name = $name;

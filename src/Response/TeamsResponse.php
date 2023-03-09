@@ -14,7 +14,7 @@ class TeamsResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($team) {
+                static function ($team) {
                     return new TeamResponse($team);
                 },
                 $teams

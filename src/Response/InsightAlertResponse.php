@@ -31,8 +31,6 @@ class InsightAlertResponse
 
     public object $links;
 
-    /**
-     */
     public function __construct(object $alert)
     {
         $this->alert_id = $alert->alert_id;

@@ -24,8 +24,6 @@ class OrganizationResponse
 
     public object $links;
 
-    /**
-     */
     public function __construct(object $organization)
     {
         $this->id = $organization->id;

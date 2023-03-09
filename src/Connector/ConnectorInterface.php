@@ -27,8 +27,6 @@ interface ConnectorInterface
 
     /**
      * Creates an authenticated Request instance.
-     *
-     *
      */
     public function createRequest(string $verb, string $path): RequestInterface;
 
@@ -36,15 +34,10 @@ interface ConnectorInterface
      * Sends the request to the API using Guzzle.
      *
      * @param array<string, array<mixed>>  $options
-     *
      */
     public function sendRequest(string $verb, string $path, array $options): ResponseInterface;
 
-    /**
-     */
     public function getBaseUri(): string;
 
-    /**
-     */
     public function getUrlAccessToken(): string;
 }

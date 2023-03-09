@@ -14,7 +14,7 @@ class RolesResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($role) {
+                static function ($role) {
                     return new RoleResponse($role);
                 },
                 $roles

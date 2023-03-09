@@ -71,15 +71,11 @@ class Connector implements ConnectorInterface
         $this->client = new GuzzleClient();
     }
 
-    /**
-     */
     public function getBaseUri(): string
     {
         return $this->baseUri;
     }
 
-    /**
-     */
     public function getUrlAccessToken(): string
     {
         return $this->urlAccessToken;

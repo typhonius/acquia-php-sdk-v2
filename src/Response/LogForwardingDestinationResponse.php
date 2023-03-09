@@ -27,8 +27,6 @@ class LogForwardingDestinationResponse
 
     public object $environment;
 
-    /**
-     */
     public function __construct(object $destination)
     {
         $this->uuid = $destination->uuid;

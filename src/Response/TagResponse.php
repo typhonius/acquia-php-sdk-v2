@@ -12,8 +12,6 @@ class TagResponse
 
     public object $links;
 
-    /**
-     */
     public function __construct(object $tag)
     {
         $this->name = $tag->name;

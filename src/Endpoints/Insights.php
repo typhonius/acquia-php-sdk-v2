@@ -21,7 +21,6 @@ class Insights extends CloudApiBase
      * Returns Insight data for all sites associated with the application by its
      * UUID.
      *
-     *
      * @return InsightsResponse<InsightResponse>
      */
     public function getAll(string $applicationUuid): InsightsResponse
@@ -38,7 +37,6 @@ class Insights extends CloudApiBase
      * Returns Insight data for all sites associated with the environment by its
      * UUID.
      *
-     *
      * @return InsightsResponse<InsightResponse>
      */
     public function getEnvironment(string $environmentUuid): InsightsResponse
@@ -53,8 +51,6 @@ class Insights extends CloudApiBase
 
     /**
      * Returns insight data for a particular site.
-     *
-     *
      */
     public function get(string $siteId): InsightResponse
     {
@@ -68,7 +64,6 @@ class Insights extends CloudApiBase
 
     /**
      * Returns a list of Insight alerts for this site.
-     *
      *
      * @return InsightAlertsResponse<InsightAlertResponse>
      */
@@ -84,8 +79,6 @@ class Insights extends CloudApiBase
 
     /**
      * Returns a specific Insight alert for this site.
-     *
-     *
      */
     public function getAlert(string $siteId, string $alertUuid): InsightAlertResponse
     {
@@ -100,8 +93,6 @@ class Insights extends CloudApiBase
     /**
      * Ignores an alert. An ignored alert will be included will not be counted
      * in the Insight score calculation.
-     *
-     *
      */
     public function ignoreAlert(string $siteId, string $alertUuid): OperationResponse
     {
@@ -116,8 +107,6 @@ class Insights extends CloudApiBase
     /**
      * Restores an alert. A restored alert will be included in the calculation
      * of the Insight score.
-     *
-     *
      */
     public function restoreAlert(string $siteId, string $alertUuid): OperationResponse
     {
@@ -132,8 +121,6 @@ class Insights extends CloudApiBase
     /**
      * Revokes an Insight install so it can no longer submit data using the
      * Acquia Connector module.
-     *
-     *
      */
     public function revoke(string $siteId): OperationResponse
     {
@@ -149,8 +136,6 @@ class Insights extends CloudApiBase
      * Un-revokes an Insight site so it can once again submit data using the
      * Acquia Connector module. Note that the site must also be unblocked using
      * the Acquia Connector module.
-     *
-     *
      */
     public function unrevoke(string $siteId): OperationResponse
     {
@@ -164,7 +149,6 @@ class Insights extends CloudApiBase
 
     /**
      * Returns a list of Drupal modules for this site.
-     *
      *
      * @return InsightModulesResponse<InsightModuleResponse>
      */

@@ -2,7 +2,8 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Response\DatabaseResponse;
+use AcquiaCloudApi\Response\DatabaseNameResponse;
+use AcquiaCloudApi\Response\DatabaseNamesResponse;
 use AcquiaCloudApi\Response\DatabasesResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 
@@ -17,14 +18,27 @@ class Databases extends CloudApiBase
      * Shows all databases in an application.
      *
      *
-     * @return DatabasesResponse<DatabaseResponse>
+     * @return DatabaseNamesResponse<DatabaseNameResponse>
      */
-    public function getAll(string $applicationUuid): DatabasesResponse
+    public function getNames(string $applicationUuid): DatabaseNamesResponse
+    {
+        return new DatabaseNamesResponse(
+            $this->client->request(
+                'get',
+                "/applications/$applicationUuid/databases"
+            )
+        );
+    }
+
+    /**
+     * Shows all databases in an environment.
+     */
+    public function getAll(string $environmentUuid): DatabasesResponse
     {
         return new DatabasesResponse(
             $this->client->request(
                 'get',
-                "/applications/$applicationUuid/databases"
+                "/environments/$environmentUuid/databases"
             )
         );
     }

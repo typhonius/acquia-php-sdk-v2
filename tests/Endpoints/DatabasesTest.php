@@ -2,19 +2,35 @@
 
 namespace AcquiaCloudApi\Tests\Endpoints;
 
+use AcquiaCloudApi\Response\DatabaseNameResponse;
+use AcquiaCloudApi\Response\DatabaseResponse;
 use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Endpoints\Databases;
-use AcquiaCloudApi\Response\DatabaseResponse;
 
 class DatabasesTest extends CloudApiTestCase
 {
     public function testGetApplicationDatabases(): void
     {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Databases/getAllDatabases.json');
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Databases/getApplicationDatabases.json');
         $client = $this->getMockClient($response);
 
         $databases = new Databases($client);
-        $result = $databases->getAll('185f07c7-9c4f-407b-8968-67892ebcb38a');
+        $result = $databases->getNames('185f07c7-9c4f-407b-8968-67892ebcb38a');
+
+        $this->assertNotEmpty($result);
+
+        foreach ($result as $record) {
+            $this->assertInstanceOf(DatabaseNameResponse::class, $record);
+        }
+    }
+
+    public function testGetEnvironmentsDatabases(): void
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Databases/getEnvironmentsDatabases.json');
+        $client = $this->getMockClient($response);
+
+        $databases = new Databases($client);
+        $result = $databases->getAll('24-a47ac10b-58cc-4372-a567-0e02b2c3d470');
 
         $this->assertNotEmpty($result);
 

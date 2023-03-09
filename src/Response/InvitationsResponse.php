@@ -14,7 +14,7 @@ class InvitationsResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($invitation) {
+                static function ($invitation) {
                     return new InvitationResponse($invitation);
                 },
                 $invitations

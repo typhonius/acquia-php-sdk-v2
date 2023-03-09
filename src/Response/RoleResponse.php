@@ -17,8 +17,6 @@ class RoleResponse
      */
     public PermissionsResponse $permissions;
 
-    /**
-     */
     public function __construct(object $role)
     {
         $this->uuid = $role->uuid;

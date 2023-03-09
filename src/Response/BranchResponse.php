@@ -8,8 +8,6 @@ class BranchResponse
 
     public object $flags;
 
-    /**
-     */
     public function __construct(object $branch)
     {
         $this->name = $branch->name;

@@ -18,7 +18,6 @@ class Domains extends CloudApiBase
     /**
      * Shows all domains on an environment.
      *
-     *
      * @return DomainsResponse<DomainResponse>
      */
     public function getAll(string $environmentUuid): DomainsResponse
@@ -33,8 +32,6 @@ class Domains extends CloudApiBase
 
     /**
      * Return details about a domain.
-     *
-     *
      */
     public function get(string $environmentUuid, string $domain): DomainResponse
     {
@@ -48,8 +45,6 @@ class Domains extends CloudApiBase
 
     /**
      * Adds a domain to an environment.
-     *
-     *
      */
     public function create(string $environmentUuid, string $hostname): OperationResponse
     {
@@ -67,8 +62,6 @@ class Domains extends CloudApiBase
 
     /**
      * Deletes a domain from an environment.
-     *
-     *
      */
     public function delete(string $environmentUuid, string $domain): OperationResponse
     {
@@ -81,7 +74,6 @@ class Domains extends CloudApiBase
      * Purges cache for selected domains in an environment.
      *
      * @param array<string> $domains
-     *
      */
     public function purge(string $environmentUuid, array $domains): OperationResponse
     {
@@ -102,8 +94,6 @@ class Domains extends CloudApiBase
 
     /**
      * Purges cache for a single domain in an environment.
-     *
-     *
      */
     public function clearDomainCache(string $environmentUuid, string $domain): OperationResponse
     {
@@ -119,7 +109,6 @@ class Domains extends CloudApiBase
      * Retrieves the scan data for a domain name that is part of this
      * environment.
      *
-     *
      * @return MetricsResponse<MetricResponse>
      */
     public function metrics(string $environmentUuid, string $domain): MetricsResponse
@@ -134,8 +123,6 @@ class Domains extends CloudApiBase
 
     /**
      * Returns details about the domain.
-     *
-     *
      */
     public function status(string $environmentUuid, string $domain): DomainResponse
     {

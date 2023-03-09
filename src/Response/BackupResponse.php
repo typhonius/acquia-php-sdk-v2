@@ -20,8 +20,6 @@ class BackupResponse
 
     public object $links;
 
-    /**
-     */
     public function __construct(object $backup)
     {
         $this->id = $backup->id;

@@ -14,7 +14,7 @@ class SshKeysResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($sshkey) {
+                static function ($sshkey) {
                     return new SshKeyResponse($sshkey);
                 },
                 $sshkeys

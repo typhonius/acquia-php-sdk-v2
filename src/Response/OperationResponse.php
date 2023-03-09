@@ -8,8 +8,6 @@ class OperationResponse
 
     public ?object $links;
 
-    /**
-     */
     public function __construct(object $operation)
     {
         $this->message = $operation->message;

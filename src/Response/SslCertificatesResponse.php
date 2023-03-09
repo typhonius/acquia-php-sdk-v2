@@ -14,7 +14,7 @@ class SslCertificatesResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($certificate) {
+                static function ($certificate) {
                     return new SslCertificateResponse($certificate);
                 },
                 $certificates

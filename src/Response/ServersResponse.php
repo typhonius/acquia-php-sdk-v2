@@ -14,7 +14,7 @@ class ServersResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($server) {
+                static function ($server) {
                     return new ServerResponse($server);
                 },
                 $servers

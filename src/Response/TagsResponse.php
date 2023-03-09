@@ -14,7 +14,7 @@ class TagsResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($tag) {
+                static function ($tag) {
                     return new TagResponse($tag);
                 },
                 $tags

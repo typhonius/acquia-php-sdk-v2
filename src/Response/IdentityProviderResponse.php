@@ -20,8 +20,6 @@ class IdentityProviderResponse
 
     public object $links;
 
-    /**
-     */
     public function __construct(object $idp)
     {
         $this->uuid = $idp->uuid;

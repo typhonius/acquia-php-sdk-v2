@@ -47,8 +47,6 @@ class AccountResponse
 
     public object $links;
 
-    /**
-     */
     public function __construct(object $account)
     {
         $this->id = $account->id;

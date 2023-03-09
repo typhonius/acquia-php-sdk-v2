@@ -14,7 +14,7 @@ class CronsResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($cron) {
+                static function ($cron) {
                     return new CronResponse($cron);
                 },
                 $crons

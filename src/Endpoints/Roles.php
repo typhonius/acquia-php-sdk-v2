@@ -16,7 +16,6 @@ class Roles extends CloudApiBase
     /**
      * Show all roles in an organization.
      *
-     *
      * @return RolesResponse<RoleResponse>
      */
     public function getAll(string $organizationUuid): RolesResponse
@@ -28,8 +27,6 @@ class Roles extends CloudApiBase
 
     /**
      * Return details about a specific role.
-     *
-     *
      */
     public function get(string $roleUuid): RoleResponse
     {
@@ -43,7 +40,6 @@ class Roles extends CloudApiBase
      *
      * @param array<string> $permissions
      * @param string|null $description
-     *
      */
     public function create(
         string $organizationUuid,
@@ -68,7 +64,6 @@ class Roles extends CloudApiBase
      * Update the permissions associated with a role.
      *
      * @param array<string> $permissions
-     *
      */
     public function update(string $roleUuid, array $permissions): OperationResponse
     {
@@ -85,8 +80,6 @@ class Roles extends CloudApiBase
 
     /**
      * Delete a role.
-     *
-     *
      */
     public function delete(string $roleUuid): OperationResponse
     {

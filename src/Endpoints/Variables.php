@@ -16,7 +16,6 @@ class Variables extends CloudApiBase
     /**
      * Fetches all environment variables.
      *
-     *
      * @return VariablesResponse<VariableResponse>
      */
     public function getAll(string $environmentUuid): VariablesResponse
@@ -31,8 +30,6 @@ class Variables extends CloudApiBase
 
     /**
      * Returns details about an environment variable.
-     *
-     *
      */
     public function get(string $environmentUuid, string $name): VariableResponse
     {
@@ -46,8 +43,6 @@ class Variables extends CloudApiBase
 
     /**
      * Adds an environment variable.
-     *
-     *
      */
     public function create(string $environmentUuid, string $name, string $value): OperationResponse
     {
@@ -65,8 +60,6 @@ class Variables extends CloudApiBase
 
     /**
      * Updates an environment variable.
-     *
-     *
      */
     public function update(string $environmentUuid, string $name, string $value): OperationResponse
     {
@@ -84,8 +77,6 @@ class Variables extends CloudApiBase
 
     /**
      * Deletes an environment variable.
-     *
-     *
      */
     public function delete(string $environmentUuid, string $name): OperationResponse
     {

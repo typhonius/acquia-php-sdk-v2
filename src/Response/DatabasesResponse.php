@@ -14,7 +14,7 @@ class DatabasesResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($database) {
+                static function ($database) {
                     return new DatabaseResponse($database);
                 },
                 $databases

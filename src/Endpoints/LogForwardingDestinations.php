@@ -17,7 +17,6 @@ class LogForwardingDestinations extends CloudApiBase
      * Returns a list of log forwarding destinations.
      *
      * @param string $environmentUuid The environment ID
-     *
      * @return LogForwardingDestinationsResponse<LogForwardingDestinationResponse>
      */
     public function getAll(string $environmentUuid): LogForwardingDestinationsResponse
@@ -34,7 +33,6 @@ class LogForwardingDestinations extends CloudApiBase
      * Returns a specific log forwarding destination.
      *
      * @param string $environmentUuid The environment ID
-     *
      */
     public function get(string $environmentUuid, int $destinationId): LogForwardingDestinationResponse
     {
@@ -51,7 +49,6 @@ class LogForwardingDestinations extends CloudApiBase
      *
      * @param mixed[] $sources
      * @param mixed[] $credentials
-     *
      */
     public function create(
         string $environmentUuid,
@@ -79,8 +76,6 @@ class LogForwardingDestinations extends CloudApiBase
 
     /**
      * Delete a specific log forwarding destination.
-     *
-     *
      */
     public function delete(string $environmentUuid, int $destId): OperationResponse
     {
@@ -91,8 +86,6 @@ class LogForwardingDestinations extends CloudApiBase
 
     /**
      * Disables a log forwarding destination.
-     *
-     *
      */
     public function disable(string $environmentUuid, int $destId): OperationResponse
     {
@@ -106,8 +99,6 @@ class LogForwardingDestinations extends CloudApiBase
 
     /**
      * Enables a log forwarding destination.
-     *
-     *
      */
     public function enable(string $environmentUuid, int $destId): OperationResponse
     {
@@ -124,7 +115,6 @@ class LogForwardingDestinations extends CloudApiBase
      *
      * @param mixed[] $sources
      * @param mixed[] $creds
-     *
      */
     public function update(
         string $environmentUuid,

@@ -27,8 +27,6 @@ class ServerResponse
 
     public object $flags;
 
-    /**
-     */
     public function __construct(object $server)
     {
         $this->id = $server->id;

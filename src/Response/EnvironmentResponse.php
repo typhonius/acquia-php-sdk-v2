@@ -50,8 +50,6 @@ class EnvironmentResponse
 
     public ?object $artifact;
 
-    /**
-     */
     public function __construct(object $environment)
     {
         $this->uuid = $environment->id;

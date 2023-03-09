@@ -14,8 +14,6 @@ class Notifications extends CloudApiBase
 {
     /**
      * Returns details about a notification.
-     *
-     *
      */
     public function get(string $notificationUuid): NotificationResponse
     {
@@ -29,7 +27,6 @@ class Notifications extends CloudApiBase
 
     /**
      * Returns a list of notifications.
-     *
      *
      * @return NotificationsResponse<NotificationResponse>
      */

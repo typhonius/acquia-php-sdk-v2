@@ -16,8 +16,6 @@ class DatabaseBackups extends CloudApiBase
 {
     /**
      * Backup a database.
-     *
-     *
      */
     public function create(string $environmentUuid, string $dbName): OperationResponse
     {
@@ -31,7 +29,6 @@ class DatabaseBackups extends CloudApiBase
 
     /**
      * Shows all database backups in an environment.
-     *
      *
      * @return BackupsResponse<BackupResponse>
      */
@@ -47,8 +44,6 @@ class DatabaseBackups extends CloudApiBase
 
     /**
      * Gets information about a database backup.
-     *
-     *
      */
     public function get(string $environmentUuid, string $dbName, int $backupId): BackupResponse
     {
@@ -62,8 +57,6 @@ class DatabaseBackups extends CloudApiBase
 
     /**
      * Restores a database backup to a database in an environment.
-     *
-     *
      */
     public function restore(string $environmentUuid, string $dbName, int $backupId): OperationResponse
     {
@@ -77,8 +70,6 @@ class DatabaseBackups extends CloudApiBase
 
     /**
      * Downloads a database backup.
-     *
-     *
      */
     public function download(string $environmentUuid, string $dbName, int $backupId): StreamInterface
     {
@@ -90,8 +81,6 @@ class DatabaseBackups extends CloudApiBase
 
     /**
      * Deletes a database backup.
-     *
-     *
      */
     public function delete(string $environmentUuid, string $dbName, int $backupId): OperationResponse
     {

@@ -17,7 +17,6 @@ class Ides extends CloudApiBase
      * Returns a list of remote IDEs.
      *
      * @param string $applicationUuid The application ID
-     *
      * @return IdesResponse<IdeResponse>
      */
     public function getAll(string $applicationUuid): IdesResponse
@@ -49,7 +48,6 @@ class Ides extends CloudApiBase
      * Get remote IDE info.
      *
      * @param string $ideUuid The Remote IDE universally unique identifier.
-     *
      */
     public function get(string $ideUuid): IdeResponse
     {
@@ -63,8 +61,6 @@ class Ides extends CloudApiBase
 
     /**
      * Creates a new remote IDE.
-     *
-     *
      */
     public function create(string $applicationUuid, string $label): OperationResponse
     {
@@ -82,8 +78,6 @@ class Ides extends CloudApiBase
 
     /**
      * De-provisions a specific Remote IDE.
-     *
-     *
      */
     public function delete(string $ideUuid): OperationResponse
     {

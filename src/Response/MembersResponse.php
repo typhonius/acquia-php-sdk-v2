@@ -14,7 +14,7 @@ class MembersResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($member) {
+                static function ($member) {
                     return new MemberResponse($member);
                 },
                 $members

@@ -16,8 +16,6 @@ class TeamResponse
 
     public object $links;
 
-    /**
-     */
     public function __construct(object $team)
     {
         $this->uuid = $team->uuid;

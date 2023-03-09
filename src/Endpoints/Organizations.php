@@ -34,7 +34,6 @@ class Organizations extends CloudApiBase
     /**
      * Show all applications in an organization.
      *
-     *
      * @return ApplicationsResponse<ApplicationResponse>
      */
     public function getApplications(string $organizationUuid): ApplicationsResponse
@@ -47,7 +46,6 @@ class Organizations extends CloudApiBase
     /**
      * Show all members of an organization.
      *
-     *
      * @return MembersResponse<MemberResponse>
      */
     public function getMembers(string $organizationUuid): MembersResponse
@@ -59,8 +57,6 @@ class Organizations extends CloudApiBase
 
     /**
      * Returns the user profile of this organization member.
-     *
-     *
      */
     public function getMember(string $organizationUuid, string $memberUuid): MemberResponse
     {
@@ -71,7 +67,6 @@ class Organizations extends CloudApiBase
 
     /**
      * Show all admins of an organization.
-     *
      *
      * @return MembersResponse<MemberResponse>
      */
@@ -84,8 +79,6 @@ class Organizations extends CloudApiBase
 
     /**
      * Returns the user profile of this organization administrator.
-     *
-     *
      */
     public function getAdmin(string $organizationUuid, string $memberUuid): MemberResponse
     {
@@ -96,7 +89,6 @@ class Organizations extends CloudApiBase
 
     /**
      * Show all members invited to an organization.
-     *
      *
      * @return InvitationsResponse<InvitationResponse>
      */
@@ -109,8 +101,6 @@ class Organizations extends CloudApiBase
 
     /**
      * Delete a member from an organization.
-     *
-     *
      */
     public function deleteMember(string $organizationUuid, string $memberUuid): OperationResponse
     {
@@ -124,8 +114,6 @@ class Organizations extends CloudApiBase
 
     /**
      * Leave an organization.
-     *
-     *
      */
     public function leaveOrganization(string $organizationUuid): OperationResponse
     {
@@ -139,8 +127,6 @@ class Organizations extends CloudApiBase
 
     /**
      * Change the owner of an organization.
-     *
-     *
      */
     public function changeOwner(string $organizationUuid, string $newOwnerUuid): OperationResponse
     {
@@ -161,7 +147,6 @@ class Organizations extends CloudApiBase
     /**
      * Show all teams in an organization.
      *
-     *
      * @return TeamsResponse<TeamResponse>
      */
     public function getTeams(string $organizationUuid): TeamsResponse
@@ -173,8 +158,6 @@ class Organizations extends CloudApiBase
 
     /**
      * Invites a user to become admin of an organization.
-     *
-     *
      */
     public function inviteAdmin(string $organizationUuid, string $email): OperationResponse
     {

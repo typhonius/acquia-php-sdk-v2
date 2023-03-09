@@ -14,7 +14,7 @@ class MetricsResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($metric) {
+                static function ($metric) {
                     return new MetricResponse($metric);
                 },
                 $metrics

@@ -14,7 +14,6 @@ class Account extends CloudApiBase
 {
     /**
      * Returns details about your account.
-     *
      */
     public function get(): AccountResponse
     {
@@ -23,7 +22,6 @@ class Account extends CloudApiBase
 
     /**
      * Provides an archived set of files for Acquia Drush aliases.
-     *
      */
     public function getDrushAliases(): StreamInterface
     {

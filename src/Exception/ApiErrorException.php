@@ -15,7 +15,6 @@ class ApiErrorException extends Exception
 
     /**
      * ApiErrorException Constructor.
-     *
      */
     public function __construct(object $response_body, string $message = "", int $code = 0, Exception $previous = null)
     {
@@ -35,7 +34,6 @@ class ApiErrorException extends Exception
 
     /**
      * Sets message and errorType properties.
-     *
      */
     private function setError(object $response_body): void
     {
@@ -51,15 +49,11 @@ class ApiErrorException extends Exception
         }
     }
 
-    /**
-     */
     public function getResponseBody(): object
     {
         return $this->responseBody;
     }
 
-    /**
-     */
     private function setResponseBody(object $response_body): void
     {
         $this->responseBody = $response_body;

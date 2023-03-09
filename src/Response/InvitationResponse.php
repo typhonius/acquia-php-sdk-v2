@@ -29,8 +29,6 @@ class InvitationResponse
 
     public object $links;
 
-    /**
-     */
     public function __construct(object $invitation)
     {
         $this->uuid = $invitation->uuid;

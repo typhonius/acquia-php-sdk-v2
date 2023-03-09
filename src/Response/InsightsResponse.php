@@ -14,7 +14,7 @@ class InsightsResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($insight) {
+                static function ($insight) {
                     return new InsightResponse($insight);
                 },
                 $insights

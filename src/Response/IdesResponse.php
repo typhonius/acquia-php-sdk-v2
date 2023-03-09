@@ -14,7 +14,7 @@ class IdesResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($ide) {
+                static function ($ide) {
                     return new IdeResponse($ide);
                 },
                 $ides

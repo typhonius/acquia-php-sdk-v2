@@ -15,7 +15,6 @@ class Metrics extends CloudApiBase
     /**
      * Retrieves aggregate usage data for an application.
      *
-     *
      * @return MetricsResponse<MetricResponse>
      */
     public function getAggregateData(string $applicationUuid): MetricsResponse
@@ -30,8 +29,6 @@ class Metrics extends CloudApiBase
 
     /**
      * Retrieves aggregate usage metric data for an application.
-     *
-     *
      */
     public function getAggregateUsageMetrics(string $applicationUuid, string $usageMetric): MetricResponse
     {
@@ -45,7 +42,6 @@ class Metrics extends CloudApiBase
 
     /**
      * Retrieves usage data for an application, broken down by environment.
-     *
      *
      * @return MetricsResponse<MetricResponse>
      */
@@ -62,7 +58,6 @@ class Metrics extends CloudApiBase
     /**
      * Retrieves views data for an application, broken down by environment.
      *
-     *
      * @return MetricsResponse<MetricResponse>
      */
     public function getViewsByEnvironment(string $applicationUuid): MetricsResponse
@@ -77,7 +72,6 @@ class Metrics extends CloudApiBase
 
     /**
      * Retrieves visits data for an application, broken down by environment.
-     *
      *
      * @return MetricsResponse<MetricResponse>
      */
@@ -96,7 +90,6 @@ class Metrics extends CloudApiBase
      * paramater
      * (e.g., apache-access, web-cpu).
      *
-     *
      * @return MetricsResponse<MetricResponse>
      */
     public function getStackMetricsData(string $environmentUuid): MetricsResponse
@@ -111,8 +104,6 @@ class Metrics extends CloudApiBase
 
     /**
      * Returns StackMetrics data for the metric (e.g., apache-access).
-     *
-     *
      */
     public function getStackMetricsDataByMetric(string $environmentUuid, string $metricType): MetricResponse
     {

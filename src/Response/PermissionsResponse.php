@@ -14,7 +14,7 @@ class PermissionsResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($permission) {
+                static function ($permission) {
                     return new PermissionResponse($permission);
                 },
                 $permissions

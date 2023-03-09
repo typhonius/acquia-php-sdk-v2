@@ -14,7 +14,7 @@ class NotificationsResponse extends \ArrayObject
     {
         parent::__construct(
             array_map(
-                function ($notification) {
+                static function ($notification) {
                     return new NotificationResponse($notification);
                 },
                 $notifications

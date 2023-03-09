@@ -15,8 +15,6 @@ class Environments extends CloudApiBase
 {
     /**
      * Copies files from an environment to another environment.
-     *
-     *
      */
     public function copyFiles(string $environmentUuidFrom, string $environmentUuidTo): OperationResponse
     {
@@ -33,8 +31,6 @@ class Environments extends CloudApiBase
 
     /**
      * Gets information about an environment.
-     *
-     *
      */
     public function get(string $environmentUuid): EnvironmentResponse
     {
@@ -48,7 +44,6 @@ class Environments extends CloudApiBase
 
     /**
      * Shows all environments in an application.
-     *
      *
      * @return EnvironmentsResponse<EnvironmentResponse>
      */
@@ -66,7 +61,6 @@ class Environments extends CloudApiBase
      * Modifies configuration settings for an environment.
      *
      * @param mixed[] $config
-     *
      */
     public function update(string $environmentUuid, array $config): OperationResponse
     {
@@ -86,8 +80,6 @@ class Environments extends CloudApiBase
 
     /**
      * Renames an environment.
-     *
-     *
      */
     public function rename(string $environmentUuid, string $label): OperationResponse
     {
@@ -109,8 +101,6 @@ class Environments extends CloudApiBase
 
     /**
      * Enable livedev mode for an environment.
-     *
-     *
      */
     public function enableLiveDev(string $environmentUuid): OperationResponse
     {
@@ -121,8 +111,6 @@ class Environments extends CloudApiBase
 
     /**
      * Disable livedev mode for an environment.
-     *
-     *
      */
     public function disableLiveDev(string $environmentUuid): OperationResponse
     {
@@ -144,8 +132,6 @@ class Environments extends CloudApiBase
 
     /**
      * Enable production mode for an environment.
-     *
-     *
      */
     public function enableProductionMode(string $environmentUuid): OperationResponse
     {
@@ -159,8 +145,6 @@ class Environments extends CloudApiBase
 
     /**
      * Disable production mode for an environment.
-     *
-     *
      */
     public function disableProductionMode(string $environmentUuid): OperationResponse
     {
@@ -174,8 +158,6 @@ class Environments extends CloudApiBase
 
     /**
      * Enable platform email for an environment.
-     *
-     *
      */
     public function enableEmail(string $environmentUuid): OperationResponse
     {
@@ -189,8 +171,6 @@ class Environments extends CloudApiBase
 
     /**
      * Disable platform email for an environment.
-     *
-     *
      */
     public function disableEmail(string $environmentUuid): OperationResponse
     {
@@ -206,7 +186,6 @@ class Environments extends CloudApiBase
      * Add a new continuous delivery environment to an application.
      *
      * @param array<string> $databases
-     *
      */
     public function create(string $applicationUuid, string $label, string $branch, array $databases): OperationResponse
     {
@@ -229,8 +208,6 @@ class Environments extends CloudApiBase
 
     /**
      * Deletes a CD environment.
-     *
-     *
      */
     public function delete(string $environmentUuid): OperationResponse
     {

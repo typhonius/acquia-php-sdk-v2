@@ -17,8 +17,6 @@ class MetricResponse
 
     public ?object $links;
 
-    /**
-     */
     public function __construct(object $metric)
     {
         $this->metric = $metric->metric;

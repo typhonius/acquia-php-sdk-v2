@@ -10,7 +10,7 @@ class DatabasesResponse extends \ArrayObject
     /**
      * @param array<object> $databases
      */
-    public function __construct($databases)
+    public function __construct(array $databases)
     {
         parent::__construct(
             array_map(

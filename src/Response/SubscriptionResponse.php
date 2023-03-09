@@ -4,65 +4,31 @@ namespace AcquiaCloudApi\Response;
 
 class SubscriptionResponse
 {
-    /**
-     * @var int $id
-     */
-    public $id;
+    public int $id;
+
+    public string $uuid;
+
+    public string $name;
+
+    public string $start_at;
+
+    public string $expire_at;
+
+    public object $product;
+
+    public int $applications_total;
+
+    public int $applications_used;
+
+    public object $organization;
+
+    public object $flags;
+
+    public object $links;
 
     /**
-     * @var string $uuid
      */
-    public $uuid;
-
-    /**
-     * @var string $name
-     */
-    public $name;
-
-    /**
-     * @var string $start_at
-     */
-    public $start_at;
-
-    /**
-     * @var string $expire_at
-     */
-    public $expire_at;
-
-    /**
-     * @var object $product
-     */
-    public $product;
-
-    /**
-     * @var int $applications_total
-     */
-    public $applications_total;
-
-    /**
-     * @var int $applications_used
-     */
-    public $applications_used;
-
-    /**
-     * @var object $organization
-     */
-    public $organization;
-
-    /**
-     * @var object $flags
-     */
-    public $flags;
-
-    /**
-     * @var object $links
-     */
-    public $links;
-
-    /**
-     * @param object $subscription
-     */
-    public function __construct($subscription)
+    public function __construct(object $subscription)
     {
         $this->id = $subscription->id;
         $this->uuid = $subscription->uuid;

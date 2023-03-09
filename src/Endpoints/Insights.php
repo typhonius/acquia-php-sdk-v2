@@ -21,7 +21,6 @@ class Insights extends CloudApiBase
      * Returns Insight data for all sites associated with the application by its
      * UUID.
      *
-     * @param string $applicationUuid
      *
      * @return InsightsResponse<InsightResponse>
      */
@@ -39,7 +38,6 @@ class Insights extends CloudApiBase
      * Returns Insight data for all sites associated with the environment by its
      * UUID.
      *
-     * @param string $environmentUuid
      *
      * @return InsightsResponse<InsightResponse>
      */
@@ -56,9 +54,7 @@ class Insights extends CloudApiBase
     /**
      * Returns insight data for a particular site.
      *
-     * @param string $siteId
      *
-     * @return InsightResponse
      */
     public function get(string $siteId): InsightResponse
     {
@@ -73,7 +69,6 @@ class Insights extends CloudApiBase
     /**
      * Returns a list of Insight alerts for this site.
      *
-     * @param string $siteId
      *
      * @return InsightAlertsResponse<InsightAlertResponse>
      */
@@ -90,10 +85,7 @@ class Insights extends CloudApiBase
     /**
      * Returns a specific Insight alert for this site.
      *
-     * @param string $siteId
-     * @param string $alertUuid
      *
-     * @return InsightAlertResponse
      */
     public function getAlert(string $siteId, string $alertUuid): InsightAlertResponse
     {
@@ -109,10 +101,7 @@ class Insights extends CloudApiBase
      * Ignores an alert. An ignored alert will be included will not be counted
      * in the Insight score calculation.
      *
-     * @param string $siteId
-     * @param string $alertUuid
      *
-     * @return OperationResponse
      */
     public function ignoreAlert(string $siteId, string $alertUuid): OperationResponse
     {
@@ -128,10 +117,7 @@ class Insights extends CloudApiBase
      * Restores an alert. A restored alert will be included in the calculation
      * of the Insight score.
      *
-     * @param string $siteId
-     * @param string $alertUuid
      *
-     * @return OperationResponse
      */
     public function restoreAlert(string $siteId, string $alertUuid): OperationResponse
     {
@@ -147,9 +133,7 @@ class Insights extends CloudApiBase
      * Revokes an Insight install so it can no longer submit data using the
      * Acquia Connector module.
      *
-     * @param string $siteId
      *
-     * @return OperationResponse
      */
     public function revoke(string $siteId): OperationResponse
     {
@@ -166,9 +150,7 @@ class Insights extends CloudApiBase
      * Acquia Connector module. Note that the site must also be unblocked using
      * the Acquia Connector module.
      *
-     * @param string $siteId
      *
-     * @return OperationResponse
      */
     public function unrevoke(string $siteId): OperationResponse
     {
@@ -183,7 +165,6 @@ class Insights extends CloudApiBase
     /**
      * Returns a list of Drupal modules for this site.
      *
-     * @param string $siteId
      *
      * @return InsightModulesResponse<InsightModuleResponse>
      */

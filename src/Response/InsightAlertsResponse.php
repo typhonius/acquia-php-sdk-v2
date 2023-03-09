@@ -10,7 +10,7 @@ class InsightAlertsResponse extends \ArrayObject
     /**
      * @param array<object> $alerts
      */
-    public function __construct($alerts)
+    public function __construct(array $alerts)
     {
         parent::__construct(
             array_map(

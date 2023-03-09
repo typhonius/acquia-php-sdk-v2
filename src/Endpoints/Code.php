@@ -16,7 +16,6 @@ class Code extends CloudApiBase
     /**
      * Shows all code branches and tags in an application.
      *
-     * @param string $applicationUuid
      *
      * @return BranchesResponse<BranchResponse>
      */
@@ -33,10 +32,7 @@ class Code extends CloudApiBase
     /**
      * Deploys a code branch/tag to an environment.
      *
-     * @param string $environmentUuid
-     * @param string $branch
      *
-     * @return OperationResponse
      */
     public function switch(string $environmentUuid, string $branch): OperationResponse
     {
@@ -59,14 +55,14 @@ class Code extends CloudApiBase
     /**
      * Deploys code from one environment to another environment.
      *
-     * @param string $environmentFromUuid
-     * @param string $environmentToUuid
      * @param string|null $commitMessage
      *
-     * @return OperationResponse
      */
-    public function deploy(string $environmentFromUuid, string $environmentToUuid, string $commitMessage = null): OperationResponse
-    {
+    public function deploy(
+        string $environmentFromUuid,
+        string $environmentToUuid,
+        string $commitMessage = null
+    ): OperationResponse {
 
         $options = [
             'json' => [

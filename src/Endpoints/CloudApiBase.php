@@ -19,7 +19,6 @@ abstract class CloudApiBase implements CloudApiInterface
     /**
      * Client constructor.
      *
-     * @param ClientInterface $client
      */
     public function __construct(ClientInterface $client)
     {

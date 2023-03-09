@@ -4,65 +4,34 @@ namespace AcquiaCloudApi\Response;
 
 class InvitationResponse
 {
-    /**
-     * @var string $uuid
-     */
-    public $uuid;
+    public string $uuid;
 
-    /**
-     * @var string $email
-     */
-    public $email;
+    public string $email;
 
-    /**
-     * @var MemberResponse $author
-     */
-    public $author;
+    public MemberResponse $author;
 
-    /**
-     * @var object $applications
-     */
-    public $applications;
+    public object $applications;
 
-    /**
-     * @var object $organization
-     */
-    public $organization;
+    public object $organization;
 
     /**
      * @var array<object> $roles
      */
-    public $roles;
+    public array $roles;
+
+    public TeamResponse $team;
+
+    public string $created_at;
+
+    public string $token;
+
+    public object $flags;
+
+    public object $links;
 
     /**
-     * @var TeamResponse $team
      */
-    public $team;
-
-    /**
-     * @var string $created_at
-     */
-    public $created_at;
-
-    /**
-     * @var string $token
-     */
-    public $token;
-
-    /**
-     * @var object $flags
-     */
-    public $flags;
-
-    /**
-     * @var object $links
-     */
-    public $links;
-
-    /**
-     * @param object $invitation
-     */
-    public function __construct($invitation)
+    public function __construct(object $invitation)
     {
         $this->uuid = $invitation->uuid;
         $this->email = $invitation->email;

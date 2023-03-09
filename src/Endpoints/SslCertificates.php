@@ -34,9 +34,7 @@ class SslCertificates extends CloudApiBase
      * Returns a specific certificate by certificate ID.
      *
      * @param string $environmentUuid The environment ID
-     * @param int $certificateId
      *
-     * @return SslCertificateResponse
      */
     public function get(string $environmentUuid, int $certificateId): SslCertificateResponse
     {
@@ -51,18 +49,19 @@ class SslCertificates extends CloudApiBase
     /**
      * Install an SSL certificate.
      *
-     * @param string $envUuid
-     * @param string $label
-     * @param string $cert
-     * @param string $key
      * @param string|null $ca
      * @param int|null $csr
-     * @param bool $legacy
      *
-     * @return OperationResponse
      */
-    public function create(string $envUuid, string $label, string $cert, string $key, string $ca = null, int $csr = null, bool $legacy = false): OperationResponse
-    {
+    public function create(
+        string $envUuid,
+        string $label,
+        string $cert,
+        string $key,
+        string $ca = null,
+        int $csr = null,
+        bool $legacy = false
+    ): OperationResponse {
 
         $options = [
             'json' => [
@@ -83,10 +82,7 @@ class SslCertificates extends CloudApiBase
     /**
      * Delete a specific certificate by ID.
      *
-     * @param string $environmentUuid
-     * @param int $certificateId
      *
-     * @return OperationResponse
      */
     public function delete(string $environmentUuid, int $certificateId): OperationResponse
     {
@@ -98,10 +94,7 @@ class SslCertificates extends CloudApiBase
     /**
      * Deactivates an active SSL certificate.
      *
-     * @param string $environmentUuid
-     * @param int $certificateId
      *
-     * @return OperationResponse
      */
     public function disable(string $environmentUuid, int $certificateId): OperationResponse
     {
@@ -116,10 +109,7 @@ class SslCertificates extends CloudApiBase
     /**
      * Activates an SSL certificate.
      *
-     * @param string $environmentUuid
-     * @param int $certificateId
      *
-     * @return OperationResponse
      */
     public function enable(string $environmentUuid, int $certificateId): OperationResponse
     {

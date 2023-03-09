@@ -4,70 +4,36 @@ namespace AcquiaCloudApi\Response;
 
 class InsightModuleResponse
 {
-    /**
-     * @var int $module_id
-     */
-    public $module_id;
+    public int $module_id;
 
-    /**
-     * @var string $name
-     */
-    public $name;
+    public string $name;
 
-    /**
-     * @var string $filename
-     */
-    public $filename;
+    public string $filename;
 
-    /**
-     * @var string $version
-     */
-    public $version;
+    public string $version;
 
-    /**
-     * @var string $supported_majors
-     */
-    public $supported_majors;
+    public ?string $supported_majors;
 
-    /**
-     * @var string $recommended_major
-     */
-    public $recommended_major;
+    public ?string $recommended_major;
 
-    /**
-     * @var string $package
-     */
-    public $package;
+    public string $package;
 
-    /**
-     * @var string $core
-     */
-    public $core;
+    public string $core;
 
-    /**
-     * @var string $project
-     */
-    public $project;
+    public string $project;
 
-    /**
-     * @var string $release_date
-     */
-    public $release_date;
+    public ?string $release_date;
 
-    /**
-     * @var object $flags
-     */
-    public $flags;
+    public object $flags;
 
     /**
      * @var array<string> $tags
      */
-    public $tags;
+    public array $tags;
 
     /**
-     * @param object $module
      */
-    public function __construct($module)
+    public function __construct(object $module)
     {
         $this->module_id = $module->module_id;
         $this->name = $module->name;

@@ -34,9 +34,7 @@ class LogForwardingDestinations extends CloudApiBase
      * Returns a specific log forwarding destination.
      *
      * @param string $environmentUuid The environment ID
-     * @param int $destinationId
      *
-     * @return LogForwardingDestinationResponse
      */
     public function get(string $environmentUuid, int $destinationId): LogForwardingDestinationResponse
     {
@@ -51,17 +49,18 @@ class LogForwardingDestinations extends CloudApiBase
     /**
      * Creates a log forwarding destination.
      *
-     * @param string $environmentUuid
-     * @param string $label
      * @param mixed[] $sources
-     * @param string $consumer
      * @param mixed[] $credentials
-     * @param string $address
      *
-     * @return OperationResponse
      */
-    public function create(string $environmentUuid, string $label, array $sources, string $consumer, array $credentials, string $address): OperationResponse
-    {
+    public function create(
+        string $environmentUuid,
+        string $label,
+        array $sources,
+        string $consumer,
+        array $credentials,
+        string $address
+    ): OperationResponse {
 
         $options = [
             'json' => [
@@ -81,10 +80,7 @@ class LogForwardingDestinations extends CloudApiBase
     /**
      * Delete a specific log forwarding destination.
      *
-     * @param string $environmentUuid
-     * @param int $destId
      *
-     * @return OperationResponse
      */
     public function delete(string $environmentUuid, int $destId): OperationResponse
     {
@@ -96,10 +92,7 @@ class LogForwardingDestinations extends CloudApiBase
     /**
      * Disables a log forwarding destination.
      *
-     * @param string $environmentUuid
-     * @param int $destId
      *
-     * @return OperationResponse
      */
     public function disable(string $environmentUuid, int $destId): OperationResponse
     {
@@ -114,10 +107,7 @@ class LogForwardingDestinations extends CloudApiBase
     /**
      * Enables a log forwarding destination.
      *
-     * @param string $environmentUuid
-     * @param int $destId
      *
-     * @return OperationResponse
      */
     public function enable(string $environmentUuid, int $destId): OperationResponse
     {
@@ -132,18 +122,19 @@ class LogForwardingDestinations extends CloudApiBase
     /**
      * Updates a log forwarding destination.
      *
-     * @param string $environmentUuid
-     * @param int $destId
-     * @param string $label
      * @param mixed[] $sources
-     * @param string $consumer
      * @param mixed[] $creds
-     * @param string $address
      *
-     * @return OperationResponse
      */
-    public function update(string $environmentUuid, int $destId, string $label, array $sources, string $consumer, array $creds, string $address): OperationResponse
-    {
+    public function update(
+        string $environmentUuid,
+        int $destId,
+        string $label,
+        array $sources,
+        string $consumer,
+        array $creds,
+        string $address
+    ): OperationResponse {
         $options = [
             'json' => [
                 'label' => $label,

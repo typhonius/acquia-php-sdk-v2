@@ -21,14 +21,8 @@ use Symfony\Component\Filesystem\Path;
 
 class ConnectorTest extends CloudApiTestCase
 {
-    /**
-     * @var ConnectorInterface $connector
-     */
     public ConnectorInterface $connector;
 
-    /**
-     * @var AbstractAdapter $cache
-     */
     public AbstractAdapter $cache;
 
     public function setUp(): void

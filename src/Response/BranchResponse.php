@@ -4,20 +4,13 @@ namespace AcquiaCloudApi\Response;
 
 class BranchResponse
 {
-    /**
-     * @var string $name
-     */
-    public $name;
+    public string $name;
+
+    public object $flags;
 
     /**
-     * @var object $flags
      */
-    public $flags;
-
-    /**
-     * @param object $branch
-     */
-    public function __construct($branch)
+    public function __construct(object $branch)
     {
         $this->name = $branch->name;
         $this->flags = $branch->flags;

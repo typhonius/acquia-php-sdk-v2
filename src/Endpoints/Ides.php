@@ -50,7 +50,6 @@ class Ides extends CloudApiBase
      *
      * @param string $ideUuid The Remote IDE universally unique identifier.
      *
-     * @return IdeResponse
      */
     public function get(string $ideUuid): IdeResponse
     {
@@ -65,10 +64,7 @@ class Ides extends CloudApiBase
     /**
      * Creates a new remote IDE.
      *
-     * @param string $applicationUuid
-     * @param string $label
      *
-     * @return OperationResponse
      */
     public function create(string $applicationUuid, string $label): OperationResponse
     {
@@ -87,9 +83,7 @@ class Ides extends CloudApiBase
     /**
      * De-provisions a specific Remote IDE.
      *
-     * @param string $ideUuid
      *
-     * @return OperationResponse
      */
     public function delete(string $ideUuid): OperationResponse
     {

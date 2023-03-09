@@ -31,9 +31,7 @@ class SshKeys extends CloudApiBase
     /**
      * Returns a specific key by key ID.
      *
-     * @param string $keyId
      *
-     * @return SshKeyResponse
      */
     public function get(string $keyId): SshKeyResponse
     {
@@ -48,10 +46,7 @@ class SshKeys extends CloudApiBase
     /**
      * Create an SSH key.
      *
-     * @param string $label
-     * @param string $public_key
      *
-     * @return OperationResponse
      */
     public function create(string $label, string $public_key): OperationResponse
     {
@@ -71,9 +66,7 @@ class SshKeys extends CloudApiBase
     /**
      * Delete a specific key by ID.
      *
-     * @param string $keyId
      *
-     * @return OperationResponse
      */
     public function delete(string $keyId): OperationResponse
     {

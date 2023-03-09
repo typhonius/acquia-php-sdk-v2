@@ -10,7 +10,7 @@ class TagsResponse extends \ArrayObject
     /**
      * @param array<object> $tags
      */
-    public function __construct($tags)
+    public function __construct(array $tags)
     {
         parent::__construct(
             array_map(

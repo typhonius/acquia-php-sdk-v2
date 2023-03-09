@@ -4,21 +4,13 @@ namespace AcquiaCloudApi\Response;
 
 class LogstreamResponse
 {
-    /**
-     * @var object $logstream
-     */
+    public object $logstream;
 
-    public $logstream;
+    public object $links;
 
     /**
-     * @var object $links
      */
-    public $links;
-
-    /**
-     * @param object $logstream
-     */
-    public function __construct($logstream)
+    public function __construct(object $logstream)
     {
         $this->logstream = $logstream->logstream;
         $this->links = $logstream->_links;

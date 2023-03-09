@@ -10,7 +10,7 @@ class ServersResponse extends \ArrayObject
     /**
      * @param array<object> $servers
      */
-    public function __construct($servers)
+    public function __construct(array $servers)
     {
         parent::__construct(
             array_map(

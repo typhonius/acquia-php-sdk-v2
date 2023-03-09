@@ -10,7 +10,7 @@ class RolesResponse extends \ArrayObject
     /**
      * @param array<object> $roles
      */
-    public function __construct($roles)
+    public function __construct(array $roles)
     {
         parent::__construct(
             array_map(

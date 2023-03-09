@@ -4,60 +4,32 @@ namespace AcquiaCloudApi\Response;
 
 class LogForwardingDestinationResponse
 {
-    /**
-     * @var string $uuid
-     */
-    public $uuid;
+    public string $uuid;
 
-    /**
-     * @var string $label
-     */
-    public $label;
+    public string $label;
 
-    /**
-     * @var string $address
-     */
-    public $address;
+    public string $address;
 
-    /**
-     * @var string $consumer
-     */
-    public $consumer;
+    public string $consumer;
 
-    /**
-     * @var object $credentials
-     */
-    public $credentials;
+    public object $credentials;
 
     /**
      * @var array<string> $sources
      */
-    public $sources;
+    public array $sources;
+
+    public string $status;
+
+    public object $flags;
+
+    public object $health;
+
+    public object $environment;
 
     /**
-     * @var string $status
      */
-    public $status;
-
-    /**
-     * @var object $flags
-     */
-    public $flags;
-
-    /**
-     * @var object $health
-     */
-    public $health;
-
-    /**
-     * @var object $environment
-     */
-    public $environment;
-
-    /**
-     * @param object $destination
-     */
-    public function __construct($destination)
+    public function __construct(object $destination)
     {
         $this->uuid = $destination->uuid;
         $this->label = $destination->label;

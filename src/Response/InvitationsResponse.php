@@ -10,7 +10,7 @@ class InvitationsResponse extends \ArrayObject
     /**
      * @param array<object> $invitations
      */
-    public function __construct($invitations)
+    public function __construct(array $invitations)
     {
         parent::__construct(
             array_map(

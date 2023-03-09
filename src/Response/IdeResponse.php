@@ -4,30 +4,17 @@ namespace AcquiaCloudApi\Response;
 
 class IdeResponse
 {
-    /**
-     * @var string $uuid
-     */
-    public $uuid;
+    public string $uuid;
+
+    public string $label;
+
+    public object $links;
+
+    public MemberResponse $owner;
 
     /**
-     * @var string $label
      */
-    public $label;
-
-    /**
-     * @var object $links
-     */
-    public $links;
-
-    /**
-     * @var MemberResponse $owner
-     */
-    public $owner;
-
-    /**
-     * @param object $ide
-     */
-    public function __construct($ide)
+    public function __construct(object $ide)
     {
         $this->uuid = $ide->uuid;
         $this->label = $ide->label;

@@ -17,10 +17,7 @@ class DatabaseBackups extends CloudApiBase
     /**
      * Backup a database.
      *
-     * @param string $environmentUuid
-     * @param string $dbName
      *
-     * @return OperationResponse
      */
     public function create(string $environmentUuid, string $dbName): OperationResponse
     {
@@ -35,8 +32,6 @@ class DatabaseBackups extends CloudApiBase
     /**
      * Shows all database backups in an environment.
      *
-     * @param string $environmentUuid
-     * @param string $dbName
      *
      * @return BackupsResponse<BackupResponse>
      */
@@ -53,11 +48,7 @@ class DatabaseBackups extends CloudApiBase
     /**
      * Gets information about a database backup.
      *
-     * @param string $environmentUuid
-     * @param string $dbName
-     * @param int $backupId
      *
-     * @return BackupResponse
      */
     public function get(string $environmentUuid, string $dbName, int $backupId): BackupResponse
     {
@@ -72,11 +63,7 @@ class DatabaseBackups extends CloudApiBase
     /**
      * Restores a database backup to a database in an environment.
      *
-     * @param string $environmentUuid
-     * @param string $dbName
-     * @param int $backupId
      *
-     * @return OperationResponse
      */
     public function restore(string $environmentUuid, string $dbName, int $backupId): OperationResponse
     {
@@ -91,11 +78,7 @@ class DatabaseBackups extends CloudApiBase
     /**
      * Downloads a database backup.
      *
-     * @param string $environmentUuid
-     * @param string $dbName
-     * @param int $backupId
      *
-     * @return StreamInterface
      */
     public function download(string $environmentUuid, string $dbName, int $backupId): StreamInterface
     {
@@ -108,11 +91,7 @@ class DatabaseBackups extends CloudApiBase
     /**
      * Deletes a database backup.
      *
-     * @param string $environmentUuid
-     * @param string $dbName
-     * @param int $backupId
      *
-     * @return OperationResponse
      */
     public function delete(string $environmentUuid, string $dbName, int $backupId): OperationResponse
     {

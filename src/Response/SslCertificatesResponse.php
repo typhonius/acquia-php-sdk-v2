@@ -10,7 +10,7 @@ class SslCertificatesResponse extends \ArrayObject
     /**
      * @param array<object> $certificates
      */
-    public function __construct($certificates)
+    public function __construct(array $certificates)
     {
         parent::__construct(
             array_map(

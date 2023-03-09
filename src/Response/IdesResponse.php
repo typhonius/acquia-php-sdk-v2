@@ -10,7 +10,7 @@ class IdesResponse extends \ArrayObject
     /**
      * @param array<object> $ides
      */
-    public function __construct($ides)
+    public function __construct(array $ides)
     {
         parent::__construct(
             array_map(

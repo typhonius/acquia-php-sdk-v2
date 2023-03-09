@@ -4,15 +4,9 @@ namespace AcquiaCloudApi\Response;
 
 class DatabaseResponse
 {
-    /**
-     * @var string $name
-     */
-    public $name;
+    public string $name;
 
-    /**
-     * @param object $database
-     */
-    public function __construct($database)
+    public function __construct(object $database)
     {
         $this->name = $database->name;
     }

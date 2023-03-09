@@ -4,40 +4,21 @@ namespace AcquiaCloudApi\Response;
 
 class TeamResponse
 {
-    /**
-     * @var string $uuid
-     */
-    public $uuid;
+    public string $uuid;
+
+    public string $name;
+
+    public ?string $created_at;
+
+    public ?string $updated_at;
+
+    public ?object $organization;
+
+    public object $links;
 
     /**
-     * @var string $name
      */
-    public $name;
-
-    /**
-     * @var string|null $created_at
-     */
-    public $created_at;
-
-    /**
-     * @var string|null $updated_at
-     */
-    public $updated_at;
-
-    /**
-     * @var object|null $organization
-     */
-    public $organization;
-
-    /**
-     * @var object $links
-     */
-    public $links;
-
-    /**
-     * @param object $team
-     */
-    public function __construct($team)
+    public function __construct(object $team)
     {
         $this->uuid = $team->uuid;
         $this->name = $team->name;

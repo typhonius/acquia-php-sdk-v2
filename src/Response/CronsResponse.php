@@ -10,7 +10,7 @@ class CronsResponse extends \ArrayObject
     /**
      * @param array<object> $crons
      */
-    public function __construct($crons)
+    public function __construct(array $crons)
     {
         parent::__construct(
             array_map(

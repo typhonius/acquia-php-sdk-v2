@@ -4,60 +4,29 @@ namespace AcquiaCloudApi\Response;
 
 class OrganizationResponse
 {
-    /**
-     * @var string $id
-     */
-    public $id;
+    public string $id;
+
+    public string $uuid;
+
+    public string $name;
+
+    public MemberResponse $owner;
+
+    public string $subscriptions_total;
+
+    public string $admins_total;
+
+    public string $users_total;
+
+    public string $teams_total;
+
+    public string $roles_total;
+
+    public object $links;
 
     /**
-     * @var string $uuid
      */
-    public $uuid;
-
-    /**
-     * @var string $name
-     */
-    public $name;
-
-    /**
-     * @var object $owner
-     */
-    public $owner;
-
-    /**
-     * @var string $subscriptions_total
-     */
-    public $subscriptions_total;
-
-    /**
-     * @var string $admins_total
-     */
-    public $admins_total;
-
-    /**
-     * @var string $users_total
-     */
-    public $users_total;
-
-    /**
-     * @var string $teams_total
-     */
-    public $teams_total;
-
-    /**
-     * @var string $roles_total
-     */
-    public $roles_total;
-
-    /**
-     * @var object $links
-     */
-    public $links;
-
-    /**
-     * @param object $organization
-     */
-    public function __construct($organization)
+    public function __construct(object $organization)
     {
         $this->id = $organization->id;
         $this->uuid = $organization->uuid;

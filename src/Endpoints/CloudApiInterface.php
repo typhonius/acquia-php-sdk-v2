@@ -12,7 +12,6 @@ interface CloudApiInterface
     /**
      * CloudApiInterface constructor.
      *
-     * @param ClientInterface $client
      */
     public function __construct(ClientInterface $client);
 }

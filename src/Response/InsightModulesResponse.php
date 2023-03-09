@@ -10,7 +10,7 @@ class InsightModulesResponse extends \ArrayObject
     /**
      * @param array<object> $modules
      */
-    public function __construct($modules)
+    public function __construct(array $modules)
     {
         parent::__construct(
             array_map(

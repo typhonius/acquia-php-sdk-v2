@@ -21,9 +21,7 @@ class Subscriptions extends CloudApiBase
     /**
      * Shows information about an subscription.
      *
-     * @param string $subscriptionUuid
      *
-     * @return SubscriptionResponse
      */
     public function get(string $subscriptionUuid): SubscriptionResponse
     {
@@ -38,10 +36,7 @@ class Subscriptions extends CloudApiBase
     /**
      * Renames an subscription.
      *
-     * @param string $subscriptionUuid
-     * @param string $name
      *
-     * @return OperationResponse
      */
     public function rename(string $subscriptionUuid, string $name): OperationResponse
     {

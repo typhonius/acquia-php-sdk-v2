@@ -4,25 +4,15 @@ namespace AcquiaCloudApi\Response;
 
 class VariableResponse
 {
-    /**
-     * @var string $name
-     */
-    public $name;
+    public string $name;
+
+    public string $value;
+
+    public object $links;
 
     /**
-     * @var string $value
      */
-    public $value;
-
-    /**
-     * @var object $links
-     */
-    public $links;
-
-    /**
-     * @param object $variable
-     */
-    public function __construct($variable)
+    public function __construct(object $variable)
     {
         $this->name = $variable->name;
         $this->value = $variable->value;

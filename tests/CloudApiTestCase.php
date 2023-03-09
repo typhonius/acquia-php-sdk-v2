@@ -18,9 +18,8 @@ abstract class CloudApiTestCase extends TestCase
      * Returns a PSR7 Stream for a given fixture.
      *
      * @param  string $fixture The fixture to create the stream for.
-     * @return Stream
      */
-    protected function getPsr7StreamForFixture($fixture): Stream
+    protected function getPsr7StreamForFixture(string $fixture): Stream
     {
         $path = sprintf('%s/Fixtures/%s', __DIR__, $fixture);
         $this->assertFileExists($path);
@@ -35,9 +34,8 @@ abstract class CloudApiTestCase extends TestCase
      *
      * @param  string  $fixture    The fixture to create the response for.
      * @param  integer $statusCode A HTTP Status Code for the response.
-     * @return Response
      */
-    protected function getPsr7JsonResponseForFixture($fixture, $statusCode = 200): Response
+    protected function getPsr7JsonResponseForFixture(string $fixture, int $statusCode = 200): Response
     {
         $stream = $this->getPsr7StreamForFixture($fixture);
         $this->assertNotNull(json_decode($stream));
@@ -51,9 +49,8 @@ abstract class CloudApiTestCase extends TestCase
      *
      * @param  string  $fixture    The fixture to create the response for.
      * @param  integer $statusCode A HTTP Status Code for the response.
-     * @return Response
      */
-    protected function getPsr7GzipResponseForFixture($fixture, $statusCode = 200): Response
+    protected function getPsr7GzipResponseForFixture(string $fixture, int $statusCode = 200): Response
     {
         $stream = $this->getPsr7StreamForFixture($fixture);
 
@@ -63,10 +60,8 @@ abstract class CloudApiTestCase extends TestCase
     /**
      * Mock client class.
      *
-     * @param  mixed $response
-     * @return ClientInterface
      */
-    protected function getMockClient($response = ''): ClientInterface
+    protected function getMockClient(mixed $response = ''): ClientInterface
     {
         if ($response) {
             $connector = $this
@@ -94,10 +89,9 @@ abstract class CloudApiTestCase extends TestCase
     /**
      * Uses reflection to retrieve the internal request options to test passed parameters.
      *
-     * @param  ClientInterface $client
      * @return array<mixed>
      */
-    protected function getRequestOptions($client): array
+    protected function getRequestOptions(ClientInterface $client): array
     {
         $reflectionClass = new \ReflectionClass('AcquiaCloudApi\Connector\Client');
         $property = $reflectionClass->getProperty('requestOptions');

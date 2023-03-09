@@ -10,7 +10,7 @@ class NotificationsResponse extends \ArrayObject
     /**
      * @param array<object> $notifications
      */
-    public function __construct($notifications)
+    public function __construct(array $notifications)
     {
         parent::__construct(
             array_map(

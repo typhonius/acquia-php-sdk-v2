@@ -4,41 +4,21 @@ namespace AcquiaCloudApi\Response;
 
 class InsightCountResponse
 {
-    /**
-     * @var string $name
-     */
-    public $name;
+    public string $name;
+
+    public int $pass;
+
+    public int $fail;
+
+    public int $ignored;
+
+    public int $total;
+
+    public int $percent;
 
     /**
-     * @var int $pass
      */
-    public $pass;
-
-    /**
-     * @var int $fail
-     */
-    public $fail;
-
-    /**
-     * @var int $ignored
-     */
-    public $ignored;
-
-    /**
-     * @var int $total
-     */
-    public $total;
-
-    /**
-     * @var int $percent
-     */
-    public $percent;
-
-    /**
-     * @param string $name
-     * @param object $insightCount
-     */
-    public function __construct($name, $insightCount)
+    public function __construct(string $name, object $insightCount)
     {
         $this->name = $name;
         $this->pass = $insightCount->pass;

@@ -10,7 +10,7 @@ class SshKeysResponse extends \ArrayObject
     /**
      * @param array<object> $sshkeys
      */
-    public function __construct($sshkeys)
+    public function __construct(array $sshkeys)
     {
         parent::__construct(
             array_map(

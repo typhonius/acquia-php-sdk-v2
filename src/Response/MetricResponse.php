@@ -4,33 +4,20 @@ namespace AcquiaCloudApi\Response;
 
 class MetricResponse
 {
-    /**
-     * @var string $metric
-     */
-    public $metric;
+    public string $metric;
 
     /**
      * @var array<array<mixed>> $datapoints
      */
-    public $datapoints;
+    public array $datapoints;
+
+    public ?string $last_data_at;
+
+    public object $metadata;
+
+    public ?object $links;
 
     /**
-     * @var string|null $last_data_at
-     */
-    public $last_data_at;
-
-    /**
-     * @var object $metadata
-     */
-    public $metadata;
-
-    /**
-     * @var object|null $links
-     */
-    public $links;
-
-    /**
-     * @param object $metric
      */
     public function __construct(object $metric)
     {

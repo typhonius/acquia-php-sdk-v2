@@ -33,7 +33,6 @@ class IdentityProviders extends CloudApiBase
      *
      * @param string $idpUuid The identity provider ID
      *
-     * @return IdentityProviderResponse
      */
     public function get(string $idpUuid): IdentityProviderResponse
     {
@@ -48,9 +47,7 @@ class IdentityProviders extends CloudApiBase
     /**
      * Delete a specific identity provider by UUID.
      *
-     * @param string $idpUuid
      *
-     * @return OperationResponse
      */
     public function delete(string $idpUuid): OperationResponse
     {
@@ -65,9 +62,7 @@ class IdentityProviders extends CloudApiBase
     /**
      * Disables an identity provider by UUID.
      *
-     * @param string $idpUuid
      *
-     * @return OperationResponse
      */
     public function disable(string $idpUuid): OperationResponse
     {
@@ -82,9 +77,7 @@ class IdentityProviders extends CloudApiBase
     /**
      * Enables an identity provider by UUID.
      *
-     * @param string $idpUuid
      *
-     * @return OperationResponse
      */
     public function enable(string $idpUuid): OperationResponse
     {
@@ -99,16 +92,15 @@ class IdentityProviders extends CloudApiBase
     /**
      * Updates a identity provider by UUID.
      *
-     * @param string $idpUuid
-     * @param string $label
-     * @param string $entityId
-     * @param string $ssoUrl
-     * @param string $certificate
      *
-     * @return OperationResponse
      */
-    public function update(string $idpUuid, string $label, string $entityId, string $ssoUrl, string $certificate): OperationResponse
-    {
+    public function update(
+        string $idpUuid,
+        string $label,
+        string $entityId,
+        string $ssoUrl,
+        string $certificate
+    ): OperationResponse {
 
         $options = [
             'json' => [

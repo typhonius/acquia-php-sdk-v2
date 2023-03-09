@@ -12,7 +12,7 @@ class ApplicationsResponse extends ArrayObject
     /**
      * @param array<object> $applications
      */
-    public function __construct($applications)
+    public function __construct(array $applications)
     {
         parent::__construct(
             array_map(

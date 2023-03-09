@@ -10,7 +10,7 @@ class VariablesResponse extends \ArrayObject
     /**
      * @param array<object> $variables
      */
-    public function __construct($variables)
+    public function __construct(array $variables)
     {
         parent::__construct(
             array_map(

@@ -4,20 +4,13 @@ namespace AcquiaCloudApi\Response;
 
 class OperationResponse
 {
-    /**
-     * @var string $message
-     */
-    public $message;
+    public string $message;
+
+    public ?object $links;
 
     /**
-     * @var object|null $links
      */
-    public $links;
-
-    /**
-     * @param object $operation
-     */
-    public function __construct($operation)
+    public function __construct(object $operation)
     {
         $this->message = $operation->message;
         if (isset($operation->_links)) {

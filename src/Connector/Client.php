@@ -17,27 +17,26 @@ class Client implements ClientInterface
     /**
      * @var ConnectorInterface The API connector.
      */
-    protected $connector;
+    protected ConnectorInterface $connector;
 
     /**
      * @var array<string, mixed> Query strings to be applied to the request.
      */
-    protected $query = [];
+    protected array $query = [];
 
     /**
      * @var array<string, mixed> Guzzle options to be applied to the request.
      */
-    protected $options = [];
+    protected array $options = [];
 
     /**
      * @var array<string, mixed> Request options from each individual API call.
      */
-    private $requestOptions = [];
+    private array $requestOptions = [];
 
     /**
      * Client constructor.
      *
-     * @param ConnectorInterface $connector
      */
     final public function __construct(ConnectorInterface $connector)
     {
@@ -47,11 +46,10 @@ class Client implements ClientInterface
     /**
      * Client factory method for instantiating.
      *
-     * @param ConnectorInterface $connector
      *
      * @return static
      */
-    public static function factory(ConnectorInterface $connector)
+    public static function factory(ConnectorInterface $connector): static
     {
         return new static(
             $connector
@@ -76,8 +74,9 @@ class Client implements ClientInterface
 
         // This library can be standalone or as a dependency. Dependent libraries may also set their own user agent
         // which will make $options['headers']['User-Agent'] an array.
-        // We need to array_unique() the array of User-Agent headers as multiple calls may include multiple of the same header.
-        // We also use array_unshift() to place this library's user agent first to order to have it appear at the beginning of log files.
+        // We need to array_unique() the array of User-Agent headers as multiple calls may include multiple of the same
+        // header. We also use array_unshift() to place this library's user agent first to order to have it appear at
+        // the beginning of log files.
         // As Guzzle joins arrays with a comma, we must implode with a space here to pass Guzzle a string.
         $userAgent = sprintf(
             "%s/%s (https://github.com/typhonius/acquia-php-sdk-v2)",
@@ -103,7 +102,7 @@ class Client implements ClientInterface
     /**
      * @inheritdoc
      */
-    public function request(string $verb, string $path, array $options = [])
+    public function request(string $verb, string $path, array $options = []): mixed
     {
         // Put options sent with API calls into a property so they can be accessed
         // and therefore tested in tests.
@@ -131,9 +130,7 @@ class Client implements ClientInterface
         // as those set by tools extending this library.
         $modifiedOptions = $this->modifyOptions();
 
-        $response = $this->makeRequest($verb, $path, $modifiedOptions);
-
-        return $response->getBody();
+        return $this->makeRequest($verb, $path, $modifiedOptions)->getBody();
     }
 
     /**
@@ -153,7 +150,7 @@ class Client implements ClientInterface
     /**
      * @inheritdoc
      */
-    public function processResponse(ResponseInterface $response)
+    public function processResponse(ResponseInterface $response): mixed
     {
 
         $body_json = $response->getBody();
@@ -189,7 +186,7 @@ class Client implements ClientInterface
     /**
      * @inheritdoc
      */
-    public function addQuery($name, $value): void
+    public function addQuery(string $name, int|string $value): void
     {
         $this->query = array_merge_recursive($this->query, [$name => $value]);
     }
@@ -213,7 +210,7 @@ class Client implements ClientInterface
     /**
      * @inheritdoc
      */
-    public function addOption($name, $value): void
+    public function addOption(string $name, mixed $value): void
     {
         $this->options = array_merge_recursive($this->options, [$name => $value]);
     }

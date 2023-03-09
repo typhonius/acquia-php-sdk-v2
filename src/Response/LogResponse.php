@@ -4,30 +4,17 @@ namespace AcquiaCloudApi\Response;
 
 class LogResponse
 {
-    /**
-     * @var string $type
-     */
-    public $type;
+    public string $type;
+
+    public string $label;
+
+    public object $flags;
+
+    public object $links;
 
     /**
-     * @var string $label
      */
-    public $label;
-
-    /**
-     * @var object $flags
-     */
-    public $flags;
-
-    /**
-     * @var object $links
-     */
-    public $links;
-
-    /**
-     * @param object $log
-     */
-    public function __construct($log)
+    public function __construct(object $log)
     {
         $this->type = $log->type;
         $this->label = $log->label;

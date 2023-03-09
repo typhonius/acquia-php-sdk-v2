@@ -34,9 +34,7 @@ class Crons extends CloudApiBase
      * Get information about a cron task.
      *
      * @param string $environmentUuid The environment ID
-     * @param int $cronId
      *
-     * @return CronResponse
      */
     public function get(string $environmentUuid, int $cronId): CronResponse
     {
@@ -51,16 +49,16 @@ class Crons extends CloudApiBase
     /**
      * Add a cron task.
      *
-     * @param string $environmentUuid
-     * @param string $command
-     * @param string $frequency
-     * @param string $label
      * @param string|null $serverId
      *
-     * @return OperationResponse
      */
-    public function create(string $environmentUuid, string $command, string $frequency, string $label, string $serverId = null): OperationResponse
-    {
+    public function create(
+        string $environmentUuid,
+        string $command,
+        string $frequency,
+        string $label,
+        string $serverId = null
+    ): OperationResponse {
 
         $options = [
             'json' => [
@@ -79,17 +77,17 @@ class Crons extends CloudApiBase
     /**
      * Update a cron task.
      *
-     * @param string $environmentUuid
-     * @param string $cronId
-     * @param string $command
-     * @param string $frequency
-     * @param string $label
      * @param string|null $serverId
      *
-     * @return OperationResponse
      */
-    public function update(string $environmentUuid, string $cronId, string $command, string $frequency, string $label, string $serverId = null): OperationResponse
-    {
+    public function update(
+        string $environmentUuid,
+        string $cronId,
+        string $command,
+        string $frequency,
+        string $label,
+        string $serverId = null
+    ): OperationResponse {
 
         $options = [
             'json' => [
@@ -108,10 +106,7 @@ class Crons extends CloudApiBase
     /**
      * Delete a cron task.
      *
-     * @param string $environmentUuid
-     * @param int $cronId
      *
-     * @return OperationResponse
      */
     public function delete(string $environmentUuid, int $cronId): OperationResponse
     {
@@ -123,10 +118,7 @@ class Crons extends CloudApiBase
     /**
      * Disable a cron task.
      *
-     * @param string $environmentUuid
-     * @param int $cronId
      *
-     * @return OperationResponse
      */
     public function disable(string $environmentUuid, int $cronId): OperationResponse
     {
@@ -141,10 +133,7 @@ class Crons extends CloudApiBase
     /**
      * Enable a cron task.
      *
-     * @param string $environmentUuid
-     * @param int $cronId
      *
-     * @return OperationResponse
      */
     public function enable(string $environmentUuid, int $cronId): OperationResponse
     {

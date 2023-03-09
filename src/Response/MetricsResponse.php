@@ -10,7 +10,7 @@ class MetricsResponse extends \ArrayObject
     /**
      * @param array<object> $metrics
      */
-    public function __construct($metrics)
+    public function __construct(array $metrics)
     {
         parent::__construct(
             array_map(

@@ -22,7 +22,6 @@ interface ClientInterface
     /**
      * Returns the current version of the library.
      *
-     * @return string
      * @throws \Exception
      */
     public function getVersion(): string;
@@ -37,41 +36,30 @@ interface ClientInterface
     /**
      * Takes parameters passed in, makes a request to the API, and processes the response.
      *
-     * @param string $verb
-     * @param string $path
      * @param array<string, mixed> $options
      *
-     * @return mixed
      */
-    public function request(string $verb, string $path, array $options = []);
+    public function request(string $verb, string $path, array $options = []): mixed;
 
     /**
      * Takes parameters passed in, makes a request to the API, and streams the response.
      *
-     * @param string $verb
-     * @param string $path
      * @param array<string, mixed> $options
      *
-     * @return StreamInterface
      */
     public function stream(string $verb, string $path, array $options = []): StreamInterface;
 
     /**
-     * @param  string $verb
-     * @param  string $path
      * @param  array<string, mixed> $options
-     * @return ResponseInterface
      */
     public function makeRequest(string $verb, string $path, array $options = []): ResponseInterface;
 
     /**
      * Processes the returned response from the API.
      *
-     * @param  ResponseInterface $response
-     * @return mixed
      * @throws \Exception
      */
-    public function processResponse(ResponseInterface $response);
+    public function processResponse(ResponseInterface $response): mixed;
 
     /**
      * Get query from Client.
@@ -88,10 +76,8 @@ interface ClientInterface
     /**
      * Add a query parameter to filter results.
      *
-     * @param string     $name
-     * @param string|int $value
      */
-    public function addQuery($name, $value): void;
+    public function addQuery(string $name, int|string $value): void;
 
     /**
      * Get options from Client.
@@ -108,8 +94,6 @@ interface ClientInterface
     /**
      * Add an option to the Guzzle request object.
      *
-     * @param string $name
-     * @param mixed  $value
      */
-    public function addOption($name, $value): void;
+    public function addOption(string $name, mixed $value): void;
 }

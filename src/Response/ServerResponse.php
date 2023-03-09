@@ -4,60 +4,32 @@ namespace AcquiaCloudApi\Response;
 
 class ServerResponse
 {
-    /**
-     * @var string $id
-     */
-    public $id;
+    public string $id;
 
-    /**
-     * @var string $name
-     */
-    public $name;
+    public string $name;
 
-    /**
-     * @var string $hostname
-     */
-    public $hostname;
+    public string $hostname;
 
-    /**
-     * @var string $ip
-     */
-    public $ip;
+    public string $ip;
 
-    /**
-     * @var string $status
-     */
-    public $status;
+    public string $status;
 
-    /**
-     * @var string $region
-     */
-    public $region;
+    public string $region;
 
     /**
      * @var array<string> $roles
      */
-    public $roles;
+    public array $roles;
+
+    public string $amiType;
+
+    public object $configuration;
+
+    public object $flags;
 
     /**
-     * @var string $amiType
      */
-    public $amiType;
-
-    /**
-     * @var object $configuration
-     */
-    public $configuration;
-
-    /**
-     * @var object $flags
-     */
-    public $flags;
-
-    /**
-     * @param object $server
-     */
-    public function __construct($server)
+    public function __construct(object $server)
     {
         $this->id = $server->id;
         $this->name = $server->name;

@@ -9,25 +9,15 @@ use Exception;
  */
 class ApiErrorException extends Exception
 {
-    /**
-     * @var object
-     */
-    private $responseBody;
+    private object $responseBody;
 
-    /**
-     * @var string
-     */
-    private $errorType;
+    private string $errorType;
 
     /**
      * ApiErrorException Constructor.
      *
-     * @param object    $response_body
-     * @param string    $message
-     * @param int       $code
-     * @param Exception $previous
      */
-    public function __construct($response_body, $message = "", $code = 0, Exception $previous = null)
+    public function __construct(object $response_body, string $message = "", int $code = 0, Exception $previous = null)
     {
         parent::__construct($message, $code, $previous);
 
@@ -38,7 +28,7 @@ class ApiErrorException extends Exception
     /**
      * __toString() magic method.
      */
-    public function __toString()
+    public function __toString(): string
     {
         return __CLASS__ . ": [{$this->errorType}]: {$this->message}\n";
     }
@@ -46,9 +36,8 @@ class ApiErrorException extends Exception
     /**
      * Sets message and errorType properties.
      *
-     * @param object $response_body
      */
-    private function setError($response_body): void
+    private function setError(object $response_body): void
     {
         if (is_array($response_body->message) || is_object($response_body->message)) {
             $output = '';
@@ -63,17 +52,15 @@ class ApiErrorException extends Exception
     }
 
     /**
-     * @return object
      */
-    public function getResponseBody()
+    public function getResponseBody(): object
     {
         return $this->responseBody;
     }
 
     /**
-     * @param object $response_body
      */
-    private function setResponseBody($response_body): void
+    private function setResponseBody(object $response_body): void
     {
         $this->responseBody = $response_body;
     }

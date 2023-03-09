@@ -10,7 +10,7 @@ class IdentityProvidersResponse extends \ArrayObject
     /**
      * @param array<object> $idps
      */
-    public function __construct($idps)
+    public function __construct(array $idps)
     {
         parent::__construct(
             array_map(

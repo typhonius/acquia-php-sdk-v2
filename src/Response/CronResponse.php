@@ -4,70 +4,33 @@ namespace AcquiaCloudApi\Response;
 
 class CronResponse
 {
-    /**
-     * @var string $id
-     */
-    public $id;
+    public string $id;
+
+    public ?object $server;
+
+    public string $command;
+
+    public string $minute;
+
+    public string $hour;
+
+    public string $dayMonth;
+
+    public string $month;
+
+    public string $dayWeek;
+
+    public ?string $label;
+
+    public object $flags;
+
+    public object $environment;
+
+    public object $links;
 
     /**
-     * @var string $server
      */
-    public $server;
-
-    /**
-     * @var string $command
-     */
-    public $command;
-
-    /**
-     * @var string $minute
-     */
-    public $minute;
-
-    /**
-     * @var string $hour
-     */
-    public $hour;
-
-    /**
-     * @var string $dayMonth
-     */
-    public $dayMonth;
-
-    /**
-     * @var string $month
-     */
-    public $month;
-
-    /**
-     * @var string $dayWeek
-     */
-    public $dayWeek;
-
-    /**
-     * @var string $label
-     */
-    public $label;
-
-    /**
-     * @var object $flags
-     */
-    public $flags;
-
-    /**
-     * @var object $environment
-     */
-    public $environment;
-
-    /**
-     * @var object $links
-     */
-    public $links;
-
-    /**
-     * @param object $cron
-     */
-    public function __construct($cron)
+    public function __construct(object $cron)
     {
         $this->id = $cron->id;
         $this->server = $cron->server;

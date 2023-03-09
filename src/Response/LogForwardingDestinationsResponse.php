@@ -10,7 +10,7 @@ class LogForwardingDestinationsResponse extends \ArrayObject
     /**
      * @param array<object> $destinations
      */
-    public function __construct($destinations)
+    public function __construct(array $destinations)
     {
         parent::__construct(
             array_map(

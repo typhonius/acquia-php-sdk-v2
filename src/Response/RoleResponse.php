@@ -4,35 +4,22 @@ namespace AcquiaCloudApi\Response;
 
 class RoleResponse
 {
-    /**
-     * @var string $uuid
-     */
-    public $uuid;
+    public string $uuid;
 
-    /**
-     * @var string $name
-     */
-    public $name;
+    public string $name;
 
-    /**
-     * @var string $description
-     */
-    public $description;
+    public string $description;
 
-    /**
-     * @var string $last_edited
-     */
-    public $last_edited;
+    public ?object $last_edited;
 
     /**
      * @var PermissionsResponse<PermissionResponse> $permissions
      */
-    public $permissions;
+    public PermissionsResponse $permissions;
 
     /**
-     * @param object $role
      */
-    public function __construct($role)
+    public function __construct(object $role)
     {
         $this->uuid = $role->uuid;
         $this->name = $role->name;

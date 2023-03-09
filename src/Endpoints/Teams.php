@@ -18,10 +18,7 @@ class Teams extends CloudApiBase
     /**
      * Create a new team.
      *
-     * @param string $organizationUuid
-     * @param string $name
      *
-     * @return OperationResponse
      */
     public function create(string $organizationUuid, string $name): OperationResponse
     {
@@ -51,10 +48,7 @@ class Teams extends CloudApiBase
     /**
      * Rename an existing team.
      *
-     * @param string $teamUuid
-     * @param string $name
      *
-     * @return OperationResponse
      */
     public function rename(string $teamUuid, string $name): OperationResponse
     {
@@ -73,9 +67,7 @@ class Teams extends CloudApiBase
     /**
      * Delete a team.
      *
-     * @param string $teamUuid
      *
-     * @return OperationResponse
      */
     public function delete(string $teamUuid): OperationResponse
     {
@@ -87,10 +79,7 @@ class Teams extends CloudApiBase
     /**
      * Add an application to a team.
      *
-     * @param string $teamUuid
-     * @param string $applicationUuid
      *
-     * @return OperationResponse
      */
     public function addApplication(string $teamUuid, string $applicationUuid): OperationResponse
     {
@@ -108,11 +97,8 @@ class Teams extends CloudApiBase
     /**
      * Invites a user to join a team.
      *
-     * @param string $teamUuid
-     * @param string $email
      * @param string[] $roles
      *
-     * @return OperationResponse
      */
     public function invite(string $teamUuid, string $email, array $roles): OperationResponse
     {
@@ -131,7 +117,6 @@ class Teams extends CloudApiBase
     /**
      * Show all applications associated with a team.
      *
-     * @param string $teamUuid
      *
      * @return ApplicationsResponse<ApplicationResponse>
      */

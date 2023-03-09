@@ -10,7 +10,7 @@ class LogsResponse extends \ArrayObject
     /**
      * @param array<object> $logs
      */
-    public function __construct($logs)
+    public function __construct(array $logs)
     {
         parent::__construct(
             array_map(

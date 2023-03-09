@@ -18,7 +18,6 @@ class Domains extends CloudApiBase
     /**
      * Shows all domains on an environment.
      *
-     * @param string $environmentUuid
      *
      * @return DomainsResponse<DomainResponse>
      */
@@ -35,10 +34,7 @@ class Domains extends CloudApiBase
     /**
      * Return details about a domain.
      *
-     * @param string $environmentUuid
-     * @param string $domain
      *
-     * @return DomainResponse
      */
     public function get(string $environmentUuid, string $domain): DomainResponse
     {
@@ -53,10 +49,7 @@ class Domains extends CloudApiBase
     /**
      * Adds a domain to an environment.
      *
-     * @param string $environmentUuid
-     * @param string $hostname
      *
-     * @return OperationResponse
      */
     public function create(string $environmentUuid, string $hostname): OperationResponse
     {
@@ -75,10 +68,7 @@ class Domains extends CloudApiBase
     /**
      * Deletes a domain from an environment.
      *
-     * @param string $environmentUuid
-     * @param string $domain
      *
-     * @return OperationResponse
      */
     public function delete(string $environmentUuid, string $domain): OperationResponse
     {
@@ -90,10 +80,8 @@ class Domains extends CloudApiBase
     /**
      * Purges cache for selected domains in an environment.
      *
-     * @param string $environmentUuid
      * @param array<string> $domains
      *
-     * @return OperationResponse
      */
     public function purge(string $environmentUuid, array $domains): OperationResponse
     {
@@ -115,10 +103,7 @@ class Domains extends CloudApiBase
     /**
      * Purges cache for a single domain in an environment.
      *
-     * @param string $environmentUuid
-     * @param string $domain
      *
-     * @return OperationResponse
      */
     public function clearDomainCache(string $environmentUuid, string $domain): OperationResponse
     {
@@ -134,8 +119,6 @@ class Domains extends CloudApiBase
      * Retrieves the scan data for a domain name that is part of this
      * environment.
      *
-     * @param string $environmentUuid
-     * @param string $domain
      *
      * @return MetricsResponse<MetricResponse>
      */
@@ -152,10 +135,7 @@ class Domains extends CloudApiBase
     /**
      * Returns details about the domain.
      *
-     * @param string $environmentUuid
-     * @param string $domain
      *
-     * @return DomainResponse
      */
     public function status(string $environmentUuid, string $domain): DomainResponse
     {

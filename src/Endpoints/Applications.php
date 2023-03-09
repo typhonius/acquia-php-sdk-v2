@@ -28,9 +28,7 @@ class Applications extends CloudApiBase
     /**
      * Shows information about an application.
      *
-     * @param string $applicationUuid
      *
-     * @return ApplicationResponse
      */
     public function get(string $applicationUuid): ApplicationResponse
     {
@@ -45,10 +43,7 @@ class Applications extends CloudApiBase
     /**
      * Renames an application.
      *
-     * @param string $applicationUuid
-     * @param string $name
      *
-     * @return OperationResponse
      */
     public function rename(string $applicationUuid, string $name): OperationResponse
     {
@@ -71,7 +66,6 @@ class Applications extends CloudApiBase
     /**
      * Returns a list of application tags associated with this application.
      *
-     * @param string $applicationUuid
      *
      * @return TagsResponse<TagResponse>
      */
@@ -89,11 +83,7 @@ class Applications extends CloudApiBase
     /**
      * Creates a new application tag.
      *
-     * @param string $applicationUuid
-     * @param string $name
-     * @param string $color
      *
-     * @return OperationResponse
      */
     public function createTag(string $applicationUuid, string $name, string $color): OperationResponse
     {
@@ -117,10 +107,7 @@ class Applications extends CloudApiBase
     /**
      * Deletes an application tag.
      *
-     * @param string $applicationUuid
-     * @param string $tagName
      *
-     * @return OperationResponse
      */
     public function deleteTag(string $applicationUuid, string $tagName): OperationResponse
     {

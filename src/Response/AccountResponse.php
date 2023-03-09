@@ -4,108 +4,50 @@ namespace AcquiaCloudApi\Response;
 
 class AccountResponse
 {
-    /**
-     * @var int $id
-     */
-    public $id;
+    public int $id;
 
-    /**
-     * @var string $uuid
-     */
-    public $uuid;
+    public string $uuid;
 
-    /**
-     * @var string $name
-     */
-    public $name;
+    public string $name;
 
-    /**
-     * @var string $first_name
-     */
-    public $first_name;
+    public string $first_name;
 
-    /**
-     * @var string $last_name
-     */
-    public $last_name;
+    public string $last_name;
 
-    /**
-     * @var string $last_login_at
-     */
-    public $last_login_at;
+    public string $last_login_at;
 
-    /**
-     * @var string $created_at
-     */
-    public $created_at;
+    public string $created_at;
 
-    /**
-     * @var string $mail
-     */
-    public $mail;
+    public string $mail;
 
-    /**
-     * @var object $phone
-     */
-    public $phone;
+    public object $phone;
 
-    /**
-     * @var string $job_title
-     */
-    public $job_title;
+    public ?string $job_title;
 
-    /**
-     * @var string $job_function
-     */
-    public $job_function;
+    public string $job_function;
 
-    /**
-     * @var string $company
-     */
-    public $company;
+    public string $company;
 
-    /**
-     * @var string $country
-     */
-    public $country;
+    public string $country;
 
-    /**
-     * @var string $state
-     */
-    public $state;
+    public string $state;
 
-    /**
-     * @var string $timezone
-     */
-    public $timezone;
+    public string $timezone;
 
-    /**
-     * @var string $picture_url
-     */
-    public $picture_url;
+    public string $picture_url;
 
     /**
      * @var array<string> $features
      */
-    public $features;
+    public array $features;
+
+    public object $flags;
+
+    public object $metadata;
+
+    public object $links;
 
     /**
-     * @var object $flags
-     */
-    public $flags;
-
-    /**
-     * @var object $metadata
-     */
-    public $metadata;
-
-    /**
-     * @var string $links
-     */
-    public $links;
-
-    /**
-     * @param object $account
      */
     public function __construct(object $account)
     {

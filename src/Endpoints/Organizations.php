@@ -34,7 +34,6 @@ class Organizations extends CloudApiBase
     /**
      * Show all applications in an organization.
      *
-     * @param string $organizationUuid
      *
      * @return ApplicationsResponse<ApplicationResponse>
      */
@@ -48,7 +47,6 @@ class Organizations extends CloudApiBase
     /**
      * Show all members of an organization.
      *
-     * @param string $organizationUuid
      *
      * @return MembersResponse<MemberResponse>
      */
@@ -62,10 +60,7 @@ class Organizations extends CloudApiBase
     /**
      * Returns the user profile of this organization member.
      *
-     * @param string $organizationUuid
-     * @param string $memberUuid
      *
-     * @return MemberResponse
      */
     public function getMember(string $organizationUuid, string $memberUuid): MemberResponse
     {
@@ -77,7 +72,6 @@ class Organizations extends CloudApiBase
     /**
      * Show all admins of an organization.
      *
-     * @param string $organizationUuid
      *
      * @return MembersResponse<MemberResponse>
      */
@@ -91,10 +85,7 @@ class Organizations extends CloudApiBase
     /**
      * Returns the user profile of this organization administrator.
      *
-     * @param string $organizationUuid
-     * @param string $memberUuid
      *
-     * @return MemberResponse
      */
     public function getAdmin(string $organizationUuid, string $memberUuid): MemberResponse
     {
@@ -106,7 +97,6 @@ class Organizations extends CloudApiBase
     /**
      * Show all members invited to an organization.
      *
-     * @param string $organizationUuid
      *
      * @return InvitationsResponse<InvitationResponse>
      */
@@ -120,10 +110,7 @@ class Organizations extends CloudApiBase
     /**
      * Delete a member from an organization.
      *
-     * @param string $organizationUuid
-     * @param string $memberUuid
      *
-     * @return OperationResponse
      */
     public function deleteMember(string $organizationUuid, string $memberUuid): OperationResponse
     {
@@ -138,9 +125,7 @@ class Organizations extends CloudApiBase
     /**
      * Leave an organization.
      *
-     * @param string $organizationUuid
      *
-     * @return OperationResponse
      */
     public function leaveOrganization(string $organizationUuid): OperationResponse
     {
@@ -155,10 +140,7 @@ class Organizations extends CloudApiBase
     /**
      * Change the owner of an organization.
      *
-     * @param string $organizationUuid
-     * @param string $newOwnerUuid
      *
-     * @return OperationResponse
      */
     public function changeOwner(string $organizationUuid, string $newOwnerUuid): OperationResponse
     {
@@ -179,7 +161,6 @@ class Organizations extends CloudApiBase
     /**
      * Show all teams in an organization.
      *
-     * @param string $organizationUuid
      *
      * @return TeamsResponse<TeamResponse>
      */
@@ -193,10 +174,7 @@ class Organizations extends CloudApiBase
     /**
      * Invites a user to become admin of an organization.
      *
-     * @param string $organizationUuid
-     * @param string $email
      *
-     * @return OperationResponse
      */
     public function inviteAdmin(string $organizationUuid, string $email): OperationResponse
     {

@@ -10,7 +10,7 @@ class InsightsResponse extends \ArrayObject
     /**
      * @param array<object> $insights
      */
-    public function __construct($insights)
+    public function __construct(array $insights)
     {
         parent::__construct(
             array_map(

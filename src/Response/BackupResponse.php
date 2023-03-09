@@ -4,48 +4,23 @@ namespace AcquiaCloudApi\Response;
 
 class BackupResponse
 {
-    /**
-     * @var int $id
-     */
-    public $id;
+    public int $id;
+
+    public object $database;
+
+    public string $type;
+
+    public string $startedAt;
+
+    public string $completedAt;
+
+    public object $flags;
+
+    public object $environment;
+
+    public object $links;
 
     /**
-     * @var object $database
-     */
-    public $database;
-
-    /**
-     * @var string $type
-     */
-    public $type;
-
-    /**
-     * @var string $startedAt
-     */
-    public $startedAt;
-
-    /**
-     * @var string $completedAt
-     */
-    public $completedAt;
-
-    /**
-     * @var object $flags
-     */
-    public $flags;
-
-    /**
-     * @var object $environment
-     */
-    public $environment;
-
-    /**
-     * @var object $links
-     */
-    public $links;
-
-    /**
-     * @param object $backup
      */
     public function __construct(object $backup)
     {

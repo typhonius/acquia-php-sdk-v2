@@ -10,7 +10,7 @@ class SubscriptionsResponse extends \ArrayObject
     /**
      * @param array<object> $subscriptions
      */
-    public function __construct($subscriptions)
+    public function __construct(array $subscriptions)
     {
         parent::__construct(
             array_map(

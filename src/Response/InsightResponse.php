@@ -6,60 +6,29 @@ use stdClass;
 
 class InsightResponse
 {
-    /**
-     * @var string $uuid
-     */
-    public $uuid;
+    public string $uuid;
+
+    public string $label;
+
+    public string $hostname;
+
+    public string $status;
+
+    public string $updatedAt;
+
+    public string $lastConnectedAt;
+
+    public object $scores;
+
+    public object $counts;
+
+    public object $flags;
+
+    public object $links;
 
     /**
-     * @var string $label
      */
-    public $label;
-
-    /**
-     * @var string $hostname
-     */
-    public $hostname;
-
-    /**
-     * @var string $status
-     */
-    public $status;
-
-    /**
-     * @var string $updatedAt
-     */
-    public $updatedAt;
-
-    /**
-     * @var string $lastConnectedAt
-     */
-    public $lastConnectedAt;
-
-    /**
-     * @var object $scores
-     */
-    public $scores;
-
-    /**
-     * @var object $counts
-     */
-    public $counts;
-
-    /**
-     * @var object $flags
-     */
-    public $flags;
-
-    /**
-     * @var object $links
-     */
-    public $links;
-
-    /**
-     * @param object $insight
-     */
-    public function __construct($insight)
+    public function __construct(object $insight)
     {
         $this->uuid = $insight->uuid;
         $this->label = $insight->label;

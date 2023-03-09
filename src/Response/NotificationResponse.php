@@ -4,60 +4,29 @@ namespace AcquiaCloudApi\Response;
 
 class NotificationResponse
 {
-    /**
-     * @var string $uuid
-     */
-    public $uuid;
+    public string $uuid;
+
+    public string $event;
+
+    public string $label;
+
+    public string $description;
+
+    public string $created_at;
+
+    public string $completed_at;
+
+    public string $status;
+
+    public int $progress;
+
+    public object $context;
+
+    public ?object $links;
 
     /**
-     * @var string $event
      */
-    public $event;
-
-    /**
-     * @var string $label
-     */
-    public $label;
-
-    /**
-     * @var string $description
-     */
-    public $description;
-
-    /**
-     * @var string $created_at
-     */
-    public $created_at;
-
-    /**
-     * @var string $completed_at
-     */
-    public $completed_at;
-
-    /**
-     * @var string $status
-     */
-    public $status;
-
-    /**
-     * @var int $progress
-     */
-    public $progress;
-
-    /**
-     * @var object $context
-     */
-    public $context;
-
-    /**
-     * @var object|null $links
-     */
-    public $links;
-
-    /**
-     * @param object $notification
-     */
-    public function __construct($notification)
+    public function __construct(object $notification)
     {
         $this->uuid = $notification->uuid;
         $this->event = $notification->event;

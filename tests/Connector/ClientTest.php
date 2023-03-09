@@ -111,9 +111,13 @@ class ClientTest extends CloudApiTestCase
         $actualOptions = $client->modifyOptions();
 
         $version = $client->getVersion();
+        $userAgent = <<<EOD
+acquia-php-sdk-v2/%s (https://github.com/typhonius/acquia-php-sdk-v2) AcquiaCli/4.20 ZCli/1.1.1 AaahCli/0.1
+EOD;
+
         $expectedOptions = [
             'headers' => [
-                'User-Agent' => sprintf('acquia-php-sdk-v2/%s (https://github.com/typhonius/acquia-php-sdk-v2) AcquiaCli/4.20 ZCli/1.1.1 AaahCli/0.1', $version)
+                'User-Agent' => sprintf($userAgent, $version)
             ],
             'json' => [
                 'source' => 'source',

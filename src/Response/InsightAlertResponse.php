@@ -4,70 +4,36 @@ namespace AcquiaCloudApi\Response;
 
 class InsightAlertResponse
 {
-    /**
-     * @var int $alert_id
-     */
-    public $alert_id;
+    public int $alert_id;
 
-    /**
-     * @var string $uuid
-     */
-    public $uuid;
+    public string $uuid;
 
-    /**
-     * @var string $name
-     */
-    public $name;
+    public string $name;
 
-    /**
-     * @var string $message
-     */
-    public $message;
+    public string $message;
 
-    /**
-     * @var string $article_link
-     */
-    public $article_link;
+    public string $article_link;
 
-    /**
-     * @var int $severity
-     */
-    public $severity;
+    public int $severity;
 
-    /**
-     * @var string $severity_label
-     */
-    public $severity_label;
+    public string $severity_label;
 
-    /**
-     * @var string $failed_value
-     */
-    public $failed_value;
+    public string $failed_value;
 
-    /**
-     * @var string $fix_details
-     */
-    public $fix_details;
+    public string $fix_details;
 
     /**
      * @var array<string> $categories
      */
-    public $categories;
+    public array $categories;
+
+    public object $flags;
+
+    public object $links;
 
     /**
-     * @var object $flags
      */
-    public $flags;
-
-    /**
-     * @var object $links
-     */
-    public $links;
-
-    /**
-     * @param object $alert
-     */
-    public function __construct($alert)
+    public function __construct(object $alert)
     {
         $this->alert_id = $alert->alert_id;
         $this->uuid = $alert->uuid;

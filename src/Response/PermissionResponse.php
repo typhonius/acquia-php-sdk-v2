@@ -4,30 +4,17 @@ namespace AcquiaCloudApi\Response;
 
 class PermissionResponse
 {
-    /**
-     * @var string $name
-     */
-    public $name;
+    public string $name;
+
+    public string $label;
+
+    public ?string $description;
+
+    public string $group_label;
 
     /**
-     * @var string $label
      */
-    public $label;
-
-    /**
-     * @var string|null $description
-     */
-    public $description;
-
-    /**
-     * @var string $group_label
-     */
-    public $group_label;
-
-    /**
-     * @param object $permission
-     */
-    public function __construct($permission)
+    public function __construct(object $permission)
     {
         $this->name = $permission->name;
         $this->label = $permission->label;

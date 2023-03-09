@@ -12,7 +12,7 @@ class BackupsResponse extends ArrayObject
     /**
      * @param array<object> $backups
      */
-    public function __construct($backups)
+    public function __construct(array $backups)
     {
         parent::__construct(
             array_map(

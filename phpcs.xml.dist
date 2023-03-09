@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ruleset name="AcquiaPhpSdkV2">
+
+  <description>Acquia PHP SDK v2 CodeSniffer configuration.</description>
+
+  <arg name="colors"/>
+  <arg name="cache" value="build/.phpcs-cache"/>
+  <arg name="parallel" value="10"/>
+
+  <file>src</file>
+  <file>tests</file>
+
+  <!-- Danger! Exclude patterns apply to the full file path, including parent directories of the current repository. -->
+  <!-- Don't exclude common directory names like `build`, which will fail on Travis CI because of /home/travis/build/acquia/<project>. -->
+  <!-- @see https://github.com/squizlabs/PHP_CodeSniffer/issues/981 -->
+  <exclude-pattern>tests/logs/*</exclude-pattern>
+
+  <rule ref="PSR12" />
+
+  <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint" />
+  <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint" />
+  <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint" />
+
+</ruleset>

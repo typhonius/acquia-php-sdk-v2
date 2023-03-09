@@ -72,7 +72,6 @@ class Connector implements ConnectorInterface
     }
 
     /**
-     * @return string
      */
     public function getBaseUri(): string
     {
@@ -80,7 +79,6 @@ class Connector implements ConnectorInterface
     }
 
     /**
-     * @return string
      */
     public function getUrlAccessToken(): string
     {

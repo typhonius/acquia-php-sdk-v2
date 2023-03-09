@@ -10,7 +10,7 @@ class MembersResponse extends \ArrayObject
     /**
      * @param array<object> $members
      */
-    public function __construct($members)
+    public function __construct(array $members)
     {
         parent::__construct(
             array_map(

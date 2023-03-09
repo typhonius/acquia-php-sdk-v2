@@ -12,7 +12,7 @@ class BranchesResponse extends ArrayObject
     /**
      * @param array<object> $branches
      */
-    public function __construct($branches)
+    public function __construct(array $branches)
     {
         parent::__construct(
             array_map(

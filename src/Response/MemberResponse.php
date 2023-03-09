@@ -4,55 +4,30 @@ namespace AcquiaCloudApi\Response;
 
 class MemberResponse
 {
-    /**
-     * @var string $uuid
-     */
-    public $uuid;
+    public string $uuid;
 
     /**
      * @var TeamsResponse<TeamResponse>|null $teams
      */
-    public $teams;
+    public ?TeamsResponse $teams;
+
+    public string $first_name;
+
+    public string $last_name;
+
+    public ?string $mail;
+
+    public string $picture_url;
+
+    public string $username;
+
+    public ?object $flags;
+
+    public ?object $links;
 
     /**
-     * @var string $first_name
      */
-    public $first_name;
-
-    /**
-     * @var string $last_name
-     */
-    public $last_name;
-
-    /**
-     * @var string|null $mail
-     */
-    public $mail;
-
-    /**
-     * @var string $picture_url
-     */
-    public $picture_url;
-
-    /**
-     * @var string $username
-     */
-    public $username;
-
-    /**
-     * @var object|null $flags
-     */
-    public $flags;
-
-    /**
-     * @var object|null $links
-     */
-    public $links;
-
-    /**
-     * @param object $member
-     */
-    public function __construct($member)
+    public function __construct(object $member)
     {
         $this->uuid = $member->uuid;
         $this->first_name = $member->first_name;

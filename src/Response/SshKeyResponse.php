@@ -9,43 +9,24 @@ namespace AcquiaCloudApi\Response;
  */
 class SshKeyResponse
 {
-    /**
-     * @var string $uuid
-     */
-    public $uuid;
+    public string $uuid;
 
-    /**
-     * @var string $label
-     */
-    public $label;
+    public string $label;
 
-    /**
-     * @var string $public_key
-     */
-    public $public_key;
+    public string $public_key;
 
-    /**
-     * @var string $fingerprint
-     */
-    public $fingerprint;
+    public string $fingerprint;
 
-    /**
-     * @var string $created_at
-     */
-    public $created_at;
+    public string $created_at;
 
-    /**
-     * @var object $links
-     */
-    public $links;
+    public object $links;
 
     /**
      * SshKeyResponse constructor.
      *
-     * @param object $sshkey
      */
 
-    public function __construct($sshkey)
+    public function __construct(object $sshkey)
     {
         $this->uuid = $sshkey->uuid;
         $this->label = $sshkey->label;

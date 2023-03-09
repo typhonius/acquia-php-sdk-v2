@@ -4,110 +4,55 @@ namespace AcquiaCloudApi\Response;
 
 class EnvironmentResponse
 {
-    /**
-     * @var string $uuid
-     */
-    public $uuid;
+    public string $uuid;
 
-    /**
-     * @var string $label
-     */
-    public $label;
+    public string $label;
 
-    /**
-     * @var string $name
-     */
-    public $name;
+    public string $name;
 
-    /**
-     * @var object $application
-     */
-    public $application;
+    public object $application;
 
     /**
      * @var array<string> $domains
      */
-    public $domains;
+    public array $domains;
 
-    /**
-     * @var string $active_domain
-     */
-    public $active_domain;
+    public string $active_domain;
 
-    /**
-     * @var string $default_domain
-     */
-    public $default_domain;
+    public string $default_domain;
 
-    /**
-     * @var string $image_url
-     */
-    public $image_url;
+    public ?string $image_url;
 
-    /**
-     * @var string|null $sshUrl
-     */
-    public $sshUrl;
+    public ?string $sshUrl;
 
     /**
      * @var array<string> $ips
      */
-    public $ips;
+    public array $ips;
+
+    public string $region;
+
+    public string $status;
+
+    public string $type;
+
+    public object $vcs;
+
+    public object $flags;
+
+    public ?object $configuration;
+
+    public object $links;
+
+    public string $platform;
+
+    public string $balancer;
+
+    public ?object $artifact;
 
     /**
-     * @var string $region
      */
-    public $region;
-
-    /**
-     * @var string $status
-     */
-    public $status;
-
-    /**
-     * @var string $type
-     */
-    public $type;
-
-    /**
-     * @var object $vcs
-     */
-    public $vcs;
-
-    /**
-     * @var object $flags
-     */
-    public $flags;
-
-    /**
-     * @var object $configuration
-     */
-    public $configuration;
-
-    /**
-     * @var object $links
-     */
-    public $links;
-
-    /**
-     * @var string $platform
-     */
-    public $platform;
-
-    /**
-     * @var string $balancer
-     */
-    public $balancer;
-
-    /**
-     * @var object $artifact
-     */
-    public $artifact;
-
-    /**
-     * @param object $environment
-     */
-    public function __construct($environment)
+    public function __construct(object $environment)
     {
         $this->uuid = $environment->id;
         $this->label = $environment->label;

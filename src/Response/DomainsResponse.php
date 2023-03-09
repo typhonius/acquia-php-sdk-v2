@@ -10,7 +10,7 @@ class DomainsResponse extends \ArrayObject
     /**
      * @param array<object> $domains
      */
-    public function __construct($domains)
+    public function __construct(array $domains)
     {
         parent::__construct(
             array_map(

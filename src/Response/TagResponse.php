@@ -4,30 +4,17 @@ namespace AcquiaCloudApi\Response;
 
 class TagResponse
 {
-    /**
-     * @var string $name
-     */
-    public $name;
+    public string $name;
+
+    public string $color;
+
+    public object $context;
+
+    public object $links;
 
     /**
-     * @var string $color
      */
-    public $color;
-
-    /**
-     * @var object $context
-     */
-    public $context;
-
-    /**
-     * @var object $links
-     */
-    public $links;
-
-    /**
-     * @param object $tag
-     */
-    public function __construct($tag)
+    public function __construct(object $tag)
     {
         $this->name = $tag->name;
         $this->color = $tag->color;

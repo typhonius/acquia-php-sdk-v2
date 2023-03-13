@@ -24,7 +24,7 @@ class AccountResponse
 
     public ?string $job_title;
 
-    public string $job_function;
+    public ?string $job_function;
 
     public string $company;
 

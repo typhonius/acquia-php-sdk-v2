@@ -25,7 +25,6 @@ jobs:
         extensions: mbstring, intl
         ini-values: post_max_size=256M, short_open_tag=On
 
-
     - name: Setup PHP with pecl extension
       uses: shivammathur/setup-php@v2
       with:
@@ -42,14 +41,8 @@ jobs:
     - name: Run test suite
       run: composer run-script test
 
-    - name: Upload code coverage
-      uses: actions/upload-artifact@v3
-      with:
-        name: ${{ runner.os }}-php-${{ matrix.php-versions }}-phpunit.html
-        path: ./tests/logs/phpunit.html
-        if-no-files-found: error
-
     - name: Upload coverage to Codecov
+      if: matrix.operating-system == 'ubuntu-latest' && matrix.php-versions == '8.2'
       uses: codecov/codecov-action@v3
       with:
         file: ./tests/logs/clover.xml

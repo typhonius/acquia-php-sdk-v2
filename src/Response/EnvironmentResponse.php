@@ -30,7 +30,7 @@ class EnvironmentResponse
      */
     public array $ips;
 
-    public string $region;
+    public ?string $region;
 
     public string $status;
 

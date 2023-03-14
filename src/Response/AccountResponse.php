@@ -26,7 +26,7 @@ class AccountResponse
 
     public ?string $job_function;
 
-    public string $company;
+    public ?string $company;
 
     public string $country;
 

@@ -47,7 +47,8 @@ jobs:
       with:
         file: ./tests/logs/clover.xml
         name: acquia-php-sdk-v2-codecov
-        fail_ci_if_error: true
+        # todo: set to true when codecov is more reliable
+        fail_ci_if_error: false
 
   # Require all checks to pass without having to enumerate them in the branch protection UI.
   # @see https://github.community/t/is-it-possible-to-require-all-github-actions-tasks-to-pass-without-enumerating-them/117957

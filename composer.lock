@@ -1754,12 +1754,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/eloquent/phony.git",
-                "reference": "c6ace3722112ec39347a62ad74541c7df634184b"
+                "reference": "3732bb22f780eb2f305a21d04b83c6f47f11aba3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eloquent/phony/zipball/c6ace3722112ec39347a62ad74541c7df634184b",
-                "reference": "c6ace3722112ec39347a62ad74541c7df634184b",
+                "url": "https://api.github.com/repos/eloquent/phony/zipball/3732bb22f780eb2f305a21d04b83c6f47f11aba3",
+                "reference": "3732bb22f780eb2f305a21d04b83c6f47f11aba3",
                 "shasum": ""
             },
             "require": {
@@ -1820,7 +1820,7 @@
                 "issues": "https://github.com/eloquent/phony/issues",
                 "source": "https://github.com/eloquent/phony/tree/main"
             },
-            "time": "2023-03-05T08:46:44+00:00"
+            "time": "2023-03-11T04:36:34+00:00"
         },
         {
             "name": "eloquent/phony-phpunit",

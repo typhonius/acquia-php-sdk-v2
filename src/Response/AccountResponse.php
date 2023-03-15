@@ -28,9 +28,9 @@ class AccountResponse
 
     public ?string $company;
 
-    public string $country;
+    public ?string $country;
 
-    public string $state;
+    public ?string $state;
 
     public string $timezone;
 

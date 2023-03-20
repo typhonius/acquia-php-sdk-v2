@@ -14,7 +14,7 @@ class NotificationResponse
 
     public string $created_at;
 
-    public string $completed_at;
+    public ?string $completed_at;
 
     public string $status;
 

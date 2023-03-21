@@ -10,7 +10,7 @@ class SubscriptionResponse
 
     public string $name;
 
-    public string $start_at;
+    public ?string $start_at;
 
     public string $expire_at;
 

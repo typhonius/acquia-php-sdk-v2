@@ -10,7 +10,7 @@ class ApplicationResponse
 
     public string $name;
 
-    public object $hosting;
+    public ?object $hosting;
 
     public object $subscription;
 

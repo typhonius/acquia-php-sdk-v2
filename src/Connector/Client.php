@@ -2,6 +2,7 @@
 
 namespace AcquiaCloudApi\Connector;
 
+use http\Exception\RuntimeException;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use AcquiaCloudApi\Exception\ApiErrorException;
@@ -152,7 +153,15 @@ class Client implements ClientInterface
     {
 
         $body_json = $response->getBody();
-        $body = json_decode($body_json);
+        $body = json_decode($body_json, null, 512, JSON_THROW_ON_ERROR);
+        if (is_null($body)) {
+            throw new RuntimeException(
+                'Response contained an empty body. Status '
+                . $response->getStatusCode()
+                . '. Request ID '
+                . $response->getHeaderLine('X-Request-Id')
+            );
+        }
 
         if (property_exists($body, '_embedded') && property_exists($body->_embedded, 'items')) {
             return $body->_embedded->items;

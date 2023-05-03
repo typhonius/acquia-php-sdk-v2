@@ -4,6 +4,7 @@ namespace AcquiaCloudApi\Response;
 
 class DatabaseResponse
 {
+    public string $id;
     public string $name;
     // Connection details will be missing without the required permission:
     // "View database connection details (username, password, or hostname)"
@@ -17,6 +18,7 @@ class DatabaseResponse
 
     public function __construct(object $database)
     {
+        $this->id = $database->id;
         $this->name = $database->name;
         $this->user_name = $database->user_name ?? null;
         $this->password = $database->password ?? null;

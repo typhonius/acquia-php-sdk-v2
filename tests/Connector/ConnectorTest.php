@@ -113,7 +113,7 @@ class ConnectorTest extends CloudApiTestCase
 
         $response = Phony::mock(ResponseInterface::class);
         $response->getBody->returns($stream->get());
-        $response->getHeader->with('content-type')->returns('application/json');
+        $response->getHeader->with('content-type')->returns(['application/json']);
 
         $client = Phony::mock(ClientInterface::class);
         $client->send->returns($response->get());

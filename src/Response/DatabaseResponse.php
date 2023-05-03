@@ -5,11 +5,13 @@ namespace AcquiaCloudApi\Response;
 class DatabaseResponse
 {
     public string $name;
-    public string $user_name;
-    public string $password;
-    public string $url;
+    // Connection details will be missing without the required permission:
+    // "View database connection details (username, password, or hostname)"
+    public ?string $user_name;
+    public ?string $password;
+    public ?string $url;
     public string $db_host;
-    public string $ssh_host;
+    public ?string $ssh_host;
     public object $flags;
     public object $environment;
 

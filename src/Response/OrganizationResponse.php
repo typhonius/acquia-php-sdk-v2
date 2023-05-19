@@ -12,7 +12,7 @@ class OrganizationResponse
 
     public MemberResponse $owner;
 
-    public string $subscriptions_total;
+    public ?string $subscriptions_total;
 
     public string $admins_total;
 

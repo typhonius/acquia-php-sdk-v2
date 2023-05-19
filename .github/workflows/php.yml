@@ -19,12 +19,6 @@ jobs:
             - operating-system: 'ubuntu-latest'
               php-versions: '8.2'
               coverage: 'pcov'
-        exclude:
-            # For some reason this one job fails.
-            # @see https://github.com/typhonius/acquia-php-sdk-v2/pull/392
-            - operating-system: 'macos-latest'
-              php-versions: '8.1'
-              coverage: 'none'
     name: PHP ${{ matrix.php-versions }} build and test on ${{ matrix.operating-system }}
     steps:
     - name: Checkout

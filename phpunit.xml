@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit
-    bootstrap="vendor/autoload.php"
-    colors="true"
-    convertErrorsToExceptions="true"
-    convertNoticesToExceptions="true"
-    convertWarningsToExceptions="true"
-    verbose="true"
-    cacheResultFile="build/.phpunit.result.cache"
-    >
-    <testsuites>
-        <testsuite name="Acquia Cloud PHP SDK Binding">
-            <directory suffix=".php">./tests/</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./src/</directory>
-        </whitelist>
-    </filter>
-    <logging>
-        <log type="coverage-text" target="php://stdout" showUncoveredFiles="true"/>
-        <log type="coverage-clover" target="tests/logs/clover.xml" showUncoveredFiles="true"/>
-        <log type="coverage-html" target="tests/logs/phpunit.html" lowUpperBound="35" highLowerBound="70"/>
-    </logging>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/autoload.php" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" verbose="true" cacheResultFile="build/.phpunit.result.cache" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage processUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">./src/</directory>
+    </include>
+    <report>
+      <clover outputFile="tests/logs/clover.xml"/>
+      <html outputDirectory="tests/logs/phpunit.html" lowUpperBound="35" highLowerBound="70"/>
+      <text outputFile="php://stdout" showUncoveredFiles="true"/>
+    </report>
+  </coverage>
+  <testsuites>
+    <testsuite name="Acquia Cloud PHP SDK Binding">
+      <directory suffix=".php">./tests/</directory>
+    </testsuite>
+  </testsuites>
+  <logging/>
 </phpunit>

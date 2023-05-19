@@ -13,24 +13,28 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest, macos-latest]
         php-versions: ['8.0', '8.1', '8.2']
+        coverage: ['none']
+        include:
+            # Only report coverage once
+            - operating-system: 'ubuntu-latest'
+              php-versions: '8.2'
+              coverage: 'pcov'
+        exclude:
+            # For some reason this one job fails.
+            # @see https://github.com/typhonius/acquia-php-sdk-v2/pull/392
+            - operating-system: 'macos-latest'
+              php-versions: '8.1'
+              coverage: 'none'
     name: PHP ${{ matrix.php-versions }} build and test on ${{ matrix.operating-system }}
     steps:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php-versions }}
-        extensions: mbstring, intl
-        ini-values: post_max_size=256M, short_open_tag=On
-
     - name: Setup PHP with pecl extension
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php-versions }}
-        tools: pecl
-        extensions: pcov
+        coverage: ${{ matrix.coverage }}
 
     - name: Validate composer.json and composer.lock
       run: composer validate
@@ -42,7 +46,7 @@ jobs:
       run: composer run-script test
 
     - name: Upload coverage to Codecov
-      if: matrix.operating-system == 'ubuntu-latest' && matrix.php-versions == '8.2'
+      if: matrix.coverage == 'pcov'
       uses: codecov/codecov-action@v3
       with:
         file: ./tests/logs/clover.xml

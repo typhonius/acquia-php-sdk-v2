@@ -58,7 +58,7 @@
         "cs": "phpcs",
         "cbf": "phpcbf",
         "unit": "php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude='~vendor~' ./vendor/bin/phpunit --configuration=phpunit.xml --testdox",
-        "stan": "phpstan analyse",
+        "stan": "phpstan analyse --debug",
         "test": [
             "@lint",
             "@unit",

@@ -18,13 +18,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php-versions }}
-        extensions: mbstring, intl
-        ini-values: post_max_size=256M, short_open_tag=On
-
     - name: Setup PHP with pecl extension
       uses: shivammathur/setup-php@v2
       with:

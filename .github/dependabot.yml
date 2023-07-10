@@ -3,14 +3,8 @@ updates:
 - package-ecosystem: composer
   directory: "/"
   schedule:
-    interval: daily
-    time: "17:00"
-    timezone: Australia/Sydney
-  open-pull-requests-limit: 99
-  ignore:
-  - dependency-name: phpunit/phpunit
-    versions:
-    - 9.5.3
-  - dependency-name: symfony/cache
-    versions:
-    - 5.2.2
+    interval: weekly
+  groups:
+      dependencies:
+        patterns:
+          - "*"

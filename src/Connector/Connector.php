@@ -46,8 +46,12 @@ class Connector implements ConnectorInterface
     /**
      * @param array<string, string> $config
      */
-    public function __construct(array $config, string $base_uri = null, string $url_access_token = null)
-    {
+    public function __construct(
+        array $config,
+        string $base_uri = null,
+        string $url_access_token = null,
+        string $scopes = ''
+    ) {
         $this->baseUri = ConnectorInterface::BASE_URI;
         if ($base_uri) {
             $this->baseUri = $base_uri;
@@ -60,11 +64,12 @@ class Connector implements ConnectorInterface
 
         $this->provider = new GenericProvider(
             [
-            'clientId'                => $config['key'],
-            'clientSecret'            => $config['secret'],
-            'urlAuthorize'            => '',
-            'urlAccessToken'          => $this->getUrlAccessToken(),
-            'urlResourceOwnerDetails' => '',
+                'clientId'                => $config['key'],
+                'clientSecret'            => $config['secret'],
+                'urlAuthorize'            => '',
+                'urlAccessToken'          => $this->getUrlAccessToken(),
+                'urlResourceOwnerDetails' => '',
+                'scopes' => $scopes,
             ]
         );
 

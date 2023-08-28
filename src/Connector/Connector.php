@@ -92,7 +92,11 @@ class Connector implements ConnectorInterface
             /** @infection-ignore-all */
             $cache = new FilesystemAdapter('cache', 300, $directory);
             $accessToken = $cache->get('cloudapi-token', function () {
-                return $this->provider->getAccessToken('client_credentials');
+                $options = [];
+                if ($orgUuid = getenv('AH_ORGANIZATION_UUID')) {
+                    $options['scope'] = 'organization:' . $orgUuid;
+                }
+                return $this->provider->getAccessToken('client_credentials', $options);
             });
 
             $this->accessToken = $accessToken;

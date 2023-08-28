@@ -64,7 +64,7 @@ class Connector implements ConnectorInterface
             'clientSecret'            => $config['secret'],
             'urlAuthorize'            => '',
             'urlAccessToken'          => $this->getUrlAccessToken(),
-            'urlResourceOwnerDetails' => ''
+            'urlResourceOwnerDetails' => '',
             ]
         );
 

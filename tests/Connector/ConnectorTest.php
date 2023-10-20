@@ -34,7 +34,7 @@ class ConnectorTest extends CloudApiTestCase
     public function tearDown(): void
     {
         // Delete the cached token again to clean up.
-        $delete = $this->cache->deleteItem('cloudapi-token');
+        $delete = $this->cache->deleteItem('cloudapi-token-key');
         $this->assertTrue($delete);
     }
 
@@ -154,7 +154,7 @@ class ConnectorTest extends CloudApiTestCase
         $this->assertEquals($expectedUri, $uri);
 
         // Check the cache to make sure that the token has been cached successfully.
-        $accessToken = $this->cache->getItem('cloudapi-token')->get();
+        $accessToken = $this->cache->getItem('cloudapi-token-key')->get();
 
         // Ensure that the cached item is an AccessToken and that it contains the values we set above.
         $accessTokenReflectionClass = new \ReflectionClass('League\OAuth2\Client\Token\AccessToken');
@@ -215,7 +215,7 @@ class ConnectorTest extends CloudApiTestCase
         // Clear the cache to make sure we get fresh results during testing.
         $directory = sprintf('%s%s%s', Path::getHomeDirectory(), \DIRECTORY_SEPARATOR, '.acquia-php-sdk-v2');
         $this->cache = new FilesystemAdapter('cache', 0, $directory);
-        $this->cache->deleteItem('cloudapi-token');
+        $this->cache->deleteItem('cloudapi-token-key');
     }
 
     protected function createConnector(string $base_url = null, string $url_access_token = null): void

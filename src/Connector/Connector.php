@@ -29,6 +29,11 @@ class Connector implements ConnectorInterface
     private string $urlAccessToken;
 
     /**
+     * @var string|null The Client ID.
+     */
+    private ?string $clientId;
+
+    /**
      * @var GenericProvider The OAuth 2.0 provider to use in communication.
      */
     protected AbstractProvider $provider;
@@ -57,6 +62,8 @@ class Connector implements ConnectorInterface
         if ($url_access_token) {
             $this->urlAccessToken = $url_access_token;
         }
+
+        $this->clientId = $config['key'];
 
         $this->provider = new GenericProvider(
             [
@@ -91,9 +98,11 @@ class Connector implements ConnectorInterface
             $directory = Path::join(Path::getHomeDirectory(), '.acquia-php-sdk-v2');
             /** @infection-ignore-all */
             $cache = new FilesystemAdapter('cache', 300, $directory);
-            $accessToken = $cache->get('cloudapi-token', function () {
+            $orgUuid = getenv('AH_ORGANIZATION_UUID');
+            $cacheKey = 'cloudapi-token-' . $this->clientId . $orgUuid;
+            $accessToken = $cache->get($cacheKey, function () use ($orgUuid) {
                 $options = [];
-                if ($orgUuid = getenv('AH_ORGANIZATION_UUID')) {
+                if ($orgUuid) {
                     $options['scope'] = 'organization:' . $orgUuid;
                 }
                 return $this->provider->getAccessToken('client_credentials', $options);

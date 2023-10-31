@@ -95,7 +95,11 @@ class Connector implements ConnectorInterface
     public function createRequest(string $verb, string $path): RequestInterface
     {
         if (!isset($this->accessToken) || $this->accessToken->hasExpired()) {
-            $directory = Path::join(Path::getHomeDirectory(), '.acquia-php-sdk-v2');
+            $xdgCacheHome = getenv('XDG_CACHE_HOME');
+            if (!$xdgCacheHome) {
+                $xdgCacheHome = Path::join(Path::getHomeDirectory(), '.cache');
+            }
+            $directory = Path::join($xdgCacheHome, 'acquia-php-sdk-v2');
             /** @infection-ignore-all */
             $cache = new FilesystemAdapter('cache', 300, $directory);
             $orgUuid = getenv('AH_ORGANIZATION_UUID');

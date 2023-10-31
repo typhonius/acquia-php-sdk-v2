@@ -213,7 +213,14 @@ class ConnectorTest extends CloudApiTestCase
     protected function clearCache(): void
     {
         // Clear the cache to make sure we get fresh results during testing.
-        $directory = sprintf('%s%s%s', Path::getHomeDirectory(), \DIRECTORY_SEPARATOR, '.acquia-php-sdk-v2');
+        $directory = sprintf(
+            '%s%s%s%s%s',
+            Path::getHomeDirectory(),
+            \DIRECTORY_SEPARATOR,
+            '.cache',
+            \DIRECTORY_SEPARATOR,
+            'acquia-php-sdk-v2'
+        );
         $this->cache = new FilesystemAdapter('cache', 0, $directory);
         $this->cache->deleteItem('cloudapi-token-key');
     }

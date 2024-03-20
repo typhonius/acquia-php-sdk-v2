@@ -6,7 +6,10 @@ class CronResponse
 {
     public string $id;
 
-    public ?object $server;
+    /**
+     * @var null[]|object
+     */
+    public array|object $server;
 
     public string $command;
 

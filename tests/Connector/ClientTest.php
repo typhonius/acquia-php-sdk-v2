@@ -51,7 +51,10 @@ class ClientTest extends CloudApiTestCase
 
         $code = new Code($client);
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('Cloud API internal server error. Status 500. Request ID v-918d0182-f8f6-11ee-ac5b-9f3072a91621');
+        $message = <<<EOD
+Cloud API internal server error. Status 500. Request ID v-918d0182-f8f6-11ee-ac5b-9f3072a91621
+EOD;
+        $this->expectExceptionMessage($message);
         $code->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
     }
 

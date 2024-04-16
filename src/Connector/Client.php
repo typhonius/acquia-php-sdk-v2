@@ -103,7 +103,7 @@ class Client implements ClientInterface
      */
     public function request(string $verb, string $path, array $options = []): mixed
     {
-        // Put options sent with API calls into a property so they can be accessed
+        // Put options sent with API calls into a property, so they can be accessed
         // and therefore tested in tests.
         $this->requestOptions = $options;
 
@@ -151,7 +151,15 @@ class Client implements ClientInterface
      */
     public function processResponse(ResponseInterface $response): mixed
     {
-
+        // Internal server errors return HTML instead of JSON, breaking our parsing.
+        if ($response->getStatusCode() === 500) {
+            throw new RuntimeException(
+                'Cloud API internal server error. Status '
+                . $response->getStatusCode()
+                . '. Request ID '
+                . $response->getHeaderLine('X-Request-Id')
+            );
+        }
         $body_json = $response->getBody();
         $body = json_decode($body_json, null, 512, JSON_THROW_ON_ERROR);
         if (is_null($body)) {

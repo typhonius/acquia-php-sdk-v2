@@ -2,11 +2,11 @@
 
 namespace AcquiaCloudApi\Connector;
 
-use http\Exception\RuntimeException;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use AcquiaCloudApi\Exception\ApiErrorException;
 use Psr\Http\Message\StreamInterface;
+use RuntimeException;
 
 /**
  * Class Client
@@ -162,6 +162,7 @@ class Client implements ClientInterface
         }
         $body_json = $response->getBody();
         $body = json_decode($body_json, null, 512, JSON_THROW_ON_ERROR);
+        // Internal server errors may also return a 200 response and empty body.
         if (is_null($body)) {
             throw new RuntimeException(
                 'Response contained an empty body. Status '

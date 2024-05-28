@@ -4,9 +4,6 @@ build:
             version: '8.2'
     nodes:
         analysis:
-            dependencies:
-                after:
-                    - composer require --dev "squizlabs/php_codesniffer=3.9.1"
             project_setup:
                 override:
                     - 'true'

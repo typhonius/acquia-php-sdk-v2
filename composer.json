@@ -12,8 +12,8 @@
         "php": "^8.0 | ^8.1 | ^8.2",
         "guzzlehttp/guzzle": "^7.2",
         "league/oauth2-client": "^2.4",
-        "symfony/cache": "^5 | ^6",
-        "symfony/filesystem": "^5.4 | ^6"
+        "symfony/cache": "^5 | ^6 | ^7",
+        "symfony/filesystem": "^5.4 | ^6 | ^7"
     },
     "require-dev": {
         "php-coveralls/php-coveralls": "^2.0.0",

@@ -100,6 +100,7 @@ class Client implements ClientInterface
 
     /**
      * @inheritdoc
+     * @throws \AcquiaCloudApi\Exception\ApiErrorException
      */
     public function request(string $verb, string $path, array $options = []): mixed
     {
@@ -148,6 +149,8 @@ class Client implements ClientInterface
 
     /**
      * @inheritdoc
+     * @throws \AcquiaCloudApi\Exception\ApiErrorException
+     * @throws \RuntimeException
      */
     public function processResponse(ResponseInterface $response): mixed
     {

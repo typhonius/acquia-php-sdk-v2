@@ -51,7 +51,7 @@ class Connector implements ConnectorInterface
     /**
      * @param array<string, string> $config
      */
-    public function __construct(array $config, string $base_uri = null, string $url_access_token = null)
+    public function __construct(array $config, ?string $base_uri = null, ?string $url_access_token = null)
     {
         $this->baseUri = ConnectorInterface::BASE_URI;
         if ($base_uri) {

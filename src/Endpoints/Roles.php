@@ -39,13 +39,12 @@ class Roles extends CloudApiBase
      * Create a new role.
      *
      * @param array<string> $permissions
-     * @param string|null $description
      */
     public function create(
         string $organizationUuid,
         string $name,
         array $permissions,
-        string $description = null
+        ?string $description = null
     ): OperationResponse {
         $options = [
             'json' => [

@@ -51,13 +51,11 @@ class Code extends CloudApiBase
 
     /**
      * Deploys code from one environment to another environment.
-     *
-     * @param string|null $commitMessage
      */
     public function deploy(
         string $environmentFromUuid,
         string $environmentToUuid,
-        string $commitMessage = null
+        ?string $commitMessage = null
     ): OperationResponse {
 
         $options = [

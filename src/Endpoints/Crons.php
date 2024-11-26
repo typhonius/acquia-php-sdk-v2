@@ -46,15 +46,13 @@ class Crons extends CloudApiBase
 
     /**
      * Add a cron task.
-     *
-     * @param string|null $serverId
      */
     public function create(
         string $environmentUuid,
         string $command,
         string $frequency,
         string $label,
-        string $serverId = null
+        ?string $serverId = null
     ): OperationResponse {
 
         $options = [
@@ -73,8 +71,6 @@ class Crons extends CloudApiBase
 
     /**
      * Update a cron task.
-     *
-     * @param string|null $serverId
      */
     public function update(
         string $environmentUuid,
@@ -82,7 +78,7 @@ class Crons extends CloudApiBase
         string $command,
         string $frequency,
         string $label,
-        string $serverId = null
+        ?string $serverId = null
     ): OperationResponse {
 
         $options = [

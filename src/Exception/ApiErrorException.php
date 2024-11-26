@@ -16,7 +16,7 @@ class ApiErrorException extends Exception
     /**
      * ApiErrorException Constructor.
      */
-    public function __construct(object $response_body, string $message = "", int $code = 0, Exception $previous = null)
+    public function __construct(object $response_body, string $message = "", int $code = 0, ?Exception $previous = null)
     {
         parent::__construct($message, $code, $previous);
 

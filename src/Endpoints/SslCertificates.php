@@ -46,17 +46,14 @@ class SslCertificates extends CloudApiBase
 
     /**
      * Install an SSL certificate.
-     *
-     * @param string|null $ca
-     * @param int|null $csr
      */
     public function create(
         string $envUuid,
         string $label,
         string $cert,
         string $key,
-        string $ca = null,
-        int $csr = null,
+        ?string $ca = null,
+        ?int $csr = null,
         bool $legacy = false
     ): OperationResponse {
 

@@ -50,6 +50,8 @@ class EnvironmentResponse
 
     public ?object $artifact;
 
+    public ?object $gardener;
+
     public function __construct(object $environment)
     {
         $this->uuid = $environment->id;
@@ -74,5 +76,8 @@ class EnvironmentResponse
         $this->flags = $environment->flags;
         $this->artifact = $environment->artifact;
         $this->links = $environment->_links;
+      if (property_exists($environment, 'gardener')) {
+        $this->gardener = $environment->gardener;
+      }
     }
 }

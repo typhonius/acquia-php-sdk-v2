@@ -14,14 +14,11 @@ class CodebasesResponse extends \ArrayObject
      */
     public function __construct(array $codebases)
     {
-        parent::__construct(
-            array_map(
-                function ($codebase) {
-                    return new CodebaseResponse($codebase);
-                },
-                $codebases
-            ),
-            self::ARRAY_AS_PROPS
-        );
+        $codebaseResponses = [];
+        foreach ($codebases as $codebase) {
+            $codebaseResponses[] = new CodebaseResponse($codebase);
+        }
+
+        parent::__construct($codebaseResponses, self::ARRAY_AS_PROPS);
     }
 }

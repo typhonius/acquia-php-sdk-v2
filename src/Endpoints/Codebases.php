@@ -30,7 +30,7 @@ class Codebases extends CloudApiBase
         return new CodebaseResponse(
             $this->client->request(
                 'get',
-                "/codebases/${codebaseUuid}"
+                "/codebases/$codebaseUuid"
             )
         );
     }

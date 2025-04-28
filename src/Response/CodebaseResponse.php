@@ -47,6 +47,6 @@ class CodebaseResponse
         $this->hash = $codebase->hash;
         $this->applications_total = $codebase->applications_total;
         $this->links = $codebase->_links;
-        $this->embedded = isset($codebase->_embedded) ? $codebase->_embedded : null;
+        $this->embedded = $codebase->_embedded ?? null;
     }
 }

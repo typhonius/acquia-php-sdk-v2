@@ -9,8 +9,6 @@ class Codebases extends CloudApiBase
 {
     /**
      * Shows all codebases.
-     *
-     * @return CodebasesResponse
      */
     public function getAll(): CodebasesResponse
     {
@@ -26,7 +24,6 @@ class Codebases extends CloudApiBase
      * Shows information about a specific codebase.
      *
      * @param string $codebaseUuid The codebase UUID.
-     * @return CodebaseResponse
      */
     public function get(string $codebaseUuid): CodebaseResponse
     {

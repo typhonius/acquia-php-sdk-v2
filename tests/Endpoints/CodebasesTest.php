@@ -9,7 +9,7 @@ use AcquiaCloudApi\Endpoints\Codebases;
 
 class CodebasesTest extends CloudApiTestCase
 {
-    public function testGetAll()
+    public function testGetAll(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Codebases/getAllCodebases.json');
         $client = $this->getMockClient($response);
@@ -23,7 +23,7 @@ class CodebasesTest extends CloudApiTestCase
         $this->assertNotEmpty($result);
     }
 
-    public function testGetCodebase()
+    public function testGetCodebase(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Codebases/getCodebase.json');
         $client = $this->getMockClient($response);

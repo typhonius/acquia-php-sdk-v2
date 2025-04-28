@@ -2,17 +2,17 @@
 
 namespace AcquiaCloudApi\Response;
 
+use ArrayObject;
+
 /**
- * Class CodebasesResponse
- * @package AcquiaCloudApi\Response
+ * @template-extends \ArrayObject<int, \AcquiaCloudApi\Response\CodebaseResponse>
  */
 class CodebasesResponse extends \ArrayObject
 {
     /**
-     * CodebasesResponse constructor.
-     * @param array $codebases
+     * @param array<object> $codebases
      */
-    public function __construct($codebases)
+    public function __construct(array $codebases)
     {
         parent::__construct(
             array_map(

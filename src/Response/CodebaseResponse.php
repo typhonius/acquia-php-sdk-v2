@@ -2,31 +2,38 @@
 
 namespace AcquiaCloudApi\Response;
 
-/**
- * Class CodebaseResponse
- * @package AcquiaCloudApi\Response
- */
 class CodebaseResponse
 {
-    public $id;
-    public $label;
-    public $region;
-    public $vcs_url;
-    public $repository_id;
-    public $created_at;
-    public $updated_at;
-    public $description;
-    public $flags;
-    public $hash;
-    public $applications_total;
-    public $links;
-    public $embedded;
+    public string $id;
+
+    public string $label;
+
+    public string $region;
+
+    public string $vcs_url;
+
+    public string $repository_id;
+
+    public string $created_at;
+
+    public string $updated_at;
+
+    public string $description;
+
+    public ?object $flags = null;
+
+    public string $hash;
+
+    public int $applications_total;
+
+    public object $links;
+
+    public ?object $embedded = null;
 
     /**
      * CodebaseResponse constructor.
-     * @param object $codebase
      */
-    public function __construct($codebase)
+    public function __construct(object $codebase)
     {
         $this->id = $codebase->id;
         $this->label = $codebase->label;

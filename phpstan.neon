@@ -3,12 +3,5 @@ parameters:
     paths:
         - src
         - tests
-    ignoreErrors:
-        -
-            message: '#Access to an undefined property Eloquent\\Phony\\Mock\\Handle\\InstanceHandle::\$[a-zA-Z\_]+.#'
-            path: tests/Connector/ConnectorTest.php
-        -
-            message: '%Parameter #1 \$client of method League\\OAuth2\\Client\\Provider\\AbstractProvider::setHttpClient\(\) expects GuzzleHttp\\ClientInterface, Eloquent\\Phony\\Mock\\Mock given.%'
-            path: tests/Connector/ConnectorTest.php
 includes:
     - vendor/phpstan/phpstan-phpunit/extension.neon

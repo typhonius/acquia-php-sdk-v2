@@ -1,0 +1,36 @@
+{
+  "_links": {
+    "applications": {
+      "href": "https://cloud.acquia.com/api/codebases/11111111-041c-44c7-a486-7972ed2cafc8/applications"
+    },
+    "self": {
+      "href": "https://cloud.acquia.com/api/codebases/11111111-041c-44c7-a486-7972ed2cafc8"
+    },
+    "subscription": {
+      "href": "https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479"
+    }
+  },
+  "_embedded": {
+    "subscription": {
+      "_links": {
+        "self": {
+          "href": "https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479"
+        }
+      },
+      "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+    }
+  },
+  "id": "11111111-041c-44c7-a486-7972ed2cafc8",
+  "label": "Test codebase with attached applications",
+  "region": "us-east-1",
+  "vcs_url": "ssh://us-east-1.dev.vcs.acquia.io/11111111-041c-44c7-a486-7972ed2cafc8",
+  "repository_id": "f03e15f9-0d97-498d-ba7d-99bd87b1417f",
+  "created_at": "2024-12-11T04:25:47+00:00",
+  "updated_at": "2024-12-11T04:25:47+00:00",
+  "description": "",
+  "flags": {
+    "active": true
+  },
+  "hash": "pte116m",
+  "applications_total": 2
+}

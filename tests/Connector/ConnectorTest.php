@@ -9,7 +9,6 @@ use GuzzleHttp\Psr7\Uri;
 use League\OAuth2\Client\Test\Provider\Fake as MockProvider;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\ResponseInterface;
-use Eloquent\Phony\Phpunit\Phony;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Handler\MockHandler;
@@ -108,17 +107,17 @@ class ConnectorTest extends CloudApiTestCase
         $expires = time() + 300;
         $raw_response = ['access_token' => 'acquia-token', 'expires' => $expires, 'resource_owner_id' => 3];
 
-        $stream = Phony::mock(StreamInterface::class);
-        $stream->__toString->returns(json_encode($raw_response));
+        $stream = $this->createMock(StreamInterface::class);
+        $stream->method('__toString')->willReturn(json_encode($raw_response));
 
-        $response = Phony::mock(ResponseInterface::class);
-        $response->getBody->returns($stream->get());
-        $response->getHeader->with('content-type')->returns(['application/json']);
+        $response = $this->createMock(ResponseInterface::class);
+        $response->method('getBody')->willReturn($stream);
+        $response->method('getHeader')->with('content-type')->willReturn(['application/json']);
 
-        $client = Phony::mock(ClientInterface::class);
-        $client->send->returns($response->get());
+        $client = $this->createMock(ClientInterface::class);
+        $client->method('send')->willReturn($response);
 
-        $provider->setHttpClient($client->get());
+        $provider->setHttpClient($client);
 
         // Create the request and check it matches our expectations.
         $request = $this->connector->createRequest('get', '/account');
@@ -225,7 +224,7 @@ class ConnectorTest extends CloudApiTestCase
         $this->cache->deleteItem('cloudapi-token-key');
     }
 
-    protected function createConnector(string $base_url = null, string $url_access_token = null): void
+    protected function createConnector(?string $base_url = null, ?string $url_access_token = null): void
     {
         $config = [
           'key' => 'key',

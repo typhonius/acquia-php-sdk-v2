@@ -1,0 +1,73 @@
+{
+  "count": 1,
+  "total": 1,
+  "pagination": {
+    "total": 1,
+    "limit": 25,
+    "offset": 0
+  },
+  "_embedded": {
+    "items": [
+      {
+        "_links": {
+          "applications": {
+            "href": "https://cloud.acquia.com/api/codebases/0975a7a1-746f-4096-9c22-383f001797b5/applications"
+          },
+          "self": {
+            "href": "https://cloud.acquia.com/api/codebases"
+          },
+          "subscription": {
+            "href": "https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479"
+          }
+        },
+        "_embedded": {
+          "subscription": {
+            "_links": {
+              "self": {
+                "href": "https://cloud.acquia.com/api/subscriptions/f47ac10b-58cc-4372-a567-0e02b2c3d479"
+              }
+            },
+            "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+          }
+        },
+        "id": "0975a7a1-746f-4096-9c22-383f001797b5",
+        "label": "test",
+        "region": "us-east-1",
+        "vcs_url": "ssh://us-east-1.dev.vcs.acquia.io/0975a7a1-746f-4096-9c22-383f001797b5",
+        "repository_id": "a5ef0a9d-44ce-4f06-8d4f-15f24f941a74",
+        "created_at": "2024-12-20T06:39:50+00:00",
+        "updated_at": "2024-12-20T06:39:50+00:00",
+        "description": "",
+        "flags": {
+          "active": true
+        },
+        "hash": "ryh4smn",
+        "applications_total": 0
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/codebases"
+    },
+    "limit": {
+      "href": "https://cloud.acquia.com/api/codebases{?limit}",
+      "templated": true
+    },
+    "offset": {
+      "href": "https://cloud.acquia.com/api/codebases{?offset}",
+      "templated": true
+    },
+    "filter": {
+      "href": "https://cloud.acquia.com/api/codebases{?filter}",
+      "templated": true
+    },
+    "sort": {
+      "href": "https://cloud.acquia.com/api/codebases{?sort}",
+      "templated": true
+    },
+    "next": {
+      "href": "https://cloud.acquia.com/api/codebases?offset=25"
+    }
+  }
+}

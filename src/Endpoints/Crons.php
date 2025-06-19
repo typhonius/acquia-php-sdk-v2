@@ -34,7 +34,7 @@ class Crons extends CloudApiBase
      *
      * @param string $environmentUuid The environment ID
      */
-    public function get(string $environmentUuid, int $cronId): CronResponse
+    public function get(string $environmentUuid, string $cronId): CronResponse
     {
         return new CronResponse(
             $this->client->request(
@@ -98,7 +98,7 @@ class Crons extends CloudApiBase
     /**
      * Delete a cron task.
      */
-    public function delete(string $environmentUuid, int $cronId): OperationResponse
+    public function delete(string $environmentUuid, string $cronId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request('delete', "/environments/$environmentUuid/crons/$cronId")
@@ -108,7 +108,7 @@ class Crons extends CloudApiBase
     /**
      * Disable a cron task.
      */
-    public function disable(string $environmentUuid, int $cronId): OperationResponse
+    public function disable(string $environmentUuid, string $cronId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(
@@ -121,7 +121,7 @@ class Crons extends CloudApiBase
     /**
      * Enable a cron task.
      */
-    public function enable(string $environmentUuid, int $cronId): OperationResponse
+    public function enable(string $environmentUuid, string $cronId): OperationResponse
     {
         return new OperationResponse(
             $this->client->request(

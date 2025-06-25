@@ -86,9 +86,11 @@ class Crons extends CloudApiBase
                 'command' => $command,
                 'frequency' => $frequency,
                 'label' => $label,
-                'server_id' => $serverId,
             ],
         ];
+        if ($serverId) {
+            $options['json']['server_id'] = $serverId;
+        }
 
         return new OperationResponse(
             $this->client->request('put', "/environments/$environmentUuid/crons/$cronId", $options)

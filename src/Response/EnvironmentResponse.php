@@ -77,7 +77,7 @@ class EnvironmentResponse
         $this->artifact = $environment->artifact;
         $this->links = $environment->_links;
         if (property_exists($environment, 'gardener')) {
-          $this->gardener = $environment->gardener;
+            $this->gardener = $environment->gardener;
         }
     }
 }

@@ -72,6 +72,34 @@ class CronsTest extends CloudApiTestCase
             '14',
             '/usr/local/bin/drush cc all',
             '*/30 * * * *',
+            'My New Cron',
+            '18'
+        );
+
+        $requestOptions = [
+            'json' => [
+                'command' => '/usr/local/bin/drush cc all',
+                'frequency' => '*/30 * * * *',
+                'label' => 'My New Cron',
+                'server_id' => '18'
+            ],
+        ];
+
+        $this->assertEquals($requestOptions, $this->getRequestOptions($client));
+        $this->assertEquals('Updating cron.', $result->message);
+    }
+
+    public function testUpdateCronNoServerId(): void
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Crons/updateCron.json');
+        $client = $this->getMockClient($response);
+
+        $cron = new Crons($client);
+        $result = $cron->update(
+            '14-0c7e79ab-1c4a-424e-8446-76ae8be7e851',
+            '14',
+            '/usr/local/bin/drush cc all',
+            '*/30 * * * *',
             'My New Cron'
         );
 
@@ -80,7 +108,6 @@ class CronsTest extends CloudApiTestCase
                 'command' => '/usr/local/bin/drush cc all',
                 'frequency' => '*/30 * * * *',
                 'label' => 'My New Cron',
-                'server_id' => null
             ],
         ];
 

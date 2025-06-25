@@ -30,7 +30,7 @@ class CronsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $cron = new Crons($client);
-        $result = $cron->get('8ff6c046-ec64-4ce4-bea6-27845ec18600', 3);
+        $result = $cron->get('8ff6c046-ec64-4ce4-bea6-27845ec18600', 'e82b77cc-a9ed-4458-b12c-d87af1a795ad');
 
         $this->assertNotInstanceOf(CronsResponse::class, $result);
     }
@@ -121,7 +121,7 @@ class CronsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $cron = new Crons($client);
-        $result = $cron->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 14);
+        $result = $cron->delete('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'e82b77cc-a9ed-4458-b12c-d87af1a795ad');
 
         $this->assertEquals('Deleting cron.', $result->message);
     }
@@ -132,7 +132,7 @@ class CronsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $cron = new Crons($client);
-        $result = $cron->enable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
+        $result = $cron->enable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'e82b77cc-a9ed-4458-b12c-d87af1a795ad');
 
         $this->assertEquals('The cron is being enabled.', $result->message);
     }
@@ -143,7 +143,7 @@ class CronsTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $cron = new Crons($client);
-        $result = $cron->disable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 2);
+        $result = $cron->disable('14-0c7e79ab-1c4a-424e-8446-76ae8be7e851', 'e82b77cc-a9ed-4458-b12c-d87af1a795ad');
 
         $this->assertEquals('The cron is being disabled.', $result->message);
     }

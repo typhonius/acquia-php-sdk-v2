@@ -2,6 +2,7 @@
 
 namespace AcquiaCloudApi\Connector;
 
+use AcquiaCloudApi\Connector\OktaProvider;
 use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\GenericProvider;
 use League\OAuth2\Client\Token\AccessTokenInterface;
@@ -65,7 +66,7 @@ class Connector implements ConnectorInterface
 
         $this->clientId = $config['key'];
 
-        $this->provider = new GenericProvider(
+        $this->provider = new OktaProvider(
             [
             'clientId'                => $config['key'],
             'clientSecret'            => $config['secret'],

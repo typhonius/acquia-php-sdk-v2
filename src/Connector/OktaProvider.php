@@ -9,9 +9,12 @@ use Psr\Http\Message\ResponseInterface;
 class OktaProvider extends GenericProvider
 {
     /**
-     * @inheritDoc
+     * Checks a provider response for errors.
+     *
+     * @throws IdentityProviderException
+     * @param  array<mixed>|string $data Parsed response data
      */
-    protected function checkResponse(ResponseInterface $response, $data): void
+    protected function checkResponse(ResponseInterface $response, mixed $data): void
     {
         if (!empty($data['errorCode'])) {
             $error = $data['errorCode'];

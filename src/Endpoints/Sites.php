@@ -40,8 +40,12 @@ class Sites extends CloudApiBase
     /**
      * Creates a site for a codebase.
      */
-    public function create(string $name, string $label, string $codebaseId, ?string $description = null): OperationResponse
-    {
+    public function create(
+        string $name,
+        string $label,
+        string $codebaseId,
+        ?string $description = null
+    ): OperationResponse {
         $options = [
             'json' => [
                 'name' => $name,
@@ -62,8 +66,12 @@ class Sites extends CloudApiBase
     /**
      * Update a site details by its id.
      */
-    public function update(string $siteId, ?string $name = null, ?string $label = null, ?string $description = null): OperationResponse
-    {
+    public function update(
+        string $siteId,
+        ?string $name = null,
+        ?string $label = null,
+        ?string $description = null
+    ): OperationResponse {
         $options = ['json' => []];
 
         if ($name !== null) {
@@ -131,8 +139,6 @@ class Sites extends CloudApiBase
 
     /**
      * Retrieves all environments by site.
-     *
-     * @return CodebaseEnvironmentsResponse
      */
     public function getEnvironments(string $siteId): CodebaseEnvironmentsResponse
     {

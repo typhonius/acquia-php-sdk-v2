@@ -22,8 +22,6 @@ class ReferenceResponse
 
     /**
      * ReferenceResponse constructor.
-     *
-     * @param object $reference
      */
     public function __construct(object $reference)
     {

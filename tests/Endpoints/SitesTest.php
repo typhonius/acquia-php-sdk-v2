@@ -67,7 +67,12 @@ class SitesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $sites = new Sites($client);
-        $result = $sites->update('8979a8ac-80dc-4df8-b2f0-6be36554a370', 'updated-site', 'Updated Site', 'Updated description');
+        $result = $sites->update(
+            '8979a8ac-80dc-4df8-b2f0-6be36554a370',
+            'updated-site',
+            'Updated Site',
+            'Updated description'
+        );
 
         $requestOptions = [
             'json' => [

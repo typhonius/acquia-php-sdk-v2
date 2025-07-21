@@ -4,12 +4,15 @@ namespace AcquiaCloudApi\Response;
 
 use ArrayObject;
 
+/**
+ * @template-extends \ArrayObject<int, object>
+ */
 class BulkCodeSwitchResponse extends ArrayObject
 {
     /**
      * @param array<object>|object $bulkCodeSwitch
      */
-    public function __construct($bulkCodeSwitch)
+    public function __construct(array|object $bulkCodeSwitch)
     {
         if (is_array($bulkCodeSwitch)) {
             // Handle array of bulk code switches

@@ -136,7 +136,7 @@ class Codebases extends CloudApiBase
      * Retrieves a list of bulk code switches performed on a codebase.
      *
      * @param string $codebaseUuid The codebase UUID.
-     * @param array $options Query parameters (limit, offset).
+     * @param array<string, mixed> $options Query parameters (limit, offset).
      */
     public function getBulkCodeSwitches(string $codebaseUuid, array $options = []): BulkCodeSwitchResponse
     {
@@ -172,11 +172,15 @@ class Codebases extends CloudApiBase
      *
      * @param string $codebaseUuid The codebase UUID.
      * @param string $reference The reference to switch to (branch name or tag).
-     * @param array $targets Array of targets with environment_id and optional cloud_actions.
-     * @param array $cloudActions Optional global cloud actions to perform.
+     * @param array<int, array<string, mixed>> $targets Array of targets with environment_id and optional cloud_actions.
+     * @param array<string, mixed> $cloudActions Optional global cloud actions to perform.
      */
-    public function createBulkCodeSwitch(string $codebaseUuid, string $reference, array $targets, array $cloudActions = []): OperationResponse
-    {
+    public function createBulkCodeSwitch(
+        string $codebaseUuid,
+        string $reference,
+        array $targets,
+        array $cloudActions = []
+    ): OperationResponse {
         $data = [
             'reference' => $reference,
             'targets' => $targets,

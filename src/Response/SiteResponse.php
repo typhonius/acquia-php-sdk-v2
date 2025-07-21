@@ -18,8 +18,6 @@ class SiteResponse
 
     /**
      * SiteResponse constructor.
-     *
-     * @param object $site
      */
     public function __construct(object $site)
     {

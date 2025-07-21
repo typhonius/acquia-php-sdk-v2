@@ -1,0 +1,95 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/codebases/1234-5678/environments"
+    }
+  },
+  "count": 2,
+  "total": 2,
+  "_embedded": {
+    "items": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://environment-service-php.acquia.com/api/environments/1111-1111-1111"
+          },
+          "codebase": {
+            "href": "https://codebase-service.acquia.com/api/codebases/3e8ecbec-ea7c-4260-8414-ef2938c859bc"
+          }
+        },
+        "id": "1111-1111-1111",
+        "name": "environment_1111-1111-1111",
+        "label": "Environment 1111-1111-1111",
+        "description": "Description of 1111-1111-1111",
+        "status": "normal",
+        "flags": {
+          "production": false
+        },
+        "properties": {
+          "version": "8.3",
+          "max_execution_time": 10,
+          "memory_limit": 192,
+          "apcu": 32,
+          "client_max_body_size": 192,
+          "max_input_vars": 1000,
+          "max_post_size": 256,
+          "memcached_limit": 128,
+          "upload_max_filesize": 192,
+          "operating_system": "focal"
+        },
+        "reference": "tag/v3.1",
+        "_embedded": {
+          "codebase": {
+            "id": "1111-1111-1111",
+            "_links": {
+              "self": {
+                "href": "https://codebase-service.acquia.com/api/codebases/1111-1111-1111"
+              }
+            }
+          }
+        }
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://environment-service-php.acquia.com/api/environments/2222-2222-2222"
+          },
+          "codebase": {
+            "href": "https://codebase-service.acquia.com/api/codebases/3e8ecbec-ea7c-4260-8414-ef2938c859bc"
+          }
+        },
+        "id": "2222-2222-2222",
+        "name": "environment_2222-2222-2222",
+        "label": "Environment 2222-2222-2222",
+        "description": "Description of 2222-2222-2222",
+        "status": "allocated",
+        "flags": {
+          "production": true
+        },
+        "properties": {
+          "version": "8.3",
+          "max_execution_time": 30,
+          "memory_limit": 512,
+          "apcu": 64,
+          "client_max_body_size": 512,
+          "max_input_vars": 2000,
+          "max_post_size": 512,
+          "memcached_limit": 256,
+          "upload_max_filesize": 512,
+          "operating_system": "focal"
+        },
+        "reference": "master",
+        "_embedded": {
+          "codebase": {
+            "id": "1111-1111-1111",
+            "_links": {
+              "self": {
+                "href": "https://codebase-service.acquia.com/api/codebases/1111-1111-1111"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/sites/8979a8ac-80dc-4df8-b2f0-6be36554a370"
+    }
+  },
+  "id": "8979a8ac-80dc-4df8-b2f0-6be36554a370",
+  "name": "site1",
+  "label": "My Site 1",
+  "description": "My Site 1 description",
+  "codebase_id": "1234-5678"
+}

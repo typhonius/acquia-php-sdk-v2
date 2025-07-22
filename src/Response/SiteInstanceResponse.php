@@ -16,6 +16,9 @@ class SiteInstanceResponse
 
     public ?object $database;
 
+    /**
+     * @var array<object>|null $domains
+     */
     public ?array $domains;
 
     public object $links;

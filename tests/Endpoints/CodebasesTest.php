@@ -68,7 +68,10 @@ class CodebasesTest extends CloudApiTestCase
         // Additional test to ensure properties are handled correctly (catches Coalesce mutation)
         $firstEnvironment = $result[0];
         $this->assertIsArray($firstEnvironment->properties);
-        $this->assertTrue(is_array($firstEnvironment->properties), 'Properties should always be an array due to coalesce operator');
+        $this->assertTrue(
+            is_array($firstEnvironment->properties),
+            'Properties should always be an array due to coalesce operator'
+        );
     }
 
     public function testCodebaseResponseTransformation(): void

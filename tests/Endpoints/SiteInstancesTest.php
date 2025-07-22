@@ -36,7 +36,10 @@ class SiteInstancesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $siteInstances = new SiteInstances($client);
-        $result = $siteInstances->getDatabase('3e8ecbec-ea7c-4260-8414-ef2938c859bc', 'd3f7270e-c45f-4801-9308-5e8afe84a323');
+        $result = $siteInstances->getDatabase(
+            '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
+            'd3f7270e-c45f-4801-9308-5e8afe84a323'
+        );
 
         $this->assertInstanceOf(SiteInstanceDatabaseResponse::class, $result);
         $this->assertEquals('localhost', $result->databaseHost);
@@ -76,7 +79,10 @@ class SiteInstancesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $siteInstances = new SiteInstances($client);
-        $result = $siteInstances->getDatabaseBackups('3e8ecbec-ea7c-4260-8414-ef2938c859bc', 'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3');
+        $result = $siteInstances->getDatabaseBackups(
+            '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
+            'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3'
+        );
 
         $this->assertInstanceOf(BackupsResponse::class, $result);
         $this->assertNotEmpty($result);
@@ -97,7 +103,10 @@ class SiteInstancesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $siteInstances = new SiteInstances($client);
-        $result = $siteInstances->createDatabaseBackup('3e8ecbec-ea7c-4260-8414-ef2938c859bc', 'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3');
+        $result = $siteInstances->createDatabaseBackup(
+            '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
+            'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3'
+        );
 
         $this->assertInstanceOf(OperationResponse::class, $result);
         $this->assertEquals('Database backup created successfully.', $result->message);
@@ -109,7 +118,11 @@ class SiteInstancesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $siteInstances = new SiteInstances($client);
-        $result = $siteInstances->getDatabaseBackup('3e8ecbec-ea7c-4260-8414-ef2938c859bc', 'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', '1');
+        $result = $siteInstances->getDatabaseBackup(
+            '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
+            'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3',
+            '1'
+        );
 
         $this->assertInstanceOf(BackupResponse::class, $result);
         $this->assertEquals(1, $result->id);
@@ -124,7 +137,11 @@ class SiteInstancesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $siteInstances = new SiteInstances($client);
-        $result = $siteInstances->downloadDatabaseBackup('3e8ecbec-ea7c-4260-8414-ef2938c859bc', 'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', '1');
+        $result = $siteInstances->downloadDatabaseBackup(
+            '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
+            'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3',
+            '1'
+        );
 
         $this->assertInstanceOf(OperationResponse::class, $result);
         $this->assertEquals('Database backup download started.', $result->message);
@@ -136,7 +153,11 @@ class SiteInstancesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $siteInstances = new SiteInstances($client);
-        $result = $siteInstances->restoreDatabaseBackup('3e8ecbec-ea7c-4260-8414-ef2938c859bc', 'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', '1');
+        $result = $siteInstances->restoreDatabaseBackup(
+            '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
+            'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3',
+            '1'
+        );
 
         $this->assertInstanceOf(OperationResponse::class, $result);
         $this->assertEquals('Database backup restore started.', $result->message);
@@ -148,7 +169,10 @@ class SiteInstancesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $siteInstances = new SiteInstances($client);
-        $result = $siteInstances->getDomains('3e8ecbec-ea7c-4260-8414-ef2938c859bc', 'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3');
+        $result = $siteInstances->getDomains(
+            '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
+            'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3'
+        );
 
         $this->assertInstanceOf(DomainsResponse::class, $result);
         $this->assertNotEmpty($result);
@@ -168,7 +192,11 @@ class SiteInstancesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $siteInstances = new SiteInstances($client);
-        $result = $siteInstances->getDomain('3e8ecbec-ea7c-4260-8414-ef2938c859bc', 'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', 'example.com');
+        $result = $siteInstances->getDomain(
+            '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
+            'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3',
+            'example.com'
+        );
 
         $this->assertInstanceOf(DomainResponse::class, $result);
         $this->assertEquals('example.com', $result->hostname);
@@ -182,7 +210,11 @@ class SiteInstancesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $siteInstances = new SiteInstances($client);
-        $result = $siteInstances->getDomainStatus('3e8ecbec-ea7c-4260-8414-ef2938c859bc', 'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', 'example.com');
+        $result = $siteInstances->getDomainStatus(
+            '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
+            'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3',
+            'example.com'
+        );
 
         $this->assertInstanceOf(DomainResponse::class, $result);
         $this->assertEquals('example.com', $result->hostname);
@@ -234,7 +266,10 @@ class SiteInstancesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $siteInstances = new SiteInstances($client);
-        $result = $siteInstances->getDatabase('3e8ecbec-ea7c-4260-8414-ef2938c859bc', 'd3f7270e-c45f-4801-9308-5e8afe84a323');
+        $result = $siteInstances->getDatabase(
+            '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
+            'd3f7270e-c45f-4801-9308-5e8afe84a323'
+        );
 
         $this->assertInstanceOf(SiteInstanceDatabaseResponse::class, $result);
         $this->assertNotNull($result->databaseHost);
@@ -252,7 +287,10 @@ class SiteInstancesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $siteInstances = new SiteInstances($client);
-        $result = $siteInstances->getDatabaseBackups('3e8ecbec-ea7c-4260-8414-ef2938c859bc', 'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3');
+        $result = $siteInstances->getDatabaseBackups(
+            '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
+            'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3'
+        );
 
         $this->assertInstanceOf(BackupsResponse::class, $result);
 
@@ -284,7 +322,10 @@ class SiteInstancesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $siteInstances = new SiteInstances($client);
-        $result = $siteInstances->getDomains('3e8ecbec-ea7c-4260-8414-ef2938c859bc', 'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3');
+        $result = $siteInstances->getDomains(
+            '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
+            'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3'
+        );
 
         $this->assertInstanceOf(DomainsResponse::class, $result);
 

@@ -1,0 +1,21 @@
+{
+  "hostname": "example.com",
+  "flags": {
+    "ssl_enabled": true,
+    "dns_configured": true,
+    "status_check_passed": true
+  },
+  "ip_addresses": [
+    "192.168.1.1"
+  ],
+  "cnames": [],
+  "environment": {
+    "id": "a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3",
+    "name": "dev"
+  },
+  "_links": {
+    "self": {
+      "href": "https://environment-service-php.acquia.com/api/site-instances/3e8ecbec-ea7c-4260-8414-ef2938c859bc.a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3/domains/example.com/status"
+    }
+  }
+}

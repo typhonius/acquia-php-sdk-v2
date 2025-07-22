@@ -141,13 +141,8 @@ class Codebases extends CloudApiBase
     public function getBulkCodeSwitches(string $codebaseUuid, array $options = []): BulkCodeSwitchResponse
     {
         $path = "/codebases/$codebaseUuid/bulk-code-switch";
-
-        if (!empty($options)) {
-            $path .= '?' . http_build_query($options);
-        }
-
         return new BulkCodeSwitchResponse(
-            $this->client->request('get', $path)
+            $this->client->request('get', $path, $options)
         );
     }
 

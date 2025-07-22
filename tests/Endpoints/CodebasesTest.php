@@ -47,5 +47,17 @@ class CodebasesTest extends CloudApiTestCase
 
         $this->assertInstanceOf(CodebaseEnvironmentsResponse::class, $result);
         $this->assertNotEmpty($result);
+
+        // Test that each item in the response is properly transformed
+        foreach ($result as $environmentResponse) {
+            $this->assertInstanceOf(\AcquiaCloudApi\Response\CodebaseEnvironmentResponse::class, $environmentResponse);
+            $this->assertIsString($environmentResponse->id);
+            $this->assertIsString($environmentResponse->name);
+        }
+
+        // Test specific array structure to catch UnwrapArrayMap mutations
+        $this->assertArrayHasKey(0, $result);
+        $this->assertInstanceOf(\AcquiaCloudApi\Response\CodebaseEnvironmentResponse::class, $result[0]);
+        $this->assertNotNull($result[0]); // This catches NewObject mutations that return null
     }
 }

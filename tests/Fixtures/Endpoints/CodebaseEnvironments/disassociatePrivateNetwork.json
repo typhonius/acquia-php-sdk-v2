@@ -1,0 +1,11 @@
+{
+  "message": "Environment disassociated from private network.",
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/operations/8ff6c046-ec64-4ce4-bea6-27845ec18600"
+    },
+    "notification": {
+      "href": "https://cloud.acquia.com/api/notifications/49efb201-9825-4aa5-8d42-3324880b1735"
+    }
+  }
+}

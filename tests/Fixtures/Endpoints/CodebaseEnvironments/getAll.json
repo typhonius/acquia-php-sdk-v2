@@ -1,0 +1,86 @@
+{
+  "_embedded": {
+    "items": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470"
+          }
+        },
+        "_embedded": {
+          "codebase": {
+            "uuid": "9f4bc29c-c764-4920-9e6c-554f41e4774c"
+          }
+        },
+        "id": "24-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+        "name": "dev",
+        "label": "Development",
+        "description": "Development Environment",
+        "status": "normal",
+        "reference": "master",
+        "flags": {
+          "production": false
+        },
+        "properties": {
+          "drush_aliases": ["my-drush-alias"],
+          "other_property": "value"
+        }
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/environments/15-0c7e79ab-1c4a-424e-8446-76ae8be7e851"
+          }
+        },
+        "_embedded": {
+          "codebase": {
+            "uuid": "9f4bc29c-c764-4920-9e6c-554f41e4774c"
+          }
+        },
+        "id": "15-0c7e79ab-1c4a-424e-8446-76ae8be7e851",
+        "name": "stage",
+        "label": "Staging",
+        "description": "Staging Environment",
+        "status": "normal",
+        "reference": "master",
+        "flags": {
+          "production": false
+        },
+        "properties": {
+          "drush_aliases": ["my-stage-alias"],
+          "other_property": "stage_value"
+        }
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/environments/1-3037149a-3af0-46b0-96cc-5a1e19679430"
+          }
+        },
+        "_embedded": {
+          "codebase": {
+            "uuid": "9f4bc29c-c764-4920-9e6c-554f41e4774c"
+          }
+        },
+        "id": "1-3037149a-3af0-46b0-96cc-5a1e19679430",
+        "name": "prod",
+        "label": "Production",
+        "description": "Production Environment",
+        "status": "normal",
+        "reference": "master",
+        "flags": {
+          "production": true
+        },
+        "properties": {
+          "drush_aliases": ["my-prod-alias"],
+          "other_property": "prod_value"
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/codebases/9f4bc29c-c764-4920-9e6c-554f41e4774c/environments"
+    }
+  }
+}

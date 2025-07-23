@@ -1,0 +1,25 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/environments/24-a47ac10b-58cc-4372-a567-0e02b2c3d470"
+    }
+  },
+  "_embedded": {
+    "codebase": {
+      "uuid": "9f4bc29c-c764-4920-9e6c-554f41e4774c"
+    }
+  },
+  "id": "24-a47ac10b-58cc-4372-a567-0e02b2c3d470",
+  "name": "dev",
+  "label": "Development",
+  "description": "Development Environment",
+  "status": "normal",
+  "reference": "master",
+  "flags": {
+    "production": false
+  },
+  "properties": {
+    "drush_aliases": ["my-drush-alias"],
+    "other_property": "value"
+  }
+}

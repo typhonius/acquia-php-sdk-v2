@@ -1,0 +1,14 @@
+{
+    "_links": {
+        "self": {
+            "href": "https://cloud.acquia.com/api/codebases/11111111-041c-44c7-a486-7972ed2cafc8/references/main"
+        }
+    },
+    "id": "main",
+    "name": "main",
+    "type": "branch",
+    "commit_id": "abcdef1234567890",
+    "commit_message": "Initial commit",
+    "commit_author": "John Doe <john@example.com>",
+    "commit_date": "2023-01-01T12:00:00Z"
+}

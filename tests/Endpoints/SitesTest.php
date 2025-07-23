@@ -267,7 +267,7 @@ class SitesTest extends CloudApiTestCase
         }
 
         // Test specific array structure to catch UnwrapArrayMap mutations
-        if (!empty($result)) {
+        if (count($result) > 0) {
             $this->assertArrayHasKey(0, $result);
             $this->assertInstanceOf(SiteResponse::class, $result[0]);
             $this->assertNotNull($result[0]);

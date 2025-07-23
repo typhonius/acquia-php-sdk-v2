@@ -1,0 +1,54 @@
+{
+    "_links": {
+        "self": {
+            "href": "https://cloud.acquia.com/api/codebases/11111111-041c-44c7-a486-7972ed2cafc8/references"
+        }
+    },
+    "total": 3,
+    "_embedded": {
+        "items": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "https://cloud.acquia.com/api/codebases/11111111-041c-44c7-a486-7972ed2cafc8/references/main"
+                    }
+                },
+                "id": "main",
+                "name": "main",
+                "type": "branch",
+                "commit_id": "abcdef1234567890",
+                "commit_message": "Initial commit",
+                "commit_author": "John Doe <john@example.com>",
+                "commit_date": "2023-01-01T12:00:00Z"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": "https://cloud.acquia.com/api/codebases/11111111-041c-44c7-a486-7972ed2cafc8/references/develop"
+                    }
+                },
+                "id": "develop",
+                "name": "develop",
+                "type": "branch",
+                "commit_id": "bcdef1234567890a",
+                "commit_message": "Development branch",
+                "commit_author": "Jane Smith <jane@example.com>",
+                "commit_date": "2023-01-02T12:00:00Z"
+            },
+            {
+                "_links": {
+                    "self": {
+                        "href": "https://cloud.acquia.com/api/codebases/11111111-041c-44c7-a486-7972ed2cafc8/references/v1.0"
+                    }
+                },
+                "id": "v1.0",
+                "name": "v1.0",
+                "type": "tag",
+                "commit_id": "cdef1234567890ab",
+                "commit_message": "Version 1.0 release",
+                "commit_author": "Release Manager <release@example.com>",
+                "commit_date": "2023-01-03T12:00:00Z"
+            }
+        ]
+    }
+}

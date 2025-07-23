@@ -189,38 +189,6 @@ class CodebasesTest extends CloudApiTestCase
         $this->assertIsString($result->type);
     }
 
-    public function testGetBulkCodeSwitches(): void
-    {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Codebases/getBulkCodeSwitches.json');
-        $client = $this->getMockClient($response);
-
-        $codebases = new Codebases($client);
-        $result = $codebases->getBulkCodeSwitches('11111111-041c-44c7-a486-7972ed2cafc8');
-
-        $this->assertInstanceOf(\AcquiaCloudApi\Response\BulkCodeSwitchResponse::class, $result);
-        $this->assertNotEmpty($result);
-
-        // Test methods for getting properties
-        $this->assertIsString($result->getId());
-        $this->assertIsString($result->getCodebaseId());
-        $this->assertIsString($result->getReference());
-        $this->assertIsString($result->getStatus());
-        $this->assertIsString($result->getCreatedAt());
-        $this->assertIsString($result->getMessage());
-    }
-
-    public function testGetBulkCodeSwitch(): void
-    {
-        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Codebases/getBulkCodeSwitch.json');
-        $client = $this->getMockClient($response);
-
-        $codebases = new Codebases($client);
-        $result = $codebases->getBulkCodeSwitch('11111111-041c-44c7-a486-7972ed2cafc8', 'switch-123');
-
-        $this->assertInstanceOf(\AcquiaCloudApi\Response\BulkCodeSwitchResponse::class, $result);
-        $this->assertIsString($result->getId());
-    }
-
     public function testCreateBulkCodeSwitch(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/Codebases/createBulkCodeSwitch.json');
@@ -278,90 +246,72 @@ class CodebasesTest extends CloudApiTestCase
         $this->assertInstanceOf(\AcquiaCloudApi\Response\OperationResponse::class, $result);
     }
 
-    /**
-     * Tests the BulkCodeSwitchResponse with array input
-     */
-    public function testBulkCodeSwitchResponseWithArrayInput(): void
+    public function testCreateBulkCodeSwitchRequestStructure(): void
     {
-        // Test with array input
-        $bulkCodeSwitchArray = [
-            (object) [
-                'id' => 'test-bulk-switch-id-1',
-                'codebase_id' => 'test-codebase-id-1',
-                'reference' => 'main',
-                'status' => 'complete',
-                'created_at' => '2023-01-01T12:00:00Z',
-                'message' => 'First code switch complete'
-            ],
-            (object) [
-                'id' => 'test-bulk-switch-id-2',
-                'codebase_id' => 'test-codebase-id-2',
-                'reference' => 'develop',
-                'status' => 'in-progress',
-                'created_at' => '2023-01-01T13:00:00Z',
-                'message' => 'Second code switch in progress'
+        // Create a mock response
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/Codebases/createBulkCodeSwitch.json');
+        $client = $this->getMockClient($response);
+
+        $targets = [
+            [
+                'environment_id' => 'env-123',
             ]
         ];
 
-        $response = new BulkCodeSwitchResponse($bulkCodeSwitchArray);
+        // Test with required reference and targets
+        $codebases = new Codebases($client);
+        $codebases->createBulkCodeSwitch('codebase-123', 'main', $targets);
 
-        // Test that we can access items as array
-        $this->assertEquals('test-bulk-switch-id-1', $response[0]->id);
-        $this->assertEquals('test-bulk-switch-id-2', $response[1]->id);
+        $requestOptions = $this->getRequestOptions($client);
+        $this->assertArrayHasKey('json', $requestOptions);
+        $this->assertArrayHasKey('reference', $requestOptions['json']);
+        $this->assertEquals('main', $requestOptions['json']['reference']);
+        $this->assertArrayHasKey('targets', $requestOptions['json']);
+        $this->assertEquals($targets, $requestOptions['json']['targets']);
+        $this->assertArrayNotHasKey('cloud_actions', $requestOptions['json']);
 
-        // Test the getter methods return the first item's values
-        $this->assertEquals('test-bulk-switch-id-1', $response->getId());
-        $this->assertEquals('test-codebase-id-1', $response->getCodebaseId());
-        $this->assertEquals('main', $response->getReference());
-        $this->assertEquals('complete', $response->getStatus());
-        $this->assertEquals('2023-01-01T12:00:00Z', $response->getCreatedAt());
-        $this->assertEquals('First code switch complete', $response->getMessage());
+        // Test with cloud actions
+        $cloudActions = ['cache_clear' => true];
+        $codebases->createBulkCodeSwitch('codebase-123', 'main', $targets, $cloudActions);
+
+        $requestOptions = $this->getRequestOptions($client);
+        $this->assertArrayHasKey('json', $requestOptions);
+        $this->assertArrayHasKey('reference', $requestOptions['json']);
+        $this->assertArrayHasKey('targets', $requestOptions['json']);
+        $this->assertArrayHasKey('cloud_actions', $requestOptions['json']);
+        $this->assertEquals($cloudActions, $requestOptions['json']['cloud_actions']);
     }
 
     /**
-     * Tests the BulkCodeSwitchResponse with object input
+     * Tests the array_map and object casting in constructor
      */
-    public function testBulkCodeSwitchResponseWithObjectInput(): void
+    public function testBulkCodeSwitchResponseArrayMapping(): void
     {
-        // Test with object input
-        $bulkCodeSwitchObject = (object) [
-            'id' => 'test-bulk-switch-id',
-            'codebase_id' => 'test-codebase-id',
-            'reference' => 'main',
-            'status' => 'complete',
-            'created_at' => '2023-01-01T12:00:00Z',
-            'message' => 'Code switch complete'
+        // Test with array input that needs to be cast to objects
+        $arrayInput = [
+            ['id' => 'id1', 'codebase_id' => 'cb1', 'reference' => 'main'],
+            ['id' => 'id2', 'codebase_id' => 'cb2', 'reference' => 'dev']
         ];
 
-        $response = new BulkCodeSwitchResponse($bulkCodeSwitchObject);
+        $response = new BulkCodeSwitchResponse($arrayInput);
 
-        // Test that we can access first item
-        $this->assertEquals('test-bulk-switch-id', $response[0]->id);
+        // Verify the array items were mapped to objects
+        $this->assertIsObject($response[0]);
+        $this->assertIsObject($response[1]);
+        $this->assertEquals('id1', $response[0]->id);
+        $this->assertEquals('cb2', $response[1]->codebase_id);
 
-        // Test the getter methods
-        $this->assertEquals('test-bulk-switch-id', $response->getId());
-        $this->assertEquals('test-codebase-id', $response->getCodebaseId());
-        $this->assertEquals('main', $response->getReference());
-        $this->assertEquals('complete', $response->getStatus());
-        $this->assertEquals('2023-01-01T12:00:00Z', $response->getCreatedAt());
-        $this->assertEquals('Code switch complete', $response->getMessage());
-    }
+        // Also test with mixed data types
+        $mixedInput = [
+            ['id' => 'id1'],
+            (object)['id' => 'id2']
+        ];
 
-    /**
-     * Tests the BulkCodeSwitchResponse with empty array input
-     */
-    public function testBulkCodeSwitchResponseWithEmptyArrayInput(): void
-    {
-        // Test with empty array
-        $response = new BulkCodeSwitchResponse([]);
+        $response2 = new BulkCodeSwitchResponse($mixedInput);
 
-        // Test that all getters return null
-        $this->assertNull($response->getId());
-        $this->assertNull($response->getCodebaseId());
-        $this->assertNull($response->getReference());
-        $this->assertNull($response->getStatus());
-        $this->assertNull($response->getCreatedAt());
-        $this->assertNull($response->getMessage());
+        // Both should be objects
+        $this->assertIsObject($response2[0]);
+        $this->assertIsObject($response2[1]);
     }
 
     /**

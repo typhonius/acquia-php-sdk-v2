@@ -82,6 +82,29 @@ class CodebaseEnvironmentsTest extends CloudApiTestCase
         $this->assertEquals('Environment properties updated.', $result->message);
     }
 
+    public function testUpdateOptionsStructure(): void
+    {
+        // Create a mock response
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/CodebaseEnvironments/update.json');
+        $client = $this->getMockClient($response);
+
+        /** @var CodebaseEnvironments $environments */
+        $environments = new CodebaseEnvironments($client);
+        $properties = [
+            'drush_aliases' => ['new-alias'],
+            'new_property' => 'new_value'
+        ];
+
+        // Invoke the update method with our properties
+        $environments->update('test-env', $properties);
+
+        // Get the request options and verify they match the expected structure
+        $requestOptions = $this->getRequestOptions($client);
+        $this->assertArrayHasKey('json', $requestOptions);
+        $this->assertArrayHasKey('properties', $requestOptions['json']);
+        $this->assertEquals($properties, $requestOptions['json']['properties']);
+    }
+
     public function testAssociatePrivateNetwork(): void
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/CodebaseEnvironments/associatePrivateNetwork.json');
@@ -93,6 +116,26 @@ class CodebaseEnvironmentsTest extends CloudApiTestCase
 
         $this->assertInstanceOf(OperationResponse::class, $result);
         $this->assertEquals('Environment associated with private network.', $result->message);
+    }
+
+    public function testAssociatePrivateNetworkOptionsStructure(): void
+    {
+        // Create a mock response
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/CodebaseEnvironments/associatePrivateNetwork.json');
+        $client = $this->getMockClient($response);
+
+        /** @var CodebaseEnvironments $environments */
+        $environments = new CodebaseEnvironments($client);
+        $privateNetworkId = 'pn-123456';
+
+        // Invoke the method with our private network ID
+        $environments->associatePrivateNetwork('test-env', $privateNetworkId);
+
+        // Get the request options and verify they match the expected structure
+        $requestOptions = $this->getRequestOptions($client);
+        $this->assertArrayHasKey('json', $requestOptions);
+        $this->assertArrayHasKey('private_network_id', $requestOptions['json']);
+        $this->assertEquals($privateNetworkId, $requestOptions['json']['private_network_id']);
     }
 
     public function testDisassociatePrivateNetwork(): void
@@ -231,5 +274,36 @@ class CodebaseEnvironmentsTest extends CloudApiTestCase
         $response5 = new CodebaseEnvironmentResponse($environmentWithoutProperties);
         $this->assertIsArray($response5->properties);
         $this->assertEmpty($response5->properties);
+
+        // Test code_switch_status with default value
+        $environmentWithoutCodeSwitchStatus = (object) [
+            '_links' => (object) ['self' => (object) ['href' => 'https://example.com']],
+            'id' => 'env-6',
+            'name' => 'dev3',
+            'label' => 'Dev3',
+            'description' => 'Development Environment 3',
+            'status' => 'normal',
+            'reference' => 'develop',
+            'flags' => (object) ['production' => false]
+        ];
+
+        $response6 = new CodebaseEnvironmentResponse($environmentWithoutCodeSwitchStatus);
+        $this->assertEquals('IDLE', $response6->code_switch_status);
+
+        // Test code_switch_status with explicit value
+        $environmentWithCodeSwitchStatus = (object) [
+            '_links' => (object) ['self' => (object) ['href' => 'https://example.com']],
+            'id' => 'env-7',
+            'name' => 'dev4',
+            'label' => 'Dev4',
+            'description' => 'Development Environment 4',
+            'status' => 'normal',
+            'reference' => 'develop',
+            'flags' => (object) ['production' => false],
+            'code_switch_status' => 'RUNNING'
+        ];
+
+        $response7 = new CodebaseEnvironmentResponse($environmentWithCodeSwitchStatus);
+        $this->assertEquals('RUNNING', $response7->code_switch_status);
     }
 }

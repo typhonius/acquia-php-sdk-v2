@@ -185,11 +185,15 @@ class Codebases extends CloudApiBase
             $data['cloud_actions'] = $cloudActions;
         }
 
+        $options = [
+            'json' => $data,
+        ];
+
         return new OperationResponse(
             $this->client->request(
                 'post',
                 "/codebases/$codebaseUuid/bulk-code-switch",
-                $data
+                $options
             )
         );
     }

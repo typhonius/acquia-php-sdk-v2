@@ -10,7 +10,7 @@ use ArrayObject;
 class BulkCodeSwitchResponse extends ArrayObject
 {
     /**
-     * @param array<object>|object $bulkCodeSwitch
+     * @param array<object>|object|array<int,array<string,string>> $bulkCodeSwitch
      */
     public function __construct(array|object $bulkCodeSwitch)
     {
@@ -33,5 +33,4 @@ class BulkCodeSwitchResponse extends ArrayObject
             );
         }
     }
-
 }

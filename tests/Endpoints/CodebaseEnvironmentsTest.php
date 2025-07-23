@@ -159,11 +159,11 @@ class CodebaseEnvironmentsTest extends CloudApiTestCase
             'reference' => 'develop',
             'flags' => (object) ['production' => false],
             'properties' => ['key' => 'value'],
-            '_embedded' => (object) ['codebase' => (object) ['uuid' => 'codebase-uuid-1']]
+            '_embedded' => (object) ['codebase' => (object) ['id' => 'codebase-uuid-1']]
         ];
 
         $response1 = new CodebaseEnvironmentResponse($environmentWithEmbeddedCodebase);
-        $this->assertEquals('codebase-uuid-1', $response1->codebase->uuid);
+        $this->assertEquals('codebase-uuid-1', $response1->codebase_uuid);
 
         // Test with codebase as direct property
         $environmentWithCodebaseProperty = (object) [
@@ -176,11 +176,11 @@ class CodebaseEnvironmentsTest extends CloudApiTestCase
             'reference' => 'master',
             'flags' => (object) ['production' => false],
             'properties' => ['key' => 'value'],
-            'codebase' => (object) ['uuid' => 'codebase-uuid-2']
+            'codebase' => (object) ['id' => 'codebase-uuid-2']
         ];
 
         $response2 = new CodebaseEnvironmentResponse($environmentWithCodebaseProperty);
-        $this->assertEquals('codebase-uuid-2', $response2->codebase->uuid);
+        $this->assertEquals('codebase-uuid-2', $response2->codebase_uuid);
 
         // Test with no codebase property
         $environmentWithoutCodebase = (object) [

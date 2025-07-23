@@ -659,7 +659,7 @@ class SiteInstancesTest extends CloudApiTestCase
 
         $response1 = new CodebaseEnvironmentResponse($environmentWithEmbeddedCodebase);
         $this->assertIsObject($response1->codebase);
-        $this->assertEquals('embedded-codebase-id', $response1->codebase->id);
+        $this->assertEquals('embedded-codebase-id', $response1->codebase_uuid);
 
         // Case 2: Test when codebase is a direct property
         $environmentWithDirectCodebase = (object) [
@@ -677,7 +677,7 @@ class SiteInstancesTest extends CloudApiTestCase
 
         $response2 = new CodebaseEnvironmentResponse($environmentWithDirectCodebase);
         $this->assertIsObject($response2->codebase);
-        $this->assertEquals('direct-codebase-id', $response2->codebase->id);
+        $this->assertEquals('direct-codebase-id', $response2->codebase_uuid);
 
         // Case 3: Test when codebase is missing
         $environmentWithoutCodebase = (object) [

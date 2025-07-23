@@ -18,6 +18,8 @@ class CodebaseEnvironmentResponse
 
     public string $reference;
 
+    public string $code_switch_status;
+
     public object $flags;
 
     /**
@@ -26,6 +28,8 @@ class CodebaseEnvironmentResponse
     public array $properties;
 
     public object $codebase;
+
+    public ?string $codebase_uuid = null;
 
     public function __construct(object $environment)
     {
@@ -36,16 +40,20 @@ class CodebaseEnvironmentResponse
         $this->description = $environment->description;
         $this->status = $environment->status;
         $this->reference = $environment->reference;
+        $this->code_switch_status = $environment->code_switch_status ?? 'IDLE';
         $this->flags = $environment->flags;
         $this->properties = (array) ($environment->properties ?? []);
 
+        // Initialize codebase as empty object by default
+        $this->codebase = new \stdClass();
+
         // Handle embedded codebase or direct codebase reference
         if (isset($environment->_embedded->codebase)) {
-            $this->codebase = $environment->_embedded->codebase;
+            $hasId = isset($environment->_embedded->codebase->id);
+            $this->codebase_uuid = $hasId ? $environment->_embedded->codebase->id : null;
         } elseif (isset($environment->codebase)) {
-            $this->codebase = $environment->codebase;
-        } else {
-            $this->codebase = (object) [];
+            $hasId = isset($environment->codebase->id);
+            $this->codebase_uuid = $hasId ? $environment->codebase->id : null;
         }
     }
 }

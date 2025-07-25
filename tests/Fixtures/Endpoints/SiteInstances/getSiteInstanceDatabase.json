@@ -1,0 +1,13 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://environment-service-php.acquia.com/api/site-instances/3e8ecbec-ea7c-4260-8414-ef2938c859bc.d3f7270e-c45f-4801-9308-5e8afe84a323/database"
+    }
+  },
+  "database_host": "localhost",
+  "database_name": "example_db",
+  "database_role": "primary",
+  "database_user": "example_user",
+  "database_password": "example_password",
+  "database_port": 3306
+}

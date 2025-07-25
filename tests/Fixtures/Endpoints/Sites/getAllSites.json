@@ -1,0 +1,58 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/sites?limit=25&offset=1"
+    },
+    "limit": {
+      "href": "https://cloud.acquia.com/api/sites?offset=1{&limit}",
+      "templated": true
+    },
+    "offset": {
+      "href": "https://cloud.acquia.com/api/sites?limit=25{&offset}",
+      "templated": true
+    },
+    "filter": {
+      "href": "https://cloud.acquia.com/api/sites?limit=25&offset=1{&filter}",
+      "templated": true
+    },
+    "sort": {
+      "href": "https://cloud.acquia.com/api/sites?limit=25&offset=1{&sort}",
+      "templated": true
+    }
+  },
+  "count": 2,
+  "total": 2,
+  "pagination": {
+    "total": 2,
+    "limit": 25,
+    "offset": 1
+  },
+  "_embedded": {
+    "items": [
+      {
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/sites/8979a8ac-80dc-4df8-b2f0-6be36554a370"
+          }
+        },
+        "id": "8979a8ac-80dc-4df8-b2f0-6be36554a370",
+        "name": "site1",
+        "label": "My Site 1",
+        "description": "My Site 1 description",
+        "codebase_id": "1234-5678"
+      },
+      {
+        "_links": {
+          "self": {
+            "href": "https://cloud.acquia.com/api/sites/9979a8ac-80dc-4df8-b2f0-6be36554a371"
+          }
+        },
+        "id": "9979a8ac-80dc-4df8-b2f0-6be36554a371",
+        "name": "site2",
+        "label": "My Site 2",
+        "description": "My Site 2 description",
+        "codebase_id": "1234-5679"
+      }
+    ]
+  }
+}

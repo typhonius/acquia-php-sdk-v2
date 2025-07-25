@@ -1,0 +1,8 @@
+{
+  "message": "Database backup created successfully.",
+  "_links": {
+    "self": {
+      "href": "https://environment-service-php.acquia.com/api/site-instances/3e8ecbec-ea7c-4260-8414-ef2938c859bc.a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3/database/backups"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+    "message": "Bulk code switch initiated.",
+    "_links": {
+        "self": {
+            "href": "https://cloud.acquia.com/api/operations/123456-abcd-1234-5678-12345678"
+        }
+    },
+    "uuid": "123456-abcd-1234-5678-12345678"
+}

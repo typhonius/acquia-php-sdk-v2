@@ -1,0 +1,19 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://environment-service-php.acquia.com/api/site-instances/3e8ecbec-ea7c-4260-8414-ef2938c859bc.d3f7270e-c45f-4801-9308-5e8afe84a323"
+    }
+  },
+  "site_id": "3e8ecbec-ea7c-4260-8414-ef2938c859bc",
+  "environment_id": "d3f7270e-c45f-4801-9308-5e8afe84a323",
+  "status": "active",
+  "health_status": {
+    "code": "SITE_HEALTH_GREEN",
+    "summary": "Site is healthy",
+    "details": "All systems are operational"
+  },
+  "domains": [
+    "example.com",
+    "www.example.com"
+  ]
+}

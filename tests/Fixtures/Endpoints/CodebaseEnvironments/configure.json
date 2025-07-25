@@ -1,0 +1,11 @@
+{
+  "message": "Configuring environment Dev",
+  "_links": {
+    "self": {
+      "href": "https://cloud.acquia.com/api/operations/a45e6cf6-8d4e-4c21-84e2-9a8a7f438f18"
+    },
+    "notification": {
+      "href": "https://cloud.acquia.com/api/notifications/7f2497e0-1a6b-46ad-8d8d-4a2c3356e346"
+    }
+  }
+}

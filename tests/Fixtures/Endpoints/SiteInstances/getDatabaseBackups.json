@@ -1,0 +1,78 @@
+{
+  "_links": {
+    "self": {
+      "href": "https://environment-service-php.acquia.com/api/site-instances/3e8ecbec-ea7c-4260-8414-ef2938c859bc.a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3/database/backups?limit=25&offset=1"
+    },
+    "limit": {
+      "href": "https://environment-service-php.acquia.com/api/site-instances/3e8ecbec-ea7c-4260-8414-ef2938c859bc.a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3/database/backups?offset=1{&limit}",
+      "templated": true
+    },
+    "offset": {
+      "href": "https://environment-service-php.acquia.com/api/site-instances/3e8ecbec-ea7c-4260-8414-ef2938c859bc.a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3/database/backups?limit=25{&offset}",
+      "templated": true
+    },
+    "filter": {
+      "href": "https://environment-service-php.acquia.com/api/site-instances/3e8ecbec-ea7c-4260-8414-ef2938c859bc.a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3/database/backups?limit=25&offset=1{&filter}",
+      "templated": true
+    },
+    "sort": {
+      "href": "https://environment-service-php.acquia.com/api/site-instances/3e8ecbec-ea7c-4260-8414-ef2938c859bc.a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3/database/backups?limit=25&offset=1{&sort}",
+      "templated": true
+    }
+  },
+  "count": 2,
+  "total": 2,
+  "pagination": {
+    "total": 2,
+    "limit": 25,
+    "offset": 1
+  },
+  "_embedded": {
+    "items": [
+      {
+        "id": 1,
+        "database": {
+          "id": 1,
+          "name": "example_db"
+        },
+        "type": "daily",
+        "started_at": "2023-01-15T10:00:00.000Z",
+        "completed_at": "2023-01-15T10:30:00.000Z",
+        "flags": {
+          "deleted": false
+        },
+        "environment": {
+          "id": "a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3",
+          "name": "dev"
+        },
+        "_links": {
+          "self": {
+            "href": "https://environment-service-php.acquia.com/api/site-instances/3e8ecbec-ea7c-4260-8414-ef2938c859bc.a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3/database/backups/1"
+          }
+        }
+      },
+      {
+        "id": 2,
+        "database": {
+          "id": 1,
+          "name": "example_db"
+        },
+        "type": "manual",
+        "started_at": "2023-01-16T10:00:00.000Z",
+        "completed_at": "2023-01-16T10:30:00.000Z",
+        "flags": {
+          "deleted": false
+        },
+        "environment": {
+          "id": "a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3",
+          "name": "dev"
+        },
+        "_links": {
+          "self": {
+            "href": "https://environment-service-php.acquia.com/api/site-instances/3e8ecbec-ea7c-4260-8414-ef2938c859bc.a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3/database/backups/2"
+          }
+        }
+      }
+    ]
+  }
+}

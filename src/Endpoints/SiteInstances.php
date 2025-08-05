@@ -25,7 +25,7 @@ class SiteInstances extends CloudApiBase
         return new SiteInstanceResponse(
             $this->client->request(
                 'get',
-                "/api/site-instances/$siteId.$environmentId"
+                "/site-instances/$siteId.$environmentId"
             )
         );
     }
@@ -38,7 +38,7 @@ class SiteInstances extends CloudApiBase
         return new SiteInstanceDatabaseResponse(
             $this->client->request(
                 'get',
-                "/api/site-instances/$siteId.$environmentId/database"
+                "/site-instances/$siteId.$environmentId/database"
             )
         );
     }
@@ -57,7 +57,7 @@ class SiteInstances extends CloudApiBase
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/api/site-instances/$siteId.$environmentId/database",
+                "/site-instances/$siteId.$environmentId/database",
                 $options
             )
         );
@@ -73,7 +73,7 @@ class SiteInstances extends CloudApiBase
         return new BackupsResponse(
             $this->client->request(
                 'get',
-                "/api/site-instances/$siteId.$environmentId/database/backups"
+                "/site-instances/$siteId.$environmentId/database/backups"
             )
         );
     }
@@ -86,7 +86,7 @@ class SiteInstances extends CloudApiBase
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/api/site-instances/$siteId.$environmentId/database/backups"
+                "/site-instances/$siteId.$environmentId/database/backups"
             )
         );
     }
@@ -99,7 +99,7 @@ class SiteInstances extends CloudApiBase
         return new BackupResponse(
             $this->client->request(
                 'get',
-                "/api/site-instances/$siteId.$environmentId/database/backups/$backupId"
+                "/site-instances/$siteId.$environmentId/database/backups/$backupId"
             )
         );
     }
@@ -112,7 +112,7 @@ class SiteInstances extends CloudApiBase
         return new OperationResponse(
             $this->client->request(
                 'get',
-                "/api/site-instances/$siteId.$environmentId/database/backups/$backupId/actions/download"
+                "/site-instances/$siteId.$environmentId/database/backups/$backupId/actions/download"
             )
         );
     }
@@ -125,7 +125,7 @@ class SiteInstances extends CloudApiBase
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/api/site-instances/$siteId.$environmentId/database/backups/$backupId/actions/restore"
+                "/site-instances/$siteId.$environmentId/database/backups/$backupId/actions/restore"
             )
         );
     }
@@ -140,7 +140,7 @@ class SiteInstances extends CloudApiBase
         return new DomainsResponse(
             $this->client->request(
                 'get',
-                "/api/site-instances/$siteId.$environmentId/domains"
+                "/site-instances/$siteId.$environmentId/domains"
             )
         );
     }
@@ -153,7 +153,7 @@ class SiteInstances extends CloudApiBase
         return new DomainResponse(
             $this->client->request(
                 'get',
-                "/api/site-instances/$siteId.$environmentId/domains/$domainName"
+                "/site-instances/$siteId.$environmentId/domains/$domainName"
             )
         );
     }
@@ -166,7 +166,7 @@ class SiteInstances extends CloudApiBase
         return new DomainResponse(
             $this->client->request(
                 'get',
-                "/api/site-instances/$siteId.$environmentId/domains/$domainName/status"
+                "/site-instances/$siteId.$environmentId/domains/$domainName/status"
             )
         );
     }
@@ -185,7 +185,7 @@ class SiteInstances extends CloudApiBase
         return new OperationResponse(
             $this->client->request(
                 'post',
-                "/api/site-instances/$siteId.$environmentId/files",
+                "/site-instances/$siteId.$environmentId/files",
                 $options
             )
         );

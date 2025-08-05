@@ -21,7 +21,7 @@ class CodebaseEnvironments extends CloudApiBase
         return new CodebaseEnvironmentsResponse(
             $this->client->request(
                 'get',
-                "/api/codebases/$codebaseId/environments"
+                "/codebases/$codebaseId/environments"
             )
         );
     }
@@ -34,7 +34,7 @@ class CodebaseEnvironments extends CloudApiBase
         return new CodebaseEnvironmentResponse(
             $this->client->request(
                 'get',
-                "/api/codebases/$codebaseId/environments/$environmentId"
+                "/codebases/$codebaseId/environments/$environmentId"
             )
         );
     }
@@ -47,7 +47,7 @@ class CodebaseEnvironments extends CloudApiBase
         return new CodebaseEnvironmentResponse(
             $this->client->request(
                 'get',
-                "/api/environments/$environmentId"
+                "/v3/environments/$environmentId"
             )
         );
     }
@@ -68,7 +68,7 @@ class CodebaseEnvironments extends CloudApiBase
         return new OperationResponse(
             $this->client->request(
                 'put',
-                "/api/environments/$environmentId",
+                "/v3/environments/$environmentId",
                 $options
             )
         );
@@ -88,7 +88,7 @@ class CodebaseEnvironments extends CloudApiBase
         return new OperationResponse(
             $this->client->request(
                 'put',
-                "/api/environments/$environmentId/private-network",
+                "/v3/environments/$environmentId/private-network",
                 $options
             )
         );
@@ -102,7 +102,7 @@ class CodebaseEnvironments extends CloudApiBase
         return new OperationResponse(
             $this->client->request(
                 'delete',
-                "/api/environments/$environmentId/private-network"
+                "/v3/environments/$environmentId/private-network"
             )
         );
     }
@@ -115,7 +115,7 @@ class CodebaseEnvironments extends CloudApiBase
         return new CodebaseEnvironmentsResponse(
             $this->client->request(
                 'get',
-                "/api/private-networks/$privateNetworkId/environments"
+                "/v3/private-networks/$privateNetworkId/environments"
             )
         );
     }
@@ -128,7 +128,7 @@ class CodebaseEnvironments extends CloudApiBase
         return new CodebaseEnvironmentsResponse(
             $this->client->request(
                 'get',
-                "/api/sites/$siteId/environments"
+                "/sites/$siteId/environments"
             )
         );
     }

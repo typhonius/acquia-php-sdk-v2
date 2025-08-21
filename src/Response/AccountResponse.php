@@ -14,7 +14,7 @@ class AccountResponse
 
     public string $last_name;
 
-    public string $last_login_at;
+    // public string $last_login_at;
 
     public string $created_at;
 
@@ -54,7 +54,7 @@ class AccountResponse
         $this->name = $account->name;
         $this->first_name = $account->first_name;
         $this->last_name = $account->last_name;
-        $this->last_login_at = $account->last_login_at;
+        // $this->last_login_at = $account->last_login_at;
         $this->created_at = $account->created_at;
         $this->mail = $account->mail;
         $this->phone = $account->phone;

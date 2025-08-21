@@ -2,7 +2,6 @@
     "uuid": "5aa902c5-f1c1-6c94-edfa-86bc58d0dce3",
     "first_name": "James",
     "last_name": "Kirk",
-    "last_login_at": "2017-03-28T13:07:54-0500",
     "mail": "james.kirk@example.com",
     "picture_url": "https://accounts.acquia.com/images/users/5aa902c5-f1c1-6c94-edfa-86bc58d0dce3/style/avatar",
     "username": "james.kirk",

@@ -305,5 +305,21 @@ class CodebaseEnvironmentsTest extends CloudApiTestCase
 
         $response7 = new CodebaseEnvironmentResponse($environmentWithCodeSwitchStatus);
         $this->assertEquals('RUNNING', $response7->code_switch_status);
+        // Test code_switch_status with explicit value
+        $environmentWithSshUrl = (object) [
+            '_links' => (object) ['self' => (object) ['href' => 'https://example.com']],
+            'id' => 'env-7',
+            'name' => 'dev4',
+            'label' => 'Dev4',
+            'description' => 'Development Environment 4',
+            'status' => 'normal',
+            'reference' => 'develop',
+            'flags' => (object) ['production' => false],
+            'code_switch_status' => 'RUNNING',
+            'ssh_url' => 'ideapp.dev01@ideappdev01.ssh.gardens.acquia-sites.com'
+        ];
+
+        $response8 = new CodebaseEnvironmentResponse($environmentWithSshUrl);
+        $this->assertEquals('ideapp.dev01@ideappdev01.ssh.gardens.acquia-sites.com', $response8->ssh_url);
     }
 }

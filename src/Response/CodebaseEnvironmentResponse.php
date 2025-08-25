@@ -20,6 +20,8 @@ class CodebaseEnvironmentResponse
 
     public string $code_switch_status;
 
+    public string $ssh_url;
+
     public object $flags;
 
     /**
@@ -41,6 +43,7 @@ class CodebaseEnvironmentResponse
         $this->status = $environment->status;
         $this->reference = $environment->reference;
         $this->code_switch_status = $environment->code_switch_status ?? 'IDLE';
+        $this->ssh_url = $environment->ssh_url ?? '';
         $this->flags = $environment->flags;
         $this->properties = (array) ($environment->properties ?? []);
 

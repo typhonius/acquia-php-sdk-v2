@@ -316,7 +316,7 @@ class CodebaseEnvironmentsTest extends CloudApiTestCase
             'reference' => 'develop',
             'flags' => (object) ['production' => false],
             'code_switch_status' => 'RUNNING',
-            'ssh_url'=>'ideapp.dev01@ideappdev01.ssh.gardens.acquia-sites.com'
+            'ssh_url' => 'ideapp.dev01@ideappdev01.ssh.gardens.acquia-sites.com'
         ];
 
         $response8 = new CodebaseEnvironmentResponse($environmentWithSshUrl);

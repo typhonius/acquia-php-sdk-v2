@@ -7,7 +7,10 @@ class SiteInstanceDatabaseBackupResponse
     public string $id;
     public string $database_id;
     public string $created_at;
-    public object $links;
+    /**
+     * @var array<string> $links
+     */
+    public array $links;
 
     public function __construct(object $data)
     {

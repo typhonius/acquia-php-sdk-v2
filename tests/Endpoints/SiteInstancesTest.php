@@ -6,8 +6,6 @@ use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Endpoints\SiteInstances;
 use AcquiaCloudApi\Response\SiteInstanceResponse;
 use AcquiaCloudApi\Response\SiteInstanceDatabaseResponse;
-use AcquiaCloudApi\Response\BackupResponse;
-use AcquiaCloudApi\Response\BackupsResponse;
 use AcquiaCloudApi\Response\CodebaseEnvironmentResponse;
 use AcquiaCloudApi\Response\DomainResponse;
 use AcquiaCloudApi\Response\DomainsResponse;
@@ -91,17 +89,19 @@ class SiteInstancesTest extends CloudApiTestCase
             'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3'
         );
 
-        $this->assertInstanceOf(BackupsResponse::class, $result);
+        $this->assertInstanceOf(SiteInstanceDatabaseBackupsResponse::class, $result);
         $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
-            $this->assertInstanceOf(BackupResponse::class, $record);
+            $this->assertInstanceOf(SiteInstanceDatabaseBackupResponse::class, $record);
         }
 
         // Test first backup
         $firstBackup = $result[0];
-        $this->assertEquals(1, $firstBackup->id);
-        $this->assertEquals('daily', $firstBackup->type);
+        $this->assertEquals('e0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', $firstBackup->id);
+        $this->assertEquals('b0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', $firstBackup->database_id);
+        $this->assertEquals('2025-04-01T13:01:06.603Z', $firstBackup->created_at);
+        $this->assertEquals([ "www.example.com"], $firstBackup->links);
     }
 
     public function testCreateDatabaseBackup(): void
@@ -128,14 +128,14 @@ class SiteInstancesTest extends CloudApiTestCase
         $result = $siteInstances->getDatabaseBackup(
             '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
             'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3',
-            '1'
+            'backup-123'
         );
 
-        $this->assertInstanceOf(BackupResponse::class, $result);
-        $this->assertEquals(1, $result->id);
-        $this->assertEquals('daily', $result->type);
-        $this->assertEquals('2023-01-15T10:00:00.000Z', $result->startedAt);
-        $this->assertEquals('2023-01-15T10:30:00.000Z', $result->completedAt);
+        $this->assertInstanceOf(SiteInstanceDatabaseBackupResponse::class, $result);
+        $this->assertEquals('e0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', $result->id);
+        $this->assertEquals('b0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', $result->database_id);
+        $this->assertEquals('2025-04-01T13:01:06.603Z', $result->created_at);
+        $this->assertEquals([ "www.example.com"], $result->links);
     }
 
     public function testDownloadDatabaseBackup(): void
@@ -199,11 +199,11 @@ class SiteInstancesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $siteInstances = new SiteInstances($client);
-        $result = $siteInstances->getDomain(
-            '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
-            'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3',
-            'example.com'
-        );
+            $result = $siteInstances->getDomain(
+                '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
+                'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3',
+                'example.com'
+            );
 
         $this->assertInstanceOf(DomainResponse::class, $result);
         $this->assertEquals('example.com', $result->hostname);
@@ -326,15 +326,14 @@ class SiteInstancesTest extends CloudApiTestCase
             'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3'
         );
 
-        $this->assertInstanceOf(BackupsResponse::class, $result);
+        $this->assertInstanceOf(SiteInstanceDatabaseBackupsResponse::class, $result);
 
         // Enhanced array iteration to catch array transformation mutations
         $itemCount = 0;
         foreach ($result as $index => $backupResponse) {
-            $this->assertInstanceOf(BackupResponse::class, $backupResponse);
+            $this->assertInstanceOf(SiteInstanceDatabaseBackupResponse::class, $backupResponse);
             $this->assertNotNull($backupResponse); // Catches NewObject mutations
-            $this->assertIsInt($backupResponse->id);
-            $this->assertIsString($backupResponse->type);
+            $this->assertStringContainsString("e0c9dff7-56b6-4c0d-bad0-0e6593f66cd3", $backupResponse->id);
             $itemCount++;
         }
 
@@ -345,7 +344,7 @@ class SiteInstancesTest extends CloudApiTestCase
         if (count($result) > 0) {
             $this->assertArrayHasKey(0, $result);
             $firstBackup = $result[0];
-            $this->assertInstanceOf(BackupResponse::class, $firstBackup);
+            $this->assertInstanceOf(SiteInstanceDatabaseBackupResponse::class, $firstBackup);
             $this->assertNotNull($firstBackup->id);
         }
     }
@@ -727,61 +726,5 @@ class SiteInstancesTest extends CloudApiTestCase
         $response5 = new CodebaseEnvironmentResponse($environmentWithNullProperties);
         $this->assertIsArray($response5->properties);
         $this->assertEmpty($response5->properties);
-    }
-
-    public function testSingleBackupResponse(): void
-    {
-        $data = (object) [
-            'id' => 'backup-123',
-            'database_id' => 'db-456',
-            'created_at' => '2025-04-01T13:01:06.603Z',
-            '_links' => (object) ['self' => 'https://example.com/backup/123'],
-        ];
-        $backup = new SiteInstanceDatabaseBackupResponse($data);
-        $this->assertSame('backup-123', $backup->id);
-        $this->assertSame('db-456', $backup->database_id);
-        $this->assertSame('2025-04-01T13:01:06.603Z', $backup->created_at);
-        $this->assertEquals((object) ['self' => 'https://example.com/backup/123'], $backup->links);
-    }
-
-    public function testMultipleBackupsResponse(): void
-    {
-        $backupsData = [
-            (object) [
-                'id' => 'backup-123',
-                'database_id' => 'db-456',
-                'created_at' => '2025-04-01T13:01:06.603Z',
-                '_links' => (object) ['self' => 'https://example.com/backup/123'],
-            ],
-            (object) [
-                'id' => 'backup-789',
-                'database_id' => 'db-999',
-                'created_at' => '2025-05-01T13:01:06.603Z',
-                '_links' => (object) ['self' => 'https://example.com/backup/789'],
-            ],
-        ];
-        $backups = new SiteInstanceDatabaseBackupsResponse($backupsData);
-        $this->assertCount(2, $backups);
-        $this->assertInstanceOf(SiteInstanceDatabaseBackupResponse::class, $backups[0]);
-        $this->assertSame('backup-123', $backups[0]->id);
-        $this->assertSame('backup-789', $backups[1]->id);
-        $this->assertSame('db-456', $backups[0]->database_id);
-        $this->assertSame('db-999', $backups[1]->database_id);
-    }
-
-    public function testBackupsResponse(): void
-    {
-        $backupsData = [
-            (object) [
-                'id' => 'e0c9dff7-56b6-4c0d-bad0-0e6593f66cd3',
-                'database_id' => 'b0c9dff7-56b6-4c0d-bad0-0e6593f66cd3',
-                'created_at' => '2025-04-01T13:01:06.603Z',
-                '_links' => (object) ['self' => 'www.example.com'],
-            ],
-        ];
-        $backups = new SiteInstanceDatabaseBackupsResponse($backupsData);
-        $this->assertCount(1, $backups);
-        $this->assertInstanceOf(SiteInstanceDatabaseBackupResponse::class, $backups[0]);
-        $this->assertSame('e0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', $backups[0]->id);
     }
 }

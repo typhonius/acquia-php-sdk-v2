@@ -7,7 +7,6 @@
   "database_host": "localhost",
   "database_name": "example_db",
   "database_role": "primary",
-  "database_user": "example_user",
-  "database_password": "example_password",
-  "database_port": 3306
+  "database_user_name": "example_user",
+  "database_password": "example_password"
 }

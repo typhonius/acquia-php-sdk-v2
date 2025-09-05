@@ -12,6 +12,8 @@ use AcquiaCloudApi\Response\CodebaseEnvironmentResponse;
 use AcquiaCloudApi\Response\DomainResponse;
 use AcquiaCloudApi\Response\DomainsResponse;
 use AcquiaCloudApi\Response\OperationResponse;
+use AcquiaCloudApi\Response\SiteInstanceDatabaseBackupResponse;
+use AcquiaCloudApi\Response\SiteInstanceDatabaseBackupsResponse;
 use AcquiaCloudApi\Response\SiteResponse;
 
 class SiteInstancesTest extends CloudApiTestCase
@@ -51,9 +53,8 @@ class SiteInstancesTest extends CloudApiTestCase
         $this->assertEquals('localhost', $result->databaseHost);
         $this->assertEquals('example_db', $result->databaseName);
         $this->assertEquals('primary', $result->databaseRole);
-        $this->assertEquals('example_user', $result->databaseUser);
+        $this->assertEquals('example_user', $result->databaseUserName);
         $this->assertEquals('example_password', $result->databasePassword);
-        $this->assertEquals(3306, $result->databasePort);
     }
 
     public function testCopyDatabase(): void
@@ -309,9 +310,8 @@ class SiteInstancesTest extends CloudApiTestCase
         $this->assertNotNull($result->databaseHost);
         $this->assertNotNull($result->databaseName);
         $this->assertNotNull($result->databaseRole);
-        $this->assertNotNull($result->databaseUser);
+        $this->assertNotNull($result->databaseUserName);
         $this->assertNotNull($result->databasePassword);
-        $this->assertIsInt($result->databasePort);
         $this->assertIsObject($result->links);
     }
 
@@ -727,5 +727,61 @@ class SiteInstancesTest extends CloudApiTestCase
         $response5 = new CodebaseEnvironmentResponse($environmentWithNullProperties);
         $this->assertIsArray($response5->properties);
         $this->assertEmpty($response5->properties);
+    }
+
+    public function testSingleBackupResponse(): void
+    {
+        $data = (object) [
+            'id' => 'backup-123',
+            'database_id' => 'db-456',
+            'created_at' => '2025-04-01T13:01:06.603Z',
+            '_links' => (object) ['self' => 'https://example.com/backup/123'],
+        ];
+        $backup = new SiteInstanceDatabaseBackupResponse($data);
+        $this->assertSame('backup-123', $backup->id);
+        $this->assertSame('db-456', $backup->database_id);
+        $this->assertSame('2025-04-01T13:01:06.603Z', $backup->created_at);
+        $this->assertEquals((object) ['self' => 'https://example.com/backup/123'], $backup->links);
+    }
+
+    public function testMultipleBackupsResponse(): void
+    {
+        $backupsData = [
+            (object) [
+                'id' => 'backup-123',
+                'database_id' => 'db-456',
+                'created_at' => '2025-04-01T13:01:06.603Z',
+                '_links' => (object) ['self' => 'https://example.com/backup/123'],
+            ],
+            (object) [
+                'id' => 'backup-789',
+                'database_id' => 'db-999',
+                'created_at' => '2025-05-01T13:01:06.603Z',
+                '_links' => (object) ['self' => 'https://example.com/backup/789'],
+            ],
+        ];
+        $backups = new SiteInstanceDatabaseBackupsResponse($backupsData);
+        $this->assertCount(2, $backups);
+        $this->assertInstanceOf(SiteInstanceDatabaseBackupResponse::class, $backups[0]);
+        $this->assertSame('backup-123', $backups[0]->id);
+        $this->assertSame('backup-789', $backups[1]->id);
+        $this->assertSame('db-456', $backups[0]->database_id);
+        $this->assertSame('db-999', $backups[1]->database_id);
+    }
+
+    public function testBackupsResponse(): void
+    {
+        $backupsData = [
+            (object) [
+                'id' => 'e0c9dff7-56b6-4c0d-bad0-0e6593f66cd3',
+                'database_id' => 'b0c9dff7-56b6-4c0d-bad0-0e6593f66cd3',
+                'created_at' => '2025-04-01T13:01:06.603Z',
+                '_links' => (object) ['self' => 'www.example.com'],
+            ],
+        ];
+        $backups = new SiteInstanceDatabaseBackupsResponse($backupsData);
+        $this->assertCount(1, $backups);
+        $this->assertInstanceOf(SiteInstanceDatabaseBackupResponse::class, $backups[0]);
+        $this->assertSame('e0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', $backups[0]->id);
     }
 }

@@ -2,11 +2,11 @@
 
 namespace AcquiaCloudApi\Endpoints;
 
-use AcquiaCloudApi\Response\BackupResponse;
-use AcquiaCloudApi\Response\BackupsResponse;
 use AcquiaCloudApi\Response\DomainResponse;
 use AcquiaCloudApi\Response\DomainsResponse;
 use AcquiaCloudApi\Response\OperationResponse;
+use AcquiaCloudApi\Response\SiteInstanceDatabaseBackupResponse;
+use AcquiaCloudApi\Response\SiteInstanceDatabaseBackupsResponse;
 use AcquiaCloudApi\Response\SiteInstanceResponse;
 use AcquiaCloudApi\Response\SiteInstanceDatabaseResponse;
 
@@ -66,11 +66,11 @@ class SiteInstances extends CloudApiBase
     /**
      * Returns a list of database backups for a site instance.
      *
-     * @return BackupsResponse<BackupResponse>
+     * @return SiteInstanceDatabaseBackupsResponse<SiteInstanceDatabaseBackupResponse>
      */
-    public function getDatabaseBackups(string $siteId, string $environmentId): BackupsResponse
+    public function getDatabaseBackups(string $siteId, string $environmentId): SiteInstanceDatabaseBackupsResponse
     {
-        return new BackupsResponse(
+        return new SiteInstanceDatabaseBackupsResponse(
             $this->client->request(
                 'get',
                 "/site-instances/$siteId.$environmentId/database/backups"
@@ -94,9 +94,12 @@ class SiteInstances extends CloudApiBase
     /**
      * Returns details about a specific database backup.
      */
-    public function getDatabaseBackup(string $siteId, string $environmentId, string $backupId): BackupResponse
-    {
-        return new BackupResponse(
+    public function getDatabaseBackup(
+        string $siteId,
+        string $environmentId,
+        string $backupId
+    ): SiteInstanceDatabaseBackupResponse {
+        return new SiteInstanceDatabaseBackupResponse(
             $this->client->request(
                 'get',
                 "/site-instances/$siteId.$environmentId/database/backups/$backupId"

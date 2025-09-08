@@ -10,11 +10,9 @@ class SiteInstanceDatabaseResponse
 
     public string $databaseRole;
 
-    public string $databaseUser;
+    public string $databaseUserName;
 
     public string $databasePassword;
-
-    public int $databasePort;
 
     public object $links;
 
@@ -23,9 +21,8 @@ class SiteInstanceDatabaseResponse
         $this->databaseHost = $database->database_host;
         $this->databaseName = $database->database_name;
         $this->databaseRole = $database->database_role;
-        $this->databaseUser = $database->database_user;
+        $this->databaseUserName = $database->database_user_name;
         $this->databasePassword = $database->database_password;
-        $this->databasePort = $database->database_port;
         $this->links = $database->_links;
     }
 }

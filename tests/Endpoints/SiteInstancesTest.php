@@ -6,12 +6,12 @@ use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Endpoints\SiteInstances;
 use AcquiaCloudApi\Response\SiteInstanceResponse;
 use AcquiaCloudApi\Response\SiteInstanceDatabaseResponse;
-use AcquiaCloudApi\Response\BackupResponse;
-use AcquiaCloudApi\Response\BackupsResponse;
 use AcquiaCloudApi\Response\CodebaseEnvironmentResponse;
 use AcquiaCloudApi\Response\DomainResponse;
 use AcquiaCloudApi\Response\DomainsResponse;
 use AcquiaCloudApi\Response\OperationResponse;
+use AcquiaCloudApi\Response\SiteInstanceDatabaseBackupResponse;
+use AcquiaCloudApi\Response\SiteInstanceDatabaseBackupsResponse;
 use AcquiaCloudApi\Response\SiteResponse;
 
 class SiteInstancesTest extends CloudApiTestCase
@@ -51,9 +51,8 @@ class SiteInstancesTest extends CloudApiTestCase
         $this->assertEquals('localhost', $result->databaseHost);
         $this->assertEquals('example_db', $result->databaseName);
         $this->assertEquals('primary', $result->databaseRole);
-        $this->assertEquals('example_user', $result->databaseUser);
+        $this->assertEquals('example_user', $result->databaseUserName);
         $this->assertEquals('example_password', $result->databasePassword);
-        $this->assertEquals(3306, $result->databasePort);
     }
 
     public function testCopyDatabase(): void
@@ -90,17 +89,19 @@ class SiteInstancesTest extends CloudApiTestCase
             'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3'
         );
 
-        $this->assertInstanceOf(BackupsResponse::class, $result);
+        $this->assertInstanceOf(SiteInstanceDatabaseBackupsResponse::class, $result);
         $this->assertNotEmpty($result);
 
         foreach ($result as $record) {
-            $this->assertInstanceOf(BackupResponse::class, $record);
+            $this->assertInstanceOf(SiteInstanceDatabaseBackupResponse::class, $record);
         }
 
         // Test first backup
         $firstBackup = $result[0];
-        $this->assertEquals(1, $firstBackup->id);
-        $this->assertEquals('daily', $firstBackup->type);
+        $this->assertEquals('e0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', $firstBackup->id);
+        $this->assertEquals('b0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', $firstBackup->database_id);
+        $this->assertEquals('2025-04-01T13:01:06.603Z', $firstBackup->created_at);
+        $this->assertIsObject($firstBackup->links);
     }
 
     public function testCreateDatabaseBackup(): void
@@ -127,14 +128,14 @@ class SiteInstancesTest extends CloudApiTestCase
         $result = $siteInstances->getDatabaseBackup(
             '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
             'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3',
-            '1'
+            'backup-123'
         );
 
-        $this->assertInstanceOf(BackupResponse::class, $result);
-        $this->assertEquals(1, $result->id);
-        $this->assertEquals('daily', $result->type);
-        $this->assertEquals('2023-01-15T10:00:00.000Z', $result->startedAt);
-        $this->assertEquals('2023-01-15T10:30:00.000Z', $result->completedAt);
+        $this->assertInstanceOf(SiteInstanceDatabaseBackupResponse::class, $result);
+        $this->assertEquals('e0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', $result->id);
+        $this->assertEquals('b0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', $result->database_id);
+        $this->assertEquals('2025-04-01T13:01:06.603Z', $result->created_at);
+        $this->assertIsObject($result->links);
     }
 
     public function testDownloadDatabaseBackup(): void
@@ -198,11 +199,11 @@ class SiteInstancesTest extends CloudApiTestCase
         $client = $this->getMockClient($response);
 
         $siteInstances = new SiteInstances($client);
-        $result = $siteInstances->getDomain(
-            '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
-            'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3',
-            'example.com'
-        );
+            $result = $siteInstances->getDomain(
+                '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
+                'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3',
+                'example.com'
+            );
 
         $this->assertInstanceOf(DomainResponse::class, $result);
         $this->assertEquals('example.com', $result->hostname);
@@ -309,9 +310,8 @@ class SiteInstancesTest extends CloudApiTestCase
         $this->assertNotNull($result->databaseHost);
         $this->assertNotNull($result->databaseName);
         $this->assertNotNull($result->databaseRole);
-        $this->assertNotNull($result->databaseUser);
+        $this->assertNotNull($result->databaseUserName);
         $this->assertNotNull($result->databasePassword);
-        $this->assertIsInt($result->databasePort);
         $this->assertIsObject($result->links);
     }
 
@@ -326,15 +326,14 @@ class SiteInstancesTest extends CloudApiTestCase
             'a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3'
         );
 
-        $this->assertInstanceOf(BackupsResponse::class, $result);
+        $this->assertInstanceOf(SiteInstanceDatabaseBackupsResponse::class, $result);
 
         // Enhanced array iteration to catch array transformation mutations
         $itemCount = 0;
         foreach ($result as $index => $backupResponse) {
-            $this->assertInstanceOf(BackupResponse::class, $backupResponse);
+            $this->assertInstanceOf(SiteInstanceDatabaseBackupResponse::class, $backupResponse);
             $this->assertNotNull($backupResponse); // Catches NewObject mutations
-            $this->assertIsInt($backupResponse->id);
-            $this->assertIsString($backupResponse->type);
+            $this->assertStringContainsString("e0c9dff7-56b6-4c0d-bad0-0e6593f66cd3", $backupResponse->id);
             $itemCount++;
         }
 
@@ -345,7 +344,7 @@ class SiteInstancesTest extends CloudApiTestCase
         if (count($result) > 0) {
             $this->assertArrayHasKey(0, $result);
             $firstBackup = $result[0];
-            $this->assertInstanceOf(BackupResponse::class, $firstBackup);
+            $this->assertInstanceOf(SiteInstanceDatabaseBackupResponse::class, $firstBackup);
             $this->assertNotNull($firstBackup->id);
         }
     }

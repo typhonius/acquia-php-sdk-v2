@@ -12,9 +12,11 @@
         "id": "e0c9dff7-56b6-4c0d-bad0-0e6593f66cd3",
         "database_id": "b0c9dff7-56b6-4c0d-bad0-0e6593f66cd3",
         "created_at": "2025-04-01T13:01:06.603Z",
-        "_links": [
-          "www.example.com"
-        ]
+        "_links": {
+            "self": {
+            "href": "https://environment-service-php.acquia.com/api/environments/3e8ecbec-ea7c-4260-8414-ef2938c859bc.d3f7270e-c45f-4801-9308-5e8afe84a323/database/backups/a0c9dff7-56b6-4c0d-bad0-0e6593f66cd3"
+            }
+        }
       }
     ]
   },

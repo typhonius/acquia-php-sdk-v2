@@ -101,7 +101,7 @@ class SiteInstancesTest extends CloudApiTestCase
         $this->assertEquals('e0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', $firstBackup->id);
         $this->assertEquals('b0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', $firstBackup->database_id);
         $this->assertEquals('2025-04-01T13:01:06.603Z', $firstBackup->created_at);
-        $this->assertEquals([ "www.example.com"], $firstBackup->links);
+        $this->assertIsObject($firstBackup->links);
     }
 
     public function testCreateDatabaseBackup(): void
@@ -135,7 +135,7 @@ class SiteInstancesTest extends CloudApiTestCase
         $this->assertEquals('e0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', $result->id);
         $this->assertEquals('b0c9dff7-56b6-4c0d-bad0-0e6593f66cd3', $result->database_id);
         $this->assertEquals('2025-04-01T13:01:06.603Z', $result->created_at);
-        $this->assertEquals([ "www.example.com"], $result->links);
+        $this->assertIsObject($result->links);
     }
 
     public function testDownloadDatabaseBackup(): void

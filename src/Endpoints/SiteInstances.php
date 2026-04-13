@@ -7,6 +7,7 @@ use AcquiaCloudApi\Response\DomainsResponse;
 use AcquiaCloudApi\Response\OperationResponse;
 use AcquiaCloudApi\Response\SiteInstanceDatabaseBackupResponse;
 use AcquiaCloudApi\Response\SiteInstanceDatabaseBackupsResponse;
+use AcquiaCloudApi\Response\SiteInstanceDatabaseConnectionResponse;
 use AcquiaCloudApi\Response\SiteInstanceResponse;
 use AcquiaCloudApi\Response\SiteInstanceDatabaseResponse;
 
@@ -39,6 +40,19 @@ class SiteInstances extends CloudApiBase
             $this->client->request(
                 'get',
                 "/site-instances/$siteId.$environmentId/database"
+            )
+        );
+    }
+
+    /**
+     * Returns database connection details for a site instance.
+     */
+    public function getDatabaseConnection(string $siteId, string $environmentId): SiteInstanceDatabaseConnectionResponse
+    {
+        return new SiteInstanceDatabaseConnectionResponse(
+            $this->client->request(
+                'get',
+                "/site-instances/$siteId.$environmentId/database/connection"
             )
         );
     }

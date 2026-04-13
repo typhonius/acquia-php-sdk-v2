@@ -2,6 +2,7 @@
 
 namespace AcquiaCloudApi\Tests\Endpoints;
 
+use AcquiaCloudApi\Response\SiteInstanceDatabaseConnectionResponse;
 use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Endpoints\SiteInstances;
 use AcquiaCloudApi\Response\SiteInstanceResponse;
@@ -48,11 +49,29 @@ class SiteInstancesTest extends CloudApiTestCase
         );
 
         $this->assertInstanceOf(SiteInstanceDatabaseResponse::class, $result);
-        $this->assertEquals('localhost', $result->databaseHost);
         $this->assertEquals('example_db', $result->databaseName);
         $this->assertEquals('primary', $result->databaseRole);
-        $this->assertEquals('example_user', $result->databaseUserName);
-        $this->assertEquals('example_password', $result->databasePassword);
+    }
+
+    public function testGetSiteInstanceDatabaseConnection(): void
+    {
+        $response = $this->getPsr7JsonResponseForFixture(
+            'Endpoints/SiteInstances/getSiteInstanceDatabaseConnection.json'
+        );
+        $client = $this->getMockClient($response);
+
+        $siteInstances = new SiteInstances($client);
+        $result = $siteInstances->getDatabaseConnection(
+            '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
+            'd3f7270e-c45f-4801-9308-5e8afe84a323'
+        );
+
+        $this->assertInstanceOf(SiteInstanceDatabaseConnectionResponse::class, $result);
+        $this->assertEquals('example_db', $result->databaseName);
+        $this->assertEquals('example', $result->databaseUserName);
+        $this->assertEquals('example@123', $result->databasePassword);
+        $this->assertEquals('localhost', $result->databaseHost);
+        $this->assertEquals('ssh://example.com', $result->sshHost);
     }
 
     public function testCopyDatabase(): void
@@ -307,11 +326,30 @@ class SiteInstancesTest extends CloudApiTestCase
         );
 
         $this->assertInstanceOf(SiteInstanceDatabaseResponse::class, $result);
-        $this->assertNotNull($result->databaseHost);
         $this->assertNotNull($result->databaseName);
         $this->assertNotNull($result->databaseRole);
+        $this->assertIsObject($result->links);
+    }
+
+    public function testDatabaseConnectionResponseTransformations(): void
+    {
+        $response = $this->getPsr7JsonResponseForFixture(
+            'Endpoints/SiteInstances/getSiteInstanceDatabaseConnection.json'
+        );
+        $client = $this->getMockClient($response);
+
+        $siteInstances = new SiteInstances($client);
+        $result = $siteInstances->getDatabaseConnection(
+            '3e8ecbec-ea7c-4260-8414-ef2938c859bc',
+            'd3f7270e-c45f-4801-9308-5e8afe84a323'
+        );
+
+        $this->assertInstanceOf(SiteInstanceDatabaseConnectionResponse::class, $result);
+        $this->assertNotNull($result->databaseName);
+        $this->assertNotNull($result->databaseHost);
         $this->assertNotNull($result->databaseUserName);
         $this->assertNotNull($result->databasePassword);
+        $this->assertNotNull($result->sshHost);
         $this->assertIsObject($result->links);
     }
 

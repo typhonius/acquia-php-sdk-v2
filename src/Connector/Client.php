@@ -175,8 +175,7 @@ class Client implements ClientInterface
                 'Cloud API returned a non-JSON response. Status '
                 . $response->getStatusCode()
                 . ' (' . ($response->getHeaderLine('Content-Type') ?: 'no Content-Type') . ')'
-                . '. Request ID '
-                . ($response->getHeaderLine('X-Request-Id') ?: 'none')
+                . '. ' . self::traceId($response)
                 . '. Body starts with: '
                 . self::excerpt($body_json),
                 0,
@@ -202,6 +201,24 @@ class Client implements ClientInterface
         }
 
         return $body;
+    }
+
+    /**
+     * The id support can look a response up by.
+     *
+     * A response the edge synthesized (a Cloudflare 502/504, say) has no
+     * X-Request-Id, because nothing upstream ever handled the request; its
+     * CF-Ray is then the only trace of it.
+     */
+    private static function traceId(ResponseInterface $response): string
+    {
+        if ($id = $response->getHeaderLine('X-Request-Id')) {
+            return 'Request ID ' . $id;
+        }
+        if ($ray = $response->getHeaderLine('CF-Ray')) {
+            return 'Request ID none; CF-Ray ' . $ray;
+        }
+        return 'Request ID none';
     }
 
     /**

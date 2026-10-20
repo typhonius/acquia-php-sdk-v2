@@ -96,6 +96,13 @@ EOD;
                 $prefix . 'Status 404 (text/html; charset=UTF-8). Request ID none. '
                 . 'Body starts with: Page not found Page not found',
             ],
+            'plain-text 504 synthesized by Cloudflare' => [
+                504,
+                ['Content-Type' => 'text/plain; charset=UTF-8', 'CF-Ray' => '9a1b2c3d4e5f6789-BRU'],
+                'error code: 504',
+                $prefix . 'Status 504 (text/plain; charset=UTF-8). Request ID none; CF-Ray 9a1b2c3d4e5f6789-BRU. '
+                . 'Body starts with: error code: 504',
+            ],
             'plain-text 401 without a request ID' => [
                 401,
                 ['Content-Type' => 'text/plain'],

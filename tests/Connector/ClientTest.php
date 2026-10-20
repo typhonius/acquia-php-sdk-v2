@@ -58,6 +58,56 @@ EOD;
         $code->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
     }
 
+    /**
+     * @dataProvider providerNonJsonResponse
+     */
+    public function testNonJsonResponse(int $status, array $headers, string $body, string $expectedMessage): void
+    {
+        $client = $this->getMockClient(new Response($status, $headers, $body));
+
+        $code = new Code($client);
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage($expectedMessage);
+        $code->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+    }
+
+    /**
+     * @return array<string, array{int, array<string, string>, string, string}>
+     */
+    public static function providerNonJsonResponse(): array
+    {
+        $prefix = 'Cloud API returned a non-JSON response. ';
+        return [
+            'HTML 504 from a gateway' => [
+                504,
+                ['Content-Type' => 'text/html', 'X-Request-Id' => 'v-918d0182-f8f6-11ee-ac5b-9f3072a91621'],
+                "<html>\n<head><title>504 Gateway Time-out</title></head>\n"
+                . "<body>\n<h1>504 Gateway Time-out</h1>\n</body>\n</html>",
+                $prefix . 'Status 504 (text/html). Request ID v-918d0182-f8f6-11ee-ac5b-9f3072a91621. '
+                . 'Body starts with: 504 Gateway Time-out 504 Gateway Time-out',
+            ],
+            'plain-text 401 without a request ID' => [
+                401,
+                ['Content-Type' => 'text/plain'],
+                'Unauthorized',
+                $prefix . 'Status 401 (text/plain). Request ID none. Body starts with: Unauthorized',
+            ],
+            '200 with a truncated JSON body' => [
+                200,
+                ['Content-Type' => 'application/json'],
+                '{"id": "8ff6c046-ec64-4ce4-bea6-27845ec1',
+                $prefix . 'Status 200 (application/json). Request ID none. '
+                . 'Body starts with: {"id": "8ff6c046-ec64-4ce4-bea6-27845ec1',
+            ],
+            'no Content-Type header' => [
+                503,
+                [],
+                'Service Unavailable',
+                $prefix . 'Status 503 (no Content-Type). Request ID none. Body starts with: Service Unavailable',
+            ],
+        ];
+    }
+
     public function testClearQuery(): void
     {
         $client = $this->getMockClient();

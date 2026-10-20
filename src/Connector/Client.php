@@ -5,6 +5,7 @@ namespace AcquiaCloudApi\Connector;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use AcquiaCloudApi\Exception\ApiErrorException;
+use JsonException;
 use Psr\Http\Message\StreamInterface;
 use RuntimeException;
 
@@ -163,8 +164,25 @@ class Client implements ClientInterface
                 . $response->getHeaderLine('X-Request-Id')
             );
         }
-        $body_json = $response->getBody();
-        $body = json_decode($body_json, null, 512, JSON_THROW_ON_ERROR);
+        $body_json = (string) $response->getBody();
+        try {
+            $body = json_decode($body_json, null, 512, JSON_THROW_ON_ERROR);
+        } catch (JsonException $e) {
+            // Gateways and proxies answer 502/503/504 (and sometimes 401/403)
+            // with HTML or plain text; say what came back instead of where
+            // json_decode() choked.
+            throw new RuntimeException(
+                'Cloud API returned a non-JSON response. Status '
+                . $response->getStatusCode()
+                . ' (' . ($response->getHeaderLine('Content-Type') ?: 'no Content-Type') . ')'
+                . '. Request ID '
+                . ($response->getHeaderLine('X-Request-Id') ?: 'none')
+                . '. Body starts with: '
+                . mb_substr(trim(preg_replace('/\s+/', ' ', strip_tags($body_json))), 0, 200),
+                0,
+                $e
+            );
+        }
         // Internal server errors may also return a 200 response and empty body.
         if (is_null($body)) {
             throw new RuntimeException(

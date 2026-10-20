@@ -178,7 +178,7 @@ class Client implements ClientInterface
                 . '. Request ID '
                 . ($response->getHeaderLine('X-Request-Id') ?: 'none')
                 . '. Body starts with: '
-                . mb_substr(trim(preg_replace('/\s+/', ' ', strip_tags($body_json))), 0, 200),
+                . self::excerpt($body_json),
                 0,
                 $e
             );
@@ -202,6 +202,20 @@ class Client implements ClientInterface
         }
 
         return $body;
+    }
+
+    /**
+     * The first 200 characters of a body's visible text, for an error message.
+     *
+     * An HTML error page's <script> and <style> contents would otherwise fill
+     * the excerpt before any readable text.
+     */
+    private static function excerpt(string $body): string
+    {
+        $text = preg_replace('#<(script|style)\b[^>]*>.*?</\1>#is', ' ', $body) ?? $body;
+        // A space per tag, not strip_tags(), so "<h1>a</h1><p>b" reads "a b".
+        $text = preg_replace(['/<[^>]*>/', '/\s+/'], ' ', $text) ?? $text;
+        return mb_substr(trim($text), 0, 200);
     }
 
     /**

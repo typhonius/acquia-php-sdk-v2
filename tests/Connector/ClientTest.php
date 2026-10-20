@@ -87,6 +87,15 @@ EOD;
                 $prefix . 'Status 504 (text/html). Request ID v-918d0182-f8f6-11ee-ac5b-9f3072a91621. '
                 . 'Body starts with: 504 Gateway Time-out 504 Gateway Time-out',
             ],
+            'HTML 404 whose <head> starts with a script' => [
+                404,
+                ['Content-Type' => 'text/html; charset=UTF-8'],
+                "<html><head><script>window._vwo_code || (function () { var account_id=818639 })();</script>"
+                . "<style>body{opacity:0}</style><title>Page not found</title></head>"
+                . "<body><h1>Page not found</h1></body></html>",
+                $prefix . 'Status 404 (text/html; charset=UTF-8). Request ID none. '
+                . 'Body starts with: Page not found Page not found',
+            ],
             'plain-text 401 without a request ID' => [
                 401,
                 ['Content-Type' => 'text/plain'],

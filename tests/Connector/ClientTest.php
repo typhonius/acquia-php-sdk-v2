@@ -60,6 +60,7 @@ EOD;
 
     /**
      * @dataProvider providerNonJsonResponse
+     * @param array<string, string> $headers
      */
     public function testNonJsonResponse(int $status, array $headers, string $body, string $expectedMessage): void
     {

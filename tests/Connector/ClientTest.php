@@ -6,7 +6,9 @@ use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Connector\Client;
 use AcquiaCloudApi\Connector\Connector;
 use AcquiaCloudApi\Endpoints\Code;
+use AcquiaCloudApi\Exception\NonJsonResponseException;
 use GuzzleHttp\Psr7\Response;
+use JsonException;
 use RuntimeException;
 
 class ClientTest extends CloudApiTestCase
@@ -64,12 +66,18 @@ EOD;
      */
     public function testNonJsonResponse(int $status, array $headers, string $body, string $expectedMessage): void
     {
-        $client = $this->getMockClient(new Response($status, $headers, $body));
+        $response = new Response($status, $headers, $body);
+        $client = $this->getMockClient($response);
 
         $code = new Code($client);
-        $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage($expectedMessage);
-        $code->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+        try {
+            $code->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+            $this->fail('Expected a NonJsonResponseException');
+        } catch (NonJsonResponseException $e) {
+            $this->assertSame($expectedMessage, $e->getMessage());
+            $this->assertSame($response, $e->getResponse());
+            $this->assertInstanceOf(JsonException::class, $e->getPrevious());
+        }
     }
 
     /**

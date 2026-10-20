@@ -5,6 +5,7 @@ namespace AcquiaCloudApi\Connector;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use AcquiaCloudApi\Exception\ApiErrorException;
+use AcquiaCloudApi\Exception\NonJsonResponseException;
 use JsonException;
 use Psr\Http\Message\StreamInterface;
 use RuntimeException;
@@ -171,14 +172,14 @@ class Client implements ClientInterface
             // Gateways and proxies answer 502/503/504 (and sometimes 401/403)
             // with HTML or plain text; say what came back instead of where
             // json_decode() choked.
-            throw new RuntimeException(
+            throw new NonJsonResponseException(
                 'Cloud API returned a non-JSON response. Status '
                 . $response->getStatusCode()
                 . ' (' . ($response->getHeaderLine('Content-Type') ?: 'no Content-Type') . ')'
                 . '. ' . self::traceId($response)
                 . '. Body starts with: '
                 . self::excerpt($body_json),
-                0,
+                $response,
                 $e
             );
         }

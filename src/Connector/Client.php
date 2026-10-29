@@ -156,15 +156,6 @@ class Client implements ClientInterface
      */
     public function processResponse(ResponseInterface $response): mixed
     {
-        // Internal server errors return HTML instead of JSON, breaking our parsing.
-        if ($response->getStatusCode() === 500) {
-            throw new RuntimeException(
-                'Cloud API internal server error. Status '
-                . $response->getStatusCode()
-                . '. Request ID '
-                . $response->getHeaderLine('X-Request-Id')
-            );
-        }
         $body_json = $response->getBody();
         try {
             $body = json_decode($body_json, flags: JSON_THROW_ON_ERROR);

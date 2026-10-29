@@ -9,7 +9,6 @@ use AcquiaCloudApi\Endpoints\Code;
 use AcquiaCloudApi\Exception\NonJsonResponseException;
 use GuzzleHttp\Psr7\Response;
 use JsonException;
-use RuntimeException;
 
 class ClientTest extends CloudApiTestCase
 {
@@ -46,20 +45,6 @@ class ClientTest extends CloudApiTestCase
         }
     }
 
-    public function testServerError(): void
-    {
-        $response = new Response(500, ['X-Request-Id' => 'v-918d0182-f8f6-11ee-ac5b-9f3072a91621']);
-        $client = $this->getMockClient($response);
-
-        $code = new Code($client);
-        $this->expectException(RuntimeException::class);
-        $message = <<<EOD
-Cloud API internal server error. Status 500. Request ID v-918d0182-f8f6-11ee-ac5b-9f3072a91621
-EOD;
-        $this->expectExceptionMessage($message);
-        $code->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
-    }
-
     /**
      * @dataProvider providerNonJsonResponse
      * @param array<string, string> $headers
@@ -87,6 +72,13 @@ EOD;
     {
         $prefix = 'Cloud API returned a non-JSON response. ';
         return [
+            'HTML 500 from the API itself' => [
+                500,
+                ['Content-Type' => 'text/html', 'X-Request-Id' => 'v-918d0182-f8f6-11ee-ac5b-9f3072a91621'],
+                '<html><body><h1>Internal Server Error</h1></body></html>',
+                $prefix . 'Status 500 (text/html). Request ID v-918d0182-f8f6-11ee-ac5b-9f3072a91621. '
+                . 'Body starts with: Internal Server Error',
+            ],
             'HTML 504 from a gateway' => [
                 504,
                 ['Content-Type' => 'text/html', 'X-Request-Id' => 'v-918d0182-f8f6-11ee-ac5b-9f3072a91621'],

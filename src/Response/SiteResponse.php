@@ -26,6 +26,9 @@ class SiteResponse
         $this->label = $site->label;
         $this->description = $site->description ?? null;
         $this->codebaseId = $site->codebase_id ?? null;
-        $this->links = $site->_links;
+
+        // Make sure $links is always an object, whether it's null, missing, or an array
+        $links = $siteInstance->_links ?? [];
+        $this->links = is_object($links) ? $links : (object) $links;
     }
 }

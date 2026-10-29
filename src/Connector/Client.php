@@ -68,8 +68,9 @@ class Client implements ClientInterface
      */
     public function modifyOptions(): array
     {
-        // Combine options set globally e.g. headers with options set by individual API calls e.g. form_params.
-        $options = $this->options + $this->requestOptions;
+        // Combine options set globally e.g. headers with options set by individual API calls e.g. form_params,
+        // using array_merge_recursive to ensure nested arrays like headers are merged rather than overwritten.
+        $options = array_merge_recursive($this->requestOptions, $this->options);
 
         // This library can be standalone or as a dependency. Dependent libraries may also set their own user agent
         // which will make $options['headers']['User-Agent'] an array.

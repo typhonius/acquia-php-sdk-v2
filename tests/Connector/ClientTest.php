@@ -6,8 +6,9 @@ use AcquiaCloudApi\Tests\CloudApiTestCase;
 use AcquiaCloudApi\Connector\Client;
 use AcquiaCloudApi\Connector\Connector;
 use AcquiaCloudApi\Endpoints\Code;
+use AcquiaCloudApi\Exception\NonJsonResponseException;
 use GuzzleHttp\Psr7\Response;
-use RuntimeException;
+use JsonException;
 
 class ClientTest extends CloudApiTestCase
 {
@@ -44,18 +45,90 @@ class ClientTest extends CloudApiTestCase
         }
     }
 
-    public function testServerError(): void
+    /**
+     * @dataProvider providerNonJsonResponse
+     * @param array<string, string> $headers
+     */
+    public function testNonJsonResponse(int $status, array $headers, string $body, string $expectedMessage): void
     {
-        $response = new Response(500, ['X-Request-Id' => 'v-918d0182-f8f6-11ee-ac5b-9f3072a91621']);
+        $response = new Response($status, $headers, $body);
         $client = $this->getMockClient($response);
 
         $code = new Code($client);
-        $this->expectException(RuntimeException::class);
-        $message = <<<EOD
-Cloud API internal server error. Status 500. Request ID v-918d0182-f8f6-11ee-ac5b-9f3072a91621
-EOD;
-        $this->expectExceptionMessage($message);
-        $code->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+        try {
+            $code->getAll('8ff6c046-ec64-4ce4-bea6-27845ec18600');
+            $this->fail('Expected a NonJsonResponseException');
+        } catch (NonJsonResponseException $e) {
+            $this->assertSame($expectedMessage, $e->getMessage());
+            $this->assertSame($response, $e->getResponse());
+            $this->assertInstanceOf(JsonException::class, $e->getPrevious());
+        }
+    }
+
+    /**
+     * @return array<string, array{int, array<string, string>, string, string}>
+     */
+    public static function providerNonJsonResponse(): array
+    {
+        $prefix = 'Cloud API returned a non-JSON response. ';
+        return [
+            'HTML 500 from the API itself' => [
+                500,
+                ['Content-Type' => 'text/html', 'X-Request-Id' => 'v-918d0182-f8f6-11ee-ac5b-9f3072a91621'],
+                '<html><body><h1>Internal Server Error</h1></body></html>',
+                $prefix . 'Status 500 (text/html). Request ID v-918d0182-f8f6-11ee-ac5b-9f3072a91621. '
+                . 'Body starts with: Internal Server Error',
+            ],
+            'HTML 504 from a gateway' => [
+                504,
+                ['Content-Type' => 'text/html', 'X-Request-Id' => 'v-918d0182-f8f6-11ee-ac5b-9f3072a91621'],
+                "<html>\n<head><title>504 Gateway Time-out</title></head>\n"
+                . "<body>\n<h1>504 Gateway Time-out</h1>\n</body>\n</html>",
+                $prefix . 'Status 504 (text/html). Request ID v-918d0182-f8f6-11ee-ac5b-9f3072a91621. '
+                . 'Body starts with: 504 Gateway Time-out 504 Gateway Time-out',
+            ],
+            'HTML 404 whose <head> starts with a script' => [
+                404,
+                ['Content-Type' => 'text/html; charset=UTF-8'],
+                "<html><head><script>window._vwo_code || (function () { var account_id=818639 })();</script>"
+                . "<style>body{opacity:0}</style><title>Page not found</title></head>"
+                . "<body><h1>Page not found</h1></body></html>",
+                $prefix . 'Status 404 (text/html; charset=UTF-8). Request ID none. '
+                . 'Body starts with: Page not found Page not found',
+            ],
+            'plain-text 504 synthesized by Cloudflare' => [
+                504,
+                ['Content-Type' => 'text/plain; charset=UTF-8', 'CF-Ray' => '9a1b2c3d4e5f6789-BRU'],
+                'error code: 504',
+                $prefix . 'Status 504 (text/plain; charset=UTF-8). Request ID none; CF-Ray 9a1b2c3d4e5f6789-BRU. '
+                . 'Body starts with: error code: 504',
+            ],
+            'plain-text 401 without a request ID' => [
+                401,
+                ['Content-Type' => 'text/plain'],
+                'Unauthorized',
+                $prefix . 'Status 401 (text/plain). Request ID none. Body starts with: Unauthorized',
+            ],
+            '200 with a truncated JSON body' => [
+                200,
+                ['Content-Type' => 'application/json'],
+                '{"id": "8ff6c046-ec64-4ce4-bea6-27845ec1',
+                $prefix . 'Status 200 (application/json). Request ID none. '
+                . 'Body starts with: {"id": "8ff6c046-ec64-4ce4-bea6-27845ec1',
+            ],
+            'no Content-Type header' => [
+                503,
+                [],
+                'Service Unavailable',
+                $prefix . 'Status 503 (no Content-Type). Request ID none. Body starts with: Service Unavailable',
+            ],
+            'excerpt stops at 200 characters, not bytes' => [
+                502,
+                ['Content-Type' => 'text/plain'],
+                str_repeat('é', 201),
+                $prefix . 'Status 502 (text/plain). Request ID none. Body starts with: ' . str_repeat('é', 200),
+            ],
+        ];
     }
 
     public function testClearQuery(): void

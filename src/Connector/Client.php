@@ -5,6 +5,8 @@ namespace AcquiaCloudApi\Connector;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use AcquiaCloudApi\Exception\ApiErrorException;
+use AcquiaCloudApi\Exception\NonJsonResponseException;
+use JsonException;
 use Psr\Http\Message\StreamInterface;
 use RuntimeException;
 
@@ -154,17 +156,24 @@ class Client implements ClientInterface
      */
     public function processResponse(ResponseInterface $response): mixed
     {
-        // Internal server errors return HTML instead of JSON, breaking our parsing.
-        if ($response->getStatusCode() === 500) {
-            throw new RuntimeException(
-                'Cloud API internal server error. Status '
+        $body_json = $response->getBody();
+        try {
+            $body = json_decode($body_json, flags: JSON_THROW_ON_ERROR);
+        } catch (JsonException $e) {
+            // Gateways and proxies answer 502/503/504 (and sometimes 401/403)
+            // with HTML or plain text; say what came back instead of where
+            // json_decode() choked.
+            throw new NonJsonResponseException(
+                'Cloud API returned a non-JSON response. Status '
                 . $response->getStatusCode()
-                . '. Request ID '
-                . $response->getHeaderLine('X-Request-Id')
+                . ' (' . ($response->getHeaderLine('Content-Type') ?: 'no Content-Type') . ')'
+                . '. ' . self::traceId($response)
+                . '. Body starts with: '
+                . self::excerpt($body_json),
+                $response,
+                $e
             );
         }
-        $body_json = $response->getBody();
-        $body = json_decode($body_json, null, 512, JSON_THROW_ON_ERROR);
         // Internal server errors may also return a 200 response and empty body.
         if (is_null($body)) {
             throw new RuntimeException(
@@ -184,6 +193,38 @@ class Client implements ClientInterface
         }
 
         return $body;
+    }
+
+    /**
+     * The id support can look a response up by.
+     *
+     * A response the edge synthesized (a Cloudflare 502/504, say) has no
+     * X-Request-Id, because nothing upstream ever handled the request; its
+     * CF-Ray is then the only trace of it.
+     */
+    private static function traceId(ResponseInterface $response): string
+    {
+        if ($id = $response->getHeaderLine('X-Request-Id')) {
+            return 'Request ID ' . $id;
+        }
+        if ($ray = $response->getHeaderLine('CF-Ray')) {
+            return 'Request ID none; CF-Ray ' . $ray;
+        }
+        return 'Request ID none';
+    }
+
+    /**
+     * The first 200 characters of a body's visible text, for an error message.
+     *
+     * An HTML error page's <script> and <style> contents would otherwise fill
+     * the excerpt before any readable text.
+     */
+    private static function excerpt(string $body): string
+    {
+        $text = preg_replace('#<(script|style)\b[^>]*>.*?</\1>#is', ' ', $body) ?? $body;
+        // A space per tag, not strip_tags(), so "<h1>a</h1><p>b" reads "a b".
+        $text = preg_replace(['/<[^>]*>/', '/\s+/'], ' ', $text) ?? $text;
+        return mb_substr(trim($text), 0, 200);
     }
 
     /**

@@ -165,9 +165,9 @@ class Client implements ClientInterface
                 . $response->getHeaderLine('X-Request-Id')
             );
         }
-        $body_json = (string) $response->getBody();
+        $body_json = $response->getBody();
         try {
-            $body = json_decode($body_json, null, 512, JSON_THROW_ON_ERROR);
+            $body = json_decode($body_json, flags: JSON_THROW_ON_ERROR);
         } catch (JsonException $e) {
             // Gateways and proxies answer 502/503/504 (and sometimes 401/403)
             // with HTML or plain text; say what came back instead of where

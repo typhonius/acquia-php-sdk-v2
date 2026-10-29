@@ -18,7 +18,7 @@ class NonJsonResponseException extends RuntimeException
 
     public function __construct(string $message, ResponseInterface $response, ?JsonException $previous = null)
     {
-        parent::__construct($message, 0, $previous);
+        parent::__construct($message, previous: $previous);
         $this->response = $response;
     }
 

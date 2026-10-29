@@ -130,6 +130,12 @@ EOD;
                 'Service Unavailable',
                 $prefix . 'Status 503 (no Content-Type). Request ID none. Body starts with: Service Unavailable',
             ],
+            'excerpt stops at 200 characters, not bytes' => [
+                502,
+                ['Content-Type' => 'text/plain'],
+                str_repeat('é', 201),
+                $prefix . 'Status 502 (text/plain). Request ID none. Body starts with: ' . str_repeat('é', 200),
+            ],
         ];
     }
 
